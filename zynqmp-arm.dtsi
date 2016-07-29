@@ -184,10 +184,13 @@ glue(glue(glue(tcm_mem_ctrl_, n), _), AB): glue(glue(tcm_mem_ctrl_, AB), n)@n {	
 			icache-for-rpu1 = <&icache_rpu1>;
 			dcache-for-rpu1 = <&dcache_rpu1>;
 			gic-for-rpu = <&rpu_gic>;
+			gpios = <&pmu_global 6
+					 &pmu_global 7
 #ifdef MULTI_ARCH
-			gpios = <&pmu_io_gpi3 5 0
-					 &pmu_io_gpi3 6 0>;
+					 &pmu_io_gpi3 5
+					 &pmu_io_gpi3 6
 #endif
+			>;
 		};
 
 	};
