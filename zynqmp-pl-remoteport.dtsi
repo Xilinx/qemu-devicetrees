@@ -1,0 +1,142 @@
+/*
+ * ZynqMP PL Interface over Remote-port.
+ *
+ * Copyright (c) 2016, Xilinx Inc
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *     * Redistributions of source code must retain the above copyright
+ *       notice, this list of conditions and the following disclaimer.
+ *     * Redistributions in binary form must reproduce the above copyright
+ *       notice, this list of conditions and the following disclaimer in the
+ *       documentation and/or other materials provided with the distribution.
+ *     * Neither the name of the <organization> nor the
+ *       names of its contributors may be used to endorse or promote products
+ *       derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY
+ * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+/ {
+	#address-cells = <MEMORY_ADDRESS_CELLS>;
+	#size-cells = <1>;
+
+        amba: amba@0 {
+		cosim_rp_0: cosim@0 {
+			compatible = "remote-port";
+			sync = <1>;
+		};
+
+		pl_0: rp_pl_0@a0000000 {
+			compatible = "remote-port-memory-master";
+			remote-ports = <&cosim_rp_0 9>;
+			reg = <BASE_ADDR(0xa0000000) 0x10000000>;
+		};
+
+		pl_1: rp_pl_1@b0000000 {
+			compatible = "remote-port-memory-master";
+			remote-ports = <&cosim_rp_0 10>;
+			reg = <BASE_ADDR(0xb0000000) 0x10000000>;
+		};
+
+		/* FIXME: This should only be accessible by the RPU.  */
+		pl_2: rp_pl_2@40000000 {
+			compatible = "remote-port-memory-master";
+			remote-ports = <&cosim_rp_0 11>;
+			reg = <BASE_ADDR(0x80000000) 0x20000000>;
+		};
+
+		afi_0: rp_afi0@0 {
+			compatible = "remote-port-memory-slave";
+			remote-ports = <&cosim_rp_0 0>;
+			mr = <&smmu_tbu0>;
+		};
+		afi_1: rp_afi1@0 {
+			compatible = "remote-port-memory-slave";
+			remote-ports = <&cosim_rp_0 1>;
+			mr = <&smmu_tbu0>;
+		};
+		afi_2: rp_afi2@0 {
+			compatible = "remote-port-memory-slave";
+			remote-ports = <&cosim_rp_0 2>;
+			mr = <&smmu_tbu3>;
+		};
+		afi_3: rp_afi3@0 {
+			compatible = "remote-port-memory-slave";
+			remote-ports = <&cosim_rp_0 3>;
+			mr = <&smmu_tbu4>;
+		};
+		afi_4: rp_afi4@0 {
+			compatible = "remote-port-memory-slave";
+			remote-ports = <&cosim_rp_0 4>;
+			mr = <&smmu_tbu4>;
+		};
+		afi_5: rp_afi5@0 {
+			compatible = "remote-port-memory-slave";
+			remote-ports = <&cosim_rp_0 5>;
+			mr = <&smmu_tbu5>;
+		};
+		afi_lp: rp_afilp@0 {
+			compatible = "remote-port-memory-slave";
+			remote-ports = <&cosim_rp_0 6>;
+			mr = <&amba>;
+		};
+		acp: rp_acp@0 {
+			compatible = "remote-port-memory-slave";
+			remote-ports = <&cosim_rp_0 7>;
+			mr = <&cci_slave>;
+		};
+		ace: rp_ace@0 {
+			compatible = "remote-port-memory-slave";
+			remote-ports = <&cosim_rp_0 8>;
+			mr = <&cci_slave>;
+		};
+
+		rp_cosim_intr: rp_cosim_intr@0 {
+			compatible = "remote-port-gpio";
+			remote-ports = <&cosim_rp_0 12>;
+			num-gpios = <16>;
+			interrupts = <PL_PS_GRP0_IRQ_0
+				       PL_PS_GRP0_IRQ_1
+				       PL_PS_GRP0_IRQ_2
+				       PL_PS_GRP0_IRQ_3
+				       PL_PS_GRP0_IRQ_4
+				       PL_PS_GRP0_IRQ_5
+				       PL_PS_GRP0_IRQ_6
+				       PL_PS_GRP0_IRQ_7
+				       PL_PS_GRP1_IRQ_0
+				       PL_PS_GRP1_IRQ_1
+				       PL_PS_GRP1_IRQ_2
+				       PL_PS_GRP1_IRQ_3
+				       PL_PS_GRP1_IRQ_4
+				       PL_PS_GRP1_IRQ_5
+				       PL_PS_GRP1_IRQ_6
+				       PL_PS_GRP1_IRQ_7
+				    >;
+		};
+		rp_cosim_intr_out: rp_cosim_intr_out@0 {
+			compatible = "remote-port-gpio";
+			remote-ports = <&cosim_rp_0 13>;
+			num-gpios = <4>;
+			gpios = <&crl 24 &crl 25 &crl 26 &crl 27>;
+		};
+		rp_cosim_intr_pstopl: rp_cosim_intr_pstopl@0 {
+			#interrupt-cells = <3>;
+			interrupt-controller;
+			compatible = "remote-port-gpio";
+			remote-ports = <&cosim_rp_0 14>;
+			num-gpios = <164>;
+			cell-offset-irq-num = <1>;
+		};
+	};
+};

@@ -1,0 +1,152 @@
+/*
+ * ZynqMP ZCU102 board device tree
+ *
+ * Copyright (c) 2016, Xilinx Inc
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *     * Redistributions of source code must retain the above copyright
+ *       notice, this list of conditions and the following disclaimer.
+ *     * Redistributions in binary form must reproduce the above copyright
+ *       notice, this list of conditions and the following disclaimer in the
+ *       documentation and/or other materials provided with the distribution.
+ *     * Neither the name of the <organization> nor the
+ *       names of its contributors may be used to endorse or promote products
+ *       derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY
+ * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+#include "zynqmp.dtsh"
+
+/dts-v1/;
+
+#include "zynqmp-arm.dtsi"
+#include "zynqmp-memory-regions.dtsi"
+
+/ {
+	model = "ZynqMP ZCU102 RevA";
+	compatible = "xlnx,zynqmp-zcu102", "xlnx,zynqmp";
+
+	amba_pl: amba_pl {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		compatible = "simple-bus";
+		ranges;
+	};
+
+	aliases {
+		ethernet0 = &gem3;
+
+		main_bus_for_pl {
+			compatible = "qemu:memory-region";
+			container = <&amba>;
+			alias = <&amba_pl>;
+			priority = <0xFFFFFFFF>;
+		};
+	};
+
+	MEM_REGION(ddr_bank2, 0x0, 0x40000000, 0x40000000, 0x40000000, &ddr3_ram)
+	MEM_REGION(ddr_bank3, 0x8, 0x00000000, 0x800000000, 0x80000000, &ddr3_ram)
+
+	mdio0: mdio {
+		#address-cells = <1>;
+		#size-cells = <0>;
+		compatible="mdio";
+		phy0: phy@7 {
+			compatible = "88e1118r";
+			device_type = "ethernet-phy";
+			reg = <7>;
+		};
+		phy1: phy@12 {
+			compatible = "88e1118r";
+			device_type = "ethernet-phy";
+			reg = <12>;
+		};
+	};
+};
+
+&amba {
+	i2c1: i2c1@0xFF030000 {
+		#address-cells = <1>;
+		#size-cells = <0>;
+		clocks = <I2C_CLOCKS>;
+		compatible = "xlnx,ps7-i2c-1.00.a", "cdns,i2c-r1p10";
+		interrupts = <I2C1_IRQ_0>;
+		reg = <BASE_ADDR(I2C1) 0x1000>;
+		i2cswitch@74 {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			compatible = "nxp,pca9548";
+			reg = <0x74>;
+			i2c@0 {
+				#address-cells = <1>;
+				#size-cells = <0>;
+				reg = <0>;
+				eeprom@54 {
+					compatible = "at,24c08";
+					reg = <0x54>;
+				};
+				eeprom@55 {
+					compatible = "at,24c08";
+					reg = <0x55>;
+				};
+				eeprom@56 {
+					compatible = "at,24c08";
+					reg = <0x56>;
+				};
+				eeprom@57 {
+					compatible = "at,24c08";
+					reg = <0x57>;
+				};
+			};
+			i2c@2 {
+				#address-cells = <1>;
+				#size-cells = <0>;
+				reg = <2>;
+				si570_1: clock-generator@5d {
+					compatible = "silabs,si57x";
+					reg = <0x5d>;
+					temperature-stability=<50>;
+				};
+			};
+			i2c@3 {
+				#address-cells = <1>;
+				#size-cells = <0>;
+				reg = <3>;
+				si570_2: clock-generator@5e {
+					compatible = "silabs,si57x";
+					reg = <0x5d>;
+					temperature-stability=<50>;
+				};
+			};
+		};
+	};
+};
+
+&ps7_qspi_0 {
+	SPI_FLASH(qspi_flash_lcs_lb, "n25q512a11", 0x02000000, 0x0 0x0)
+	SPI_FLASH(qspi_flash_lcs_ub, "n25q512a11", 0x02000000, 0x0 0x1)
+	SPI_FLASH(qspi_flash_ucs_lb, "n25q512a11", 0x02000000, 0x1 0x0)
+	SPI_FLASH(qspi_flash_ucs_ub, "n25q512a11", 0x02000000, 0x1 0x1)
+};
+
+&ps7_spi_0 {
+	SPI_FLASH(spi0_flash1, "sst25wf080", 0x00100000, 0x1)
+	SPI_FLASH(spi0_flash2, "sst25wf080", 0x00100000, 0x2)
+	SPI_FLASH(spi0_flash3, "sst25wf080", 0x00100000, 0x3)
+};
+
+&gem3 {
+	mdio = <&mdio0>;
+};
