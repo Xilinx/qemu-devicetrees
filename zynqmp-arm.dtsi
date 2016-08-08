@@ -355,6 +355,83 @@ glue(glue(glue(tcm_mem_ctrl_, n), _), AB): glue(glue(tcm_mem_ctrl_, AB), n)@n {	
 			map-stride = <ACPU_GIC_STRIDE>;
 			int-id = <0x0202143B>;
 		};
+
+		/* Alias the GIC CPU registers every 4kB over 64kB */
+		zynqmp-gic-cpu-alias@0xf9021000 {
+			compatible = "qemu:memory-region";
+			alias = <&gic 1>;
+			reg = <BASE_ADDR(0xf9021000) 0x1000 1>;
+		};
+		zynqmp-gic-cpu-alias@0xf9022000 {
+			compatible = "qemu:memory-region";
+			alias = <&gic 1>;
+			reg = <BASE_ADDR(0xf9022000) 0x1000 1>;
+		};
+		zynqmp-gic-cpu-alias@0xf9023000 {
+			compatible = "qemu:memory-region";
+			alias = <&gic 1>;
+			reg = <BASE_ADDR(0xf9023000) 0x1000 1>;
+		};
+		zynqmp-gic-cpu-alias@0xf9024000 {
+			compatible = "qemu:memory-region";
+			alias = <&gic 1>;
+			reg = <BASE_ADDR(0xf9024000) 0x1000 1>;
+		};
+		zynqmp-gic-cpu-alias@0xf9025000 {
+			compatible = "qemu:memory-region";
+			alias = <&gic 1>;
+			reg = <BASE_ADDR(0xf9025000) 0x1000 1>;
+		};
+		zynqmp-gic-cpu-alias@0xf9026000 {
+			compatible = "qemu:memory-region";
+			alias = <&gic 1>;
+			reg = <BASE_ADDR(0xf9026000) 0x1000 1>;
+		};
+		zynqmp-gic-cpu-alias@0xf9027000 {
+			compatible = "qemu:memory-region";
+			alias = <&gic 1>;
+			reg = <BASE_ADDR(0xf9027000) 0x1000 1>;
+		};
+		zynqmp-gic-cpu-alias@0xf9028000 {
+			compatible = "qemu:memory-region";
+			alias = <&gic 1>;
+			reg = <BASE_ADDR(0xf9028000) 0x1000 1>;
+		};
+		zynqmp-gic-cpu-alias@0xf9029000 {
+			compatible = "qemu:memory-region";
+			alias = <&gic 1>;
+			reg = <BASE_ADDR(0xf9029000) 0x1000 1>;
+		};
+		zynqmp-gic-cpu-alias@0xf902a000 {
+			compatible = "qemu:memory-region";
+			alias = <&gic 1>;
+			reg = <BASE_ADDR(0xf902a000) 0x1000 1>;
+		};
+		zynqmp-gic-cpu-alias@0xf902b000 {
+			compatible = "qemu:memory-region";
+			alias = <&gic 1>;
+			reg = <BASE_ADDR(0xf902b000) 0x1000 1>;
+		};
+		zynqmp-gic-cpu-alias@0xf902c000 {
+			compatible = "qemu:memory-region";
+			alias = <&gic 1>;
+			reg = <BASE_ADDR(0xf902c000) 0x1000 1>;
+		};
+		zynqmp-gic-cpu-alias@0xf902d000 {
+			compatible = "qemu:memory-region";
+			alias = <&gic 1>;
+			reg = <BASE_ADDR(0xf902d000) 0x1000 1>;
+		};
+		zynqmp-gic-cpu-alias@0xf902e000 {
+			compatible = "qemu:memory-region";
+			alias = <&gic 1>;
+			reg = <BASE_ADDR(0xf902e000) 0x1000 1>;
+		};
+		zynqmp-gic-cpu-alias@0xf902f000 {
+			compatible = "qemu:memory-region";
+			alias = <&gic 1>;
+			reg = <BASE_ADDR(0xf902f000) 0x1000 1>;
+		};
 	};
 
 	amba_rpu: amba_rpu@0 {
