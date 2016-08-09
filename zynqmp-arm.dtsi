@@ -288,6 +288,7 @@ glue(glue(glue(tcm_mem_ctrl_, n), _), AB): glue(glue(tcm_mem_ctrl_, AB), n)@n {	
 
 	amba_apu_gic: amba_apu_gic@0 {
 		#address-cells = <MEMORY_ADDRESS_CELLS>;
+		#priority-cells = <1>;
 		#size-cells = <1>;
 		compatible = "xlnx,ps7-axi-interconnect-1.00.a", "simple-bus";
 		ranges ;
@@ -299,7 +300,10 @@ glue(glue(glue(tcm_mem_ctrl_, n), _), AB): glue(glue(tcm_mem_ctrl_, AB), n)@n {	
 			#interrupt-cells = <3>;
 
 			compatible = "xlnx,zynqmp-scugic", "arm,gic";
-			reg = <BASE_ADDR(ACPU_GIC_DIST) 0x1000 BASE_ADDR(ACPU_GIC) 0x20000 BASE_ADDR(ACPU_GIC_HYP) 0x20000 BASE_ADDR(ACPU_GIC_VCPU) 0x20000>;
+			reg = < BASE_ADDR(ACPU_GIC_DIST) 0x1000 0
+					BASE_ADDR(ACPU_GIC) 0x20000 0
+					BASE_ADDR(ACPU_GIC_HYP) 0x20000 0
+					BASE_ADDR(ACPU_GIC_VCPU) 0x20000 0>;
 			interrupt-controller ;
 			IS_MULTI_ARCH(gpios = <&pmu_local 28 &pmu_global 2>;)
 			IS_MULTI_ARCH(gpio-names = "pwr_cntrl" LC "rst_cntrl";)
