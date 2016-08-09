@@ -353,6 +353,7 @@ glue(glue(glue(tcm_mem_ctrl_, n), _), AB): glue(glue(tcm_mem_ctrl_, AB), n)@n {	
 			num-cpu = <4>;
 			revision = <2>;
 			map-stride = <ACPU_GIC_STRIDE>;
+			int-id = <0x0202143B>;
 		};
 	};
 
