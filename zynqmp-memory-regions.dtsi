@@ -172,13 +172,13 @@ NAME ## _memattr: NAME ## _ma {						\
 		atcm1_for_rpu0: atcm1_for_rpu0 {
 			compatible = "qemu:memory-region";
 			alias = <&tcm_ram_r5_1_A>;
-			reg = <BASE_ADDR(0x10000) 0x0 0x10000 0x0>;
+			reg = <BASE_ADDR(0x10000) 0x0 0x10000 0x1>;
 		};
 
 		btcm1_for_rpu0: btcm1_for_rpu0 {
 			compatible = "qemu:memory-region";
 			alias = <&tcm_ram_r5_1_B>;
-			reg = <BASE_ADDR(0x30000) 0x0 0x10000 0x0>;
+			reg = <BASE_ADDR(0x30000) 0x0 0x10000 0x1>;
 		};
 	};
 
@@ -219,7 +219,7 @@ NAME ## _memattr: NAME ## _ma {						\
 		tcm_cache_rpu1 {
 		    compatible = "qemu:memory-region";
 		    alias = <&tcm_cache_rpu1>;
-		    reg = <BASE_ADDR(0x0) 0xFFFFFFFF 0xFFFFFFFF 0x0>;
+		    reg = <BASE_ADDR(0x0) 0xFFFFFFFF 0xFFFFFFFF 0x1>;
 		};
 
 		rpu_bus_for_rpu1 {
