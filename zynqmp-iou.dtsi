@@ -608,7 +608,7 @@ glue(ocm_mem_ctrl_, n): glue(ocm_mem_ctrl_, n)@n {						\
 
 		crl: crl@CRL_APB {
 			compatible = "xlnx,zynqmp-crl";
-			reg = <BASE_ADDR(CRL_APB) 0x200>;
+			reg = <BASE_ADDR(CRL_APB) 0x1000>;
 			gpio-controller;
 			#gpio-cells = <1>;
 			num-gpios = <3>;
