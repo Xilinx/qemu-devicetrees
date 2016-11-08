@@ -363,7 +363,7 @@ glue(ocm_mem_ctrl_, n): glue(ocm_mem_ctrl_, n)@n {						\
 		};
 
 		sata: ahci@SATA_AHCI_HBA {
-			compatible = "generic-ahci";
+			compatible = "generic-ahci", "sysbus-ahci";
 			reg = <BASE_ADDR(SATA_AHCI_HBA) 0x2000>;
 			interrupts = <SATA_IRQ_0>;
 			num-ports = <2>;
