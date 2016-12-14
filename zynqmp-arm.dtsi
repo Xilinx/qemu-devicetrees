@@ -30,7 +30,7 @@
 #include "zynqmp.dtsh"
 
 #define APU_COMMON(n,p)																			\
-	compatible = "arm,armv8";																	\
+	compatible = "cortex-a53-arm-cpu";																	\
 	d-cache-line-size = <0x20>;																	\
 	d-cache-size = <0x8000>;																	\
 	device_type = "cpu";																		\
