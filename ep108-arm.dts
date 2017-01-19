@@ -41,8 +41,6 @@
 		ethernet0 = &gem0;
 	};
 
-	MEM_REGION(ddr_bank2, 0x0, 0x40000000, 0x40000000, 0x40000000, &ddr3_ram)
-
 	mdio0: mdio {
 		#address-cells = <1>;
 		#size-cells = <0>;
