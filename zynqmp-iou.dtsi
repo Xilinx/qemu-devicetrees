@@ -699,5 +699,66 @@ glue(ocm_mem_ctrl_, n): glue(ocm_mem_ctrl_, n)@n {						\
 			compatible = "qemu,reset-device";
 			gpios = <&crl 2 &pmu_global 3>;
 		};
-    };
+
+		pcie_attrib: pcie_attrib@PCIE_ATTRIB {
+			compatible = "xlnx.nwl-pcie-attrib";
+			reg = <BASE_ADDR(PCIE_ATTRIB) 0x1000>;
+			interrupts = <PCIE_MSC_IRQ_0>;
+		};
+
+		pcie_main: pcie_main@AXIPCIE_MAIN {
+			compatible = "xlnx.nwl-pcie-main";
+			reg-extended = <&amba BASE_ADDR(AXIPCIE_MAIN) 0x1000
+					/* Wierdo. At AXIPEICE_MAIN, but on the ingress side,
+					 * we find the MSI forwarders.  */
+					&pcie_ingress BASE_ADDR(PCIE_ATTRIB) 0x0 0x1000 0x2
+
+					&amba 0x80 0x0 0x10000000
+					&pcie_overlay 0x0 0x0 0xFFFFFFFF 0xFFFFFFFF 0x0
+
+					>;
+			interrupts = < PCIE_Legacy_IRQ_0 PCIE_MSI_IRQ_0 PCIE_MSI_IRQ_1 >;
+			dma = <&pcie_ingress>;
+			memattr = <&pcie_ns_memattr>;
+		};
+	};
+
+	/* This is the AS that PCI Devices access to reach the PS.  */
+	pcie_ingress: pcie_ingress@0 {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		#priority-cells = <1>;
+		compatible = "simple-bus";
+		downstream {
+			compatible = "qemu:memory-region";
+			alias = <&smmu_tbu1>;
+			reg = <BASE_ADDR(0x0) 0xFFFFFFFF 0xFFFFFFFF 0xFFFFFFFF>;
+		};
+	};
+
+	/* This is an overlay onto amba allowing us to map PCIe MMCFG ECAM.  */
+	pcie_overlay: pcie_overlay@0 {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		#priority-cells = <1>;
+		priority = <2>;
+		compatible = "qemu:memory-region";
+		container = <&amba>;
+	};
+
+	/* QEMUs  VirtIO does not support IOMMUs nor selectable ASs.  */
+	ddr_alias: ddr_alias@0 {
+		compatible = "qemu:memory-region";
+		container = <&qemu_sysmem>;
+		alias = <&ddr3_ram>;
+		reg = <0x0 0x0 0xFFFFFFFF 0xFFFFFFFF 0x0>;
+	};
+
+	/* Magic node representing QEMU's default address-space.  */
+	qemu_sysmem: qemu_sysmem@0 {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		#priority-cells = <1>;
+		compatible = "qemu:system-memory";
+	};
 };

@@ -60,6 +60,8 @@ NAME ## _memattr: NAME ## _ma {						\
 	MEMATTR(gem3, NON_SECURE, 0x877);
 	MEMATTR(qspi_dma, NON_SECURE, 0x873);
 
+	MEMATTR(pcie_ns, NON_SECURE, 0x4d0);
+
 	/* Bus with XPPU TZ protection.  */
 	protected_amba: protected_amba@0 {
 		#address-cells = <MEMORY_ADDRESS_CELLS>;
