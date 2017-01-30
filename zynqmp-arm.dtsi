@@ -29,27 +29,27 @@
 
 #include "zynqmp.dtsh"
 
-#define APU_COMMON(n,p)																			\
-	compatible = "cortex-a53-arm-cpu";																	\
-	d-cache-line-size = <0x20>;																	\
-	d-cache-size = <0x8000>;																	\
-	device_type = "cpu";																		\
-	i-cache-line-size = <0x20>;																	\
-	i-cache-size = <0x8000>;																	\
-	arm,midr = <0x410fd032>;																	\
-	arm,ctr = <0x83338003>;																		\
-	arm,clidr = <0x09200003>;																	\
-	arm,id_pfr0 = <0x1231>;																		\
-	arm,ccsidr0 = <0x701fe019>;																	\
-	arm,ccsidr1 = <0x201fe019>;																	\
-	enable-method = "psci";																		\
-	reg = <n>;																					\
-	arm,reset-hivecs = <1>;																		\
-	arm,rvbar = <0xffff0000>;																	\
-	#interrupt-cells = <1>;																		\
-	arm,reset-cbar = <A9_SCU>;																	\
-	mr = <&amba_apu>;																			\
-	memory = <&amba_apu>;																			\
+#define APU_COMMON(n,p)											\
+	compatible = "cortex-a53-arm-cpu";								\
+	d-cache-line-size = <0x20>;									\
+	d-cache-size = <0x8000>;									\
+	device_type = "cpu";										\
+	i-cache-line-size = <0x20>;									\
+	i-cache-size = <0x8000>;									\
+	arm,midr = <0x410fd034>;									\
+	arm,ctr = <0x83338003>;										\
+	arm,clidr = <0x09200003>;									\
+	arm,id_pfr0 = <0x1231>;										\
+	arm,ccsidr0 = <0x701fe019>;									\
+	arm,ccsidr1 = <0x201fe019>;									\
+	enable-method = "psci";										\
+	reg = <n>;											\
+	arm,reset-hivecs = <1>;										\
+	arm,rvbar = <0xffff0000>;									\
+	#interrupt-cells = <1>;										\
+	arm,reset-cbar = <A9_SCU>;									\
+	mr = <&amba_apu>;										\
+	memory = <&amba_apu>;										\
 	gpios = <&crf n IS_MULTI_ARCH(&apu n &pmu_local p &pmu_local 0x8000001C &pmu_global 2)>;	\
 	gpio-names = "rst_cntrl" IS_MULTI_ARCH(LC "wfi" LC "pwr_cntrl" LC "pwr_cntrl" LC "rst_cntrl");
 
