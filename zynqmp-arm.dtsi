@@ -42,6 +42,7 @@
 	arm,id_pfr0 = <0x1231>;										\
 	arm,ccsidr0 = <0x701fe019>;									\
 	arm,ccsidr1 = <0x201fe019>;									\
+	arm,mp-affinity = <n>;										\
 	enable-method = "psci";										\
 	reg = <n>;											\
 	arm,reset-hivecs = <1>;										\
@@ -78,6 +79,7 @@
 	arm,clidr=<0x09200003>;										\
 	arm,ccsidr0 = <0xf01fe019>;									\
 	arm,ccsidr1 = <0xf01fe019>;									\
+	arm,mp-affinity = <glue(0x10,n)>;								\
 	arm,id_pfr0 = <0x131>;										\
 	arm,reset-hivecs = <1>;										\
 	#interrupt-cells = <1>;
