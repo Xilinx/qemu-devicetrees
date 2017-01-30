@@ -67,7 +67,7 @@
 };
 
 #define R5_CPU_COMMON(n)										\
-	compatible = "arm,cortex-r5f";								\
+	compatible = "cortex-r5f-arm-cpu";								\
 	d-cache-line-size = <0x20>;									\
 	d-cache-size = <0x8000>;									\
 	device_type = "cpu";										\
