@@ -300,6 +300,7 @@ glue(glue(glue(tcm_mem_ctrl_, n), _), AB): glue(glue(tcm_mem_ctrl_, AB), n)@n {	
 			#address-cells = <0>;
 			#size-cells = <0>;
 			#interrupt-cells = <3>;
+			#gpio-cells = <0>;
 
 			compatible = "xlnx,zynqmp-scugic", "arm,gic";
 			reg = < BASE_ADDR(ACPU_GIC_DIST) 0x1000 0
