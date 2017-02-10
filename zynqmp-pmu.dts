@@ -46,6 +46,7 @@
 			device_type = "cpu";
 			i-cache-size = <0x0>;
 			model = "microblaze,8.40.b";
+			version = "8.40.b";
 			reg = <0>;
 			timebase-frequency = <100000000>;
 			xlnx,addr-tag-bits = <0x10>;
