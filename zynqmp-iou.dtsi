@@ -721,6 +721,15 @@ glue(ocm_mem_ctrl_, n): glue(ocm_mem_ctrl_, n)@n {						\
 			dma = <&pcie_ingress>;
 			memattr = <&pcie_ns_memattr>;
 		};
+
+		zynqmp_boot: zynqmp_boot@0 {
+			compatible = "xlnx,zynqmp-boot";
+			dma = <&amba>;
+#ifdef MULTI_ARCH
+			gpios = <&pmu_local 0>;
+			gpios-names = "reset";
+#endif
+		};
 	};
 
 	/* This is the AS that PCI Devices access to reach the PS.  */
