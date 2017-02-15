@@ -37,66 +37,66 @@
 			sync = <1>;
 		};
 
-		pl_0: rp_pl_0@a0000000 {
+		hpm0_fpd: hpm0_fpd@a0000000 {
 			compatible = "remote-port-memory-master";
 			remote-ports = <&cosim_rp_0 9>;
 			reg = <BASE_ADDR(0xa0000000) 0x10000000>;
 		};
 
-		pl_1: rp_pl_1@b0000000 {
+		hpm1_fpd: hpm1_fpd@b0000000 {
 			compatible = "remote-port-memory-master";
 			remote-ports = <&cosim_rp_0 10>;
 			reg = <BASE_ADDR(0xb0000000) 0x10000000>;
 		};
 
 		/* FIXME: This should only be accessible by the RPU.  */
-		pl_2: rp_pl_2@40000000 {
+		hpm_lpd: hpm_lpd@40000000 {
 			compatible = "remote-port-memory-master";
 			remote-ports = <&cosim_rp_0 11>;
 			reg = <BASE_ADDR(0x80000000) 0x20000000>;
 		};
 
-		afi_0: rp_afi0@0 {
+		hpc0_fpd: hpc0_fpd@0 {
 			compatible = "remote-port-memory-slave";
 			remote-ports = <&cosim_rp_0 0>;
 			mr = <&smmu_tbu0>;
 		};
-		afi_1: rp_afi1@0 {
+		hpc1_fpd: hpc1_fpd@0 {
 			compatible = "remote-port-memory-slave";
 			remote-ports = <&cosim_rp_0 1>;
 			mr = <&smmu_tbu0>;
 		};
-		afi_2: rp_afi2@0 {
+		hp0_fpd: hp0_fpd@0 {
 			compatible = "remote-port-memory-slave";
 			remote-ports = <&cosim_rp_0 2>;
 			mr = <&smmu_tbu3>;
 		};
-		afi_3: rp_afi3@0 {
+		hp1_fpd: hp1_fpd@0 {
 			compatible = "remote-port-memory-slave";
 			remote-ports = <&cosim_rp_0 3>;
 			mr = <&smmu_tbu4>;
 		};
-		afi_4: rp_afi4@0 {
+		hp2_fpd: hp2_fpd@0 {
 			compatible = "remote-port-memory-slave";
 			remote-ports = <&cosim_rp_0 4>;
 			mr = <&smmu_tbu4>;
 		};
-		afi_5: rp_afi5@0 {
+		hp3_fpd: hp3_fpd@0 {
 			compatible = "remote-port-memory-slave";
 			remote-ports = <&cosim_rp_0 5>;
 			mr = <&smmu_tbu5>;
 		};
-		afi_lp: rp_afilp@0 {
+		axi_lpd: axi_lpd@0 {
 			compatible = "remote-port-memory-slave";
 			remote-ports = <&cosim_rp_0 6>;
 			mr = <&amba>;
 		};
-		acp: rp_acp@0 {
+		acp_fpd: acp_fpd@0 {
 			compatible = "remote-port-memory-slave";
 			remote-ports = <&cosim_rp_0 7>;
 			mr = <&cci_slave>;
 		};
-		ace: rp_ace@0 {
+		ace_fpd: ace_fpd@0 {
 			compatible = "remote-port-memory-slave";
 			remote-ports = <&cosim_rp_0 8>;
 			mr = <&cci_slave>;
