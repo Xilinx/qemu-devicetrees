@@ -144,6 +144,13 @@
 			num-gpios = <96>;
 			cell-offset-irq-num = <1>;
 		};
+
+		/* This area can be used for implentation specific emulation*/
+		rp_cosim_reserved: rp_cosim_reserved@0{
+			compatible = "remote-port-memory-master";
+			remote-ports = <&cosim_rp_0 12>;
+			reg = <BASE_ADDR(0xFE000000) 0x100000>;
+		};
 	};
 };
 
