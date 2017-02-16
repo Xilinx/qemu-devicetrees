@@ -113,6 +113,7 @@ glue(glue(glue(tcm_mem_ctrl_, n), _), AB): glue(glue(tcm_mem_ctrl_, AB), n)@n {	
 	pmu_rp_0: pmu@0 {
 		compatible = "remote-port";
 		#interrupt-cells = <2>;
+		chrdev-id = "pmu-apu-rp";
 	};
 	rp_memory_slave_pmu: rp_memory_slave_pmu@0 {
 		compatible = "remote-port-memory-slave";

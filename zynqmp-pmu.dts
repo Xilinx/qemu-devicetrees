@@ -159,6 +159,7 @@
 #ifdef MULTI_ARCH
 	pmu: pmu@0 {
 		compatible = "remote-port";
+		chrdev-id = "pmu-apu-rp";
 	};
 
 	rp_gpio_mpu_intr: rp_gpio_pmu_intr@0 {
