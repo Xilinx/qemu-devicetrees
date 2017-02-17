@@ -35,6 +35,7 @@
 		cosim_rp_0: cosim@0 {
 			compatible = "remote-port";
 			sync = <1>;
+			chrdev-id = "pl-rp";
 		};
 
 		hpm0_fpd: hpm0_fpd@a0000000 {

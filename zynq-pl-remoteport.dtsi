@@ -47,6 +47,7 @@
 		cosim_rp_0: cosim@0 {
 			compatible = "remote-port";
 			sync = <1>;
+			chrdev-id = "pl-rp";
 		};
 
 		m_axi_gp0: rp_m_axi_gp0@40000000 {
