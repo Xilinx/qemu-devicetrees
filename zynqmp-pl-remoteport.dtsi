@@ -38,18 +38,6 @@
 			chrdev-id = "pl-rp";
 		};
 
-		hpm0_fpd: hpm0_fpd@a0000000 {
-			compatible = "remote-port-memory-master";
-			remote-ports = <&cosim_rp_0 9>;
-			reg = <BASE_ADDR(0xa0000000) 0x10000000>;
-		};
-
-		hpm1_fpd: hpm1_fpd@b0000000 {
-			compatible = "remote-port-memory-master";
-			remote-ports = <&cosim_rp_0 10>;
-			reg = <BASE_ADDR(0xb0000000) 0x10000000>;
-		};
-
 		/* FIXME: This should only be accessible by the RPU.  */
 		hpm_lpd: hpm_lpd@40000000 {
 			compatible = "remote-port-memory-master";
@@ -144,6 +132,36 @@
 			compatible = "remote-port-memory-master";
 			remote-ports = <&cosim_rp_0 15>;
 			reg = <BASE_ADDR(0xFF4E0000) 0x100000>;
+		};
+	};
+
+	protected_amba: protected_amba@0 {
+		/*
+		 * HPM0 has 3 appertures that all map onto the same AXI port.
+		 * 0x0000.a0000000 - 0x0000.b0000000   (256MB)
+		 * 0x0004.00000000 - 0x0005.00000000   (4GB)
+		 * 0x0010.00000000 - 0x0048.00000000   (224GB)
+		 */
+		hpm0_fpd: hpm0_fpd@a0000000 {
+			compatible = "remote-port-memory-master";
+			remote-ports = <&cosim_rp_0 9>;
+			reg = <0x0000 0xa0000000 0x00 0x10000000 0x0
+			       0x0004 0x00000000 0x01 0x00000000 0x0
+			       0x0010 0x00000000 0x38 0x00000000 0x0 >;
+		};
+
+		/*
+		 * HPM1 has 3 appertures that all map onto the same AXI port.
+		 * 0x0000.b0000000 - 0x0000.c0000000   (256MB)
+		 * 0x0005.00000000 - 0x0006.00000000   (4GB)
+		 * 0x0048.00000000 - 0x0080.00000000   (224GB)
+		 */
+		hpm1_fpd: hpm1_fpd@b0000000 {
+			compatible = "remote-port-memory-master";
+			remote-ports = <&cosim_rp_0 10>;
+			reg = <0x0000 0xb0000000 0x00 0x10000000 0x0
+			       0x0005 0x00000000 0x01 0x00000000 0x0
+			       0x0048 0x00000000 0x38 0x00000000 0x0 >;
 		};
 	};
 };
