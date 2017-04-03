@@ -150,7 +150,7 @@
 		rp_cosim_reserved: rp_cosim_reserved@0{
 			compatible = "remote-port-memory-master";
 			remote-ports = <&cosim_rp_0 12>;
-			reg = <BASE_ADDR(0xFE000000) 0x100000>;
+			reg = <0xFE000000 0x100000>;
 		};
 	};
 };
