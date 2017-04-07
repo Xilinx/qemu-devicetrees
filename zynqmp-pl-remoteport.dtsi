@@ -133,6 +133,231 @@
 			remote-ports = <&cosim_rp_0 15>;
 			reg = <BASE_ADDR(0xFF4E0000) 0x100000>;
 		};
+
+		rp_cosim_emio_bank0: rp_cosim_emio_bank0 {
+			#gpio-cells = <1>;
+			compatible = "remote-port-gpio";
+			remote-ports = <&cosim_rp_0 16>;
+			num-gpios = <64>;
+			/* psu_gpio fdt-index 78 to 109 belongs to emio bank0,
+			 * 252 to 283 are output enable signls for same bank
+			 */
+			gpios = < &psu_gpio 78
+				  &psu_gpio 79
+				  &psu_gpio 80
+				  &psu_gpio 81
+				  &psu_gpio 82
+				  &psu_gpio 83
+				  &psu_gpio 84
+				  &psu_gpio 85
+				  &psu_gpio 86
+				  &psu_gpio 87
+				  &psu_gpio 88
+				  &psu_gpio 89
+				  &psu_gpio 90
+				  &psu_gpio 91
+				  &psu_gpio 92
+				  &psu_gpio 93
+				  &psu_gpio 94
+				  &psu_gpio 95
+				  &psu_gpio 96
+				  &psu_gpio 97
+				  &psu_gpio 98
+				  &psu_gpio 99
+				  &psu_gpio 100
+				  &psu_gpio 101
+				  &psu_gpio 102
+				  &psu_gpio 103
+				  &psu_gpio 104
+				  &psu_gpio 105
+				  &psu_gpio 106
+				  &psu_gpio 107
+				  &psu_gpio 108
+				  &psu_gpio 109
+				  &psu_gpio 252
+				  &psu_gpio 253
+				  &psu_gpio 254
+				  &psu_gpio 255
+				  &psu_gpio 256
+				  &psu_gpio 257
+				  &psu_gpio 258
+				  &psu_gpio 259
+				  &psu_gpio 260
+				  &psu_gpio 261
+				  &psu_gpio 262
+				  &psu_gpio 263
+				  &psu_gpio 264
+				  &psu_gpio 265
+				  &psu_gpio 266
+				  &psu_gpio 267
+				  &psu_gpio 268
+				  &psu_gpio 269
+				  &psu_gpio 270
+				  &psu_gpio 271
+				  &psu_gpio 272
+				  &psu_gpio 273
+				  &psu_gpio 274
+				  &psu_gpio 275
+				  &psu_gpio 276
+				  &psu_gpio 277
+				  &psu_gpio 278
+				  &psu_gpio 279
+				  &psu_gpio 280
+				  &psu_gpio 281
+				  &psu_gpio 282
+				  &psu_gpio 283 >;
+		};
+		rp_cosim_emio_bank1: rp_cosim_emio_bank1 {
+			#gpio-cells = <1>;
+			compatible = "remote-port-gpio";
+			remote-ports = <&cosim_rp_0 17>;
+			num-gpios = <64>;
+			/* psu_gpio fdt-index 110 to 141 belongs to emio bank1,
+			 * 284 to 315 are output enable signls for same bank
+			 */
+			gpios = < &psu_gpio 110
+				  &psu_gpio 111
+				  &psu_gpio 112
+				  &psu_gpio 113
+				  &psu_gpio 114
+				  &psu_gpio 115
+				  &psu_gpio 116
+				  &psu_gpio 117
+				  &psu_gpio 118
+				  &psu_gpio 119
+				  &psu_gpio 120
+				  &psu_gpio 121
+				  &psu_gpio 122
+				  &psu_gpio 123
+				  &psu_gpio 124
+				  &psu_gpio 125
+				  &psu_gpio 126
+				  &psu_gpio 127
+				  &psu_gpio 128
+				  &psu_gpio 129
+				  &psu_gpio 130
+				  &psu_gpio 131
+				  &psu_gpio 132
+				  &psu_gpio 133
+				  &psu_gpio 134
+				  &psu_gpio 135
+				  &psu_gpio 136
+				  &psu_gpio 137
+				  &psu_gpio 138
+				  &psu_gpio 139
+				  &psu_gpio 140
+				  &psu_gpio 141
+				  &psu_gpio 284
+				  &psu_gpio 285
+				  &psu_gpio 286
+				  &psu_gpio 287
+				  &psu_gpio 288
+				  &psu_gpio 289
+				  &psu_gpio 290
+				  &psu_gpio 291
+				  &psu_gpio 292
+				  &psu_gpio 293
+				  &psu_gpio 294
+				  &psu_gpio 295
+				  &psu_gpio 296
+				  &psu_gpio 297
+				  &psu_gpio 298
+				  &psu_gpio 299
+				  &psu_gpio 300
+				  &psu_gpio 301
+				  &psu_gpio 302
+				  &psu_gpio 303
+				  &psu_gpio 304
+				  &psu_gpio 305
+				  &psu_gpio 306
+				  &psu_gpio 307
+				  &psu_gpio 308
+				  &psu_gpio 309
+				  &psu_gpio 310
+				  &psu_gpio 311
+				  &psu_gpio 312
+				  &psu_gpio 313
+				  &psu_gpio 314
+				  &psu_gpio 315 >;
+		};
+		rp_cosim_emio_bank2: rp_cosim_emio_bank2 {
+			#gpio-cells = <1>;
+			compatible = "remote-port-gpio";
+			remote-ports = <&cosim_rp_0 18>;
+			num-gpios = <64>;
+			/* psu_gpio fdt-index 142 to 173 belongs to emio bank2,
+			 * 316 to 347 are output enable signls for same bank
+			 */
+			gpios = < &psu_gpio 142
+				  &psu_gpio 143
+				  &psu_gpio 144
+				  &psu_gpio 145
+				  &psu_gpio 146
+				  &psu_gpio 147
+				  &psu_gpio 148
+				  &psu_gpio 149
+				  &psu_gpio 150
+				  &psu_gpio 151
+				  &psu_gpio 152
+				  &psu_gpio 153
+				  &psu_gpio 154
+				  &psu_gpio 155
+				  &psu_gpio 156
+				  &psu_gpio 157
+				  &psu_gpio 158
+				  &psu_gpio 159
+				  &psu_gpio 160
+				  &psu_gpio 161
+				  &psu_gpio 162
+				  &psu_gpio 163
+				  &psu_gpio 164
+				  &psu_gpio 165
+				  &psu_gpio 166
+				  &psu_gpio 167
+				  &psu_gpio 168
+				  &psu_gpio 169
+				  &psu_gpio 170
+				  &psu_gpio 171
+				  &psu_gpio 172
+				  &psu_gpio 173
+				  &psu_gpio 316
+				  &psu_gpio 317
+				  &psu_gpio 318
+				  &psu_gpio 319
+				  &psu_gpio 320
+				  &psu_gpio 321
+				  &psu_gpio 322
+				  &psu_gpio 323
+				  &psu_gpio 324
+				  &psu_gpio 325
+				  &psu_gpio 326
+				  &psu_gpio 327
+				  &psu_gpio 328
+				  &psu_gpio 329
+				  &psu_gpio 330
+				  &psu_gpio 331
+				  &psu_gpio 332
+				  &psu_gpio 333
+				  &psu_gpio 334
+				  &psu_gpio 335
+				  &psu_gpio 336
+				  &psu_gpio 337
+				  &psu_gpio 338
+				  &psu_gpio 339
+				  &psu_gpio 340
+				  &psu_gpio 341
+				  &psu_gpio 342
+				  &psu_gpio 343
+				  &psu_gpio 344
+				  &psu_gpio 345
+				  &psu_gpio 346
+				  &psu_gpio 347 >;
+		};
+
+		dummy_mio_map: dummy_mio_map {
+			gpio-controller;
+			#gpio-cells = <1>;
+		};
 	};
 
 	protected_amba: protected_amba@0 {
@@ -164,4 +389,85 @@
 			       0x0048 0x00000000 0x38 0x00000000 0x0 >;
 		};
 	};
+};
+
+&psu_gpio {
+		gpios = <
+#define MIO(dev)				\
+			  dev  0 		\
+			  dev  1 		\
+			  dev  2 		\
+			  dev  3 		\
+			  dev  4 		\
+			  dev  5 		\
+			  dev  6 		\
+			  dev  7 		\
+			  dev  8 		\
+			  dev  9 		\
+			  dev  10		\
+			  dev  11		\
+			  dev  12		\
+			  dev  13		\
+			  dev  14		\
+			  dev  15		\
+			  dev  16		\
+			  dev  17		\
+			  dev  18		\
+			  dev  19		\
+			  dev  20		\
+			  dev  21		\
+			  dev  22		\
+			  dev  23		\
+			  dev  24		\
+			  dev  25
+/* Connect gpio in's for MIO mapped banks,
+ * tie them with dummy model untill we model MIO
+ */
+MIO(&dummy_mio_map)
+MIO(&dummy_mio_map)
+MIO(&dummy_mio_map)
+
+#undef MIO
+
+#define RP_EMIO(dev)				\
+			  dev  0 		\
+			  dev  1 		\
+			  dev  2 		\
+			  dev  3 		\
+			  dev  4 		\
+			  dev  5 		\
+			  dev  6 		\
+			  dev  7 		\
+			  dev  8 		\
+			  dev  9 		\
+			  dev  10		\
+			  dev  11		\
+			  dev  12		\
+			  dev  13		\
+			  dev  14		\
+			  dev  15		\
+			  dev  16		\
+			  dev  17		\
+			  dev  18		\
+			  dev  19		\
+			  dev  20		\
+			  dev  21		\
+			  dev  22		\
+			  dev  23		\
+			  dev  24		\
+			  dev  25		\
+			  dev  26		\
+			  dev  27		\
+			  dev  28		\
+			  dev  29		\
+			  dev  30		\
+			  dev  31
+
+/* Connect gpio in's from emio bank 0,1,2 */
+RP_EMIO(&rp_cosim_emio_bank0)
+RP_EMIO(&rp_cosim_emio_bank1)
+RP_EMIO(&rp_cosim_emio_bank2)
+
+#undef RP_EMIO
+			>;
 };

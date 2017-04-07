@@ -411,14 +411,10 @@ glue(ocm_mem_ctrl_, n): glue(ocm_mem_ctrl_, n)@n {						\
 			};
 		};
 
-		ps7_gpio_0: ps7-gpio@GPIO {
-			#gpio-cells = <2>;
-			clocks = <&misc_clk>;
-			compatible = "xlnx,ps7-gpio-1.00.a";
-			emio-gpio-width = <64>;
+		psu_gpio: psu_gpio@GPIO {
+			#gpio-cells = <1>;
+			compatible = "xlnx,zynqmp-gpio";
 			gpio-controller;
-			gpio-mask-high = <0x300000>;
-			gpio-mask-low = <0xffffe81>;
 			interrupts = <GPIO_IRQ_0>;
 			reg = <BASE_ADDR(GPIO) 0x1000>;
 		};
