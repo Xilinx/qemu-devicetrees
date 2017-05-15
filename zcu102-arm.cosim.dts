@@ -36,10 +36,6 @@
 
 #include "zynqmp-pl-remoteport.dtsi"
 
-#if defined(MULTI_ARCH) && defined(INCLUDE_CSU)
-	#include "multi-arch-csu.dtsi"
-#endif
-
 / {
 	model = "ZynqMP ZCU102 RevA";
 	compatible = "xlnx,zynqmp-zcu102", "xlnx,zynqmp";
