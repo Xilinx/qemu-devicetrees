@@ -30,11 +30,18 @@
 #include "zynqmp.dtsh"
 #include "zynqmp-icnt.dtsi"
 
+/* SPI_FLASH : Helper macro for creating flash devices
+ * args:
+ * 	name : flash node name
+ * 	compat : flash part compatible string
+ * 	sizem : size of the flash
+ * 	regval: Value of two fields specifying addr and spi bus number
+ */
 #define SPI_FLASH(name, compat, sizem, regval)	\
 name: name@0 {									\
 	#address-cells = <1>;						\
 	#size-cells = <1>;							\
-	#bus-cells = <0>;							\
+	#bus-cells = <1>;							\
 	compatible = compat, "st,m25p80";			\
 	spi-max-frequency = <50000000>;				\
 	reg = <regval>;								\
@@ -503,7 +510,7 @@ glue(ocm_mem_ctrl_, n): glue(ocm_mem_ctrl_, n)@n {						\
 			interrupts = <SPI0_IRQ_0>;
 			num-ss-bits = <4>;
 			reg = <BASE_ADDR(SPI0) 0x1000>;
-			SPI_FLASH(spi0_flash0, "sst25wf080", 0x00100000, 0x0)
+			SPI_FLASH(spi0_flash0, "sst25wf080", 0x00100000, 0x0 0x0)
 		};
 		ps7_spi_1: ps7-spi@SPI1 {
 			#address-cells = <1>;
@@ -514,10 +521,10 @@ glue(ocm_mem_ctrl_, n): glue(ocm_mem_ctrl_, n)@n {						\
 			interrupts = <SPI1_IRQ_0>;
 			num-ss-bits = <4>;
 			reg = <BASE_ADDR(SPI1) 0x1000>;
-			SPI_FLASH(spi1_flash0, "sst25wf080", 0x00100000, 0x0)
-			SPI_FLASH(spi1_flash1, "sst25wf080", 0x00100000, 0x1)
-			SPI_FLASH(spi1_flash2, "sst25wf080", 0x00100000, 0x2)
-			SPI_FLASH(spi1_flash3, "sst25wf080", 0x00100000, 0x3)
+			SPI_FLASH(spi1_flash0, "sst25wf080", 0x00100000, 0x0 0x0)
+			SPI_FLASH(spi1_flash1, "sst25wf080", 0x00100000, 0x1 0x0)
+			SPI_FLASH(spi1_flash2, "sst25wf080", 0x00100000, 0x2 0x0)
+			SPI_FLASH(spi1_flash3, "sst25wf080", 0x00100000, 0x3 0x0)
 		};
 
 		ps7_ttc_0: ps7-ttc@TTC0 {

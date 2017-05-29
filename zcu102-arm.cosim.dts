@@ -142,9 +142,9 @@
 };
 
 &ps7_spi_0 {
-	SPI_FLASH(spi0_flash1, "sst25wf080", 0x00100000, 0x1)
-	SPI_FLASH(spi0_flash2, "sst25wf080", 0x00100000, 0x2)
-	SPI_FLASH(spi0_flash3, "sst25wf080", 0x00100000, 0x3)
+	SPI_FLASH(spi0_flash1, "sst25wf080", 0x00100000, 0x1 0x0)
+	SPI_FLASH(spi0_flash2, "sst25wf080", 0x00100000, 0x2 0x0)
+	SPI_FLASH(spi0_flash3, "sst25wf080", 0x00100000, 0x3 0x0)
 };
 
 &gem3 {
