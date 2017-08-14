@@ -106,3 +106,9 @@
 		};
 	};
 };
+
+&iou_slcr_0 {
+	mio-bank0-1.8v = <1>;
+	mio-bank1-1.8v = <1>;
+	mio-bank2-1.8v = <1>;
+};
