@@ -89,6 +89,172 @@
 			compatible = "ti,tca6416";
 			reg = <0x21>;
 		};
+		i2cswitch@75 {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			compatible = "nxp,pca9544";
+			reg = <0x74>;
+			chip-enable = <0x1>;
+			i2c@0 { /* i2c mw 75 0 1 */
+				#address-cells = <1>;
+				#size-cells = <0>;
+				reg = <0>;
+				/* PS_PMBUS */
+				ina226@40 { /* u76 */
+					compatible = "i2c-dev-dummy";
+					reg = <0x40>;
+					shunt-resistor = <5000>;
+				};
+				ina226@41 { /* u77 */
+					compatible = "i2c-dev-dummy";
+					reg = <0x41>;
+					shunt-resistor = <5000>;
+				};
+				ina226@42 { /* u78 */
+					compatible = "i2c-dev-dummy";
+					reg = <0x42>;
+					shunt-resistor = <5000>;
+				};
+				ina226@43 { /* u87 */
+					compatible = "i2c-dev-dummy";
+					reg = <0x43>;
+					shunt-resistor = <5000>;
+				};
+				ina226@44 { /* u85 */
+					compatible = "i2c-dev-dummy";
+					reg = <0x44>;
+					shunt-resistor = <5000>;
+				};
+				ina226@45 { /* u86 */
+					compatible = "i2c-dev-dummy";
+					reg = <0x45>;
+					shunt-resistor = <5000>;
+				};
+				ina226@46 { /* u93 */
+					compatible = "i2c-dev-dummy";
+					reg = <0x46>;
+					shunt-resistor = <5000>;
+				};
+				ina226@47 { /* u88 */
+					compatible = "i2c-dev-dummy";
+					reg = <0x47>;
+					shunt-resistor = <5000>;
+				};
+				ina226@4a { /* u15 */
+					compatible = "i2c-dev-dummy";
+					reg = <0x4a>;
+					shunt-resistor = <5000>;
+				};
+				ina226@4b { /* u92 */
+					compatible = "i2c-dev-dummy";
+					reg = <0x4b>;
+					shunt-resistor = <5000>;
+				};
+			};
+			i2c@1 { /* i2c mw 75 0 1 */
+				#address-cells = <1>;
+				#size-cells = <0>;
+				reg = <1>;
+				/* PL_PMBUS */
+				ina226@40 { /* u79 */
+					compatible = "i2c-dev-dummy";
+					reg = <0x40>;
+					shunt-resistor = <2000>;
+				};
+				ina226@41 { /* u81 */
+					compatible = "i2c-dev-dummy";
+					reg = <0x41>;
+					shunt-resistor = <5000>;
+				};
+				ina226@42 { /* u80 */
+					compatible = "i2c-dev-dummy";
+					reg = <0x42>;
+					shunt-resistor = <5000>;
+				};
+				ina226@43 { /* u84 */
+					compatible = "i2c-dev-dummy";
+					reg = <0x43>;
+					shunt-resistor = <5000>;
+				};
+				ina226@44 { /* u16 */
+					compatible = "i2c-dev-dummy";
+					reg = <0x44>;
+					shunt-resistor = <5000>;
+				};
+				ina226@45 { /* u65 */
+					compatible = "i2c-dev-dummy";
+					reg = <0x45>;
+					shunt-resistor = <5000>;
+				};
+				ina226@46 { /* u74 */
+					compatible = "i2c-dev-dummy";
+					reg = <0x46>;
+					shunt-resistor = <5000>;
+				};
+				ina226@47 { /* u75 */
+					compatible = "i2c-dev-dummy";
+					reg = <0x47>;
+					shunt-resistor = <5000>;
+				};
+			};
+			i2c@2 {
+				#address-cells = <1>;
+				#size-cells = <0>;
+				reg = <2>;
+				max15301@a {
+					compatible = "i2c-dev-dummy";
+					reg = <0xa>;
+				};
+				max15303@b {
+					compatible = "i2c-dev-dummy";
+					reg = <0xb>;
+				};
+				max15303@10 {
+					compatible = "i2c-dev-dummy";
+					reg = <0x10>;
+				};
+				max15301@13 {
+					compatible = "i2c-dev-dummy";
+					reg = <0x13>;
+				};
+				max15303@14 {
+					compatible = "i2c-dev-dummy";
+					reg = <0x14>;
+				};
+				max15303@15 {
+					compatible = "i2c-dev-dummy";
+					reg = <0x15>;
+				};
+				max15303@16 {
+					compatible = "i2c-dev-dummy";
+					reg = <0x16>;
+				};
+				max15303@17 {
+					compatible = "i2c-dev-dummy";
+					reg = <0x17>;
+				};
+				max15301@18 {
+					compatible = "i2c-dev-dummy";
+					reg = <0x18>;
+				};
+				max15303@1a {
+					compatible = "i2c-dev-dummy";
+					reg = <0x1a>;
+				};
+				max15303@1d {
+					compatible = "i2c-dev-dummy";
+					reg = <0x1d>;
+				};
+				max20751@72 {
+					compatible = "i2c-dev-dummy";
+					reg = <0x72>;
+				};
+				max20751@73 {
+					compatible = "i2c-dev-dummy";
+					reg = <0x73>;
+				};
+			};
+		};
 	};
 
 	i2c1: i2c1@0xFF030000 {
@@ -143,6 +309,82 @@
 					reg = <0x5d>;
 					temperature-stability=<50>;
 				};
+			};
+		};
+		i2cswitch@75 {
+			compatible = "nxp,pca9548"; /* u135 */
+			#address-cells = <1>;
+			#size-cells = <0>;
+			reg = <0x74>;
+			chip-enable = <0x1>;
+
+			i2c@0 {
+				#address-cells = <1>;
+				#size-cells = <0>;
+				reg = <0>;
+				/* HPC0_IIC */
+			};
+			i2c@1 {
+				#address-cells = <1>;
+				#size-cells = <0>;
+				reg = <1>;
+				/* HPC1_IIC */
+			};
+			i2c@2 {
+				#address-cells = <1>;
+				#size-cells = <0>;
+				reg = <2>;
+				/* SYSMON */
+			};
+			i2c@3 { /* i2c mw 75 0 8 */
+				#address-cells = <1>;
+				#size-cells = <0>;
+				reg = <3>;
+				/* DDR4 SODIMM */
+				dev@19 { /* u-boot detection */
+					compatible = "xxx";
+					reg = <0x19>;
+				};
+				dev@30 { /* u-boot detection */
+					compatible = "xxx";
+					reg = <0x30>;
+				};
+				dev@35 { /* u-boot detection */
+					compatible = "xxx";
+					reg = <0x35>;
+				};
+				dev@36 { /* u-boot detection */
+					compatible = "xxx";
+					reg = <0x36>;
+				};
+				dev@51 { /* u-boot detection - maybe SPD */
+					compatible = "xxx";
+					reg = <0x51>;
+				};
+			};
+			i2c@4 {
+				#address-cells = <1>;
+				#size-cells = <0>;
+				reg = <4>;
+				/* SEP 3 */
+			};
+			i2c@5 {
+				#address-cells = <1>;
+				#size-cells = <0>;
+				reg = <5>;
+				/* SEP 2 */
+			};
+			i2c@6 {
+				#address-cells = <1>;
+				#size-cells = <0>;
+				reg = <6>;
+				/* SEP 1 */
+			};
+			i2c@7 {
+				#address-cells = <1>;
+				#size-cells = <0>;
+				reg = <7>;
+				/* SEP 0 */
 			};
 		};
 	};
