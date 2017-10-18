@@ -239,7 +239,7 @@ glue(glue(glue(tcm_mem_ctrl_, n), _), AB): glue(glue(tcm_mem_ctrl_, AB), n)@n {	
 			reg = <0>;
 			mr = <&amba_rpu0>;
 			memory = <&amba_rpu0>;
-			gpios = <&crl 0 &rpu_ctrl 0 &rpu_ctrl 7 IS_MULTI_ARCH(&rpu_ctrl 5 &pmu_local 9)>;
+			gpios = <&crl 0 &rpu_ctrl 0 &rpu_ctrl 5 IS_MULTI_ARCH(&rpu_ctrl 7 &pmu_local 9)>;
 			gpio-names = "reset", "ncpuhalt", "vinithi" IS_MULTI_ARCH(LC "wfi" LC "pwr_cntrl");
 			gdb-id = "Cortex-R5 #0";
 			memattr_ns = <&rpu0_memattr>;
@@ -249,7 +249,7 @@ glue(glue(glue(tcm_mem_ctrl_, n), _), AB): glue(glue(tcm_mem_ctrl_, AB), n)@n {	
 			reg = <1>;
 			mr = <&amba_rpu1>;
 			memory = <&amba_rpu1>;
-			gpios = <&crl 1 &rpu_ctrl 2 &rpu_ctrl 1 &rpu_ctrl 8 IS_MULTI_ARCH(&rpu_ctrl 6 &pmu_local 9)>;
+			gpios = <&crl 1 &rpu_ctrl 2 &rpu_ctrl 1 &rpu_ctrl 6 IS_MULTI_ARCH(&rpu_ctrl 8 &pmu_local 9)>;
 			gpio-names = "reset", "halt", "ncpuhalt", "vinithi" IS_MULTI_ARCH(LC "wfi" LC "pwr_cntrl");
 			gdb-id = "Cortex-R5 #1";
 			memattr_ns = <&rpu1_memattr>;
