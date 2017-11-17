@@ -647,6 +647,11 @@ glue(ocm_mem_ctrl_, n): glue(ocm_mem_ctrl_, n)@n {						\
 			#gpio-cells = <2>;
 		};
 
+		zynqmp_rtc: zynqmp_rtc@RTC {
+			compatible = "xlnx-zynmp.rtc";
+			reg = <0x00 RTC 0x100>;
+		};
+
 		/* Used for connections on reserved bits */
 		dummy_gpio: dummy_gpio@0 {
 			gpio-controller;
