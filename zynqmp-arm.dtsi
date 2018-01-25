@@ -51,7 +51,6 @@
 	arm,reset-cbar = <A9_SCU>;									\
 	mr = <&amba_apu>;										\
 	memory = <&amba_apu>;										\
-	psci-conduit = <1>;										\
 	gpios = <&crf n IS_MULTI_ARCH(&apu n &pmu_local p &pmu_local 0x8000001C &pmu_global 2)>;	\
 	gpio-names = "rst_cntrl" IS_MULTI_ARCH(LC "wfi" LC "pwr_cntrl" LC "pwr_cntrl" LC "rst_cntrl");
 
