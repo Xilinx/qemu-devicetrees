@@ -213,6 +213,19 @@
 		DDR_XMPU(3, &tbu3_master, &ddr3_ram, 0x0, 0x80000000, 1);
 		DDR_XMPU(4, &tbu4_master, &ddr3_ram, 0x0, 0x80000000, 1);
 		DDR_XMPU(5, &tbu5_master, &ddr3_ram, 0x0, 0x80000000, 1);
+
+		downstream_amba_priority_bus {
+			compatible = "qemu:memory-region";
+			alias = <&amba_prio>;
+			reg = <0x0 0x0 0xffffffff>;
+			priority = <0xffffffff>;
+		};
+	};
+
+	amba_prio: amba_prio@0 {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		compatible = "qemu:memory-region";
 	};
 };
 
