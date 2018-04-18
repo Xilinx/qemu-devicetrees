@@ -598,6 +598,7 @@ glue(glue(glue(tcm_mem_ctrl_, n), _), AB): glue(glue(tcm_mem_ctrl_, AB), n)@n {	
 #endif
 
 #include "zynqmp-iou.dtsi"
+#include "zynqmp-csu.dtsi"
 
 &amba_rpu {
 	ddr_memory_2_for_rpu: ddr_memory_2_for_rpu {

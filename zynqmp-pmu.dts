@@ -200,4 +200,5 @@
 
 #include "zynqmp-pmu-dev.dtsi"
 #include "zynqmp-iou.dtsi"
+#include "zynqmp-csu.dtsi"
 #endif
