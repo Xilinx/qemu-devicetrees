@@ -45,6 +45,7 @@
 	arm,mp-affinity = <n>;										\
 	enable-method = "psci";										\
 	reg = <n>;											\
+	core-count = <4>;										\
 	arm,reset-hivecs = <1>;										\
 	arm,rvbar = <0xffff0000>;									\
 	#interrupt-cells = <1>;										\
