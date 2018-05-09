@@ -53,13 +53,13 @@
 &amba_prio {
 	zynqmp_csu_stream_switch: csu_stream_switch@ffcc0200 {
 		compatible = "zynqmp,csu-sss";
-		reg = <BASE_ADDR(CSUSSS) 0x100>;
+		reg = <0x0 CSUSSS 0x0 0x4 0x0>;
 		stream-connected-dma = <&zynqmp_csu_dma_dst> ;
 		stream-connected-pcap = <&zynqmp_csu_pcap> ;
 	};
 	zynqmp_csu_pcap: csu_pcap@nowhere {
 		compatible = "zynqmp,csu-pcap";
-		reg = <0x0 CSUPCAP 0x0 0x10000>;
+		reg = <0x0 CSUPCAP 0x0 0x10000 0x0>;
 		stream-connected-pcap = <&zynqmp_csu_stream_switch> ;
 	};
 };
