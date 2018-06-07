@@ -30,6 +30,19 @@
 #include "zynqmp.dtsh"
 #include "zynqmp-icnt.dtsi"
 
+#define GEM(g_name, g_base, g_size, g_dma, g_irq)	\
+g_name: g_name@0 {		\
+	#address-cells = <1>;		\
+	#size-cells = <0>;		\
+	compatible = "cdns,gem";	\
+	interrupts = <g_irq g_irq>;		\
+	dma = <g_dma>;			\
+	memattr = <& ## g_name ## _memattr>;	\
+	reg = <0x0 g_base g_size>;	\
+	num-priority-queues = <2>;	\
+	revision = <0x40070106>;	\
+};
+
 /* SPI_FLASH : Helper macro for creating flash devices
  * args:
  * 	name : flash node name
@@ -310,64 +323,10 @@ glue(ocm_mem_ctrl_, n): glue(ocm_mem_ctrl_, n)@n {						\
 			reg = <BASE_ADDR(SERDES) 0x20000>;
 		};
 
-		gem0: ethernet@GEM0 {
-			#stream-id-cells = <0x1>;
-			#address-cells = <1>;
-			#size-cells = <0>;
-			clock-names = "hclk", "pclk";
-			clocks = <&misc_clk>, <&misc_clk>;
-			compatible = "xlnx,ps7-ethernet-1.00.a", "cdns,gem";
-			interrupts = <GigabitEth0_IRQ_0 GigabitEth0_IRQ_0>;
-			dma = <&smmu_tbu2>;
-			memattr = <&gem0_memattr>;
-			local-mac-address = [00 0a 35 00 02 90];
-			reg = <BASE_ADDR(GEM0) 0x1000>;
-			num-priority-queues = <2>;
-			revision = <0x40070106>;
-		};
-		gem1: ethernet@GEM1 {
-			#stream-id-cells = <0x1>;
-			#address-cells = <1>;
-			#size-cells = <0>;
-			clock-names = "hclk", "pclk";
-			clocks = <&misc_clk>, <&misc_clk>;
-			compatible = "xlnx,ps7-ethernet-1.00.a", "cdns,gem";
-			interrupts = <GigabitEth1_IRQ_0 GigabitEth1_IRQ_0>;
-			dma = <&smmu_tbu2>;
-			memattr = <&gem1_memattr>;
-			local-mac-address = [00 0a 35 00 02 90];
-			reg = <BASE_ADDR(GEM1) 0x1000>;
-			num-priority-queues = <2>;
-			revision = <0x40070106>;
-		};
-		gem2: ethernet@GEM2 {
-			#address-cells = <1>;
-			#size-cells = <0>;
-			clock-names = "hclk", "pclk";
-			clocks = <&misc_clk>, <&misc_clk>;
-			compatible = "xlnx,ps7-ethernet-1.00.a", "cdns,gem";
-			interrupts = <GigabitEth2_IRQ_0 GigabitEth2_IRQ_0>;
-			dma = <&smmu_tbu2>;
-			memattr = <&gem2_memattr>;
-			local-mac-address = [00 0a 35 00 02 90];
-			reg = <BASE_ADDR(GEM2) 0x1000>;
-			num-priority-queues = <2>;
-			revision = <0x40070106>;
-		};
-		gem3: ethernet@GEM3 {
-			#address-cells = <1>;
-			#size-cells = <0>;
-			clock-names = "hclk", "pclk";
-			clocks = <&misc_clk>, <&misc_clk>;
-			compatible = "xlnx,ps7-ethernet-1.00.a", "cdns,gem";
-			interrupts = <GigabitEth3_IRQ_0 GigabitEth3_IRQ_0>;
-			dma = <&smmu_tbu2>;
-			memattr = <&gem3_memattr>;
-			local-mac-address = [00 0a 35 00 02 90];
-			reg = <BASE_ADDR(GEM3) 0x1000>;
-			num-priority-queues = <2>;
-			revision = <0x40070106>;
-		};
+		GEM(gem0, GEM0, 0x1000, &smmu_tbu2, GigabitEth0_IRQ_0)
+		GEM(gem1, GEM1, 0x1000, &smmu_tbu2, GigabitEth1_IRQ_0)
+		GEM(gem2, GEM2, 0x1000, &smmu_tbu2, GigabitEth2_IRQ_0)
+		GEM(gem3, GEM3, 0x1000, &smmu_tbu2, GigabitEth3_IRQ_0)
 
 		sata: ahci@SATA_AHCI_HBA {
 			compatible = "generic-ahci", "sysbus-ahci";
