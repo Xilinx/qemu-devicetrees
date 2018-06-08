@@ -1,0 +1,125 @@
+/*
+ * Zynq3 Virtual PMC board device tree
+ *
+ * Copyright (c) 2016, Xilinx Inc
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *     * Redistributions of source code must retain the above copyright
+ *       notice, this list of conditions and the following disclaimer.
+ *     * Redistributions in binary form must reproduce the above copyright
+ *       notice, this list of conditions and the following disclaimer in the
+ *       documentation and/or other materials provided with the distribution.
+ *     * Neither the name of the <organization> nor the
+ *       names of its contributors may be used to endorse or promote products
+ *       derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY
+ * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+/dts-v1/;
+
+/* Base platform has 2 APUs.  */
+#define NUM_APUS 2
+
+#include "zynq3.dtsh"
+
+#include "zynq3-pmc.dtsi"
+#include "zynq3-ps-apu.dtsi"
+#include "zynq3-ps-iou.dtsi"
+
+/ {
+#ifdef MULTI_ARCH
+	ps_pmc_rp: ps_pmc_rp@0 {
+		doc-status = "complete";
+		doc-name = "Remote-port PMC";
+		doc-subdtb = "board-zynq3-pmc-virt.dtb";
+		compatible = "remote-port";
+		chrdev-id = "ps-pmc-rp";
+	};
+	pmc_ppu0: rp_pmc_ppu0@0 {
+		compatible = "remote-port-gpio";
+		remote-ports = <&ps_pmc_rp 1>;
+		#interrupt-cells = <1>;
+		interrupt-controller;
+	};
+	pmc_ppu1: rp_pmc_ppu1@0 {
+		compatible = "remote-port-gpio";
+		remote-ports = <&ps_pmc_rp 2>;
+		#interrupt-cells = <1>;
+		interrupt-controller;
+	};
+	rp_pmc_global: rp_pmc_global@0 {
+		compatible = "remote-port-gpio";
+		remote-ports = <&ps_pmc_rp 3>;
+		gpio-controller;
+		#gpio-cells = <1>;
+		num-gpios = <16>;
+
+		/* We only need to proxy GPIO 1 and 2 (PPU1 RST and WAKE).  */
+		gpios = < &dummy1 0
+			  &pmc_global 1
+			  &pmc_global 2 >;
+	};
+	rp_lmb_pmc_ppu0: rp_lmb_pmc_ppu0@0 {
+		compatible = "remote-port-memory-slave";
+		remote-ports = <&ps_pmc_rp 4>;
+		mr = <&lmb_pmc_ppu0>;
+	};
+	rp_lmb_pmc_ppu1: rp_lmb_pmc_ppu1@0 {
+		compatible = "remote-port-memory-slave";
+		remote-ports = <&ps_pmc_rp 5>;
+		mr = <&lmb_pmc_ppu1>;
+	};
+#else
+	/* Single ARCH PS board has no PPU MicroBlazes.  */
+	pmc_ppu0: dummy_ppu0@0 {
+		#interrupt-cells = <1>;
+	};
+	pmc_ppu1: dummy_ppu1@0 {
+		#interrupt-cells = <1>;
+	};
+#endif
+
+	/* FIXME: Once we add the NOC, these should be attached to it.  */
+	MEM_REGION(ddr, 0x0, 0x00000000, 0x00000000, 0x80000000, &ddr_low)
+
+        mdio0: mdio {
+		#address-cells = <1>;
+		#size-cells = <0>;
+		compatible="mdio";
+		phy0: phy@0 {
+			compatible = "88e1118r";
+			device_type = "ethernet-phy";
+			reg = <0>;
+		};
+	};
+};
+
+&pmc_qspi_0 {
+        SPI_FLASH(qspi_flash_lcs_lb, "n25q512a11", 0x02000000, 0x0 0x0)
+        SPI_FLASH(qspi_flash_lcs_ub, "n25q512a11", 0x02000000, 0x0 0x1)
+        SPI_FLASH(qspi_flash_ucs_lb, "n25q512a11", 0x02000000, 0x1 0x0)
+        SPI_FLASH(qspi_flash_ucs_ub, "n25q512a11", 0x02000000, 0x1 0x1)
+};
+
+&ospi {
+	SPI_FLASH(ospi_flash_lcs_lb, "mt35xu01gbba", 0x02000000, 0x0 0x0)
+	SPI_FLASH(ospi_flash_lcs_ub, "mt35xu01gbba", 0x02000000, 0x1 0x0)
+	SPI_FLASH(ospi_flash_ucs_lb, "mt35xu01gbba", 0x02000000, 0x2 0x0)
+	SPI_FLASH(ospi_flash_ucs_ub, "mt35xu01gbba", 0x02000000, 0x3 0x0)
+};
+
+&gem0 {
+        mdio = <&mdio0>;
+};

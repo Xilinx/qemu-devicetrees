@@ -1,0 +1,153 @@
+/*
+ * Zynq3 interconnect
+ *
+ * Copyright (c) 2016, Xilinx Inc
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *     * Redistributions of source code must retain the above copyright
+ *       notice, this list of conditions and the following disclaimer.
+ *     * Redistributions in binary form must reproduce the above copyright
+ *       notice, this list of conditions and the following disclaimer in the
+ *       documentation and/or other materials provided with the distribution.
+ *     * Neither the name of the <organization> nor the
+ *       names of its contributors may be used to endorse or promote products
+ *       derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY
+ * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+#define MR_BACKGROUND(name)					\
+	downstream_ ## name {					\
+		compatible = "qemu:memory-region";		\
+		alias = < & ## name >;				\
+		reg = <0x0 0x0 0xffffffff 0xffffffff 0xffffffff /* -1 */ >; \
+	}
+
+/ {
+	amba: amba@0 {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		#priority-cells = <1>;
+		compatible = "simple-bus";
+		ranges;
+
+		MR_BACKGROUND(amba_pmc_internal);
+	};
+
+	amba_pmc_internal: amba_pmc_internal@0 {
+		doc-ignore = <1>;
+		#address-cells = <MEMORY_ADDRESS_CELLS>;
+		#size-cells = <2>;
+		#priority-cells = <1>;
+		compatible = "simple-bus";
+		ranges;
+
+		MR_BACKGROUND(amba_pmc_ppu);
+		MR_BACKGROUND(amba_pmc_iou);
+		MR_BACKGROUND(amba_pmc_sec);
+		MR_BACKGROUND(amba_pmc_sys);
+		MR_BACKGROUND(amba_pmc_pl);
+	};
+
+	/* amba_pmc represents the PMC Main Switch.  */
+	amba_pmc: amba_pmc@0 {
+		#address-cells = <MEMORY_ADDRESS_CELLS>;
+		#size-cells = <2>;
+		#priority-cells = <1>;
+		compatible = "simple-bus";
+		ranges;
+
+		MR_BACKGROUND(amba);
+		MR_BACKGROUND(amba_pmc_internal);
+	};
+	/* amba_pmc_iou represents the PMC IOU Switch.  */
+	amba_pmc_iou: amba_pmc_iou@0 {
+		#address-cells = <MEMORY_ADDRESS_CELLS>;
+		#size-cells = <2>;
+		#priority-cells = <1>;
+		compatible = "simple-bus";
+		ranges;
+	};
+
+	amba_pmc_sec: amba_pmc_sec@0 {
+		#address-cells = <MEMORY_ADDRESS_CELLS>;
+		#size-cells = <2>;
+		#priority-cells = <1>;
+		compatible = "simple-bus";
+		ranges;
+	};
+
+	amba_pmc_ppu: amba_pmc_ppu@0 {
+		#address-cells = <MEMORY_ADDRESS_CELLS>;
+		#size-cells = <2>;
+		#priority-cells = <1>;
+		compatible = "simple-bus";
+		ranges;
+	};
+
+	amba_pmc_sys: amba_pmc_sys@0 {
+		#address-cells = <MEMORY_ADDRESS_CELLS>;
+		#size-cells = <2>;
+		#priority-cells = <1>;
+		compatible = "simple-bus";
+		ranges;
+	};
+
+	amba_pmc_pl: amba_pmc_pl@0 {
+		#address-cells = <MEMORY_ADDRESS_CELLS>;
+		#size-cells = <2>;
+		#priority-cells = <1>;
+		compatible = "simple-bus";
+		ranges;
+	};
+
+	lmb_pmc_ppu0: lmb_pmc_ppu0@0 {
+		#address-cells = <MEMORY_ADDRESS_CELLS>;
+		#size-cells = <2>;
+		#priority-cells = <1>;
+		compatible = "simple-bus";
+		ranges;
+
+		main_bus_for_pmc {
+			compatible = "qemu:memory-region";
+			alias = <&amba_pmc>;
+			/* Full address range with 0 priority */
+			reg = <0x0 0x0 0xffffffff 0xffffffff 0>;
+		};
+	};
+
+	lmb_pmc_ppu1: lmb_pmc_ppu1@0 {
+		#address-cells = <MEMORY_ADDRESS_CELLS>;
+		#size-cells = <2>;
+		#priority-cells = <1>;
+		compatible = "simple-bus";
+		ranges;
+
+		main_bus_for_pmc {
+			compatible = "qemu:memory-region";
+			alias = <&amba_pmc>;
+			/* Full address range with 0 priority */
+			reg = <0x0 0x0 0xffffffff 0xffffffff 0>;
+		};
+	};
+
+	/* Dummy controller useful to create gaps for IRQ/GPIO connections.  */
+	dummy1: dummy1@0 {
+		doc-ignore = <1>;
+		interrupt-controller;
+		#interrupt-cells = <1>;
+		gpio-controller;
+		#gpio-cells = <1>;
+	};
+};

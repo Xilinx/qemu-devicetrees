@@ -1,0 +1,101 @@
+/*
+ * ZynqMP memory region definitions
+ *
+ * Copyright (c) 2016, Xilinx Inc
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *     * Redistributions of source code must retain the above copyright
+ *       notice, this list of conditions and the following disclaimer.
+ *     * Redistributions in binary form must reproduce the above copyright
+ *       notice, this list of conditions and the following disclaimer in the
+ *       documentation and/or other materials provided with the distribution.
+ *     * Neither the name of the <organization> nor the
+ *       names of its contributors may be used to endorse or promote products
+ *       derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY
+ * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+#define MEM_REGION(name, addrH, addrL, addr64, s, c)			\
+name: name@addr64 {							\
+	compatible = "qemu:memory-region";				\
+	container = <c>;						\
+	qemu,ram = <QEMU_RAM_PROPERTY>;					\
+	reg = <addrH addrL s>;						\
+};
+
+/* Memory Map Definitions */
+#define MEMORY_ADDRESS_CELLS 2
+#define BASE_ADDR(x) 0x0 x
+
+/* Manual entries.  */
+
+#define ACPU_GIC_STRIDE		0x10000
+#define ACPU_GIC_DIST		0xF9000000
+#define ACPU_GIC_CPUIF		0xF9040000
+
+#define ACPU_GIC_REDIST		0xF9080000
+
+#define MM_PMC_QSPI_DMA		0xf1030800
+#define MM_PMC_LQSPI		0xC0000000
+#define MM_PMC_LQSPI_SIZE	0x08000000
+
+#define MM_PMC_PPU0_IOM(a)     0xf00800 ## a
+#define MM_PMC_PPU1_IOM(a)     0xf02800 ## a
+
+/* Split the PMC DMA into a SRC and a DST.  */
+#define MM_PMC_PMC_DMA0_SRC MM_PMC_PMC_DMA0
+#define MM_PMC_PMC_DMA0_DST 0xf11c0800
+
+#define MM_PMC_PMC_DMA1_SRC MM_PMC_PMC_DMA1
+#define MM_PMC_PMC_DMA1_DST 0xf11d0800
+
+#define MM_PMC_OSPI_DMA_SRC  0xf1011000
+#define MM_PMC_OSPI_DMA_DST  0xf1011800
+#define MM_PMC_OSPI_DAC      0xc0000000
+
+/* FIXME: Randomly chosen location for SSS (MM_PMC_PMC_GLOBAL + 0x500).  */
+#define MM_PMC_PMC_SSS 0xf1110500
+#define MM_PRAM_ZEROIZE 0xf1110518
+#define MM_PRAM_ZEROIZE_SIZE 4
+
+/* PMC GIC Proxy at MM_PMC_PMC_GLOBAL + 0x30000 offset.  */
+#define MM_PMC_GIC_PROXY 0xf1140000
+#define MM_PMC_GIC_PROXY_SIZE 0x100
+
+/* PMC PPU0 tamper tamper ID's */
+#define PPU0_TAMPER0	16
+#define PPU0_TAMPER1	17
+#define PPU0_TAMPER2	18
+#define PPU0_TAMPER3	19
+#define PPU0_TAMPER4	20
+#define PPU0_TAMPER5	21
+#define PPU0_TAMPER6	22
+#define PPU0_TAMPER7	23
+#define PPU0_TAMPER8	24
+#define PPU0_TAMPER9	25
+#define PPU0_TAMPER10	26
+#define PPU0_TAMPER11	27
+#define PPU0_TAMPER12	28
+#define PPU0_TAMPER13	29
+#define PPU0_SEC_DBG	30
+#define PPU0_PUF_CMD	31
+
+/* Include auto-generated files.  */
+#include "zynq3-top-memmap.dtsh"
+#include "zynq3-fpd-memmap.dtsh"
+#include "zynq3-pmc-memmap.dtsh"
+#include "zynq3-iou-memmap.dtsh"
+#include "zynq3-lps-memmap.dtsh"
+#include "zynq3-npi-memmap.dtsh"

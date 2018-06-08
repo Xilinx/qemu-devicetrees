@@ -1,0 +1,122 @@
+/*
+ * Zynq3 Virtual PMC board device tree
+ *
+ * Copyright (c) 2016, Xilinx Inc
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *     * Redistributions of source code must retain the above copyright
+ *       notice, this list of conditions and the following disclaimer.
+ *     * Redistributions in binary form must reproduce the above copyright
+ *       notice, this list of conditions and the following disclaimer in the
+ *       documentation and/or other materials provided with the distribution.
+ *     * Neither the name of the <organization> nor the
+ *       names of its contributors may be used to endorse or promote products
+ *       derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY
+ * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+/dts-v1/;
+
+#include "zynq3.dtsh"
+
+#ifndef MULTI_ARCH
+#include "zynq3-pmc.dtsi"
+#include "zynq3-ps-iou.dtsi"
+#include "zynq3-pmc-ppu-cpus.dtsi"
+
+/ {
+	#address-cells = <2>;
+	#size-cells = <1>;
+	#priority-cells = <0>;
+
+	/* FIXME: Once we add the NOC, these should be attached to it.  */
+	MEM_REGION(ddr, 0x0, 0x00000000, 0x00000000, 0x08000000, &ddr_low)
+
+	/* Dummy APUs.  */
+	cpu0: apu@0 {
+	};
+	cpu1: apu@1 {
+	};
+	/* Dummy GIC.  */
+	gic: apu_gic@0 {
+		#interrupt-cells = <3>;
+		interrupt-controller;
+	};
+};
+
+&pmc_qspi_0 {
+	SPI_FLASH(qspi_flash_lcs_lb,"m25qu02gcbb", 0x02000000, 0x0 0x0)
+	SPI_FLASH(qspi_flash_lcs_ub,"m25qu02gcbb", 0x02000000, 0x2 0x1)
+	SPI_FLASH(qspi_flash_ucs_lb,"m25qu02gcbb", 0x02000000, 0x1 0x0)
+	SPI_FLASH(qspi_flash_ucs_ub,"m25qu02gcbb", 0x02000000, 0x3 0x1)
+};
+
+&ospi {
+	SPI_FLASH(ospi_flash_lcs_lb, "mt35xu01gbba", 0x02000000, 0x0 0x0)
+	SPI_FLASH(ospi_flash_lcs_ub, "mt35xu01gbba", 0x02000000, 0x1 0x0)
+	SPI_FLASH(ospi_flash_ucs_lb, "mt35xu01gbba", 0x02000000, 0x2 0x0)
+	SPI_FLASH(ospi_flash_ucs_ub, "mt35xu01gbba", 0x02000000, 0x3 0x0)
+};
+
+#else
+#include "zynq3-icnt.dtsi"
+#include "zynq3-memory-regions.dtsi"
+#include "zynq3-pmc-ppu-cpus.dtsi"
+
+/ {
+	#address-cells = <2>;
+	#size-cells = <1>;
+	#priority-cells = <0>;
+
+	/* FIXME: Once we add the NOC, these should be attached to it.  */
+	MEM_REGION(ddr, 0x0, 0x00000000, 0x00000000, 0x80000000, &ddr_low)
+
+	ps_pmc_rp: ps_pmc_rp@0 {
+		doc-name = "Remote-port PMC-PS";
+		compatible = "remote-port";
+		chrdev-id = "ps-pmc-rp";
+	};
+	rp_pmc_ppu0: rp_pmc_ppu0@0 {
+		compatible = "remote-port-gpio";
+		remote-ports = <&ps_pmc_rp 1>;
+		interrupts-extended = < &pmc_ppu0 0 >;
+	};
+	rp_pmc_ppu1: rp_pmc_ppu1@0 {
+		compatible = "remote-port-gpio";
+		remote-ports = <&ps_pmc_rp 2>;
+		interrupts-extended = < &pmc_ppu1 0 >;
+	};
+	pmc_global: rp_pmc_global@0 {
+		compatible = "remote-port-gpio";
+		remote-ports = <&ps_pmc_rp 3>;
+		#gpio-cells = <1>;
+		num-gpios = <16>;
+	};
+	lmb_pmc_ppu0: lmb_pmc_ppu0@0 {
+		rp_lmb_pmc_ppu0@0 {
+			compatible = "remote-port-memory-master";
+			remote-ports = <&ps_pmc_rp 4>;
+			reg = < 0x0 0x0 0xFFFFFFFF 0xFFFFFFFF 0xFFFFFFFF /* -1 */ >;
+		};
+	};
+	lmb_pmc_ppu1: lmb_pmc_ppu1@0 {
+		rp_lmb_pmc_ppu1@0 {
+			compatible = "remote-port-memory-master";
+			remote-ports = <&ps_pmc_rp 5>;
+			reg = < 0x0 0x0 0xFFFFFFFF 0xFFFFFFFF 0xFFFFFFFF /* -1 */ >;
+		};
+	};
+};
+#endif

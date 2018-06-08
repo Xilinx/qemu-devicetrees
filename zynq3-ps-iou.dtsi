@@ -1,0 +1,107 @@
+/*
+ * Zynq3 PS IOU
+ *
+ * Copyright (c) 2016, Xilinx Inc
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *     * Redistributions of source code must retain the above copyright
+ *       notice, this list of conditions and the following disclaimer.
+ *     * Redistributions in binary form must reproduce the above copyright
+ *       notice, this list of conditions and the following disclaimer in the
+ *       documentation and/or other materials provided with the distribution.
+ *     * Neither the name of the <organization> nor the
+ *       names of its contributors may be used to endorse or promote products
+ *       derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY
+ * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+#include "zynq3.dtsh"
+
+#define GEM(g_name, g_base, g_size, g_dma, g_irq)	\
+g_name: g_name@0 {		\
+	#address-cells = <1>;		\
+	#size-cells = <0>;		\
+	compatible = "cdns,gem";	\
+	interrupts = <g_irq g_irq>;		\
+	dma = <g_dma>;			\
+	memattr = <& ## g_name ## _memattr>;	\
+	reg = <0x0 g_base 0x0 g_size 0x0>;	\
+	num-priority-queues = <2>;	\
+};
+
+/ {
+	amba: amba@0 {
+		#interrupt-cells = <1>;
+                interrupt-map-mask = <0x0 0x0 0xffff>;
+		interrupt-map =
+			#define __intc__ &gic
+			#include "zynq3-ps-irq-map.dtsh"
+			#undef __intc__
+			;
+
+		GEM(gem0, MM_GEM0, MM_GEM0_SIZE, &amba, GEM0_IRQ_0)
+		GEM(gem1, MM_GEM1, MM_GEM1_SIZE, &amba, GEM1_IRQ_0)
+
+		serial@MM_UART0 {
+			compatible = "pl011";
+			interrupts = <UART0_IRQ_0>;
+			reg = <0x0 MM_UART0 0x0 MM_UART0_SIZE 0x0 >;
+		};
+		serial@MM_UART1 {
+			compatible = "pl011";
+			interrupts = <UART1_IRQ_0>;
+			reg = <0x0 MM_UART1 0x0 MM_UART1_SIZE 0x0 >;
+		};
+
+		crf: crf@MM_FPD_CRF {
+			compatible = "xlnx,zynq3-crf";
+			reg = <0x0 MM_FPD_CRF 0x0 MM_FPD_CRF_SIZE 0x0>;
+			gpio-controller;
+			#gpio-cells = <1>;
+		};
+
+		apu_ctrl@MM_FPD_FPD_APU {
+			compatible = "xlnx,zynq3-apu-ctrl";
+			reg = <0x0 MM_FPD_FPD_APU 0x0 MM_FPD_FPD_APU_SIZE 0x0>;
+			cpu0 = <&cpu0>;
+			cpu1 = <&cpu1>;
+		};
+
+		ps7_ttc_0: ps7-ttc@TTC0 {
+			compatible = "xlnx,ps7-ttc-1.00.a";
+			interrupts = <TTC0_IRQ_0 TTC0_IRQ_1 TTC0_IRQ_2>;
+			reg = <0x0 MM_TTC0 0x0 MM_TTC0_SIZE 0x0>;
+			timer-width = <32>;
+		};
+		ps7_ttc_1: ps7-ttc@TTC1 {
+			compatible = "xlnx,ps7-ttc-1.00.a";
+			interrupts = <TTC1_IRQ_0 TTC1_IRQ_1 TTC1_IRQ_2>;
+			reg = <0x0 MM_TTC1 0x0 MM_TTC1_SIZE 0x0>;
+			timer-width = <32>;
+		};
+		ps7_ttc_2: ps7-ttc@TTC2 {
+			compatible = "xlnx,ps7-ttc-1.00.a";
+			interrupts = <TTC2_IRQ_0 TTC2_IRQ_1 TTC2_IRQ_2>;
+			reg = <0x0 MM_TTC2 0x0 MM_TTC2_SIZE 0x0>;
+			timer-width = <32>;
+		};
+		ps7_ttc_3: ps7-ttc@TTC3 {
+			compatible = "xlnx,ps7-ttc-1.00.a";
+			interrupts = <TTC3_IRQ_0 TTC3_IRQ_1 TTC3_IRQ_2>;
+			reg = <0x0 MM_TTC3 0x0 MM_TTC3_SIZE 0x0>;
+			timer-width = <32>;
+		};
+	};
+};

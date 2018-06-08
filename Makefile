@@ -75,10 +75,24 @@ $(MULTI_ARCH_OUTDIR)/%.dtb:	%.dts $(DTSI_FILES) $(HEADER_FILES)
 $(MULTI_ARCH_OUTDIR)/%.dts:	%.dts $(DTSI_FILES) $(HEADER_FILES)
 	$(call COMPILE,$(MULTI_ARCH_OUTDIR),dts,-DMULTI_ARCH)
 
+$(MULTI_ARCH_CSU_OUTDIR)/%.dtb:	%.dts $(DTSI_FILES) $(HEADER_FILES)
+	$(call COMPILE,$(MULTI_ARCH_CSU_OUTDIR),dtb,-DMULTI_ARCH -DINCLUDE_CSU)
+$(MULTI_ARCH_CSU_OUTDIR)/%.dts:	%.dts $(DTSI_FILES) $(HEADER_FILES)
+	$(call COMPILE,$(MULTI_ARCH_CSU_OUTDIR),dts,-DMULTI_ARCH -DINCLUDE_CSU)
+
 $(LQSPI_XIP_OUTDIR)/%.dtb:	%.dts $(DTSI_FILES) $(HEADER_FILES)
 	$(call COMPILE,$(LQSPI_XIP_OUTDIR),dtb,-DLQSPI_XIP)
 $(LQSPI_XIP_OUTDIR)/%.dts:	%.dts $(DTSI_FILES) $(HEADER_FILES)
 	$(call COMPILE,$(LQSPI_XIP_OUTDIR),dts,-DLQSPI_XIP)
 
+# Auto-generated Zynq3 fragments
+# TODO: Add support for auto-generated dependency list
+zynq3-pmc-npi.dtsi: zynq3-pmc-npi-nxx.dtsi
+zynq3-pmc-npi-nxx.dtsi: Makefile
+	@python -c 'for a in range(0, 34): print("\tGEN_NMU(" + str(a) + ")")' > $@
+	@python -c 'for a in range(0, 30): print("\tGEN_NSU(" + str(a) + ")")' >> $@
+	@python -c 'for a in range(0, 75): print("\tGEN_NPS(" + str(a) + ")")' >> $@
+
 clean:
+	$(RM) zynq3-pmc-npi-nxx.dtsi
 	@rm -rf LATEST;

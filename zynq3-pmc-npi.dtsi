@@ -1,0 +1,79 @@
+/*
+ * Zynq3 PMC NPI
+ *
+ * Copyright (c) 2016, Xilinx Inc
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *     * Redistributions of source code must retain the above copyright
+ *       notice, this list of conditions and the following disclaimer.
+ *     * Redistributions in binary form must reproduce the above copyright
+ *       notice, this list of conditions and the following disclaimer in the
+ *       documentation and/or other materials provided with the distribution.
+ *     * Neither the name of the <organization> nor the
+ *       names of its contributors may be used to endorse or promote products
+ *       derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY
+ * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+#include "zynq3.dtsh"
+
+#define GEN_NMU(N)							\
+	npi_noc_nmu_ ## N: npi_noc_nmu_## N@MM_NPI_NOC_NMU_ ## N  {	\
+		doc-ignore = <1>;					\
+		doc-status = "partial";					\
+		doc-comments = "A stub including minimal setup.";	\
+		compatible = "xlnx,noc-nmu";				\
+		reg = <0x0 MM_NPI_NOC_NMU_ ## N 0x0 MM_NPI_NOC_NMU_ ## N ## _SIZE 0x0>; \
+	};
+
+#define GEN_NSU(N)							\
+	npi_noc_nsu_ ## N: npi_noc_nsu_## N@MM_NPI_NOC_NSU_ ## N  {	\
+		doc-ignore = <1>;					\
+		doc-status = "partial";					\
+		doc-comments = "A stub including minimal setup.";	\
+		compatible = "xlnx,noc-nsu";				\
+		reg = <0x0 MM_NPI_NOC_NSU_ ## N 0x0 MM_NPI_NOC_NSU_ ## N ## _SIZE 0x0>; \
+	};
+
+#define GEN_NPS(N)							\
+	npi_noc_nps_ ## N: npi_noc_nps_## N@MM_NPI_NOC_NPS_ ## N  {	\
+		doc-ignore = <1>;					\
+		doc-status = "partial";					\
+		doc-comments = "A stub including minimal setup.";	\
+		compatible = "xlnx,noc-nps";				\
+		reg = <0x0 MM_NPI_NOC_NPS_ ## N 0x0 MM_NPI_NOC_NPS_ ## N ## _SIZE 0x0>; \
+	};
+
+/ {
+	amba_pmc_pl: amba_pmc_pl@0 {
+#include "zynq3-pmc-npi-nxx.dtsi"
+
+		npi_me: npi_me@MM_NPI_ME_NPI_0 {
+			compatible = "xlnx.me-npi";
+			reg = <0x0 MM_NPI_ME_NPI_0 0x0 MM_NPI_ME_NPI_0_SIZE 0x0>;
+		};
+	};
+};
+
+// Docs
+&npi_noc_nmu_0 {
+	doc-ignore = <0>;
+};
+&npi_noc_nsu_0 {
+	doc-ignore = <0>;
+};
+&npi_noc_nps_0 {
+	doc-ignore = <0>;
+};
