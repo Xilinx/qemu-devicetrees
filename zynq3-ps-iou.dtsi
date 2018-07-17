@@ -41,6 +41,24 @@ g_name: g_name@0 {		\
 	num-priority-queues = <2>;	\
 };
 
+// FIXME: Add support for SMIDs
+#define ZDMA_CHANNEL(zname, zdomain, zbase, zirq, zbuswidth, zdma, mid)	\
+zname ## _mattr: zname ## mattr {					\
+	compatible = "qemu:memory-transaction-attr";			\
+	secure = <0>;							\
+	master-id = <mid>;						\
+};									\
+									\
+zname: zname@zbase {							\
+	compatible = "xlnx,zdma";					\
+	reg = <0x0 zbase 0x0 MM_ADMA_CH0_SIZE 0x0>;			\
+	bus-width = <zbuswidth>;					\
+	interrupts = <zirq>;						\
+	#stream-id-cells = <0x1>;					\
+	dma = <zdma>;							\
+	memattr = <& ## zname ## _mattr>;				\
+}
+
 / {
 	amba: amba@0 {
 		#interrupt-cells = <1>;
@@ -103,5 +121,15 @@ g_name: g_name@0 {		\
 			reg = <0x0 MM_TTC3 0x0 MM_TTC3_SIZE 0x0>;
 			timer-width = <32>;
 		};
+
+		// FIXME: The Master ID's need to be connected to an SMID block.
+		ZDMA_CHANNEL(adma0, adma, MM_ADMA_CH0, ADMA_IRQ_0, 128, &amba, 0x868);
+		ZDMA_CHANNEL(adma1, adma, MM_ADMA_CH1, ADMA_IRQ_1, 128, &amba, 0x869);
+		ZDMA_CHANNEL(adma2, adma, MM_ADMA_CH2, ADMA_IRQ_2, 128, &amba, 0x86a);
+		ZDMA_CHANNEL(adma3, adma, MM_ADMA_CH3, ADMA_IRQ_3, 128, &amba, 0x86b);
+		ZDMA_CHANNEL(adma4, adma, MM_ADMA_CH4, ADMA_IRQ_4, 128, &amba, 0x86c);
+		ZDMA_CHANNEL(adma5, adma, MM_ADMA_CH5, ADMA_IRQ_5, 128, &amba, 0x86d);
+		ZDMA_CHANNEL(adma6, adma, MM_ADMA_CH6, ADMA_IRQ_6, 128, &amba, 0x86e);
+		ZDMA_CHANNEL(adma7, adma, MM_ADMA_CH7, ADMA_IRQ_7, 128, &amba, 0x86f);
 	};
 };
