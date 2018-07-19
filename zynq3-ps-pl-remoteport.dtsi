@@ -149,8 +149,26 @@
 
 		/* IF_PS_NOC_NCI_0 - 1.  ID 54 - 55 */
 		/* IF_PS_NOC_PCIE_0 - 1. ID 56 - 57 */
-		/* IF_PS_NOC_RPU_0.      ID 58 */
 
+		if_ps_noc_rpu_0: if_ps_noc_rpu_0@0 {
+			compatible = "remote-port-memory-master";
+			remote-ports = <&cosim_rp_0 58>;
+			/*
+			 * TODO: Verify this list.
+			 * Right now we route everything except PMC_ALIAS and ME on this port.
+			 */
+			reg = <
+				 0x0 MM_TOP_Reserved 0x0 MM_TOP_Reserved_SIZE 0x1
+				 0x0 MM_TOP_PCIE_region_0 0x0 MM_TOP_PCIE_region_0_SIZE 0x1
+				 0x0 MM_TOP_Reserved_2 0x0 MM_TOP_Reserved_2_SIZE 0x1
+				 MM_TOP_Reserved_3_H MM_TOP_Reserved_3_L 0x0 MM_TOP_Reserved_3_SIZE 0x1
+				 MM_TOP_Reserved_4_H MM_TOP_Reserved_4_L MM_TOP_Reserved_4_SIZE_H MM_TOP_Reserved_4_SIZE_L 0x1
+				 MM_TOP_PCIe_region_1_H MM_TOP_PCIe_region_1_L MM_TOP_PCIe_region_1_SIZE_H MM_TOP_PCIe_region_1_SIZE_L 0x1
+				 MM_TOP_Reserved_5_H MM_TOP_Reserved_5_L MM_TOP_Reserved_5_SIZE_H MM_TOP_Reserved_5_SIZE_L 0x1
+				 MM_TOP_Reserved_6_H MM_TOP_Reserved_6_L MM_TOP_Reserved_6_SIZE_H MM_TOP_Reserved_6_SIZE_L 0x1
+				 MM_TOP_PL_via_NoC_H MM_TOP_PL_via_NoC_L MM_TOP_PL_via_NoC_SIZE_H MM_TOP_PL_via_NoC_SIZE_L 0x1
+				>;
+		};
 	};
 
 	amba_pmc_internal: amba_pmc_internal@0 {
