@@ -150,7 +150,7 @@
 		if_pmc_noc_axi_0: if_pmc_noc_axi_0@0 {
 			compatible = "remote-port-memory-master";
 			remote-ports = <&cosim_rp_0 59>;
-			reg = < 
+			reg = <
 					 0x0 MM_TOP_Reserved 0x0 MM_TOP_Reserved_SIZE 0x1
 					 0x0 MM_TOP_PCIE_region_0 0x0 MM_TOP_PCIE_region_0_SIZE 0x1
 					 0x0 MM_TOP_Reserved_2 0x0 MM_TOP_Reserved_2_SIZE 0x1
@@ -165,7 +165,7 @@
 					 MM_TOP_Reserved_5_H MM_TOP_Reserved_5_L MM_TOP_Reserved_5_SIZE_H MM_TOP_Reserved_5_SIZE_L 0x1
 					 MM_TOP_Reserved_6_H MM_TOP_Reserved_6_L MM_TOP_Reserved_6_SIZE_H MM_TOP_Reserved_6_SIZE_L 0x1
 					 MM_TOP_PL_via_NoC_H MM_TOP_PL_via_NoC_L MM_TOP_PL_via_NoC_SIZE_H MM_TOP_PL_via_NoC_SIZE_L 0x1
-                                        >;
+					>;
 		};
 	};
 };
