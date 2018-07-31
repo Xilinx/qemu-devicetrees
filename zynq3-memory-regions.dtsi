@@ -45,6 +45,7 @@ NAME ## _memattr: NAME ## _ma {				\
 	/* FIXME: Randomly chosen Master-IDs  */
 	MEMATTR(pmc_ppu0, SECURE, 0x40);
 	MEMATTR(pmc_ppu1, SECURE, 0x41);
+	MEMATTR(psm, SECURE, 0x42);
 	MEMATTR(pmc__dma, SECURE, 0x200);
 	MEMATTR(pmc_qspi_dma, SECURE, 0x400);
 
