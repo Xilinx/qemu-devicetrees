@@ -57,6 +57,8 @@ zname: zname@zbase {							\
 	#stream-id-cells = <0x1>;					\
 	dma = <zdma>;							\
 	memattr = <& ## zname ## _mattr>;				\
+	gpios = < &crl 0 >;						\
+	gpio-names = "rst_cntrl";					\
 }
 
 / {
@@ -76,16 +78,27 @@ zname: zname@zbase {							\
 			compatible = "pl011";
 			interrupts = <UART0_IRQ_0>;
 			reg = <0x0 MM_UART0 0x0 MM_UART0_SIZE 0x0 >;
+			gpios = < &crl 5 >;
+			gpio-names = "rst_cntrl";
 		};
 		serial@MM_UART1 {
 			compatible = "pl011";
 			interrupts = <UART1_IRQ_0>;
 			reg = <0x0 MM_UART1 0x0 MM_UART1_SIZE 0x0 >;
+			gpios = < &crl 6 >;
+			gpio-names = "rst_cntrl";
 		};
 
 		crf: crf@MM_FPD_CRF {
 			compatible = "xlnx,zynq3-crf";
 			reg = <0x0 MM_FPD_CRF 0x0 MM_FPD_CRF_SIZE 0x0>;
+			gpio-controller;
+			#gpio-cells = <1>;
+		};
+
+		crl: crl@MM_CRL {
+			compatible = "xlnx,zynq3-crl";
+			reg = <0x0 MM_CRL 0x0 MM_CRL_SIZE 0x0>;
 			gpio-controller;
 			#gpio-cells = <1>;
 		};
@@ -102,24 +115,32 @@ zname: zname@zbase {							\
 			interrupts = <TTC0_IRQ_0 TTC0_IRQ_1 TTC0_IRQ_2>;
 			reg = <0x0 MM_TTC0 0x0 MM_TTC0_SIZE 0x0>;
 			timer-width = <32>;
+			gpios = < &crl 18 >;
+			gpio-names = "rst_cntrl";
 		};
 		ps7_ttc_1: ps7-ttc@TTC1 {
 			compatible = "xlnx,ps7-ttc-1.00.a";
 			interrupts = <TTC1_IRQ_0 TTC1_IRQ_1 TTC1_IRQ_2>;
 			reg = <0x0 MM_TTC1 0x0 MM_TTC1_SIZE 0x0>;
 			timer-width = <32>;
+			gpios = < &crl 19 >;
+			gpio-names = "rst_cntrl";
 		};
 		ps7_ttc_2: ps7-ttc@TTC2 {
 			compatible = "xlnx,ps7-ttc-1.00.a";
 			interrupts = <TTC2_IRQ_0 TTC2_IRQ_1 TTC2_IRQ_2>;
 			reg = <0x0 MM_TTC2 0x0 MM_TTC2_SIZE 0x0>;
 			timer-width = <32>;
+			gpios = < &crl 20 >;
+			gpio-names = "rst_cntrl";
 		};
 		ps7_ttc_3: ps7-ttc@TTC3 {
 			compatible = "xlnx,ps7-ttc-1.00.a";
 			interrupts = <TTC3_IRQ_0 TTC3_IRQ_1 TTC3_IRQ_2>;
 			reg = <0x0 MM_TTC3 0x0 MM_TTC3_SIZE 0x0>;
 			timer-width = <32>;
+			gpios = < &crl 21 >;
+			gpio-names = "rst_cntrl";
 		};
 
 		// FIXME: The Master ID's need to be connected to an SMID block.
@@ -133,3 +154,14 @@ zname: zname@zbase {							\
 		ZDMA_CHANNEL(adma7, adma, MM_ADMA_CH7, ADMA_IRQ_7, 128, &amba, 0x86f);
 	};
 };
+
+&gem0 {
+	gpios = < &crl 1 >;
+	gpio-names = "rst_cntrl";
+};
+
+&gem1 {
+	gpios = < &crl 2 >;
+	gpio-names = "rst_cntrl";
+};
+

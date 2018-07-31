@@ -118,5 +118,11 @@
 			reg = < 0x0 0x0 0xFFFFFFFF 0xFFFFFFFF 0xFFFFFFFF /* -1 */ >;
 		};
 	};
+	crl: crl@MM_CRL {
+		compatible = "remote-port-gpio";
+		remote-ports = <&ps_pmc_rp 6>;
+		#gpio-cells = <1>;
+		num-gpios = <32>;
+	};
 };
 #endif
