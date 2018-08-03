@@ -147,11 +147,15 @@
 	};
 };
 
+/*
+ * Use 2Gbit QSPI flashes to allow verification of Image-searching
+ * in ROM upto 256MB.
+ */
 &pmc_qspi_0 {
-        SPI_FLASH(qspi_flash_lcs_lb, "n25q512a11", 0x02000000, 0x0 0x0)
-        SPI_FLASH(qspi_flash_lcs_ub, "n25q512a11", 0x02000000, 0x0 0x1)
-        SPI_FLASH(qspi_flash_ucs_lb, "n25q512a11", 0x02000000, 0x1 0x0)
-        SPI_FLASH(qspi_flash_ucs_ub, "n25q512a11", 0x02000000, 0x1 0x1)
+	SPI_FLASH(qspi_flash_lcs_lb,"m25qu02gcbb", 0x02000000, 0x0 0x0)
+	SPI_FLASH(qspi_flash_lcs_ub,"m25qu02gcbb", 0x02000000, 0x2 0x1)
+	SPI_FLASH(qspi_flash_ucs_lb,"m25qu02gcbb", 0x02000000, 0x1 0x0)
+	SPI_FLASH(qspi_flash_ucs_ub,"m25qu02gcbb", 0x02000000, 0x3 0x1)
 };
 
 &ospi {
