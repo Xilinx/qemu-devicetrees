@@ -33,6 +33,7 @@
 
 #ifndef MULTI_ARCH
 #include "zynq3-pmc.dtsi"
+#include "zynq3-psm.dtsi"
 #include "zynq3-ps-iou.dtsi"
 #include "zynq3-pmc-ppu-cpus.dtsi"
 #include "zynq3-psm-cpu.dtsi"

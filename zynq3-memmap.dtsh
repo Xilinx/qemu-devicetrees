@@ -53,6 +53,7 @@ name: name@addr64 {							\
 
 #define MM_PMC_PPU0_IOM(a)     0xf00800 ## a
 #define MM_PMC_PPU1_IOM(a)     0xf02800 ## a
+#define MM_PSM_IOM(a)          0xffc800 ## a
 
 /* Split the PMC DMA into a SRC and a DST.  */
 #define MM_PMC_PMC_DMA0_SRC MM_PMC_PMC_DMA0
