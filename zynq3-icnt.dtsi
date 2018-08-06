@@ -127,6 +127,16 @@
 		};
 	};
 
+	amba_psm: amba_psm@0 {
+		#address-cells = <MEMORY_ADDRESS_CELLS>;
+		#size-cells = <2>;
+		#priority-cells = <1>;
+		compatible = "simple-bus";
+		ranges;
+
+		MR_BACKGROUND(amba);
+	};
+
 	lmb_pmc_ppu1: lmb_pmc_ppu1@0 {
 		#address-cells = <MEMORY_ADDRESS_CELLS>;
 		#size-cells = <2>;
@@ -137,6 +147,21 @@
 		main_bus_for_pmc {
 			compatible = "qemu:memory-region";
 			alias = <&amba_pmc>;
+			/* Full address range with 0 priority */
+			reg = <0x0 0x0 0xffffffff 0xffffffff 0>;
+		};
+	};
+
+	lmb_psm: lmb_psm@0 {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		#priority-cells = <1>;
+		compatible = "simple-bus";
+		ranges;
+
+		main_bus_for_pmc {
+			compatible = "qemu:memory-region";
+			alias = <&amba_psm>;
 			/* Full address range with 0 priority */
 			reg = <0x0 0x0 0xffffffff 0xffffffff 0>;
 		};
