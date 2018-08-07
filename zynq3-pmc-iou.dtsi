@@ -179,7 +179,7 @@ name: name@0 {								\
 			xlnx,sdio-clk-freq-hz = <50000000>;
 		};
 
-		sd_1: sd0@MM_PMC_SD1 {
+		sd_1: sd1@MM_PMC_SD1 {
 			doc-status = "complete";
 			compatible = "xilinx,zynqmp-sdhci", "generic-sdhci";
 			drive-index = <1>;
