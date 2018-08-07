@@ -65,6 +65,7 @@
 		pmc_sysmon: pmc_sysmon@ {
 			compatible = "xlnx,ams_root";
 			reg = <0x0 MM_PMC_PMC_SYSMON 0x0 MM_PMC_PMC_SYSMON_SIZE>;
+			reset-gpios = <&pmc_clk_rst CRP_RST_SYSMON_CFG>;
 		};
 		pmc_global_tamper: zynq3_pmc_tamper@ {
 			compatible = "xlnx,pmc_tamper";

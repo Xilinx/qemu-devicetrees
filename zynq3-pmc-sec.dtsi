@@ -46,6 +46,7 @@
 		reg = <0x0 MM_PMC_PMC_DMA0_SRC 0x0 0x800 0x0>;
 		dma = <&amba_pmc>;
 		dma-width = <16>;
+		reset-gpios = <&pmc_clk_rst CRP_RST_PDMA0>;
 	};
 	pmc_dma0_dst: pmc_dma0_dst@MM_PMC_PMC_DMA0_DST {
 		doc-status = "complete";
@@ -54,6 +55,7 @@
 		dma = <&amba_pmc>;
 		is-dst = <1>;
 		dma-width = <16>;
+		reset-gpios = <&pmc_clk_rst CRP_RST_PDMA0>;
 	};
 	pmc_dma1_src: pmc_dma1_src@MM_PMC_PMC_DMA1_SRC {
 		doc-status = "complete";
@@ -62,6 +64,7 @@
 		reg = <0x0 MM_PMC_PMC_DMA1_SRC 0x0 0x800 0x0>;
 		dma = <&amba_pmc>;
 		dma-width = <16>;
+		reset-gpios = <&pmc_clk_rst CRP_RST_PDMA1>;
 	};
 	pmc_dma1_dst: pmc_dma1_dst@MM_PMC_PMC_DMA1_DST {
 		doc-status = "complete";
@@ -70,6 +73,7 @@
 		dma = <&amba_pmc>;
 		is-dst = <1>;
 		dma-width = <16>;
+		reset-gpios = <&pmc_clk_rst CRP_RST_PDMA1>;
 	};
 	pmc_stream_switch: pmc_stream_switch@MM_PMC_PMC_SSS {
 		doc-status = "complete";

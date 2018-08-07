@@ -36,6 +36,7 @@
 		doc-comments = "A stub including minimal setup.";	\
 		compatible = "xlnx,noc-nmu";				\
 		reg = <0x0 MM_NPI_NOC_NMU_ ## N 0x0 MM_NPI_NOC_NMU_ ## N ## _SIZE 0x0>; \
+		reset-gpios = <&pmc_clk_rst CRP_RST_NONPS_NPI >;	\
 	};
 
 #define GEN_NSU(N)							\
@@ -45,6 +46,7 @@
 		doc-comments = "A stub including minimal setup.";	\
 		compatible = "xlnx,noc-nsu";				\
 		reg = <0x0 MM_NPI_NOC_NSU_ ## N 0x0 MM_NPI_NOC_NSU_ ## N ## _SIZE 0x0>; \
+		reset-gpios = <&pmc_clk_rst CRP_RST_NONPS_NPI >;	\
 	};
 
 #define GEN_NPS(N)							\
@@ -54,6 +56,7 @@
 		doc-comments = "A stub including minimal setup.";	\
 		compatible = "xlnx,noc-nps";				\
 		reg = <0x0 MM_NPI_NOC_NPS_ ## N 0x0 MM_NPI_NOC_NPS_ ## N ## _SIZE 0x0>; \
+		reset-gpios = <&pmc_clk_rst CRP_RST_NONPS_NPI >;	\
 	};
 
 / {
@@ -63,6 +66,7 @@
 		npi_me: npi_me@MM_NPI_ME_NPI_0 {
 			compatible = "xlnx.me-npi";
 			reg = <0x0 MM_NPI_ME_NPI_0 0x0 MM_NPI_ME_NPI_0_SIZE 0x0>;
+			reset-gpios = <&pmc_clk_rst CRP_RST_NONPS_NPI >;
 		};
 	};
 };
