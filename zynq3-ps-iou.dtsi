@@ -29,7 +29,7 @@
 
 #include "zynq3.dtsh"
 
-#define GEM(g_name, g_base, g_size, g_dma, g_irq)	\
+#define GEM(g_name, g_base, g_size, g_dma, g_irq, rst_idx)	\
 g_name: g_name@0 {		\
 	#address-cells = <1>;		\
 	#size-cells = <0>;		\
@@ -39,6 +39,7 @@ g_name: g_name@0 {		\
 	memattr = <& ## g_name ## _memattr>;	\
 	reg = <0x0 g_base 0x0 g_size 0x0>;	\
 	num-priority-queues = <2>;	\
+	reset-gpios = < &crl rst_idx >;	\
 };
 
 // FIXME: Add support for SMIDs
@@ -57,8 +58,7 @@ zname: zname@zbase {							\
 	#stream-id-cells = <0x1>;					\
 	dma = <zdma>;							\
 	memattr = <& ## zname ## _mattr>;				\
-	gpios = < &crl 0 >;						\
-	gpio-names = "rst_cntrl";					\
+	reset-gpios = < &crl CRL_RST_ADMA >;				\
 }
 
 / {
@@ -71,22 +71,20 @@ zname: zname@zbase {							\
 			#undef __intc__
 			;
 
-		GEM(gem0, MM_GEM0, MM_GEM0_SIZE, &amba, GEM0_IRQ_0)
-		GEM(gem1, MM_GEM1, MM_GEM1_SIZE, &amba, GEM1_IRQ_0)
+		GEM(gem0, MM_GEM0, MM_GEM0_SIZE, &amba, GEM0_IRQ_0, CRL_RST_GEM0)
+		GEM(gem1, MM_GEM1, MM_GEM1_SIZE, &amba, GEM1_IRQ_0, CRL_RST_GEM1)
 
 		serial@MM_UART0 {
 			compatible = "pl011";
 			interrupts = <UART0_IRQ_0>;
 			reg = <0x0 MM_UART0 0x0 MM_UART0_SIZE 0x0 >;
-			gpios = < &crl 5 >;
-			gpio-names = "rst_cntrl";
+			reset-gpios = < &crl CRL_RST_UART0 >;
 		};
 		serial@MM_UART1 {
 			compatible = "pl011";
 			interrupts = <UART1_IRQ_0>;
 			reg = <0x0 MM_UART1 0x0 MM_UART1_SIZE 0x0 >;
-			gpios = < &crl 6 >;
-			gpio-names = "rst_cntrl";
+			reset-gpios = < &crl CRL_RST_UART1 >;
 		};
 
 		crf: crf@MM_FPD_CRF {
@@ -115,32 +113,28 @@ zname: zname@zbase {							\
 			interrupts = <TTC0_IRQ_0 TTC0_IRQ_1 TTC0_IRQ_2>;
 			reg = <0x0 MM_TTC0 0x0 MM_TTC0_SIZE 0x0>;
 			timer-width = <32>;
-			gpios = < &crl 18 >;
-			gpio-names = "rst_cntrl";
+			reset-gpios = < &crl CRL_RST_TTC0 >;
 		};
 		ps7_ttc_1: ps7-ttc@TTC1 {
 			compatible = "xlnx,ps7-ttc-1.00.a";
 			interrupts = <TTC1_IRQ_0 TTC1_IRQ_1 TTC1_IRQ_2>;
 			reg = <0x0 MM_TTC1 0x0 MM_TTC1_SIZE 0x0>;
 			timer-width = <32>;
-			gpios = < &crl 19 >;
-			gpio-names = "rst_cntrl";
+			reset-gpios = < &crl CRL_RST_TTC1 >;
 		};
 		ps7_ttc_2: ps7-ttc@TTC2 {
 			compatible = "xlnx,ps7-ttc-1.00.a";
 			interrupts = <TTC2_IRQ_0 TTC2_IRQ_1 TTC2_IRQ_2>;
 			reg = <0x0 MM_TTC2 0x0 MM_TTC2_SIZE 0x0>;
 			timer-width = <32>;
-			gpios = < &crl 20 >;
-			gpio-names = "rst_cntrl";
+			reset-gpios = < &crl CRL_RST_TTC2 >;
 		};
 		ps7_ttc_3: ps7-ttc@TTC3 {
 			compatible = "xlnx,ps7-ttc-1.00.a";
 			interrupts = <TTC3_IRQ_0 TTC3_IRQ_1 TTC3_IRQ_2>;
 			reg = <0x0 MM_TTC3 0x0 MM_TTC3_SIZE 0x0>;
 			timer-width = <32>;
-			gpios = < &crl 21 >;
-			gpio-names = "rst_cntrl";
+			reset-gpios = < &crl CRL_RST_TTC3 >;
 		};
 
 		// FIXME: The Master ID's need to be connected to an SMID block.
@@ -154,14 +148,3 @@ zname: zname@zbase {							\
 		ZDMA_CHANNEL(adma7, adma, MM_ADMA_CH7, ADMA_IRQ_7, 128, &amba, 0x86f);
 	};
 };
-
-&gem0 {
-	gpios = < &crl 1 >;
-	gpio-names = "rst_cntrl";
-};
-
-&gem1 {
-	gpios = < &crl 2 >;
-	gpio-names = "rst_cntrl";
-};
-
