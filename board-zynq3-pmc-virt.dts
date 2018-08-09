@@ -127,5 +127,11 @@
 		#gpio-cells = <1>;
 		num-gpios = <32>;
 	};
+	pmc_clk_rst: pmc_clk_rst@0 {
+		compatible = "remote-port-gpio";
+		remote-ports = <&ps_pmc_rp 7>;
+		#gpio-cells = <1>;
+		num-gpios = <30>;
+	};
 };
 #endif

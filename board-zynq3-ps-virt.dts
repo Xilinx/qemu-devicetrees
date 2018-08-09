@@ -122,6 +122,30 @@
 			  &crl 30
 			  &crl 31 >;
 	};
+	rp_pmc_clk_rst: rp_pmc_clk_rst@0 {
+		compatible = "remote-port-gpio";
+		remote-ports = <&ps_pmc_rp 7>;
+		gpio-controller;
+		#gpio-cells = <1>;
+		num-gpios = <30>;
+
+		gpios = < &pmc_clk_rst 0 &pmc_clk_rst 1
+			  &pmc_clk_rst 2 &pmc_clk_rst 3
+			  &pmc_clk_rst 4 &pmc_clk_rst 5
+			  &pmc_clk_rst 6 &pmc_clk_rst 7
+			  &pmc_clk_rst 8 &pmc_clk_rst 9
+			  &pmc_clk_rst 10 &pmc_clk_rst 11
+			  &pmc_clk_rst 12 &pmc_clk_rst 13
+			  &pmc_clk_rst 14 &pmc_clk_rst 15
+			  &pmc_clk_rst 16 &pmc_clk_rst 17
+			  &pmc_clk_rst 18 &pmc_clk_rst 19
+			  &pmc_clk_rst 20 &pmc_clk_rst 21
+			  &pmc_clk_rst 22 &pmc_clk_rst 23
+			  &pmc_clk_rst 24 &pmc_clk_rst 25
+			  &pmc_clk_rst 26 &pmc_clk_rst 27
+			  &pmc_clk_rst 28 &pmc_clk_rst 29
+			>;
+	};
 #else
 	/* Single ARCH PS board has no PPU MicroBlazes.  */
 	pmc_ppu0: dummy_ppu0@0 {
