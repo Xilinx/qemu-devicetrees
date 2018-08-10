@@ -135,3 +135,17 @@
 	};
 };
 #endif
+
+/ {
+	/*
+	 * FIXME: This legacy hook will reset the entire PMC instance
+	 * meaning PSM and PMC MicroBlazes for multi-arch and all
+	 * devices for single-arch.
+	 * Once the CPU reset infrastructure is improved, we should
+	 * remove this.
+	 */
+	pmc_reset: pmc_reset@ {
+		compatible = "qemu,reset-device";
+		gpios = <&pmc_clk_rst CRP_RST_PS_PMC_SRST>;
+	};
+};

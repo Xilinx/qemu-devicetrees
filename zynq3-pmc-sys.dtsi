@@ -33,11 +33,6 @@
 	#address-cells = <MEMORY_ADDRESS_CELLS>;
 	#size-cells = <1>;
 
-	pmc_reset: pmc_reset@ {
-		compatible = "qemu,reset-device";
-		gpios = <&pmc_clk_rst 2>;
-	};
-
 	amba_pmc_sys: amba_pmc_sys@0 {
 		doc-name = "PMC System";
 		doc-status = "partial";
