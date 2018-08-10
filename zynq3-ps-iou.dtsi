@@ -62,7 +62,31 @@ zname: zname@zbase {							\
 }
 
 / {
-	amba: amba@0 {
+	amba_fpd: amba_fpd@0 {
+		#interrupt-cells = <1>;
+		interrupt-map-mask = <0x0 0x0 0xffff>;
+		interrupt-map =
+			#define __intc__ &gic
+			#include "zynq3-ps-irq-map.dtsh"
+			#undef __intc__
+			;
+
+		crf: crf@MM_FPD_CRF {
+			compatible = "xlnx,zynq3-crf";
+			reg = <0x0 MM_FPD_CRF 0x0 MM_FPD_CRF_SIZE 0x0>;
+			gpio-controller;
+			#gpio-cells = <1>;
+		};
+
+		apu_ctrl@MM_FPD_FPD_APU {
+			compatible = "xlnx,zynq3-apu-ctrl";
+			reg = <0x0 MM_FPD_FPD_APU 0x0 MM_FPD_FPD_APU_SIZE 0x0>;
+			cpu0 = <&cpu0>;
+			cpu1 = <&cpu1>;
+		};
+	};
+
+	amba_lpd: amba_lpd@0 {
 		#interrupt-cells = <1>;
                 interrupt-map-mask = <0x0 0x0 0xffff>;
 		interrupt-map =
@@ -87,25 +111,11 @@ zname: zname@zbase {							\
 			reset-gpios = < &crl CRL_RST_UART1 >;
 		};
 
-		crf: crf@MM_FPD_CRF {
-			compatible = "xlnx,zynq3-crf";
-			reg = <0x0 MM_FPD_CRF 0x0 MM_FPD_CRF_SIZE 0x0>;
-			gpio-controller;
-			#gpio-cells = <1>;
-		};
-
 		crl: crl@MM_CRL {
 			compatible = "xlnx,zynq3-crl";
 			reg = <0x0 MM_CRL 0x0 MM_CRL_SIZE 0x0>;
 			gpio-controller;
 			#gpio-cells = <1>;
-		};
-
-		apu_ctrl@MM_FPD_FPD_APU {
-			compatible = "xlnx,zynq3-apu-ctrl";
-			reg = <0x0 MM_FPD_FPD_APU 0x0 MM_FPD_FPD_APU_SIZE 0x0>;
-			cpu0 = <&cpu0>;
-			cpu1 = <&cpu1>;
 		};
 
 		ps7_ttc_0: ps7-ttc@TTC0 {
