@@ -157,4 +157,21 @@ zname: zname@zbase {							\
 		ZDMA_CHANNEL(adma6, adma, MM_ADMA_CH6, ADMA_IRQ_6, 128, &amba, 0x86e);
 		ZDMA_CHANNEL(adma7, adma, MM_ADMA_CH7, ADMA_IRQ_7, 128, &amba, 0x86f);
 	};
+
+	/* Reset domains.  */
+	lpd_reset_domain@0 {
+		compatible = "qemu.reset-domain";
+		mr0 = <&amba_lpd>;
+		reset-gpios = < &pmc_clk_rst CRP_RST_PS_PS_SRST
+				&pmc_clk_rst CRP_RST_PS_PS_POR >;
+	};
+
+	fpd_reset_domain@0 {
+		compatible = "qemu.reset-domain";
+		mr0 = <&amba_fpd>;
+		reset-gpios = < &pmc_clk_rst CRP_RST_PS_PS_SRST
+				&pmc_clk_rst CRP_RST_PS_PS_POR
+				&crl CRL_RST_FPD_POR
+				&crl CRL_RST_FPD_SRST >;
+	};
 };
