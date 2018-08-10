@@ -42,7 +42,25 @@
 		compatible = "simple-bus";
 		ranges;
 
+		MR_BACKGROUND(amba_lpd);
+		MR_BACKGROUND(amba_fpd);
 		MR_BACKGROUND(amba_pmc_internal);
+	};
+
+	amba_lpd: amba_lpd@0 {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		#priority-cells = <1>;
+		compatible = "simple-bus";
+		ranges;
+	};
+
+	amba_fpd: amba_fpd@0 {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		#priority-cells = <1>;
+		compatible = "simple-bus";
+		ranges;
 	};
 
 	amba_pmc_internal: amba_pmc_internal@0 {
