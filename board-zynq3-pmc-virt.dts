@@ -125,6 +125,11 @@
 		#gpio-cells = <1>;
 		num-gpios = <30>;
 	};
+	rp_psm0: rp_psm0@0 {
+		compatible = "remote-port-gpio";
+		remote-ports = <&ps_pmc_rp 8>;
+		interrupts-extended = < &psm0 0 >;
+	};
 };
 #endif
 

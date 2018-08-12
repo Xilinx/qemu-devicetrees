@@ -35,6 +35,7 @@
 #include "zynq3.dtsh"
 
 #include "zynq3-pmc.dtsi"
+#include "zynq3-psm.dtsi"
 #include "zynq3-ps-apu.dtsi"
 #include "zynq3-ps-iou.dtsi"
 
@@ -146,12 +147,21 @@
 			  &pmc_clk_rst 28 &pmc_clk_rst 29
 			>;
 	};
+	psm0: rp_psm0@0 {
+		compatible = "remote-port-gpio";
+		remote-ports = <&ps_pmc_rp 8>;
+		#interrupt-cells = <1>;
+		interrupt-controller;
+	};
 #else
 	/* Single ARCH PS board has no PPU MicroBlazes.  */
 	pmc_ppu0: dummy_ppu0@0 {
 		#interrupt-cells = <1>;
 	};
 	pmc_ppu1: dummy_ppu1@0 {
+		#interrupt-cells = <1>;
+	};
+	psm0: dummy_ppu0@0 {
 		#interrupt-cells = <1>;
 	};
 #endif
