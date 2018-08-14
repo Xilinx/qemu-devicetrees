@@ -30,8 +30,8 @@
 #include "zynq3.dtsh"
 
 &amba_pmc_sec {
-		doc-name = "PMC Secure";
-		doc-status = "in-progress";
+	doc-name = "PMC Secure";
+	doc-status = "in-progress";
 
 	trng@MM_PMC_TRNG {
 		doc-status = "complete";
