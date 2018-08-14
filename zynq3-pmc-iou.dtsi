@@ -51,7 +51,7 @@ name: name@0 {								\
 };
 
 / {
-	#address-cells = <MEMORY_ADDRESS_CELLS>;
+	#address-cells = <2>;
 	#size-cells = <1>;
 
 	lqspi_mr: lqspi_mr@0 {

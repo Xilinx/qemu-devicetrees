@@ -32,7 +32,7 @@
 #define CREATE_PPU_IOMOD(X)						\
 	pmc_ppu ## X ## _io_module: io-module@00 {			\
 		doc-status = "complete";				\
-		#address-cells = <MEMORY_ADDRESS_CELLS>;		\
+		#address-cells = <2>;					\
 		#size-cells = <1>;					\
 		#priority-cells = <0>;					\
 		compatible = "xlnx,iomodule-1.02.a", "syscon", "simple-bus"; \

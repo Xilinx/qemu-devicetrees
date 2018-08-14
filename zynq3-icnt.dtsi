@@ -65,7 +65,7 @@
 
 	amba_pmc_internal: amba_pmc_internal@0 {
 		doc-ignore = <1>;
-		#address-cells = <MEMORY_ADDRESS_CELLS>;
+		#address-cells = <2>;
 		#size-cells = <2>;
 		#priority-cells = <1>;
 		compatible = "simple-bus";
@@ -80,7 +80,7 @@
 
 	/* amba_pmc represents the PMC Main Switch.  */
 	amba_pmc: amba_pmc@0 {
-		#address-cells = <MEMORY_ADDRESS_CELLS>;
+		#address-cells = <2>;
 		#size-cells = <2>;
 		#priority-cells = <1>;
 		compatible = "simple-bus";
@@ -91,7 +91,7 @@
 	};
 	/* amba_pmc_iou represents the PMC IOU Switch.  */
 	amba_pmc_iou: amba_pmc_iou@0 {
-		#address-cells = <MEMORY_ADDRESS_CELLS>;
+		#address-cells = <2>;
 		#size-cells = <2>;
 		#priority-cells = <1>;
 		compatible = "simple-bus";
@@ -99,7 +99,7 @@
 	};
 
 	amba_pmc_sec: amba_pmc_sec@0 {
-		#address-cells = <MEMORY_ADDRESS_CELLS>;
+		#address-cells = <2>;
 		#size-cells = <2>;
 		#priority-cells = <1>;
 		compatible = "simple-bus";
@@ -107,7 +107,7 @@
 	};
 
 	amba_pmc_ppu: amba_pmc_ppu@0 {
-		#address-cells = <MEMORY_ADDRESS_CELLS>;
+		#address-cells = <2>;
 		#size-cells = <2>;
 		#priority-cells = <1>;
 		compatible = "simple-bus";
@@ -115,7 +115,7 @@
 	};
 
 	amba_pmc_sys: amba_pmc_sys@0 {
-		#address-cells = <MEMORY_ADDRESS_CELLS>;
+		#address-cells = <2>;
 		#size-cells = <2>;
 		#priority-cells = <1>;
 		compatible = "simple-bus";
@@ -123,7 +123,7 @@
 	};
 
 	amba_pmc_pl: amba_pmc_pl@0 {
-		#address-cells = <MEMORY_ADDRESS_CELLS>;
+		#address-cells = <2>;
 		#size-cells = <2>;
 		#priority-cells = <1>;
 		compatible = "simple-bus";
@@ -131,7 +131,7 @@
 	};
 
 	lmb_pmc_ppu0: lmb_pmc_ppu0@0 {
-		#address-cells = <MEMORY_ADDRESS_CELLS>;
+		#address-cells = <2>;
 		#size-cells = <2>;
 		#priority-cells = <1>;
 		compatible = "simple-bus";
@@ -146,7 +146,7 @@
 	};
 
 	amba_psm: amba_psm@0 {
-		#address-cells = <MEMORY_ADDRESS_CELLS>;
+		#address-cells = <2>;
 		#size-cells = <2>;
 		#priority-cells = <1>;
 		compatible = "simple-bus";
@@ -156,7 +156,7 @@
 	};
 
 	lmb_pmc_ppu1: lmb_pmc_ppu1@0 {
-		#address-cells = <MEMORY_ADDRESS_CELLS>;
+		#address-cells = <2>;
 		#size-cells = <2>;
 		#priority-cells = <1>;
 		compatible = "simple-bus";

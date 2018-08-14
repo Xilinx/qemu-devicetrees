@@ -36,7 +36,6 @@ name: name@addr64 {							\
 };
 
 /* Memory Map Definitions */
-#define MEMORY_ADDRESS_CELLS 2
 #define BASE_ADDR(x) 0x0 x
 
 /* Manual entries.  */
