@@ -35,9 +35,6 @@ name: name@addr64 {							\
 	reg = <addrH addrL s>;						\
 };
 
-/* Memory Map Definitions */
-#define BASE_ADDR(x) 0x0 x
-
 /* Manual entries.  */
 
 #define ACPU_GIC_STRIDE		0x10000

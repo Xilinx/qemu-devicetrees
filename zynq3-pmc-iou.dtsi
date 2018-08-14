@@ -78,7 +78,7 @@ name: name@0 {								\
 	pmc_iou_slcr: pmc_iou_slcr@MM_PMC_PMC_IOU_SLCR {
 		doc-status = "partial";
 		compatible = "xlnx,zynq3-pmc-iou-slcr";
-		reg = <BASE_ADDR(MM_PMC_PMC_IOU_SLCR) 0x0 0x1000 0x0>;
+		reg = <0x0 MM_PMC_PMC_IOU_SLCR 0x0 0x1000 0x0>;
 		gpio-controller;
 		#gpio-cells = <2>;
 	};
@@ -88,7 +88,7 @@ name: name@0 {								\
 		compatible = "zynqmp,csu-dma";
 //		interrupts = <QSPI_IRQ_0>;
 		#stream-id-cells = <0x1>;
-		reg = <BASE_ADDR(MM_PMC_QSPI_DMA) 0x0 0x800 0x0>;
+		reg = <0x0 MM_PMC_QSPI_DMA 0x0 0x800 0x0>;
 		dma = <&amba_pmc>;
 		memattr = <&pmc_qspi_dma_memattr>;
 		is-dst = <1>;
@@ -105,10 +105,10 @@ name: name@0 {								\
 //		interrupts = <QSPI_IRQ_0>;
 		num-ss-bits = <2>;
 #ifdef LQSPI_XIP
-		reg = <BASE_ADDR(MM_PMC_QSPI) 0x0 0x1000 0x0
-			   BASE_ADDR(0xA0000000) 0x0 MM_PMC_LQSPI_SIZE 0x0>;
+		reg = <0x0 MM_PMC_QSPI 0x0 0x1000 0x0
+			   0x0 0xA0000000 0x0 MM_PMC_LQSPI_SIZE 0x0>;
 #else
-		reg-extended = <&amba_pmc_iou BASE_ADDR(MM_PMC_QSPI) 0x0 0x1000 0x0
+		reg-extended = <&amba_pmc_iou 0x0 MM_PMC_QSPI 0x0 0x1000 0x0
 		                &lqspi_mr 0x0 0x0 0x0 MM_PMC_LQSPI_SIZE 0x0>;
 #endif
 		speed-hz = <10000000>;
@@ -174,7 +174,7 @@ name: name@0 {								\
 		doc-status = "complete";
 		compatible = "xilinx,zynqmp-sdhci", "generic-sdhci";
 		drive-index = <0>;
-		reg = <BASE_ADDR(MM_PMC_SD0) 0x0 0x1000 0x0>;
+		reg = <0x0 MM_PMC_SD0 0x0 0x1000 0x0>;
 		dma = <&amba_pmc>;
 		gpios = <&pmc_iou_slcr 0 0>;
 		gpio-names = "SLOTTYPE";
@@ -190,7 +190,7 @@ name: name@0 {								\
 		doc-status = "complete";
 		compatible = "xilinx,zynqmp-sdhci", "generic-sdhci";
 		drive-index = <1>;
-		reg = <BASE_ADDR(MM_PMC_SD1) 0x0 0x1000 0x0>;
+		reg = <0x0 MM_PMC_SD1 0x0 0x1000 0x0>;
 		dma = <&amba_pmc>;
 		gpios = <&pmc_iou_slcr 1 0>;
 		gpio-names = "SLOTTYPE";
@@ -208,6 +208,6 @@ name: name@0 {								\
 		compatible = "xlnx,pmc-tap";
 		interrupts-extended = <&pmc_ppu0_io_intc PPU0_SEC_DBG 0>;
 		interrupt-names = "sec-dbg-int";
-		reg = <BASE_ADDR(MM_PMC_PMC_TAP) 0x0 0x80000 0x0>;
+		reg = <0x0 MM_PMC_PMC_TAP 0x0 0x80000 0x0>;
 	};
 };

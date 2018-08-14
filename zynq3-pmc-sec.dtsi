@@ -36,7 +36,7 @@
 	trng@MM_PMC_TRNG {
 		doc-status = "complete";
 		compatible = "xlnx,zynq3-trng";
-		reg = <BASE_ADDR(MM_PMC_TRNG) 0x0 0x1000 0x0>;
+		reg = <0x0 MM_PMC_TRNG 0x0 0x1000 0x0>;
 	};
 
 	pmc_dma0_src: pmc_dma0_src@MM_PMC_PMC_DMA0_SRC {

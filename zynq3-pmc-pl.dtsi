@@ -39,8 +39,8 @@
 		doc-limitations = "No way to extract CFRAME data.";
 
 		compatible = "xlnx,zynq3-cfu";
-		reg = <BASE_ADDR(MM_PMC_CFU_APB) 0x0 0x1000 0x0
-		       BASE_ADDR(MM_PMC_CFU_STREAM) 0x0 0x1000 0x0>;
+		reg = <0x0 MM_PMC_CFU_APB 0x0 0x1000 0x0
+		       0x0 MM_PMC_CFU_STREAM 0x0 0x1000 0x0>;
 		dma = <&amba_pmc>;
 	};
 };
