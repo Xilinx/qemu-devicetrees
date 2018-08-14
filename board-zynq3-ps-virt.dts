@@ -162,6 +162,7 @@
         mdio0: mdio {
 		#address-cells = <1>;
 		#size-cells = <0>;
+		#priority-cells = <0>;
 		compatible="mdio";
 		phy0: phy@0 {
 			compatible = "88e1118r";

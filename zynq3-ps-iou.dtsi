@@ -33,6 +33,7 @@
 g_name: g_name@0 {						\
 	#address-cells = <1>;					\
 	#size-cells = <0>;					\
+	#priority-cells = <0>;					\
 	compatible = "cdns,gem";				\
 	interrupts = <g_irq g_irq>;				\
 	dma = <g_dma>;						\

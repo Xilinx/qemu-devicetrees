@@ -40,6 +40,7 @@
 name: name@0 {								\
 	#address-cells = <1>;						\
 	#size-cells = <1>;						\
+	#priority-cells = <0>;						\
 	#bus-cells = <1>;						\
 	compatible = compat, "st,m25p80";				\
 	spi-max-frequency = <50000000>;					\
