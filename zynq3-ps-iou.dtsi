@@ -40,7 +40,7 @@ g_name: g_name@0 {						\
 	reg = <0x0 g_base 0x0 g_size 0x0>;			\
 	num-priority-queues = <2>;				\
 	reset-gpios = < &crl rst_idx >;				\
-};
+}
 
 // FIXME: Add support for SMIDs
 #define ZDMA_CHANNEL(zname, zdomain, zbase, zirq, zbuswidth, zdma, mid)	\
@@ -95,8 +95,8 @@ zname: zname@zbase {							\
 			#undef __intc__
 			;
 
-		GEM(gem0, MM_GEM0, MM_GEM0_SIZE, &amba, GEM0_IRQ_0, CRL_RST_GEM0)
-		GEM(gem1, MM_GEM1, MM_GEM1_SIZE, &amba, GEM1_IRQ_0, CRL_RST_GEM1)
+		GEM(gem0, MM_GEM0, MM_GEM0_SIZE, &amba, GEM0_IRQ_0, CRL_RST_GEM0);
+		GEM(gem1, MM_GEM1, MM_GEM1_SIZE, &amba, GEM1_IRQ_0, CRL_RST_GEM1);
 
 		serial@MM_UART0 {
 			compatible = "pl011";
