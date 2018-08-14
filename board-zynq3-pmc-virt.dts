@@ -39,10 +39,6 @@
 #include "zynq3-psm-cpu.dtsi"
 
 / {
-	#address-cells = <2>;
-	#size-cells = <1>;
-	#priority-cells = <0>;
-
 	/* FIXME: Once we add the NOC, these should be attached to it.  */
 	MEM_REGION(ddr, 0x0, 0x00000000, 0x00000000, 0x08000000, &ddr_low)
 
@@ -79,10 +75,6 @@
 #include "zynq3-psm-cpu.dtsi"
 
 / {
-	#address-cells = <2>;
-	#size-cells = <1>;
-	#priority-cells = <0>;
-
 	/* FIXME: Once we add the NOC, these should be attached to it.  */
 	MEM_REGION(ddr, 0x0, 0x00000000, 0x00000000, 0x80000000, &ddr_low)
 

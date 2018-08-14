@@ -35,6 +35,10 @@
 	}
 
 / {
+	#address-cells = <2>;
+	#size-cells = <1>;
+	#priority-cells = <0>;
+
 	amba: amba@0 {
 		#address-cells = <2>;
 		#size-cells = <2>;
