@@ -61,103 +61,103 @@ zname: zname@zbase {							\
 	reset-gpios = < &crl CRL_RST_ADMA >;				\
 }
 
+&amba_fpd {
+	#interrupt-cells = <1>;
+	interrupt-map-mask = <0x0 0x0 0xffff>;
+	interrupt-map =
+		#define __intc__ &gic
+		#include "zynq3-ps-irq-map.dtsh"
+		#undef __intc__
+		;
+
+	crf: crf@MM_FPD_CRF {
+		compatible = "xlnx,zynq3-crf";
+		reg = <0x0 MM_FPD_CRF 0x0 MM_FPD_CRF_SIZE 0x0>;
+		gpio-controller;
+		#gpio-cells = <1>;
+	};
+
+	apu_ctrl@MM_FPD_FPD_APU {
+		compatible = "xlnx,zynq3-apu-ctrl";
+		reg = <0x0 MM_FPD_FPD_APU 0x0 MM_FPD_FPD_APU_SIZE 0x0>;
+		cpu0 = <&cpu0>;
+		cpu1 = <&cpu1>;
+	};
+};
+
+&amba_lpd {
+	#interrupt-cells = <1>;
+	interrupt-map-mask = <0x0 0x0 0xffff>;
+	interrupt-map =
+		#define __intc__ &gic
+		#include "zynq3-ps-irq-map.dtsh"
+		#undef __intc__
+		;
+
+	GEM(gem0, MM_GEM0, MM_GEM0_SIZE, &amba, GEM0_IRQ_0, CRL_RST_GEM0);
+	GEM(gem1, MM_GEM1, MM_GEM1_SIZE, &amba, GEM1_IRQ_0, CRL_RST_GEM1);
+
+	serial@MM_UART0 {
+		compatible = "pl011";
+		interrupts = <UART0_IRQ_0>;
+		reg = <0x0 MM_UART0 0x0 MM_UART0_SIZE 0x0 >;
+		reset-gpios = < &crl CRL_RST_UART0 >;
+	};
+	serial@MM_UART1 {
+		compatible = "pl011";
+		interrupts = <UART1_IRQ_0>;
+		reg = <0x0 MM_UART1 0x0 MM_UART1_SIZE 0x0 >;
+		reset-gpios = < &crl CRL_RST_UART1 >;
+	};
+
+	crl: crl@MM_CRL {
+		compatible = "xlnx,zynq3-crl";
+		reg = <0x0 MM_CRL 0x0 MM_CRL_SIZE 0x0>;
+		gpio-controller;
+		#gpio-cells = <1>;
+	};
+
+	ps7_ttc_0: ps7-ttc@TTC0 {
+		compatible = "xlnx,ps7-ttc-1.00.a";
+		interrupts = <TTC0_IRQ_0 TTC0_IRQ_1 TTC0_IRQ_2>;
+		reg = <0x0 MM_TTC0 0x0 MM_TTC0_SIZE 0x0>;
+		timer-width = <32>;
+		reset-gpios = < &crl CRL_RST_TTC0 >;
+	};
+	ps7_ttc_1: ps7-ttc@TTC1 {
+		compatible = "xlnx,ps7-ttc-1.00.a";
+		interrupts = <TTC1_IRQ_0 TTC1_IRQ_1 TTC1_IRQ_2>;
+		reg = <0x0 MM_TTC1 0x0 MM_TTC1_SIZE 0x0>;
+		timer-width = <32>;
+		reset-gpios = < &crl CRL_RST_TTC1 >;
+	};
+	ps7_ttc_2: ps7-ttc@TTC2 {
+		compatible = "xlnx,ps7-ttc-1.00.a";
+		interrupts = <TTC2_IRQ_0 TTC2_IRQ_1 TTC2_IRQ_2>;
+		reg = <0x0 MM_TTC2 0x0 MM_TTC2_SIZE 0x0>;
+		timer-width = <32>;
+		reset-gpios = < &crl CRL_RST_TTC2 >;
+	};
+	ps7_ttc_3: ps7-ttc@TTC3 {
+		compatible = "xlnx,ps7-ttc-1.00.a";
+		interrupts = <TTC3_IRQ_0 TTC3_IRQ_1 TTC3_IRQ_2>;
+		reg = <0x0 MM_TTC3 0x0 MM_TTC3_SIZE 0x0>;
+		timer-width = <32>;
+		reset-gpios = < &crl CRL_RST_TTC3 >;
+	};
+
+	// FIXME: The Master ID's need to be connected to an SMID block.
+	ZDMA_CHANNEL(adma0, adma, MM_ADMA_CH0, ADMA_IRQ_0, 128, &amba, 0x868);
+	ZDMA_CHANNEL(adma1, adma, MM_ADMA_CH1, ADMA_IRQ_1, 128, &amba, 0x869);
+	ZDMA_CHANNEL(adma2, adma, MM_ADMA_CH2, ADMA_IRQ_2, 128, &amba, 0x86a);
+	ZDMA_CHANNEL(adma3, adma, MM_ADMA_CH3, ADMA_IRQ_3, 128, &amba, 0x86b);
+	ZDMA_CHANNEL(adma4, adma, MM_ADMA_CH4, ADMA_IRQ_4, 128, &amba, 0x86c);
+	ZDMA_CHANNEL(adma5, adma, MM_ADMA_CH5, ADMA_IRQ_5, 128, &amba, 0x86d);
+	ZDMA_CHANNEL(adma6, adma, MM_ADMA_CH6, ADMA_IRQ_6, 128, &amba, 0x86e);
+	ZDMA_CHANNEL(adma7, adma, MM_ADMA_CH7, ADMA_IRQ_7, 128, &amba, 0x86f);
+};
+
 / {
-	amba_fpd: amba_fpd@0 {
-		#interrupt-cells = <1>;
-		interrupt-map-mask = <0x0 0x0 0xffff>;
-		interrupt-map =
-			#define __intc__ &gic
-			#include "zynq3-ps-irq-map.dtsh"
-			#undef __intc__
-			;
-
-		crf: crf@MM_FPD_CRF {
-			compatible = "xlnx,zynq3-crf";
-			reg = <0x0 MM_FPD_CRF 0x0 MM_FPD_CRF_SIZE 0x0>;
-			gpio-controller;
-			#gpio-cells = <1>;
-		};
-
-		apu_ctrl@MM_FPD_FPD_APU {
-			compatible = "xlnx,zynq3-apu-ctrl";
-			reg = <0x0 MM_FPD_FPD_APU 0x0 MM_FPD_FPD_APU_SIZE 0x0>;
-			cpu0 = <&cpu0>;
-			cpu1 = <&cpu1>;
-		};
-	};
-
-	amba_lpd: amba_lpd@0 {
-		#interrupt-cells = <1>;
-                interrupt-map-mask = <0x0 0x0 0xffff>;
-		interrupt-map =
-			#define __intc__ &gic
-			#include "zynq3-ps-irq-map.dtsh"
-			#undef __intc__
-			;
-
-		GEM(gem0, MM_GEM0, MM_GEM0_SIZE, &amba, GEM0_IRQ_0, CRL_RST_GEM0);
-		GEM(gem1, MM_GEM1, MM_GEM1_SIZE, &amba, GEM1_IRQ_0, CRL_RST_GEM1);
-
-		serial@MM_UART0 {
-			compatible = "pl011";
-			interrupts = <UART0_IRQ_0>;
-			reg = <0x0 MM_UART0 0x0 MM_UART0_SIZE 0x0 >;
-			reset-gpios = < &crl CRL_RST_UART0 >;
-		};
-		serial@MM_UART1 {
-			compatible = "pl011";
-			interrupts = <UART1_IRQ_0>;
-			reg = <0x0 MM_UART1 0x0 MM_UART1_SIZE 0x0 >;
-			reset-gpios = < &crl CRL_RST_UART1 >;
-		};
-
-		crl: crl@MM_CRL {
-			compatible = "xlnx,zynq3-crl";
-			reg = <0x0 MM_CRL 0x0 MM_CRL_SIZE 0x0>;
-			gpio-controller;
-			#gpio-cells = <1>;
-		};
-
-		ps7_ttc_0: ps7-ttc@TTC0 {
-			compatible = "xlnx,ps7-ttc-1.00.a";
-			interrupts = <TTC0_IRQ_0 TTC0_IRQ_1 TTC0_IRQ_2>;
-			reg = <0x0 MM_TTC0 0x0 MM_TTC0_SIZE 0x0>;
-			timer-width = <32>;
-			reset-gpios = < &crl CRL_RST_TTC0 >;
-		};
-		ps7_ttc_1: ps7-ttc@TTC1 {
-			compatible = "xlnx,ps7-ttc-1.00.a";
-			interrupts = <TTC1_IRQ_0 TTC1_IRQ_1 TTC1_IRQ_2>;
-			reg = <0x0 MM_TTC1 0x0 MM_TTC1_SIZE 0x0>;
-			timer-width = <32>;
-			reset-gpios = < &crl CRL_RST_TTC1 >;
-		};
-		ps7_ttc_2: ps7-ttc@TTC2 {
-			compatible = "xlnx,ps7-ttc-1.00.a";
-			interrupts = <TTC2_IRQ_0 TTC2_IRQ_1 TTC2_IRQ_2>;
-			reg = <0x0 MM_TTC2 0x0 MM_TTC2_SIZE 0x0>;
-			timer-width = <32>;
-			reset-gpios = < &crl CRL_RST_TTC2 >;
-		};
-		ps7_ttc_3: ps7-ttc@TTC3 {
-			compatible = "xlnx,ps7-ttc-1.00.a";
-			interrupts = <TTC3_IRQ_0 TTC3_IRQ_1 TTC3_IRQ_2>;
-			reg = <0x0 MM_TTC3 0x0 MM_TTC3_SIZE 0x0>;
-			timer-width = <32>;
-			reset-gpios = < &crl CRL_RST_TTC3 >;
-		};
-
-		// FIXME: The Master ID's need to be connected to an SMID block.
-		ZDMA_CHANNEL(adma0, adma, MM_ADMA_CH0, ADMA_IRQ_0, 128, &amba, 0x868);
-		ZDMA_CHANNEL(adma1, adma, MM_ADMA_CH1, ADMA_IRQ_1, 128, &amba, 0x869);
-		ZDMA_CHANNEL(adma2, adma, MM_ADMA_CH2, ADMA_IRQ_2, 128, &amba, 0x86a);
-		ZDMA_CHANNEL(adma3, adma, MM_ADMA_CH3, ADMA_IRQ_3, 128, &amba, 0x86b);
-		ZDMA_CHANNEL(adma4, adma, MM_ADMA_CH4, ADMA_IRQ_4, 128, &amba, 0x86c);
-		ZDMA_CHANNEL(adma5, adma, MM_ADMA_CH5, ADMA_IRQ_5, 128, &amba, 0x86d);
-		ZDMA_CHANNEL(adma6, adma, MM_ADMA_CH6, ADMA_IRQ_6, 128, &amba, 0x86e);
-		ZDMA_CHANNEL(adma7, adma, MM_ADMA_CH7, ADMA_IRQ_7, 128, &amba, 0x86f);
-	};
-
 	/* Reset domains.  */
 	lpd_reset_domain@0 {
 		compatible = "qemu.reset-domain";

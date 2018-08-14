@@ -221,28 +221,29 @@
 		compatible = "xlnx,xps-uartlite";
 		reg-extended = <&lmb_pmc_ppu1 BASE_ADDR(MM_PMC_PPU1_MDM_HSD) 0x0 0x10 0x1>;
 	};
+};
 
-	lmb_pmc_ppu0: lmb_pmc_ppu0@0 {
-		doc-name = "LMB PPU0";
-		doc-status = "complete";
-		CREATE_PPU_IOMOD(0);
-	};
+&lmb_pmc_ppu0 {
+	doc-name = "LMB PPU0";
+	doc-status = "complete";
+	CREATE_PPU_IOMOD(0);
+};
 
-	lmb_pmc_ppu1: lmb_pmc_ppu1@0 {
-		doc-name = "LMB PPU1";
-		doc-status = "complete";
-		CREATE_PPU_IOMOD(1);
-	};
+&lmb_pmc_ppu1 {
+	doc-name = "LMB PPU1";
+	doc-status = "complete";
+	CREATE_PPU_IOMOD(1);
+};
 
-	amba_pmc_ppu@0 {
-		/* PMC GIC Proxy. No inputs yet.  */
-		pmc_gic_proxy: pmc_gic_proxy@MM_PMC_GIC_PROXY {
-			doc-status = "partial";
-			doc-comment = "No interrupts connected yet.";
-			compatible = "xlnx,pmc-gic-proxy";
-			reg = <0x0 MM_PMC_GIC_PROXY 0x0 MM_PMC_GIC_PROXY_SIZE 0x0>;
-			interrupt-parent = <&pmc_ppu1_io_intc>;
-			interrupts = <22 0>;
-		};
+&amba_pmc_ppu {
+	/* PMC GIC Proxy. No inputs yet.  */
+	pmc_gic_proxy: pmc_gic_proxy@MM_PMC_GIC_PROXY {
+		doc-status = "partial";
+		doc-comment = "No interrupts connected yet.";
+		compatible = "xlnx,pmc-gic-proxy";
+		reg = <0x0 MM_PMC_GIC_PROXY 0x0 MM_PMC_GIC_PROXY_SIZE 0x0>;
+		interrupt-parent = <&pmc_ppu1_io_intc>;
+		interrupts = <22 0>;
 	};
 };
+

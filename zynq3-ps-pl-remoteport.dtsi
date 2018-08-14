@@ -29,174 +29,172 @@
 
 #include "zynq3.dtsh"
 
-/ {
-	amba: amba@0 {
-		cosim_rp_0: cosim@0 {
-			compatible = "remote-port";
-			sync = <1>;
-			chrdev-id = "pl-rp";
-		};
-
-		/* FIXME: These PL to PS ports are not fully implemented, we
-		 *        need to apply SMMU translation. At least this
-		 *        serves to roughly allocate the devids.
-		 *        All still subject to change.
-		 */
-		s_axi_gp_0: s_axi_gp_0@0 {
-			compatible = "remote-port-memory-slave";
-			remote-ports = <&cosim_rp_0 10>;
-			mr = <&amba>;
-		};
-
-		/* DevID 11 reserved for s_axi_gp_1.  */
-
-		s_axi_gp_2: s_axi_gp_2@0 {
-			compatible = "remote-port-memory-slave";
-			remote-ports = <&cosim_rp_0 12>;
-			mr = <&amba>;
-		};
-
-		s_axi_gp_4: s_axi_gp_4@0 {
-			compatible = "remote-port-memory-slave";
-			remote-ports = <&cosim_rp_0 14>;
-			mr = <&amba>;
-		};
-
-		/* ACP via APU.  */
-		s_axi_acp: s_axi_acp@0 {
-			compatible = "remote-port-memory-slave";
-			remote-ports = <&cosim_rp_0 15>;
-			mr = <&amba>;
-		};
-
-		s_axi_ace: s_axi_ace@0 {
-			compatible = "remote-port-memory-slave";
-			remote-ports = <&cosim_rp_0 16>;
-			mr = <&amba>;
-		};
-
-		if_noc_ps_nci_0: if_noc_ps_nci_0@0 {
-			compatible = "remote-port-memory-slave";
-			remote-ports = <&cosim_rp_0 17>;
-			mr = <&amba>;
-		};
-
-		if_noc_ps_nci_1: if_noc_ps_nci_1@0 {
-			compatible = "remote-port-memory-slave";
-			remote-ports = <&cosim_rp_0 18>;
-			mr = <&amba>;
-		};
-
-		if_noc_ps_cci_0: if_noc_ps_cci_0@0 {
-			compatible = "remote-port-memory-slave";
-			remote-ports = <&cosim_rp_0 19>;
-			mr = <&amba>;
-		};
-
-		if_noc_ps_cci_1: if_noc_ps_cci_1@0 {
-			compatible = "remote-port-memory-slave";
-			remote-ports = <&cosim_rp_0 20>;
-			mr = <&amba>;
-		};
-
-		if_noc_ps_pcie_0: if_noc_ps_pcie_0@0 {
-			compatible = "remote-port-memory-slave";
-			remote-ports = <&cosim_rp_0 21>;
-			mr = <&amba>;
-		};
-
-		if_noc_ps_pcie_1: if_noc_ps_pcie_1@0 {
-			compatible = "remote-port-memory-slave";
-			remote-ports = <&cosim_rp_0 22>;
-			mr = <&amba>;
-		};
-
-		if_noc_pmc_axi_0: if_noc_pmc_axi_0@0 {
-			compatible = "remote-port-memory-slave";
-			remote-ports = <&cosim_rp_0 23>;
-			mr = <&amba_pmc>;
-		};
-
-		/* AXI ports directly from PS to PL, bypassing NoC.  */
-		m_axi_gp0: m_axi_gp0@MM_TOP_FPD_AFI_0 {
-			compatible = "remote-port-memory-master";
-			remote-ports = <&cosim_rp_0 40>;
-			reg = <0x0 MM_TOP_FPD_AFI_0_0 0x0 MM_TOP_FPD_AFI_0_0_SIZE 0x0
-			       0x0 MM_TOP_FPD_AFI_0_1 0x0 MM_TOP_FPD_AFI_0_1_SIZE 0x0>;
-		};
-
-		/* Device ID 41 reserved for m_axi_gp1 in Extended PS.  */
-
-		m_axi_gp2: m_axi_gp2@MM_TOP_LPD_AFI_FS {
-			compatible = "remote-port-memory-master";
-			remote-ports = <&cosim_rp_0 42>;
-			reg = <0x0 MM_TOP_LPD_AFI_FS 0x0 MM_TOP_LPD_AFI_FS_SIZE 0x0>;
-		};
-
-		/* IF_PS_NOC_CCI_0 - 3.  ID 50 - 53 */
-		if_ps_noc_cci_0: if_ps_noc_cci_0@0 {
-			compatible = "remote-port-memory-master";
-			remote-ports = <&cosim_rp_0 50>;
-			/*
-			 * TODO: Verify this list.
-			 * Since we don't yet have a model of the CCI, we'll only use PORT 0.
-			 * The only ranges we know go on this port are DDR accesses and ME.
-			 * Since DDR never goes over I/O (we do direct shared memory acceses)
-			 * the only range that get's routed here is the ME.
-			 */
-			reg = < MM_TOP_ME_H MM_TOP_ME_L MM_TOP_ME_SIZE_H MM_TOP_ME_SIZE_L 0x1 >;
-		};
-
-		/* IF_PS_NOC_NCI_0 - 1.  ID 54 - 55 */
-		/* IF_PS_NOC_PCIE_0 - 1. ID 56 - 57 */
-
-		if_ps_noc_rpu_0: if_ps_noc_rpu_0@0 {
-			compatible = "remote-port-memory-master";
-			remote-ports = <&cosim_rp_0 58>;
-			/*
-			 * TODO: Verify this list.
-			 * Right now we route everything except PMC_ALIAS and ME on this port.
-			 */
-			reg = <
-				 0x0 MM_TOP_Reserved 0x0 MM_TOP_Reserved_SIZE 0x1
-				 0x0 MM_TOP_PCIE_region_0 0x0 MM_TOP_PCIE_region_0_SIZE 0x1
-				 0x0 MM_TOP_Reserved_2 0x0 MM_TOP_Reserved_2_SIZE 0x1
-				 MM_TOP_Reserved_3_H MM_TOP_Reserved_3_L 0x0 MM_TOP_Reserved_3_SIZE 0x1
-				 MM_TOP_Reserved_4_H MM_TOP_Reserved_4_L MM_TOP_Reserved_4_SIZE_H MM_TOP_Reserved_4_SIZE_L 0x1
-				 MM_TOP_PCIe_region_1_H MM_TOP_PCIe_region_1_L MM_TOP_PCIe_region_1_SIZE_H MM_TOP_PCIe_region_1_SIZE_L 0x1
-				 MM_TOP_Reserved_5_H MM_TOP_Reserved_5_L MM_TOP_Reserved_5_SIZE_H MM_TOP_Reserved_5_SIZE_L 0x1
-				 MM_TOP_Reserved_6_H MM_TOP_Reserved_6_L MM_TOP_Reserved_6_SIZE_H MM_TOP_Reserved_6_SIZE_L 0x1
-				 MM_TOP_PL_via_NoC_H MM_TOP_PL_via_NoC_L MM_TOP_PL_via_NoC_SIZE_H MM_TOP_PL_via_NoC_SIZE_L 0x1
-				>;
-		};
+&amba {
+	cosim_rp_0: cosim@0 {
+		compatible = "remote-port";
+		sync = <1>;
+		chrdev-id = "pl-rp";
 	};
 
-	amba_pmc_internal: amba_pmc_internal@0 {
-		/* IF_PMC_NOC_AXI_0.
-		 *
-		 * Traffic originating from the PMC targeting this list
-		 * of address ranges will go out on this dedicated port from
-		 * the PMC to the NoC.
+	/* FIXME: These PL to PS ports are not fully implemented, we
+	 *        need to apply SMMU translation. At least this
+	 *        serves to roughly allocate the devids.
+	 *        All still subject to change.
+	 */
+	s_axi_gp_0: s_axi_gp_0@0 {
+		compatible = "remote-port-memory-slave";
+		remote-ports = <&cosim_rp_0 10>;
+		mr = <&amba>;
+	};
+
+	/* DevID 11 reserved for s_axi_gp_1.  */
+
+	s_axi_gp_2: s_axi_gp_2@0 {
+		compatible = "remote-port-memory-slave";
+		remote-ports = <&cosim_rp_0 12>;
+		mr = <&amba>;
+	};
+
+	s_axi_gp_4: s_axi_gp_4@0 {
+		compatible = "remote-port-memory-slave";
+		remote-ports = <&cosim_rp_0 14>;
+		mr = <&amba>;
+	};
+
+	/* ACP via APU.  */
+	s_axi_acp: s_axi_acp@0 {
+		compatible = "remote-port-memory-slave";
+		remote-ports = <&cosim_rp_0 15>;
+		mr = <&amba>;
+	};
+
+	s_axi_ace: s_axi_ace@0 {
+		compatible = "remote-port-memory-slave";
+		remote-ports = <&cosim_rp_0 16>;
+		mr = <&amba>;
+	};
+
+	if_noc_ps_nci_0: if_noc_ps_nci_0@0 {
+		compatible = "remote-port-memory-slave";
+		remote-ports = <&cosim_rp_0 17>;
+		mr = <&amba>;
+	};
+
+	if_noc_ps_nci_1: if_noc_ps_nci_1@0 {
+		compatible = "remote-port-memory-slave";
+		remote-ports = <&cosim_rp_0 18>;
+		mr = <&amba>;
+	};
+
+	if_noc_ps_cci_0: if_noc_ps_cci_0@0 {
+		compatible = "remote-port-memory-slave";
+		remote-ports = <&cosim_rp_0 19>;
+		mr = <&amba>;
+	};
+
+	if_noc_ps_cci_1: if_noc_ps_cci_1@0 {
+		compatible = "remote-port-memory-slave";
+		remote-ports = <&cosim_rp_0 20>;
+		mr = <&amba>;
+	};
+
+	if_noc_ps_pcie_0: if_noc_ps_pcie_0@0 {
+		compatible = "remote-port-memory-slave";
+		remote-ports = <&cosim_rp_0 21>;
+		mr = <&amba>;
+	};
+
+	if_noc_ps_pcie_1: if_noc_ps_pcie_1@0 {
+		compatible = "remote-port-memory-slave";
+		remote-ports = <&cosim_rp_0 22>;
+		mr = <&amba>;
+	};
+
+	if_noc_pmc_axi_0: if_noc_pmc_axi_0@0 {
+		compatible = "remote-port-memory-slave";
+		remote-ports = <&cosim_rp_0 23>;
+		mr = <&amba_pmc>;
+	};
+
+	/* AXI ports directly from PS to PL, bypassing NoC.  */
+	m_axi_gp0: m_axi_gp0@MM_TOP_FPD_AFI_0 {
+		compatible = "remote-port-memory-master";
+		remote-ports = <&cosim_rp_0 40>;
+		reg = <0x0 MM_TOP_FPD_AFI_0_0 0x0 MM_TOP_FPD_AFI_0_0_SIZE 0x0
+		       0x0 MM_TOP_FPD_AFI_0_1 0x0 MM_TOP_FPD_AFI_0_1_SIZE 0x0>;
+	};
+
+	/* Device ID 41 reserved for m_axi_gp1 in Extended PS.  */
+
+	m_axi_gp2: m_axi_gp2@MM_TOP_LPD_AFI_FS {
+		compatible = "remote-port-memory-master";
+		remote-ports = <&cosim_rp_0 42>;
+		reg = <0x0 MM_TOP_LPD_AFI_FS 0x0 MM_TOP_LPD_AFI_FS_SIZE 0x0>;
+	};
+
+	/* IF_PS_NOC_CCI_0 - 3.  ID 50 - 53 */
+	if_ps_noc_cci_0: if_ps_noc_cci_0@0 {
+		compatible = "remote-port-memory-master";
+		remote-ports = <&cosim_rp_0 50>;
+		/*
+		 * TODO: Verify this list.
+		 * Since we don't yet have a model of the CCI, we'll only use PORT 0.
+		 * The only ranges we know go on this port are DDR accesses and ME.
+		 * Since DDR never goes over I/O (we do direct shared memory acceses)
+		 * the only range that get's routed here is the ME.
 		 */
-		if_pmc_noc_axi_0: if_pmc_noc_axi_0@0 {
-			compatible = "remote-port-memory-master";
-			remote-ports = <&cosim_rp_0 59>;
-			reg = <
-					 0x0 MM_TOP_Reserved 0x0 MM_TOP_Reserved_SIZE 0x1
-					 0x0 MM_TOP_PCIE_region_0 0x0 MM_TOP_PCIE_region_0_SIZE 0x1
-					 0x0 MM_TOP_Reserved_2 0x0 MM_TOP_Reserved_2_SIZE 0x1
-					 MM_TOP_PMC_ALIAS0_H MM_TOP_PMC_ALIAS0_L 0x0 MM_TOP_PMC_ALIAS0_SIZE 0x1
-					 MM_TOP_PMC_ALIAS1_H MM_TOP_PMC_ALIAS1_L 0x0 MM_TOP_PMC_ALIAS1_SIZE 0x1
-					 MM_TOP_PMC_ALIAS2_H MM_TOP_PMC_ALIAS2_L 0x0 MM_TOP_PMC_ALIAS2_SIZE 0x1
-					 MM_TOP_PMC_ALIAS3_H MM_TOP_PMC_ALIAS3_L 0x0 MM_TOP_PMC_ALIAS3_SIZE 0x1
-					 MM_TOP_Reserved_3_H MM_TOP_Reserved_3_L 0x0 MM_TOP_Reserved_3_SIZE 0x1
-					 MM_TOP_ME_H MM_TOP_ME_L MM_TOP_ME_SIZE_H MM_TOP_ME_SIZE_L 0x1
-					 MM_TOP_Reserved_4_H MM_TOP_Reserved_4_L MM_TOP_Reserved_4_SIZE_H MM_TOP_Reserved_4_SIZE_L 0x1
-					 MM_TOP_PCIe_region_1_H MM_TOP_PCIe_region_1_L MM_TOP_PCIe_region_1_SIZE_H MM_TOP_PCIe_region_1_SIZE_L 0x1
-					 MM_TOP_Reserved_5_H MM_TOP_Reserved_5_L MM_TOP_Reserved_5_SIZE_H MM_TOP_Reserved_5_SIZE_L 0x1
-					 MM_TOP_Reserved_6_H MM_TOP_Reserved_6_L MM_TOP_Reserved_6_SIZE_H MM_TOP_Reserved_6_SIZE_L 0x1
-					 MM_TOP_PL_via_NoC_H MM_TOP_PL_via_NoC_L MM_TOP_PL_via_NoC_SIZE_H MM_TOP_PL_via_NoC_SIZE_L 0x1
-					>;
-		};
+		reg = < MM_TOP_ME_H MM_TOP_ME_L MM_TOP_ME_SIZE_H MM_TOP_ME_SIZE_L 0x1 >;
+	};
+
+	/* IF_PS_NOC_NCI_0 - 1.  ID 54 - 55 */
+	/* IF_PS_NOC_PCIE_0 - 1. ID 56 - 57 */
+
+	if_ps_noc_rpu_0: if_ps_noc_rpu_0@0 {
+		compatible = "remote-port-memory-master";
+		remote-ports = <&cosim_rp_0 58>;
+		/*
+		 * TODO: Verify this list.
+		 * Right now we route everything except PMC_ALIAS and ME on this port.
+		 */
+		reg = <
+			 0x0 MM_TOP_Reserved 0x0 MM_TOP_Reserved_SIZE 0x1
+			 0x0 MM_TOP_PCIE_region_0 0x0 MM_TOP_PCIE_region_0_SIZE 0x1
+			 0x0 MM_TOP_Reserved_2 0x0 MM_TOP_Reserved_2_SIZE 0x1
+			 MM_TOP_Reserved_3_H MM_TOP_Reserved_3_L 0x0 MM_TOP_Reserved_3_SIZE 0x1
+			 MM_TOP_Reserved_4_H MM_TOP_Reserved_4_L MM_TOP_Reserved_4_SIZE_H MM_TOP_Reserved_4_SIZE_L 0x1
+			 MM_TOP_PCIe_region_1_H MM_TOP_PCIe_region_1_L MM_TOP_PCIe_region_1_SIZE_H MM_TOP_PCIe_region_1_SIZE_L 0x1
+			 MM_TOP_Reserved_5_H MM_TOP_Reserved_5_L MM_TOP_Reserved_5_SIZE_H MM_TOP_Reserved_5_SIZE_L 0x1
+			 MM_TOP_Reserved_6_H MM_TOP_Reserved_6_L MM_TOP_Reserved_6_SIZE_H MM_TOP_Reserved_6_SIZE_L 0x1
+			 MM_TOP_PL_via_NoC_H MM_TOP_PL_via_NoC_L MM_TOP_PL_via_NoC_SIZE_H MM_TOP_PL_via_NoC_SIZE_L 0x1
+			>;
+	};
+};
+
+&amba_pmc_internal {
+	/* IF_PMC_NOC_AXI_0.
+	 *
+	 * Traffic originating from the PMC targeting this list
+	 * of address ranges will go out on this dedicated port from
+	 * the PMC to the NoC.
+	 */
+	if_pmc_noc_axi_0: if_pmc_noc_axi_0@0 {
+		compatible = "remote-port-memory-master";
+		remote-ports = <&cosim_rp_0 59>;
+		reg = <
+			 0x0 MM_TOP_Reserved 0x0 MM_TOP_Reserved_SIZE 0x1
+			 0x0 MM_TOP_PCIE_region_0 0x0 MM_TOP_PCIE_region_0_SIZE 0x1
+			 0x0 MM_TOP_Reserved_2 0x0 MM_TOP_Reserved_2_SIZE 0x1
+			 MM_TOP_PMC_ALIAS0_H MM_TOP_PMC_ALIAS0_L 0x0 MM_TOP_PMC_ALIAS0_SIZE 0x1
+			 MM_TOP_PMC_ALIAS1_H MM_TOP_PMC_ALIAS1_L 0x0 MM_TOP_PMC_ALIAS1_SIZE 0x1
+			 MM_TOP_PMC_ALIAS2_H MM_TOP_PMC_ALIAS2_L 0x0 MM_TOP_PMC_ALIAS2_SIZE 0x1
+			 MM_TOP_PMC_ALIAS3_H MM_TOP_PMC_ALIAS3_L 0x0 MM_TOP_PMC_ALIAS3_SIZE 0x1
+			 MM_TOP_Reserved_3_H MM_TOP_Reserved_3_L 0x0 MM_TOP_Reserved_3_SIZE 0x1
+			 MM_TOP_ME_H MM_TOP_ME_L MM_TOP_ME_SIZE_H MM_TOP_ME_SIZE_L 0x1
+			 MM_TOP_Reserved_4_H MM_TOP_Reserved_4_L MM_TOP_Reserved_4_SIZE_H MM_TOP_Reserved_4_SIZE_L 0x1
+			 MM_TOP_PCIe_region_1_H MM_TOP_PCIe_region_1_L MM_TOP_PCIe_region_1_SIZE_H MM_TOP_PCIe_region_1_SIZE_L 0x1
+			 MM_TOP_Reserved_5_H MM_TOP_Reserved_5_L MM_TOP_Reserved_5_SIZE_H MM_TOP_Reserved_5_SIZE_L 0x1
+			 MM_TOP_Reserved_6_H MM_TOP_Reserved_6_L MM_TOP_Reserved_6_SIZE_H MM_TOP_Reserved_6_SIZE_L 0x1
+			 MM_TOP_PL_via_NoC_H MM_TOP_PL_via_NoC_L MM_TOP_PL_via_NoC_SIZE_H MM_TOP_PL_via_NoC_SIZE_L 0x1
+			>;
 	};
 };

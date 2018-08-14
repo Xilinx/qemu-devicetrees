@@ -29,20 +29,18 @@
 
 #include "zynq3.dtsh"
 
-/ {
-	amba_pmc_pl@0 {
-		doc-name = "PMC PL";
+&amba_pmc_pl {
+	doc-name = "PMC PL";
+	doc-status = "partial";
+
+	cfu@MM_PMC_CFU_APB {
 		doc-status = "partial";
+		doc-comments = "Stub";
+		doc-limitations = "No way to extract CFRAME data.";
 
-		cfu@MM_PMC_CFU_APB {
-			doc-status = "partial";
-			doc-comments = "Stub";
-			doc-limitations = "No way to extract CFRAME data.";
-
-			compatible = "xlnx,zynq3-cfu";
-			reg = <BASE_ADDR(MM_PMC_CFU_APB) 0x0 0x1000 0x0
-			       BASE_ADDR(MM_PMC_CFU_STREAM) 0x0 0x1000 0x0>;
-			dma = <&amba_pmc>;
-		};
+		compatible = "xlnx,zynq3-cfu";
+		reg = <BASE_ADDR(MM_PMC_CFU_APB) 0x0 0x1000 0x0
+		       BASE_ADDR(MM_PMC_CFU_STREAM) 0x0 0x1000 0x0>;
+		dma = <&amba_pmc>;
 	};
 };

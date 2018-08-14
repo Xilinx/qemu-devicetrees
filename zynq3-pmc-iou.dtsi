@@ -69,145 +69,145 @@ name: name@0 {								\
 		compatible = "simple-bus";
 		ranges;
 	};
+};
 
-	amba_pmc_iou: amba_pmc_iou@0 {
-		doc-name = "PMC IOU";
+&amba_pmc_iou {
+	doc-name = "PMC IOU";
+	doc-status = "partial";
+
+	pmc_iou_slcr: pmc_iou_slcr@MM_PMC_PMC_IOU_SLCR {
 		doc-status = "partial";
+		compatible = "xlnx,zynq3-pmc-iou-slcr";
+		reg = <BASE_ADDR(MM_PMC_PMC_IOU_SLCR) 0x0 0x1000 0x0>;
+		gpio-controller;
+		#gpio-cells = <2>;
+	};
 
-		pmc_iou_slcr: pmc_iou_slcr@MM_PMC_PMC_IOU_SLCR {
-			doc-status = "partial";
-			compatible = "xlnx,zynq3-pmc-iou-slcr";
-			reg = <BASE_ADDR(MM_PMC_PMC_IOU_SLCR) 0x0 0x1000 0x0>;
-			gpio-controller;
-			#gpio-cells = <2>;
-		};
-
-		pmc_qspi_dma_0: pmc_qspi_dma@QSPI_DMA {
-			doc-status = "complete";
-			compatible = "zynqmp,csu-dma";
-//			interrupts = <QSPI_IRQ_0>;
-			#stream-id-cells = <0x1>;
-			reg = <BASE_ADDR(MM_PMC_QSPI_DMA) 0x0 0x800 0x0>;
-			dma = <&amba_pmc>;
-			memattr = <&pmc_qspi_dma_memattr>;
-			is-dst = <1>;
-			reset-gpios = <&pmc_clk_rst CRP_RST_QSPI>;
-		};
-		pmc_qspi_0: pmc_qspi@MM_PMC_QSPI {
-			doc-status = "complete";
-			#address-cells = <1>;
-			#size-cells = <0>;
-			#bus-cells = <1>;
-			compatible = "xlnx,usmp-gqspi", "cdns,spi-r1p6";
-			stream-connected-dma = <&pmc_qspi_dma_0>;
-			dma = <&amba_pmc>;
-//			interrupts = <QSPI_IRQ_0>;
-			num-ss-bits = <2>;
+	pmc_qspi_dma_0: pmc_qspi_dma@QSPI_DMA {
+		doc-status = "complete";
+		compatible = "zynqmp,csu-dma";
+//		interrupts = <QSPI_IRQ_0>;
+		#stream-id-cells = <0x1>;
+		reg = <BASE_ADDR(MM_PMC_QSPI_DMA) 0x0 0x800 0x0>;
+		dma = <&amba_pmc>;
+		memattr = <&pmc_qspi_dma_memattr>;
+		is-dst = <1>;
+		reset-gpios = <&pmc_clk_rst CRP_RST_QSPI>;
+	};
+	pmc_qspi_0: pmc_qspi@MM_PMC_QSPI {
+		doc-status = "complete";
+		#address-cells = <1>;
+		#size-cells = <0>;
+		#bus-cells = <1>;
+		compatible = "xlnx,usmp-gqspi", "cdns,spi-r1p6";
+		stream-connected-dma = <&pmc_qspi_dma_0>;
+		dma = <&amba_pmc>;
+//		interrupts = <QSPI_IRQ_0>;
+		num-ss-bits = <2>;
 #ifdef LQSPI_XIP
-			reg = <BASE_ADDR(MM_PMC_QSPI) 0x0 0x1000 0x0
-				   BASE_ADDR(0xA0000000) 0x0 MM_PMC_LQSPI_SIZE 0x0>;
+		reg = <BASE_ADDR(MM_PMC_QSPI) 0x0 0x1000 0x0
+			   BASE_ADDR(0xA0000000) 0x0 MM_PMC_LQSPI_SIZE 0x0>;
 #else
-			reg-extended = <&amba_pmc_iou BASE_ADDR(MM_PMC_QSPI) 0x0 0x1000 0x0
-			                &lqspi_mr 0x0 0x0 0x0 MM_PMC_LQSPI_SIZE 0x0>;
+		reg-extended = <&amba_pmc_iou BASE_ADDR(MM_PMC_QSPI) 0x0 0x1000 0x0
+		                &lqspi_mr 0x0 0x0 0x0 MM_PMC_LQSPI_SIZE 0x0>;
 #endif
-			speed-hz = <10000000>;
-			xlnx,fb-clk = <0x1>;
-			xlnx,qspi-clk-freq-hz = <0xbebc200>;
-			xlnx,qspi-mode = <0x2>;
+		speed-hz = <10000000>;
+		xlnx,fb-clk = <0x1>;
+		xlnx,qspi-clk-freq-hz = <0xbebc200>;
+		xlnx,qspi-mode = <0x2>;
 #ifdef LQSPI_XIP
-			qemu,lqspi-size = <MM_PMC_LQSPI_SIZE>;
-			qemu,lqspi-src = <0xA0000000>;
-			qemu,lqspi-dst = <MM_PMC_LQSPI>;
+		qemu,lqspi-size = <MM_PMC_LQSPI_SIZE>;
+		qemu,lqspi-src = <0xA0000000>;
+		qemu,lqspi-dst = <MM_PMC_LQSPI>;
 #endif
-			reset-gpios = <&pmc_clk_rst CRP_RST_QSPI>;
-		};
+		reset-gpios = <&pmc_clk_rst CRP_RST_QSPI>;
+	};
 
-		ospi_dma_dst: ospi_dma@MM_PMC_OSPI_DMA_DST {
-			doc-status = "complete";
-			compatible = "zynqmp,csu-dma";
-			interrupts = <QSPI_IRQ_0>;
-			reg = <0x0 MM_PMC_OSPI_DMA_DST 0x0 0x800 0x0>;
-			dma = <&amba_pmc>;
-			memattr = <&ospi_dma_memattr>;
-			is-dst = <1>;
-			reset-gpios = <&pmc_clk_rst CRP_RST_OSPI>;
-		};
-		ospi_dma_src: ospi_dma@MM_PMC_OSPI_DMA_SRC {
-			doc-status = "complete";
-			compatible = "zynqmp,csu-dma";
-			interrupts = <QSPI_IRQ_0>;
-			reg = <0x0 MM_PMC_OSPI_DMA_SRC 0x0 0x800 0x0>;
-			dma = <&amba_pmc>;
-			memattr = <&ospi_dma_memattr>;
-			stream-connected-dma = <&ospi_dma_dst>;
-			reset-gpios = <&pmc_clk_rst CRP_RST_OSPI>;
-		};
-		ospi: ospi@MM_PMC_OSPI {
-			doc-status = "complete";
-			#address-cells = <1>;
-			#size-cells = <0>;
-			#bus-cells = <1>;
-			compatible = "xlnx,zynq3-ospi";
-			reg-extended = <&amba_pmc_iou 0x0 MM_PMC_OSPI      0x0 0x1000 0x0
-			                &lospi_mr 0x0 0x0  0x0 0x20000000 0x0>;
-			dma-src = <&ospi_dma_src>;
-			interrupts = <QSPI_IRQ_0>;
-			dac-base = <MM_PMC_OSPI_DAC>;
-			reset-gpios = <&pmc_clk_rst CRP_RST_OSPI>;
-		};
+	ospi_dma_dst: ospi_dma@MM_PMC_OSPI_DMA_DST {
+		doc-status = "complete";
+		compatible = "zynqmp,csu-dma";
+		interrupts = <QSPI_IRQ_0>;
+		reg = <0x0 MM_PMC_OSPI_DMA_DST 0x0 0x800 0x0>;
+		dma = <&amba_pmc>;
+		memattr = <&ospi_dma_memattr>;
+		is-dst = <1>;
+		reset-gpios = <&pmc_clk_rst CRP_RST_OSPI>;
+	};
+	ospi_dma_src: ospi_dma@MM_PMC_OSPI_DMA_SRC {
+		doc-status = "complete";
+		compatible = "zynqmp,csu-dma";
+		interrupts = <QSPI_IRQ_0>;
+		reg = <0x0 MM_PMC_OSPI_DMA_SRC 0x0 0x800 0x0>;
+		dma = <&amba_pmc>;
+		memattr = <&ospi_dma_memattr>;
+		stream-connected-dma = <&ospi_dma_dst>;
+		reset-gpios = <&pmc_clk_rst CRP_RST_OSPI>;
+	};
+	ospi: ospi@MM_PMC_OSPI {
+		doc-status = "complete";
+		#address-cells = <1>;
+		#size-cells = <0>;
+		#bus-cells = <1>;
+		compatible = "xlnx,zynq3-ospi";
+		reg-extended = <&amba_pmc_iou 0x0 MM_PMC_OSPI      0x0 0x1000 0x0
+		                &lospi_mr 0x0 0x0  0x0 0x20000000 0x0>;
+		dma-src = <&ospi_dma_src>;
+		interrupts = <QSPI_IRQ_0>;
+		dac-base = <MM_PMC_OSPI_DAC>;
+		reset-gpios = <&pmc_clk_rst CRP_RST_OSPI>;
+	};
 
-		gpio_mr_mux: gpio_mr_mux@MM_PMC_OSPI_DAC {
-			doc-status = "complete";
-			compatible = "gpio-mr-mux";
-			reg = <0x0 MM_PMC_OSPI_DAC 0x0 0x20000000 0x0>;
-			gpios = <&pmc_iou_slcr 2 0
-			         &pmc_iou_slcr 3 0>;
-			mr-size = <0x20000000>;
-			mr0 = <&lqspi_mr>;
-			mr1 = <&lospi_mr>;
-			mr2 = <&lqspi_mr>;
-			mr3 = <&lospi_mr>;
-		};
+	gpio_mr_mux: gpio_mr_mux@MM_PMC_OSPI_DAC {
+		doc-status = "complete";
+		compatible = "gpio-mr-mux";
+		reg = <0x0 MM_PMC_OSPI_DAC 0x0 0x20000000 0x0>;
+		gpios = <&pmc_iou_slcr 2 0
+		         &pmc_iou_slcr 3 0>;
+		mr-size = <0x20000000>;
+		mr0 = <&lqspi_mr>;
+		mr1 = <&lospi_mr>;
+		mr2 = <&lqspi_mr>;
+		mr3 = <&lospi_mr>;
+	};
 
-		sd_0: sd0@MM_PMC_SD0 {
-			doc-status = "complete";
-			compatible = "xilinx,zynqmp-sdhci", "generic-sdhci";
-			drive-index = <0>;
-			reg = <BASE_ADDR(MM_PMC_SD0) 0x0 0x1000 0x0>;
-			dma = <&amba_pmc>;
-			gpios = <&pmc_iou_slcr 0 0>;
-			gpio-names = "SLOTTYPE";
-			reset-gpios = <	&pmc_clk_rst CRP_RST_SDIO0 >;
-			is-mmc = <0x0>;
-			xlnx,has-cd = <0x1>;
-			xlnx,has-power = <0x0>;
-			xlnx,has-wp = <0x1>;
-			xlnx,sdio-clk-freq-hz = <50000000>;
-		};
+	sd_0: sd0@MM_PMC_SD0 {
+		doc-status = "complete";
+		compatible = "xilinx,zynqmp-sdhci", "generic-sdhci";
+		drive-index = <0>;
+		reg = <BASE_ADDR(MM_PMC_SD0) 0x0 0x1000 0x0>;
+		dma = <&amba_pmc>;
+		gpios = <&pmc_iou_slcr 0 0>;
+		gpio-names = "SLOTTYPE";
+		reset-gpios = <	&pmc_clk_rst CRP_RST_SDIO0 >;
+		is-mmc = <0x0>;
+		xlnx,has-cd = <0x1>;
+		xlnx,has-power = <0x0>;
+		xlnx,has-wp = <0x1>;
+		xlnx,sdio-clk-freq-hz = <50000000>;
+	};
 
-		sd_1: sd1@MM_PMC_SD1 {
-			doc-status = "complete";
-			compatible = "xilinx,zynqmp-sdhci", "generic-sdhci";
-			drive-index = <1>;
-			reg = <BASE_ADDR(MM_PMC_SD1) 0x0 0x1000 0x0>;
-			dma = <&amba_pmc>;
-			gpios = <&pmc_iou_slcr 1 0>;
-			gpio-names = "SLOTTYPE";
-			reset-gpios = <	&pmc_clk_rst CRP_RST_SDIO1 >;
-			is-mmc = <0x0>;
-			xlnx,has-cd = <0x1>;
-			xlnx,has-power = <0x0>;
-			xlnx,has-wp = <0x1>;
-			xlnx,sdio-clk-freq-hz = <50000000>;
-		};
+	sd_1: sd1@MM_PMC_SD1 {
+		doc-status = "complete";
+		compatible = "xilinx,zynqmp-sdhci", "generic-sdhci";
+		drive-index = <1>;
+		reg = <BASE_ADDR(MM_PMC_SD1) 0x0 0x1000 0x0>;
+		dma = <&amba_pmc>;
+		gpios = <&pmc_iou_slcr 1 0>;
+		gpio-names = "SLOTTYPE";
+		reset-gpios = <	&pmc_clk_rst CRP_RST_SDIO1 >;
+		is-mmc = <0x0>;
+		xlnx,has-cd = <0x1>;
+		xlnx,has-power = <0x0>;
+		xlnx,has-wp = <0x1>;
+		xlnx,sdio-clk-freq-hz = <50000000>;
+	};
 
-		pmc_tap: pmc_tap@MM_PMC_PMC_TAP {
-			doc-status = "complete";
-			doc-comment = "Just a stub.";
-			compatible = "xlnx,pmc-tap";
-			interrupts-extended = <&pmc_ppu0_io_intc PPU0_SEC_DBG 0>;
-			interrupt-names = "sec-dbg-int";
-			reg = <BASE_ADDR(MM_PMC_PMC_TAP) 0x0 0x80000 0x0>;
-		};
+	pmc_tap: pmc_tap@MM_PMC_PMC_TAP {
+		doc-status = "complete";
+		doc-comment = "Just a stub.";
+		compatible = "xlnx,pmc-tap";
+		interrupts-extended = <&pmc_ppu0_io_intc PPU0_SEC_DBG 0>;
+		interrupt-names = "sec-dbg-int";
+		reg = <BASE_ADDR(MM_PMC_PMC_TAP) 0x0 0x80000 0x0>;
 	};
 };
