@@ -71,13 +71,6 @@ zname: zname@zbase {							\
 		#undef __intc__
 		;
 
-	crf: crf@MM_FPD_CRF {
-		compatible = "xlnx,zynq3-crf";
-		reg = <0x0 MM_FPD_CRF 0x0 MM_FPD_CRF_SIZE 0x0>;
-		gpio-controller;
-		#gpio-cells = <1>;
-	};
-
 	apu_ctrl@MM_FPD_FPD_APU {
 		compatible = "xlnx,zynq3-apu-ctrl";
 		reg = <0x0 MM_FPD_FPD_APU 0x0 MM_FPD_FPD_APU_SIZE 0x0>;
@@ -156,6 +149,17 @@ zname: zname@zbase {							\
 	ZDMA_CHANNEL(adma5, adma, MM_ADMA_CH5, ADMA_IRQ_5, 128, &amba, 0x86d);
 	ZDMA_CHANNEL(adma6, adma, MM_ADMA_CH6, ADMA_IRQ_6, 128, &amba, 0x86e);
 	ZDMA_CHANNEL(adma7, adma, MM_ADMA_CH7, ADMA_IRQ_7, 128, &amba, 0x86f);
+};
+
+&amba_root {
+	/* These devices need to be created before the CPUs.  */
+	crf: crf@MM_FPD_CRF {
+		compatible = "xlnx,zynq3-crf";
+		reg-extended = <&amba_fpd 0x0 MM_FPD_CRF 0x0 MM_FPD_CRF_SIZE 0x0>;
+		gpio-controller;
+		#gpio-cells = <1>;
+	};
+
 };
 
 / {

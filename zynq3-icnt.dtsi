@@ -39,99 +39,115 @@
 	#size-cells = <1>;
 	#priority-cells = <0>;
 
-	amba: amba@0 {
+	amba_root: amba_root@0 {
 		#address-cells = <2>;
 		#size-cells = <2>;
 		#priority-cells = <1>;
-		compatible = "simple-bus";
-		ranges;
 
-		MR_BACKGROUND(amba_lpd);
-		MR_BACKGROUND(amba_fpd);
-		MR_BACKGROUND(amba_pmc_internal);
-	};
+		amba: amba@0 {
+			#address-cells = <2>;
+			#size-cells = <2>;
+			#priority-cells = <1>;
+			compatible = "simple-bus";
+			ranges;
 
-	amba_lpd: amba_lpd@0 {
-		#address-cells = <2>;
-		#size-cells = <2>;
-		#priority-cells = <1>;
-		compatible = "simple-bus";
-		ranges;
-	};
+			MR_BACKGROUND(amba_lpd);
+			MR_BACKGROUND(amba_fpd);
+			MR_BACKGROUND(amba_pmc_internal);
+		};
 
-	amba_fpd: amba_fpd@0 {
-		#address-cells = <2>;
-		#size-cells = <2>;
-		#priority-cells = <1>;
-		compatible = "simple-bus";
-		ranges;
-	};
+		amba_lpd: amba_lpd@0 {
+			#address-cells = <2>;
+			#size-cells = <2>;
+			#priority-cells = <1>;
+			compatible = "simple-bus";
+			ranges;
+		};
 
-	amba_pmc_internal: amba_pmc_internal@0 {
-		doc-ignore = <1>;
-		#address-cells = <2>;
-		#size-cells = <2>;
-		#priority-cells = <1>;
-		compatible = "simple-bus";
-		ranges;
+		amba_fpd: amba_fpd@0 {
+			#address-cells = <2>;
+			#size-cells = <2>;
+			#priority-cells = <1>;
+			compatible = "simple-bus";
+			ranges;
+		};
 
-		MR_BACKGROUND(amba_pmc_ppu);
-		MR_BACKGROUND(amba_pmc_iou);
-		MR_BACKGROUND(amba_pmc_sec);
-		MR_BACKGROUND(amba_pmc_sys);
-		MR_BACKGROUND(amba_pmc_pl);
-	};
+		amba_pmc_internal: amba_pmc_internal@0 {
+			doc-ignore = <1>;
+			#address-cells = <2>;
+			#size-cells = <2>;
+			#priority-cells = <1>;
+			compatible = "simple-bus";
+			ranges;
 
-	/* amba_pmc represents the PMC Main Switch.  */
-	amba_pmc: amba_pmc@0 {
-		#address-cells = <2>;
-		#size-cells = <2>;
-		#priority-cells = <1>;
-		compatible = "simple-bus";
-		ranges;
+			MR_BACKGROUND(amba_pmc_ppu);
+			MR_BACKGROUND(amba_pmc_iou);
+			MR_BACKGROUND(amba_pmc_sec);
+			MR_BACKGROUND(amba_pmc_sys);
+			MR_BACKGROUND(amba_pmc_pl);
+		};
 
-		MR_BACKGROUND(amba);
-		MR_BACKGROUND(amba_pmc_internal);
-	};
-	/* amba_pmc_iou represents the PMC IOU Switch.  */
-	amba_pmc_iou: amba_pmc_iou@0 {
-		#address-cells = <2>;
-		#size-cells = <2>;
-		#priority-cells = <1>;
-		compatible = "simple-bus";
-		ranges;
-	};
+		/* amba_pmc represents the PMC Main Switch.  */
+		amba_pmc: amba_pmc@0 {
+			#address-cells = <2>;
+			#size-cells = <2>;
+			#priority-cells = <1>;
+			compatible = "simple-bus";
+			ranges;
 
-	amba_pmc_sec: amba_pmc_sec@0 {
-		#address-cells = <2>;
-		#size-cells = <2>;
-		#priority-cells = <1>;
-		compatible = "simple-bus";
-		ranges;
-	};
+			MR_BACKGROUND(amba);
+			MR_BACKGROUND(amba_pmc_internal);
+		};
+		/* amba_pmc_iou represents the PMC IOU Switch.  */
+		amba_pmc_iou: amba_pmc_iou@0 {
+			#address-cells = <2>;
+			#size-cells = <2>;
+			#priority-cells = <1>;
+			compatible = "simple-bus";
+			ranges;
+		};
 
-	amba_pmc_ppu: amba_pmc_ppu@0 {
-		#address-cells = <2>;
-		#size-cells = <2>;
-		#priority-cells = <1>;
-		compatible = "simple-bus";
-		ranges;
-	};
+		amba_pmc_sec: amba_pmc_sec@0 {
+			#address-cells = <2>;
+			#size-cells = <2>;
+			#priority-cells = <1>;
+			compatible = "simple-bus";
+			ranges;
+		};
 
-	amba_pmc_sys: amba_pmc_sys@0 {
-		#address-cells = <2>;
-		#size-cells = <2>;
-		#priority-cells = <1>;
-		compatible = "simple-bus";
-		ranges;
-	};
+		amba_pmc_ppu: amba_pmc_ppu@0 {
+			#address-cells = <2>;
+			#size-cells = <2>;
+			#priority-cells = <1>;
+			compatible = "simple-bus";
+			ranges;
+		};
 
-	amba_pmc_pl: amba_pmc_pl@0 {
-		#address-cells = <2>;
-		#size-cells = <2>;
-		#priority-cells = <1>;
-		compatible = "simple-bus";
-		ranges;
+		amba_pmc_sys: amba_pmc_sys@0 {
+			#address-cells = <2>;
+			#size-cells = <2>;
+			#priority-cells = <1>;
+			compatible = "simple-bus";
+			ranges;
+		};
+
+		amba_pmc_pl: amba_pmc_pl@0 {
+			#address-cells = <2>;
+			#size-cells = <2>;
+			#priority-cells = <1>;
+			compatible = "simple-bus";
+			ranges;
+		};
+
+		amba_psm: amba_psm@0 {
+			#address-cells = <2>;
+			#size-cells = <2>;
+			#priority-cells = <1>;
+			compatible = "simple-bus";
+			ranges;
+
+			MR_BACKGROUND(amba);
+		};
 	};
 
 	lmb_pmc_ppu0: lmb_pmc_ppu0@0 {
@@ -147,16 +163,6 @@
 			/* Full address range with 0 priority */
 			reg = <0x0 0x0 0xffffffff 0xffffffff 0>;
 		};
-	};
-
-	amba_psm: amba_psm@0 {
-		#address-cells = <2>;
-		#size-cells = <2>;
-		#priority-cells = <1>;
-		compatible = "simple-bus";
-		ranges;
-
-		MR_BACKGROUND(amba);
 	};
 
 	lmb_pmc_ppu1: lmb_pmc_ppu1@0 {

@@ -54,6 +54,7 @@
 	memory = <&amba_apu>;						\
 	gpios = <&crf n>;						\
 	gpio-names = "rst_cntrl";					\
+	qemu,halt = <0x1>;						\
 	memattr_s = <&apu ## n ## _s_memattr>;				\
 	memattr_ns = <&apu ## n ## _ns_memattr>;
 
