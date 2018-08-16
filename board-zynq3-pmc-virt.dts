@@ -130,6 +130,13 @@
 		remote-ports = <&ps_pmc_rp 8>;
 		interrupts-extended = < &psm0 0 >;
 	};
+
+	/* Dummy stub to avoid ifdefs in the interrupt-map.  */
+	pmc_gic_proxy: pmc_gic_proxy {
+		doc-ignore = <1>;
+		#interrupt-cells = <3>;
+		interrupt-controller;
+	};
 };
 #endif
 
