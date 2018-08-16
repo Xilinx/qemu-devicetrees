@@ -62,7 +62,7 @@
 		};							\
 									\
 		pmc_ppu ## X ## _io_gpi1: pmc_ppu ## X ## _gpi@20 {	\
-			#gpio-cells = <2>;				\
+			#gpio-cells = <1>;				\
 			gpio-controller;				\
 			compatible = "xlnx,io-gpi-1.02.a", "xlnx,io_gpi"; \
 			interrupt-parent = <&pmc_ppu ## X ## _io_intc>;	\
@@ -73,7 +73,7 @@
 			xlnx,use-gpi = <0x1>;				\
 		};							\
 		pmc_ppu ## X ## _io_gpi2: pmc_ppu ## X ## _gpi@24 {	\
-			#gpio-cells = <2>;				\
+			#gpio-cells = <1>;				\
 			gpio-controller;				\
 			compatible = "xlnx,io-gpi-1.02.a", "xlnx,io_gpi"; \
 			interrupt-parent = <&pmc_ppu ## X ## _io_intc>;	\
@@ -84,7 +84,7 @@
 			xlnx,use-gpi = <0x1>;				\
 		};							\
 		pmc_ppu ## X ## _io_gpi3: pmc_ppu ## X ## _gpi@28 {	\
-			#gpio-cells = <2>;				\
+			#gpio-cells = <1>;				\
 			gpio-controller;				\
 			compatible = "xlnx,io-gpi-1.02.a", "xlnx,io_gpi"; \
 			interrupt-parent = <&pmc_ppu ## X ## _io_intc>;	\
@@ -95,7 +95,7 @@
 			xlnx,use-gpi = <0x1>;				\
 		};							\
 		pmc_ppu ## X ## _io_gpi4: pmc_ppu ## X ## _gpi@2c {	\
-			#gpio-cells = <2>;				\
+			#gpio-cells = <1>;				\
 			gpio-controller;				\
 			compatible = "xlnx,io-gpi-1.02.a", "xlnx,io_gpi"; \
 			interrupt-parent = <&pmc_ppu ## X ## _io_intc>;	\
@@ -107,7 +107,7 @@
 		};							\
 									\
 		pmc_ppu ## X ## _io_gpo1: pmc_ppu ## X ## _gpo@10 {	\
-			#gpio-cells = <2>;				\
+			#gpio-cells = <1>;				\
 			gpio-controller;				\
 			compatible = "xlnx,io-gpo-1.02.a", "xlnx,io_gpo"; \
 			reg = <0x0 MM_PMC_PPU ## X ## _IOM(10) 0x4>;	\
@@ -116,7 +116,7 @@
 			xlnx,use-gpo = <0x1>;				\
 		};							\
 		pmc_ppu ## X ## _io_gpo2: pmc_ppu ## X ## _gpo@14 {	\
-			#gpio-cells = <2>;				\
+			#gpio-cells = <1>;				\
 			gpio-controller;				\
 			compatible = "xlnx,io-gpo-1.02.a", "xlnx,io_gpo"; \
 			reg = <0x0 MM_PMC_PPU ## X ## _IOM(14) 0x4>;	\
@@ -125,7 +125,7 @@
 			xlnx,use-gpo = <0x1>;				\
 		};							\
 		pmc_ppu ## X ## _io_gpo3: pmc_ppu ## X ## _gpo@18 {	\
-			#gpio-cells = <2>;				\
+			#gpio-cells = <1>;				\
 			gpio-controller;				\
 			compatible = "xlnx,io-gpo-1.02.a", "xlnx,io_gpo"; \
 			reg = <0x0 MM_PMC_PPU ## X ## _IOM(18) 0x4>;	\
@@ -134,7 +134,7 @@
 			xlnx,use-gpo = <0x1>;				\
 		};							\
 		pmc_ppu ## X ## _io_gpo4: pmc_ppu ## X ## _gpo@1c {	\
-			#gpio-cells = <2>;				\
+			#gpio-cells = <1>;				\
 			gpio-controller;				\
 			compatible = "xlnx,io-gpo-1.02.a", "xlnx,io_gpo"; \
 			reg = <0x0 MM_PMC_PPU ## X ## _IOM(1c) 0x4>;	\
@@ -184,7 +184,7 @@
 			xlnx,pit-size = <0x20>;				\
 			xlnx,use-pit = <0x1>;				\
 			frequency = <460000000>;			\
-			gpios = <&pmc_ppu ## X ## _io_gpo1 6 0 &pmc_ppu ## X ## _io_pit4 0>; \
+			gpios = <&pmc_ppu ## X ## _io_gpo1 6 &pmc_ppu ## X ## _io_pit4 0>; \
 			gpio-names = "ps_config","ps_hit_in";		\
 			gpio-controller;				\
 			#gpio-cells = <1>;				\
