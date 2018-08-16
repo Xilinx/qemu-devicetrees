@@ -137,6 +137,11 @@
 		#interrupt-cells = <3>;
 		interrupt-controller;
 	};
+	psm_gic_proxy: psm_gic_proxy {
+		doc-ignore = <1>;
+		#interrupt-cells = <3>;
+		interrupt-controller;
+	};
 };
 #endif
 

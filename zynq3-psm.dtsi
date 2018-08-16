@@ -131,3 +131,16 @@
 		CREATE_PSM_IOMOD(0);
 	};
 };
+
+&amba_psm {
+	psm_gic_proxy: psm_gic_proxy@MM_PSM_GIC_PROXY {
+		doc-status = "complete";
+		#interrupt-cells = <3>;
+		interrupt-controller;
+
+		compatible = "xlnx,zynqmp-gicp";
+		reg = <0x0 MM_PSM_GIC_PROXY 0x0 MM_PSM_GIC_PROXY_SIZE 0x0>;
+		interrupt-parent = <&psm0_io_intc>;
+		interrupts = <22>;
+	};
+};

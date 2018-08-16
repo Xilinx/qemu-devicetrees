@@ -71,6 +71,9 @@ name: name@addr64 {							\
 #define MM_PMC_GIC_PROXY 0xf1140000
 #define MM_PMC_GIC_PROXY_SIZE 0x100
 
+#define MM_PSM_GIC_PROXY 0xffc92000
+#define MM_PSM_GIC_PROXY_SIZE 0x100
+
 /* PMC PPU0 tamper tamper ID's */
 #define PPU0_TAMPER0	16
 #define PPU0_TAMPER1	17

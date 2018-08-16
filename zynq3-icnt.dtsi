@@ -56,6 +56,10 @@
 			#define __intc__ &pmc_gic_proxy
 			#include "zynq3-ps-irq-map.dtsh"
 			#undef __intc__
+			,
+			#define __intc__ &psm_gic_proxy
+			#include "zynq3-ps-irq-map.dtsh"
+			#undef __intc__
 			;
 
 		amba: amba@0 {
