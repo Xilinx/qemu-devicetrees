@@ -236,14 +236,15 @@
 };
 
 &amba_pmc_ppu {
-	/* PMC GIC Proxy. No inputs yet.  */
 	pmc_gic_proxy: pmc_gic_proxy@MM_PMC_GIC_PROXY {
-		doc-status = "partial";
-		doc-comment = "No interrupts connected yet.";
-		compatible = "xlnx,pmc-gic-proxy";
+		doc-status = "complete";
+		#interrupt-cells = <3>;
+		interrupt-controller;
+
+		compatible = "xlnx,zynqmp-gicp";
 		reg = <0x0 MM_PMC_GIC_PROXY 0x0 MM_PMC_GIC_PROXY_SIZE 0x0>;
 		interrupt-parent = <&pmc_ppu1_io_intc>;
-		interrupts = <22 0>;
+		interrupts = <16 0>;
 	};
 };
 
