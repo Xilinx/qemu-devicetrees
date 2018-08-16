@@ -31,6 +31,7 @@
 
 /* Base platform has 2 APUs.  */
 #define NUM_APUS 2
+#define HAVE_APU_GIC
 
 #include "zynq3.dtsh"
 
