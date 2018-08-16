@@ -50,7 +50,7 @@
 	pmc_global: pmc_global@MM_PMC_PMC_GLOBAL {
 		doc-status = "partial";
 		#gpio-cells = <1>;
-		interrupts-extended = <&pmc_ppu0_io_intc PPU0_TAMPER0 0>;
+		interrupts-extended = <&pmc_ppu0_io_intc PPU0_TAMPER0>;
 		interrupt-names = "tamper_reg";
 		reg = <0x0 MM_PMC_PMC_GLOBAL 0x0 MM_PMC_PMC_GLOBAL_SIZE 0x0>;
 		compatible = "xlnx,pmc_global";
