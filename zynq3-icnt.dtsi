@@ -44,15 +44,19 @@
 		#size-cells = <2>;
 		#priority-cells = <1>;
 
-#ifdef HAVE_APU_GIC
 		#interrupt-cells = <1>;
 		interrupt-map-mask = <0x0 0x0 0xffff>;
 		interrupt-map =
+#ifdef HAVE_APU_GIC
 			#define __intc__ &gic
 			#include "zynq3-ps-irq-map.dtsh"
 			#undef __intc__
-			;
+			,
 #endif
+			#define __intc__ &pmc_gic_proxy
+			#include "zynq3-ps-irq-map.dtsh"
+			#undef __intc__
+			;
 
 		amba: amba@0 {
 			#address-cells = <2>;
