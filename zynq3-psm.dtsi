@@ -129,6 +129,14 @@
 		doc-name = "LMB PPU0";
 		doc-status = "in-progress";
 		CREATE_PSM_IOMOD(0);
+
+		psm_local: psm_local_reg@MM_PSM_LOCAL_REG {
+			gpio-controller;
+			#gpio-cells = <1>;
+			compatible = "xlnx,psm-local-reg";
+			reg = <0x0 MM_PSM_LOCAL_REG 0x0 MM_PSM_LOCAL_REG_SIZE 0x0>;
+			/* TODO: Connect interrupts.  */
+		};
 	};
 };
 
