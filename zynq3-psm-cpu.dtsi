@@ -88,13 +88,11 @@
 	};
 
 	lmb_psm: lmb_psm@0 {
-		/* PSM private RAM. 128K.  */
 		psm_ram_instr: memory@MM_RAM_INSTR {
 			device_type = "memory";
 			compatible = "qemu:memory-region";
 			qemu,ram = <1>;
 			reg = <0x0 MM_RAM_INSTR 0x0 MM_RAM_INSTR_SIZE 0x1>;
-			read-only;
 		};
 
 		psm_ram_data: memory@MM_RAM_DATA {
