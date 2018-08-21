@@ -138,8 +138,8 @@ glue(glue(glue(tcm_mem_ctrl_, n), _), AB): glue(glue(tcm_mem_ctrl_, AB), n)@n {	
 		num-gpios = <4>;
 		/* Client GPIOS are connected to 0 -2 */
 		gpios = <	&pmu_global	0		/* PMU Wake.	*/
-					&crl		2		/* SRST_B.		*/
-					&pmu_global	3		/* PS Reset.	*/
+				&crl		2		/* SRST_B.		*/
+				&pmu_global	3		/* PS Reset.	*/
 				>;
 	};
 #endif
