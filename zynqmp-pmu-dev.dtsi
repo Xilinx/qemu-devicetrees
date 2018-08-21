@@ -69,11 +69,7 @@
 				#interrupt-cells = <2>;
 				compatible = "xlnx,io-intc-1.02.a", "xlnx,io_intc";
 				interrupt-controller ;
-#ifndef MULTI_ARCH
 				interrupts-extended = <&pmu_cpu0 0>;
-#else
-				interrupts-extended = <&rp_gpio_pmu_intr 0>;
-#endif
 				reg = <BASE_ADDR(PMUIOM(0C)) 0x4 BASE_ADDR(PMUIOM(30)) 0x10 BASE_ADDR(PMUIOM(80)) 0x7C>;
 				xlnx,intc-addr-width = <0x20>;
 				xlnx,intc-base-vectors = <0x0>;

@@ -123,7 +123,7 @@ glue(glue(glue(tcm_mem_ctrl_, n), _), AB): glue(glue(tcm_mem_ctrl_, AB), n)@n {	
 		remote-ports = <&pmu_rp_0 0>;
 		mr = <&lmb_pmu>;
 	};
-	rp_gpio_pmu_intr: rp_gpio_pmu_intr@0 {
+	pmu_cpu0: rp_gpio_pmu_intr@0 {
 		#interrupt-cells = <1>;
 		compatible = "remote-port-gpio";
 		remote-ports = <&pmu_rp_0 1>;
