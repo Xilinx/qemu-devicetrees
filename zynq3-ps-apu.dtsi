@@ -53,6 +53,7 @@
 	mr = <&amba_apu>;						\
 	memory = <&amba_apu>;						\
 	reset-gpios = <&crf n>;						\
+	power-gpios = < &psm_local PLR_PWR_ACPU ## n ##_0 >;		\
 	qemu,halt = <0x1>;						\
 	memattr_s = <&apu ## n ## _s_memattr>;				\
 	memattr_ns = <&apu ## n ## _ns_memattr>;
