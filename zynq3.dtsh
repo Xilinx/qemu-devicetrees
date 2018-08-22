@@ -30,6 +30,7 @@
 #include "zynq3-ps-irqs.dtsh"
 #include "zynq3-memmap.dtsh"
 #include "zynq3-resetmap.dtsh"
+#include "zynq3-powermap.dtsh"
 
 /* QEMU RAM Settings */
 #if defined(MULTI_ARCH)
