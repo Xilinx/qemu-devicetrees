@@ -52,8 +52,7 @@
 	arm,reset-cbar = <ACPU_GIC_CPUIF>;				\
 	mr = <&amba_apu>;						\
 	memory = <&amba_apu>;						\
-	gpios = <&crf n>;						\
-	gpio-names = "rst_cntrl";					\
+	reset-gpios = <&crf n>;						\
 	qemu,halt = <0x1>;						\
 	memattr_s = <&apu ## n ## _s_memattr>;				\
 	memattr_ns = <&apu ## n ## _ns_memattr>;
