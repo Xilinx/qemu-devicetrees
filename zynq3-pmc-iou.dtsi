@@ -77,6 +77,7 @@ name: name@0 {								\
 		doc-status = "partial";
 		compatible = "xlnx,zynq3-pmc-iou-slcr";
 		reg = <0x0 MM_PMC_PMC_IOU_SLCR 0x0 0x1000 0x0>;
+		interrupts = <PMC_IOU_SLCR_IRQ_0>;
 		gpio-controller;
 		#gpio-cells = <2>;
 	};
@@ -84,7 +85,7 @@ name: name@0 {								\
 	pmc_qspi_dma_0: pmc_qspi_dma@QSPI_DMA {
 		doc-status = "complete";
 		compatible = "zynqmp,csu-dma";
-//		interrupts = <QSPI_IRQ_0>;
+		interrupts = <QSPI_IRQ_0>;
 		#stream-id-cells = <0x1>;
 		reg = <0x0 MM_PMC_QSPI_DMA 0x0 0x800 0x0>;
 		dma = <&amba_pmc>;
@@ -100,7 +101,7 @@ name: name@0 {								\
 		compatible = "xlnx,usmp-gqspi", "cdns,spi-r1p6";
 		stream-connected-dma = <&pmc_qspi_dma_0>;
 		dma = <&amba_pmc>;
-//		interrupts = <QSPI_IRQ_0>;
+		interrupts = <QSPI_IRQ_0>;
 		num-ss-bits = <2>;
 #ifdef LQSPI_XIP
 		reg = <0x0 MM_PMC_QSPI 0x0 0x1000 0x0
@@ -173,6 +174,7 @@ name: name@0 {								\
 		compatible = "xilinx,zynqmp-sdhci", "generic-sdhci";
 		drive-index = <0>;
 		reg = <0x0 MM_PMC_SD0 0x0 0x1000 0x0>;
+		interrupts = <SD0_IRQ_0>;
 		dma = <&amba_pmc>;
 		gpios = <&pmc_iou_slcr 0 0>;
 		gpio-names = "SLOTTYPE";
@@ -189,6 +191,7 @@ name: name@0 {								\
 		compatible = "xilinx,zynqmp-sdhci", "generic-sdhci";
 		drive-index = <1>;
 		reg = <0x0 MM_PMC_SD1 0x0 0x1000 0x0>;
+		interrupts = <SD1_IRQ_0>;
 		dma = <&amba_pmc>;
 		gpios = <&pmc_iou_slcr 1 0>;
 		gpio-names = "SLOTTYPE";

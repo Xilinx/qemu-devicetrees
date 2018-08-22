@@ -36,6 +36,7 @@
 		doc-status = "partial";
 		compatible = "xlnx,pmc-clk-rst";
 		reg = <0x0 MM_PMC_CRP 0x0 0x80000 0x0>;
+		interrupts = <CRP_IRQ_0>;
 		gpio-controller;
 		#gpio-cells = <1>;
 	};
