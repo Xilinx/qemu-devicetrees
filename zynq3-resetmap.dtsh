@@ -85,3 +85,7 @@
 #define CRP_RST_USB		27
 #define CRP_RST_DBG_RESET	28
 #define CRP_RST_DBG_DPC		29
+
+/* PMC Global.  */
+#define PMC_GLOBAL_PPU1_RST	1
+#define PMC_GLOBAL_PPU1_WAKEUP	2
