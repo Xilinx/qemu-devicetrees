@@ -52,6 +52,8 @@
 	arm,reset-cbar = <ACPU_GIC_CPUIF>;				\
 	mr = <&amba_apu>;						\
 	memory = <&amba_apu>;						\
+	gpios = <&psm_local PLR_APU_WFI_ACPU ## n>;			\
+	gpio-names = "wfi";						\
 	reset-gpios = <&crf n>;						\
 	power-gpios = < &psm_local PLR_PWR_ACPU ## n ##_0 >;		\
 	qemu,halt = <0x1>;						\
