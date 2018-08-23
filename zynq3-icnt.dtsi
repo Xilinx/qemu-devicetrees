@@ -62,16 +62,9 @@ NAME ## _memattr: NAME ## _ma {				\
 	MEMATTR(apu0_ns, NON_SECURE, 0x80);
 	MEMATTR(apu1_s, SECURE, 0x8d);
 	MEMATTR(apu1_ns, NON_SECURE, 0x8d);
-	MEMATTR(apu2_s, SECURE, 0x8e);
-	MEMATTR(apu2_ns, NON_SECURE, 0x8e);
-	MEMATTR(apu3_s, SECURE, 0x8f);
-	MEMATTR(apu3_ns, NON_SECURE, 0x8f);
 
 	MEMATTR(gem0, NON_SECURE, 0x874);
 	MEMATTR(gem1, NON_SECURE, 0x875);
-	MEMATTR(gem2, NON_SECURE, 0x876);
-	MEMATTR(gem3, NON_SECURE, 0x877);
-	MEMATTR(qspi_dma, NON_SECURE, 0x873);
 	MEMATTR(ospi_dma, NON_SECURE, 0x878);
 
 	amba_root: amba_root@0 {
