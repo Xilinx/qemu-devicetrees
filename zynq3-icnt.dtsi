@@ -88,6 +88,9 @@ NAME ## _memattr: NAME ## _ma {				\
 			#define __intc__ &psm_gic_proxy
 			#include "zynq3-ps-irq-map.dtsh"
 			#undef __intc__
+			,
+			/* Manual entries.  */
+			<0 0 IPI_PSM_IRQ_0 &psm0_io_intc IRQ_PSM_INTC_PSM_IPI>
 			;
 
 		amba: amba@0 {
