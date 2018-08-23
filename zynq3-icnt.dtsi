@@ -50,22 +50,22 @@ NAME ## _memattr: NAME ## _ma {				\
 	#size-cells = <1>;
 	#priority-cells = <0>;
 
-	/* FIXME: Randomly chosen Master-IDs  */
-	MEMATTR(pmc_ppu0, SECURE, 0x40);
-	MEMATTR(pmc_ppu1, SECURE, 0x41);
-	MEMATTR(psm, SECURE, 0x42);
-	MEMATTR(pmc_dma, SECURE, 0x200);
-	MEMATTR(pmc_qspi_dma, SECURE, 0x400);
+	MEMATTR(pmc_ppu0, SECURE, SMID_PPU0);
+	MEMATTR(pmc_ppu1, SECURE, SMID_PPU1);
+	MEMATTR(psm, SECURE, SMID_PSM);
+	MEMATTR(pmc_dma0, SECURE, SMID_PMC_DMA0);
+	MEMATTR(pmc_dma1, SECURE, SMID_PMC_DMA1);
+	MEMATTR(pmc_qspi_dma, SECURE, SMID_QSPI);
 
 	/* APU.  */
-	MEMATTR(apu0_s, SECURE, 0x80);
-	MEMATTR(apu0_ns, NON_SECURE, 0x80);
-	MEMATTR(apu1_s, SECURE, 0x8d);
-	MEMATTR(apu1_ns, NON_SECURE, 0x8d);
+	MEMATTR(apu0_s, SECURE, SMID_APU_CORE0);
+	MEMATTR(apu0_ns, NON_SECURE, SMID_APU_CORE0);
+	MEMATTR(apu1_s, SECURE, SMID_APU_CORE1);
+	MEMATTR(apu1_ns, NON_SECURE, SMID_APU_CORE1);
 
-	MEMATTR(gem0, NON_SECURE, 0x874);
-	MEMATTR(gem1, NON_SECURE, 0x875);
-	MEMATTR(ospi_dma, NON_SECURE, 0x878);
+	MEMATTR(gem0, NON_SECURE, SMID_GEM0);
+	MEMATTR(gem1, NON_SECURE, SMID_GEM1);
+	MEMATTR(ospi_dma, NON_SECURE, SMID_OSPI);
 
 	amba_root: amba_root@0 {
 		#address-cells = <2>;
