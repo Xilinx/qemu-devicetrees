@@ -29,43 +29,7 @@
 
 #include "zynq3.dtsh"
 
-#define SECURE 1
-#define NON_SECURE 0
-
-#define MEMATTR(NAME, SEC, MASTERID)			\
-NAME ## _memattr: NAME ## _ma {				\
-	doc-ignore = <1>;				\
-	compatible = "qemu:memory-transaction-attr";	\
-	secure = <SEC>;					\
-	requester-id = <MASTERID>;			\
-}
-
 / {
-
-	/* FIXME: Randomly chosen Master-IDs  */
-	MEMATTR(pmc_ppu0, SECURE, 0x40);
-	MEMATTR(pmc_ppu1, SECURE, 0x41);
-	MEMATTR(psm, SECURE, 0x42);
-	MEMATTR(pmc__dma, SECURE, 0x200);
-	MEMATTR(pmc_qspi_dma, SECURE, 0x400);
-
-	/* APU.  */
-	MEMATTR(apu0_s, SECURE, 0x80);
-	MEMATTR(apu0_ns, NON_SECURE, 0x80);
-	MEMATTR(apu1_s, SECURE, 0x8d);
-	MEMATTR(apu1_ns, NON_SECURE, 0x8d);
-	MEMATTR(apu2_s, SECURE, 0x8e);
-	MEMATTR(apu2_ns, NON_SECURE, 0x8e);
-	MEMATTR(apu3_s, SECURE, 0x8f);
-	MEMATTR(apu3_ns, NON_SECURE, 0x8f);
-
-	MEMATTR(gem0, NON_SECURE, 0x874);
-	MEMATTR(gem1, NON_SECURE, 0x875);
-	MEMATTR(gem2, NON_SECURE, 0x876);
-	MEMATTR(gem3, NON_SECURE, 0x877);
-	MEMATTR(qspi_dma, NON_SECURE, 0x873);
-	MEMATTR(ospi_dma, NON_SECURE, 0x878);
-
 	ddr_low: memory@00000000 {
 		compatible = "qemu:memory-region";
 		device_type = "memory";
