@@ -143,7 +143,6 @@ zname: zname@zbase {							\
 		gpio-controller;
 		#gpio-cells = <1>;
 	};
-
 };
 
 / {
