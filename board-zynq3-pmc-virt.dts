@@ -142,6 +142,11 @@
 		#interrupt-cells = <3>;
 		interrupt-controller;
 	};
+	psm0_io_intc: psm0_io_intc {
+		doc-ignore = <1>;
+		#interrupt-cells = <1>;
+		interrupt-controller;
+	};
 };
 #endif
 
