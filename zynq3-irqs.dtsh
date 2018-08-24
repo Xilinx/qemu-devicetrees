@@ -31,3 +31,16 @@
 #include "zynq3-ps-irqs.dtsh"
 
 /* Add manual entries.  */
+
+/* PSM IO-Module interrupt controller. These are from spec + 16 */
+#define IRQ_PSM_INTC_PSM_RAM_ERROR		16
+#define IRQ_PSM_INTC_GLOBAL_IF_TIMEOUT		17
+#define IRQ_PSM_INTC_PSM_IPI			18
+#define IRQ_PSM_INTC_GIC_PROXY			22
+#define IRQ_PSM_INTC_ISOLATE_REQ		24
+#define IRQ_PSM_INTC_SW_RESET_REQ		26
+#define IRQ_PSM_INTC_PWRUP_REQ			27
+#define IRQ_PSM_INTC_PWRDWN_REQ			28
+#define IRQ_PSM_INTC_PSM_ERR_MGM		29
+#define IRQ_PSM_INTC_WAKEUP_REQ			30
+#define IRQ_PSM_INTC_PWR_CONTROL_REQ		31
