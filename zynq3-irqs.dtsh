@@ -1,5 +1,5 @@
 /*
- * Zynq3 header file
+ * Zynq3 IRQs header file
  *
  * Copyright (c) 2016, Xilinx Inc
  * All rights reserved.
@@ -27,22 +27,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "zynq3-irqs.dtsh"
-#include "zynq3-memmap.dtsh"
-#include "zynq3-resetmap.dtsh"
-#include "zynq3-powermap.dtsh"
-#include "zynq3-smid.dtsh"
+/* Include the auto-generated stuff.  */
+#include "zynq3-ps-irqs.dtsh"
 
-/* QEMU RAM Settings */
-#if defined(MULTI_ARCH)
-	#define IS_MULTI_ARCH(a) a
-	#define QEMU_RAM_PROPERTY 2
-#else
-	#define IS_MULTI_ARCH(a)
-	#define QEMU_RAM_PROPERTY 1
-#endif
-
-#define xglue(a, b) a ## b
-#define glue(a, b) xglue(a, b)
-
-
+/* Add manual entries.  */
