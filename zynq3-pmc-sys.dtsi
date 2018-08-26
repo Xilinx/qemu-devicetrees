@@ -52,8 +52,17 @@
 		doc-status = "partial";
 		#gpio-cells = <1>;
 		gpio-controller;
-		interrupts-extended = <&pmc_ppu0_io_intc IRQ_PPU0_INTC_TAMPER_REG>;
-		interrupt-names = "tamper_reg";
+		/* Use interrupts extended to avoid interrupt-maps routing these
+		 * to the GIC and GIC-Proxies.  */
+		interrupts-extended = <&pmc_ppu1_io_intc IRQ_PPU1_INTC_WAKEUP
+				       &pmc_ppu1_io_intc IRQ_PPU1_INTC_REQ_ISOLATION
+				       &pmc_ppu1_io_intc IRQ_PPU1_INTC_REQ_SWRST
+				       &pmc_ppu1_io_intc IRQ_PPU1_INTC_REQ_PWRUP
+				       &pmc_ppu1_io_intc IRQ_PPU1_INTC_REQ_PWRDWN
+				       &pmc_ppu1_io_intc IRQ_PPU1_INTC_PL
+				       &pmc_ppu1_io_intc IRQ_PPU1_INTC_PPU1_GPI
+				       &dummy1 /* PMC GLOBAL_IMR.  */
+				       &pmc_ppu0_io_intc IRQ_PPU0_INTC_TAMPER_REG>;
 		reg = <0x0 MM_PMC_PMC_GLOBAL 0x0 MM_PMC_PMC_GLOBAL_SIZE 0x0>;
 		compatible = "xlnx,pmc_global";
 	};
