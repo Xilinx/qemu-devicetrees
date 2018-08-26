@@ -78,24 +78,6 @@ name: name@addr64 {							\
 #define MM_IPI_MSGBUF		0xFF3F0000
 #define MM_IPI_MSGBUF_SIZE	0x1000
 
-/* PMC PPU0 tamper tamper ID's */
-#define PPU0_TAMPER0	16
-#define PPU0_TAMPER1	17
-#define PPU0_TAMPER2	18
-#define PPU0_TAMPER3	19
-#define PPU0_TAMPER4	20
-#define PPU0_TAMPER5	21
-#define PPU0_TAMPER6	22
-#define PPU0_TAMPER7	23
-#define PPU0_TAMPER8	24
-#define PPU0_TAMPER9	25
-#define PPU0_TAMPER10	26
-#define PPU0_TAMPER11	27
-#define PPU0_TAMPER12	28
-#define PPU0_TAMPER13	29
-#define PPU0_SEC_DBG	30
-#define PPU0_PUF_CMD	31
-
 /* Include auto-generated files.  */
 #include "zynq3-top-memmap.dtsh"
 #include "zynq3-fpd-memmap.dtsh"
