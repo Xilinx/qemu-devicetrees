@@ -32,11 +32,11 @@
 #define SECURE 1
 #define NON_SECURE 0
 
-#define MEMATTR(NAME, SEC, MASTERID)				\
-NAME ## _memattr: NAME ## _ma {						\
+#define MEMATTR(NAME, SEC, MASTERID)			\
+NAME ## _memattr: NAME ## _ma {				\
 	compatible = "qemu:memory-transaction-attr";	\
-	secure = <SEC>;									\
-	master-id = <MASTERID>;							\
+	secure = <SEC>;					\
+	master-id = <MASTERID>;				\
 }
 
 / {
