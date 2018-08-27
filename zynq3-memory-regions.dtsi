@@ -45,6 +45,14 @@
 		reg = <0x0 MM_OCM MM_OCM_SIZE>;
 	};
 
+	ipi_msgbuf: ipi_msgbuf@MM_IPI_MSGBUF {
+		compatible = "qemu:memory-region";
+		device_type = "memory";
+		container = <&amba_lpd>;
+		qemu,ram = <QEMU_RAM_PROPERTY>;
+		reg = <0x0 MM_IPI_MSGBUF MM_IPI_MSGBUF_SIZE>;
+	};
+
 	pmc_ram: pmc_ram@MM_PMC_PMC_RAM {
 		compatible = "qemu:memory-region";
 		container = <&amba_pmc>;
