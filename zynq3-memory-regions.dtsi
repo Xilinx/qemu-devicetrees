@@ -37,7 +37,7 @@ NAME ## _memattr: NAME ## _ma {				\
 	doc-ignore = <1>;				\
 	compatible = "qemu:memory-transaction-attr";	\
 	secure = <SEC>;					\
-	master-id = <MASTERID>;				\
+	requester-id = <MASTERID>;			\
 }
 
 / {

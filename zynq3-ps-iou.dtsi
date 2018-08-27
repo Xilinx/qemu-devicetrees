@@ -49,7 +49,7 @@ g_name: g_name@0 {							\
 zname ## _mattr: zname ## mattr {					\
 	compatible = "qemu:memory-transaction-attr";			\
 	secure = <0>;							\
-	master-id = <mid>;						\
+	requester-id = <mid>;						\
 };									\
 									\
 zname: zname@zbase {							\
