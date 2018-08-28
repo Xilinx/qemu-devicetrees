@@ -47,8 +47,8 @@ NAME ## _memattr: NAME ## _ma {				\
 
 / {
 	#address-cells = <2>;
-	#size-cells = <1>;
-	#priority-cells = <0>;
+	#size-cells = <2>;
+	#priority-cells = <1>;
 
 	MEMATTR(pmc_ppu0, SECURE, SMID_PPU0);
 	MEMATTR(pmc_ppu1, SECURE, SMID_PPU1);

@@ -32,7 +32,7 @@ name: name@addr64 {							\
 	compatible = "qemu:memory-region";				\
 	container = <c>;						\
 	qemu,ram = <QEMU_RAM_PROPERTY>;					\
-	reg = <addrH addrL s>;						\
+	reg = <addrH addrL 0x0 s 0x0 >;					\
 };
 
 /* Manual entries.  */
