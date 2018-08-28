@@ -29,6 +29,14 @@
 
 #include "zynq3.dtsh"
 
+/*
+ * This file contains definititions for RAMs that get exported
+ * through shared files in the machine-path directory.
+ *
+ * Therefore we need to be careful when changing the names for
+ * these since external applications may depend on their
+ * filenames.
+ */
 / {
 	ddr_low: memory@00000000 {
 		compatible = "qemu:memory-region";
