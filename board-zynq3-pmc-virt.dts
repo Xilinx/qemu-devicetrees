@@ -70,7 +70,7 @@
 
 #else
 #include "zynq3-icnt.dtsi"
-#include "zynq3-memory-regions.dtsi"
+#include "zynq3-rams.dtsi"
 #include "zynq3-pmc-ppu-cpus.dtsi"
 #include "zynq3-psm-cpu.dtsi"
 

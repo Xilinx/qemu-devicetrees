@@ -30,7 +30,7 @@
 #include "zynq3.dtsh"
 
 #include "zynq3-icnt.dtsi"
-#include "zynq3-memory-regions.dtsi"
+#include "zynq3-rams.dtsi"
 #include "zynq3-pmc-ppu.dtsi"
 #include "zynq3-pmc-iou.dtsi"
 #include "zynq3-pmc-sys.dtsi"

@@ -1,5 +1,5 @@
 /*
- * Zynq3 memory region include file
+ * Zynq3 RAM definitions.
  *
  * Copyright (c) 2016, Xilinx Inc
  * All rights reserved.
