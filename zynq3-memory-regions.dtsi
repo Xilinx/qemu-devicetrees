@@ -57,7 +57,7 @@
 		compatible = "qemu:memory-region";
 		container = <&amba_pmc>;
 		qemu,ram = <QEMU_RAM_PROPERTY>;
-		reg = <0x0 MM_PMC_PMC_RAM 0x00020000 0x0>;
+		reg = <0x0 MM_PMC_PMC_RAM MM_PMC_PMC_RAM_SIZE 0x0>;
 	};
 
 	pmc_ppu1_insn_ram: pmc_ppu1_ram@MM_PMC_PPU1_RAM_INSTR {
