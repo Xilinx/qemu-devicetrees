@@ -71,9 +71,11 @@
 		reg = <0x0 MM_PRAM_ZEROIZE 0x0 MM_PRAM_ZEROIZE_SIZE 0x1>;
 		stream-connected-pzm = <&pmc_stream_switch>;
 	};
-	pmc_sysmon: pmc_sysmon@ {
-		compatible = "xlnx,ams_root";
-		reg = <0x0 MM_PMC_PMC_SYSMON 0x0 MM_PMC_PMC_SYSMON_SIZE>;
+	pmc_sysmon@MM_PMC_PMC_SYSMON {
+		compatible = "xlnx,pmc-sysmon";
+		reg = <0x0 MM_PMC_PMC_SYSMON 0x0 MM_PMC_PMC_SYSMON_SIZE 0x0>;
+		interrupts = <SYSMON_IRQ_0
+			      SYSMON_IRQ_1>;
 		reset-gpios = <&pmc_clk_rst CRP_RST_SYSMON_CFG>;
 	};
 	pmc_global_tamper: zynq3_pmc_tamper@ {
