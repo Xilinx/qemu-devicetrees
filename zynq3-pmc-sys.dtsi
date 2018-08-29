@@ -71,6 +71,10 @@
 		reg = <0x0 MM_PRAM_ZEROIZE 0x0 MM_PRAM_ZEROIZE_SIZE 0x1>;
 		stream-connected-pzm = <&pmc_stream_switch>;
 	};
+	pmc_analog@MM_PMC_PMC_ANALOG {
+		compatible = "xlnx,pmc-analog";
+		reg = <0x0 MM_PMC_PMC_ANALOG 0x0 MM_PMC_PMC_ANALOG_SIZE 0x0>;
+	};
 	pmc_sysmon@MM_PMC_PMC_SYSMON {
 		compatible = "xlnx,pmc-sysmon";
 		reg = <0x0 MM_PMC_PMC_SYSMON 0x0 MM_PMC_PMC_SYSMON_SIZE 0x0>;
