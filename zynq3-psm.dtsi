@@ -144,14 +144,14 @@
 	psm_ram_instr: psm_ram_instr@MM_RAM_INSTR {
 		device_type = "memory";
 		compatible = "qemu:memory-region";
-		qemu,ram = <2>;
+		qemu,ram = <QEMU_RAM_PROPERTY>;
 		reg = <0x0 MM_RAM_INSTR 0x0 MM_RAM_INSTR_SIZE 0x1>;
 	};
 
 	psm_ram_data: psm_ram_data@MM_RAM_DATA {
 		device_type = "memory";
 		compatible = "qemu:memory-region";
-		qemu,ram = <2>;
+		qemu,ram = <QEMU_RAM_PROPERTY>;
 		reg = <0x0 MM_RAM_DATA 0x0 MM_RAM_DATA_SIZE 0x1>;
 	};
 
