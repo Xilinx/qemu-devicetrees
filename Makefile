@@ -30,6 +30,13 @@ OUTDIR 	?= ./
 GCC		?= gcc
 DTC		?= dtc
 
+ifeq ($V,)
+QUIET=@
+.SILENT:
+else
+QUIET=
+endif
+
 SINGLE_ARCH_OUTDIR		:= $(OUTDIR)/LATEST/SINGLE_ARCH
 MULTI_ARCH_OUTDIR 		:= $(OUTDIR)/LATEST/MULTI_ARCH
 LQSPI_XIP_OUTDIR		:= $(OUTDIR)/LATEST/LQSPI_XIP
@@ -46,7 +53,7 @@ TARGETS = \
 	$(patsubst %.dts,$(LQSPI_XIP_OUTDIR)/%.$(1),$(DTS_FILES))
 
 COMPILE = \
-	@mkdir -p $(1); \
+	$(QUIET)mkdir -p $(1); \
 	$(GCC) -E -nostdinc -x assembler-with-cpp $(3) -o - $< | \
 		$(DTC) -q -O $(2) -I dts -o $@ - -b 0;
 
