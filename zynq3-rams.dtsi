@@ -112,6 +112,26 @@
 	};
 };
 
+#define GEN_DDRMC_RAM(LABEL, X)					\
+	LABEL: LABEL@MM_DDRMC_RAM_ ## X {			\
+		reg = <0x0 MM_DDRMC_RAM_ ## X 0x0		\
+			MM_DDRMC_RAM_ ## X ## _SIZE 0x1>;	\
+		compatible = "qemu:memory-region";		\
+		qemu,ram = <QEMU_RAM_PROPERTY>;			\
+	}
+
+&lmb_ddrmc0 {
+	GEN_DDRMC_RAM(ddrmc0_ram_data, DATA);
+	GEN_DDRMC_RAM(ddrmc0_ram_instr, INSTR);
+	GEN_DDRMC_RAM(ddrmc0_ram_exchange, EXCHANGE);
+};
+
+&lmb_ddrmc1 {
+	GEN_DDRMC_RAM(ddrmc1_ram_data, DATA);
+	GEN_DDRMC_RAM(ddrmc1_ram_instr, INSTR);
+	GEN_DDRMC_RAM(ddrmc1_ram_exchange, EXCHANGE);
+};
+
 &amba_psm {
 	psm_ram_instr: psm_ram_instr@MM_RAM_INSTR {
 		device_type = "memory";

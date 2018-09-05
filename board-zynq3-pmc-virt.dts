@@ -34,6 +34,7 @@
 #ifndef MULTI_ARCH
 #include "zynq3-pmc.dtsi"
 #include "zynq3-psm.dtsi"
+#include "zynq3-ddrmc.dtsi"
 #include "zynq3-ps-iou.dtsi"
 #include "zynq3-pmc-ppu-cpus.dtsi"
 #include "zynq3-psm-cpu.dtsi"
@@ -47,6 +48,16 @@
 	};
 	cpu1: apu@1 {
 	};
+#ifndef HAVE_DDRMC_CPUS
+	ddrmc_ub0: ddrmc_ub@0 {
+		#interrupt-cells = <1>;
+		interrupt-controller;
+	};
+	ddrmc_ub1: ddrmc_ub@1 {
+		#interrupt-cells = <1>;
+		interrupt-controller;
+	};
+#endif
 	/* Dummy GIC.  */
 	gic: apu_gic@0 {
 		#interrupt-cells = <3>;
@@ -129,6 +140,34 @@
 		compatible = "remote-port-gpio";
 		remote-ports = <&ps_pmc_rp 8>;
 		interrupts-extended = < &psm0 0 >;
+	};
+
+	rp_ddrmc_ub0: rp_ddrmc_ub@0 {
+		compatible = "remote-port-gpio";
+		remote-ports = <&ps_pmc_rp 9>;
+#ifdef HAVE_DDRMC_CPUS
+		interrupts-extended = < &ddrmc_ub0 0 >;
+#endif
+	};
+
+	rp_ddrmc_ub1: rp_ddrmc_ub@1 {
+		compatible = "remote-port-gpio";
+		remote-ports = <&ps_pmc_rp 10>;
+#ifdef HAVE_DDRMC_CPUS
+		interrupts-extended = < &ddrmc_ub1 0 >;
+#endif
+	};
+
+	npi_ddrmc_ub0: rp_npi_ddrmc_ub@0 {
+		compatible = "remote-port-gpio";
+		remote-ports = <&ps_pmc_rp 11>;
+		#gpio-cells = <1>;
+	};
+
+	npi_ddrmc_ub1: rp_npi_ddrmc_ub@1 {
+		compatible = "remote-port-gpio";
+		remote-ports = <&ps_pmc_rp 12>;
+		#gpio-cells = <1>;
 	};
 
 	/* Dummy stub to avoid ifdefs in the interrupt-map.  */

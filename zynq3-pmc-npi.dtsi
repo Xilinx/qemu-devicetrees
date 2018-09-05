@@ -59,6 +59,36 @@
 		reset-gpios = <&pmc_clk_rst CRP_RST_NONPS_NPI >;	\
 	};
 
+#define GEN_DDRMC_UB(N)							\
+	npi_ddrmc_ub ## N: npi_ddrmc_ub ## N@MM_NPI_DDRMC_UB_ ## N {	\
+		doc-limitations = "Only the uB rst is supported";	\
+		compatible = "xlnx.zynq3-ddrmc-ub";			\
+		reg = <0x0 MM_NPI_DDRMC_UB_ ## N 0x0			\
+			MM_NPI_DDRMC_UB_ ## N ## _SIZE 0x0>;		\
+		reset-gpios = <&pmc_clk_rst CRP_RST_NONPS_NPI >;	\
+		#gpio-cells = <1>;					\
+		gpio-controller;					\
+	}
+
+#define GEN_DDRMC_MAIN(N)						\
+	npi_ddrmc_main ## N: npi_ddrmc_main ## N@MM_NPI_DDRMC_MAIN_ ## N { \
+		doc-limitations = "Just a stub";			\
+		compatible = "xlnx.zynq3-ddrmc-main";			\
+		reg = <0x0 MM_NPI_DDRMC_MAIN_ ## N 0x0			\
+			MM_NPI_DDRMC_MAIN_ ## N ## _SIZE 0x0>;		\
+		reset-gpios = <&pmc_clk_rst CRP_RST_NONPS_NPI >;	\
+	}
+
+/* NOC overlaps with UB regs, for the moment we map NOC as lower prio.  */
+#define GEN_DDRMC_NOC(N)						\
+	npi_ddrmc_noc ## N: npi_ddrmc_noc ## N@MM_NPI_DDRMC_NOC_ ## N { \
+		doc-limitations = "Just a stub";			\
+		compatible = "xlnx.zynq3-ddrmc-noc";			\
+		reg = <0x0 MM_NPI_DDRMC_NOC_ ## N 0x0			\
+			MM_NPI_DDRMC_NOC_ ## N ## _SIZE 0xffffffff>;	\
+		reset-gpios = <&pmc_clk_rst CRP_RST_NONPS_NPI >;	\
+	}
+
 &amba_pmc_pl {
 #include "zynq3-pmc-npi-nxx.dtsi"
 
@@ -67,6 +97,14 @@
 		reg = <0x0 MM_NPI_ME_NPI_0 0x0 MM_NPI_ME_NPI_0_SIZE 0x0>;
 		reset-gpios = <&pmc_clk_rst CRP_RST_NONPS_NPI >;
 	};
+
+	/* DDRMC NPI registers.  */
+	GEN_DDRMC_UB(0);
+	GEN_DDRMC_UB(1);
+	GEN_DDRMC_MAIN(0);
+	GEN_DDRMC_MAIN(1);
+	GEN_DDRMC_NOC(0);
+	GEN_DDRMC_NOC(1);
 };
 
 // Docs

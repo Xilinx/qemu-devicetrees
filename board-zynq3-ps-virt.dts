@@ -37,6 +37,7 @@
 
 #include "zynq3-pmc.dtsi"
 #include "zynq3-psm.dtsi"
+#include "zynq3-ddrmc.dtsi"
 #include "zynq3-ps-apu.dtsi"
 #include "zynq3-ps-iou.dtsi"
 
@@ -154,6 +155,28 @@
 		#interrupt-cells = <1>;
 		interrupt-controller;
 	};
+	ddrmc_ub0: rp_ddrmc@0 {
+		compatible = "remote-port-gpio";
+		remote-ports = <&ps_pmc_rp 9>;
+		#interrupt-cells = <1>;
+		interrupt-controller;
+	};
+	ddrmc_ub1: rp_ddrmc@1 {
+		compatible = "remote-port-gpio";
+		remote-ports = <&ps_pmc_rp 10>;
+		#interrupt-cells = <1>;
+		interrupt-controller;
+	};
+	rp_npi_ddrmc_ub0: rp_npi_ddrmc_ub@0 {
+		compatible = "remote-port-gpio";
+		remote-ports = <&ps_pmc_rp 11>;
+		gpios = < &npi_ddrmc_ub0 0 >;
+	};
+	rp_npi_ddrmc_ub1: rp_npi_ddrmc_ub@1 {
+		compatible = "remote-port-gpio";
+		remote-ports = <&ps_pmc_rp 11>;
+		gpios = < &npi_ddrmc_ub1 0 >;
+	};
 #else
 	/* Single ARCH PS board has no PPU MicroBlazes.  */
 	pmc_ppu0: dummy_ppu0@0 {
@@ -163,6 +186,12 @@
 		#interrupt-cells = <1>;
 	};
 	psm0: dummy_ppu0@0 {
+		#interrupt-cells = <1>;
+	};
+	ddrmc_ub0: dummy_ddrmc0@0 {
+		#interrupt-cells = <1>;
+	};
+	ddrmc_ub1: dummy_ddrmc1@0 {
 		#interrupt-cells = <1>;
 	};
 #endif

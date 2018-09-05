@@ -78,6 +78,18 @@ name: name@addr64 {							\
 #define MM_IPI_MSGBUF		0xFF3F0000
 #define MM_IPI_MSGBUF_SIZE	0x1000
 
+/* DDRMC as seen from the UBs, not from PMC nor PS.  */
+#define MM_DDRMC_IOM(a)			0x0001b0 ## a
+#define MM_DDRMC_RAM_DATA		0x1c000
+#define MM_DDRMC_RAM_DATA_SIZE		0x04000
+#define MM_DDRMC_RAM_INSTR		0x20000
+#define MM_DDRMC_RAM_INSTR_SIZE		0x20000
+#define MM_DDRMC_RAM_EXCHANGE		0x08000
+#define MM_DDRMC_RAM_EXCHANGE_SIZE	0x08000
+/* Everything before RAM exchange gets mapped to main regs.  */
+#define MM_DDRMC_NPI_MAIN		0x0
+#define MM_DDRMC_NPI_MAIN_SIZE		MM_DDRMC_RAM_EXCHANGE
+
 /* Include auto-generated files.  */
 #include "zynq3-top-memmap.dtsh"
 #include "zynq3-fpd-memmap.dtsh"

@@ -53,6 +53,9 @@ NAME ## _memattr: NAME ## _ma {				\
 	MEMATTR(pmc_ppu0, SECURE, SMID_PPU0);
 	MEMATTR(pmc_ppu1, SECURE, SMID_PPU1);
 	MEMATTR(psm, SECURE, SMID_PSM);
+        /* DDRMC Master IDs?  */
+	MEMATTR(ddrmc_ub0, SECURE, 0x0);
+	MEMATTR(ddrmc_ub1, SECURE, 0x0);
 	MEMATTR(pmc_dma0, SECURE, SMID_PMC_DMA0);
 	MEMATTR(pmc_dma1, SECURE, SMID_PMC_DMA1);
 	MEMATTR(pmc_qspi_dma, SECURE, SMID_QSPI);
@@ -242,6 +245,22 @@ NAME ## _memattr: NAME ## _ma {				\
 			/* Full address range with 0 priority */
 			reg = <0x0 0x0 0xffffffff 0xffffffff 0>;
 		};
+	};
+
+	lmb_ddrmc0: lmb_ddrmc@0 {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		#priority-cells = <1>;
+		compatible = "simple-bus";
+		ranges;
+	};
+
+	lmb_ddrmc1: lmb_ddrmc@1 {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		#priority-cells = <1>;
+		compatible = "simple-bus";
+		ranges;
 	};
 
 	/* Dummy controller useful to create gaps for IRQ/GPIO connections.  */
