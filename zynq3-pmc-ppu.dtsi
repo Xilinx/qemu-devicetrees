@@ -214,12 +214,14 @@
 		doc-status = "complete";
 		compatible = "xlnx,xps-uartlite";
 		reg-extended = <&lmb_pmc_ppu0 0x0 MM_PMC_PPU0_MDM_HSD 0x0 0x10 0x1>;
+		chardev = "serial0";
 	};
 
 	ppu1_mdm_uart@MM_PMC_PPU1_MDM_HSD {
 		doc-status = "complete";
 		compatible = "xlnx,xps-uartlite";
 		reg-extended = <&lmb_pmc_ppu1 0x0 MM_PMC_PPU1_MDM_HSD 0x0 0x10 0x1>;
+		chardev = "serial1";
 	};
 };
 

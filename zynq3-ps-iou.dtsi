@@ -81,12 +81,14 @@ zname: zname@zbase {							\
 		interrupts = <UART0_IRQ_0>;
 		reg = <0x0 MM_UART0 0x0 MM_UART0_SIZE 0x0 >;
 		reset-gpios = < &crl CRL_RST_UART0 >;
+		chardev = "serial2";
 	};
 	serial@MM_UART1 {
 		compatible = "pl011";
 		interrupts = <UART1_IRQ_0>;
 		reg = <0x0 MM_UART1 0x0 MM_UART1_SIZE 0x0 >;
 		reset-gpios = < &crl CRL_RST_UART1 >;
+		chardev = "serial3";
 	};
 
 	crl: crl@MM_CRL {
