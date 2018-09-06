@@ -205,7 +205,7 @@ name: name@0 {								\
 
 	pmc_tap: pmc_tap@MM_PMC_PMC_TAP {
 		doc-status = "complete";
-		doc-comment = "Just a stub.";
+		doc-comments = "Just a stub.";
 		compatible = "xlnx,pmc-tap";
 		interrupts-extended = <&pmc_ppu0_io_intc IRQ_PPU0_INTC_SEC_DBG>;
 		interrupt-names = "sec-dbg-int";
