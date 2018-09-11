@@ -242,3 +242,19 @@
 &gem1 {
         mdio = <&mdio0>;
 };
+
+&cpu0 {
+	generic-timer-frequency = <2720000>;
+};
+
+&cpu1 {
+	generic-timer-frequency = <2720000>;
+};
+
+&cpu2 {
+	generic-timer-frequency = <2720000>;
+};
+
+&cpu3 {
+	generic-timer-frequency = <2720000>;
+};
