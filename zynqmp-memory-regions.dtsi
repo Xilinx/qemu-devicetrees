@@ -61,6 +61,7 @@ NAME ## _memattr: NAME ## _ma {				\
 	MEMATTR(qspi_dma, NON_SECURE, 0x873);
 
 	MEMATTR(pcie_ns, NON_SECURE, 0x4d0);
+	MEMATTR(csu_dma, NON_SECURE, 0x851);
 
 	/* Bus with XPPU TZ protection.  */
 	protected_amba: protected_amba@0 {

@@ -38,15 +38,17 @@
 		compatible = "zynqmp,csu-dma";
 		interrupts = <CSU_DMA_IRQ_0>;
 		reg = <0x0 CSUDMA_DST 0x800>;
-		dma = <&amba>;
+		dma = <&protected_amba>;
 		is-dst = <1>;
+		memattr = <&csu_dma_memattr>;
 	};
 	xlnx_csu_dma_src: csu_dma_src@CSUDMA_SRC {
 		compatible = "zynqmp,csu-dma";
 		interrupts = <CSU_DMA_IRQ_0>;
 		stream-connected-dma = <&zynqmp_csu_stream_switch> ;
 		reg = <0x0 CSUDMA_SRC 0x800>;
-		dma = <&amba>;
+		dma = <&protected_amba>;
+		memattr = <&csu_dma_memattr>;
 	};
 };
 
