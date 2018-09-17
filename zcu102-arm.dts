@@ -357,8 +357,12 @@
 					compatible = "xxx";
 					reg = <0x36>;
 				};
+				dev@37 { /* u-boot detection */
+					compatible = "i2c-dev-dummy";
+					reg = <0x37>;
+				};
 				dev@51 { /* u-boot detection - maybe SPD */
-					compatible = "xxx";
+					compatible = "sodimm-spd";
 					reg = <0x51>;
 				};
 			};
