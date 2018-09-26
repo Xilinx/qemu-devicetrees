@@ -1,7 +1,7 @@
 /*
- * Zynq3 header file
+ * Zynq3 Init
  *
- * Copyright (c) 2016, Xilinx Inc
+ * Copyright (c) 2018, Xilinx Inc
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -27,30 +27,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "loader.dtsh"
-#include "zynq3-irqs.dtsh"
-#include "zynq3-memmap.dtsh"
-#include "zynq3-resetmap.dtsh"
-#include "zynq3-powermap.dtsh"
-#include "zynq3-smid.dtsh"
-
-
-/* CPU CORE ID's */
-#define CPU_NR_APU0 0
-#define CPU_NR_APU1 1
-#define CPU_NR_RPU0 2
-#define CPU_NR_RPU1 3
-
-/* QEMU RAM Settings */
-#if defined(MULTI_ARCH)
-	#define IS_MULTI_ARCH(a) a
-	#define QEMU_RAM_PROPERTY 2
-#else
-	#define IS_MULTI_ARCH(a)
-	#define QEMU_RAM_PROPERTY 1
-#endif
-
-#define xglue(a, b) a ## b
-#define glue(a, b) xglue(a, b)
-
-
+&amba{
+	LOADER_DEBUG_WRITE(CPU_NR_APU0, 0xF1110880, 0x1, 0x4);	// PMC_GLOBAL.PL_STATUS
+	LOADER_DEBUG_WRITE(CPU_NR_APU0, 0xFD1A0050, 0x5, 0x4);	// CRF.PLL_STATUS
+};
