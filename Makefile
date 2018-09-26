@@ -43,7 +43,11 @@ LQSPI_XIP_OUTDIR		:= $(OUTDIR)/LATEST/LQSPI_XIP
 
 DTS_FILES			:= $(wildcard *.dts)
 DTSI_FILES			:= $(wildcard *.dtsi)
-HEADER_FILES		:= $(wildcard *.dtsh)
+HEADER_FILES			:= $(wildcard *.dtsh)
+HEADER_FILES			+= $(wildcard include/*.dtsh)
+
+
+CPPFLAGS = -Iinclude/
 
 .PHONY:	all source
 
@@ -54,7 +58,7 @@ TARGETS = \
 
 COMPILE = \
 	$(QUIET)mkdir -p $(1); \
-	$(GCC) -E -nostdinc -x assembler-with-cpp $(3) -o - $< | \
+	$(GCC) -E -nostdinc ${CPPFLAGS} -x assembler-with-cpp $(3) -o - $< | \
 		$(DTC) -q -O $(2) -I dts -o $@ - -b 0;
 
 all:	$(call TARGETS,dtb)
