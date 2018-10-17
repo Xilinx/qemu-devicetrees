@@ -33,6 +33,7 @@
 
 #include "zynqmp-arm.dtsi"
 #include "zynqmp-memory-regions.dtsi"
+#include "zynqmp-boot-init.dtsi"
 
 / {
 	model = "ZynqMP ZCU102 RevA";

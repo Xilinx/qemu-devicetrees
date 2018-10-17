@@ -27,6 +27,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include "loader.dtsh"
 #include "zynqmp-irqs.dtsh"
 #include "zynqmp-memmap.dtsh"
 
@@ -78,6 +79,11 @@
 					&pl_3_ipi TLINE_32 0						\
 				>;												\
 	};
+
+#define CPU_NR_APU0 0
+#define CPU_NR_APU1 1
+#define CPU_NR_APU2 2
+#define CPU_NR_APU3 3
 
 #ifdef MULTI_ARCH
 #define IPI_INTERRUPT_MAP(INTC_1, INTC_2, IRQ)	interrupt-map =				\
