@@ -291,6 +291,15 @@
 					reg = <0x57>;
 				};
 			};
+			i2c@1 {
+				#address-cells = <1>;
+				#size-cells = <0>;
+				reg = <1>;
+				si5341: clock-generator1@36 {
+					compatible = "i2c-dev-dummy";
+					reg = <0x36>;
+				};
+			};
 			i2c@2 {
 				#address-cells = <1>;
 				#size-cells = <0>;
@@ -309,6 +318,15 @@
 					compatible = "silabs,si57x";
 					reg = <0x5d>;
 					temperature-stability=<50>;
+				};
+			};
+			i2c@4 {
+				#address-cells = <1>;
+				#size-cells = <0>;
+				reg = <4>;
+				si5328: clock-generator4@69 {/* SI5328 - u20 */
+					compatible = "i2c-dev-dummy";
+					reg = <0x69>;
 				};
 			};
 		};
