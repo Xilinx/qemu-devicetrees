@@ -1,5 +1,5 @@
 /*
- * Zynq3 PMC NPI
+ * Versal PMC NPI
  *
  * Copyright (c) 2016, Xilinx Inc
  * All rights reserved.
@@ -27,7 +27,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "zynq3.dtsh"
+#include "versal.dtsh"
 
 #define GEN_NMU(N)							\
 	npi_noc_nmu_ ## N: npi_noc_nmu_## N@MM_NPI_NOC_NMU_ ## N  {	\
@@ -90,7 +90,7 @@
 	}
 
 &amba_pmc_pl {
-#include "zynq3-pmc-npi-nxx.dtsi"
+#include "versal-pmc-npi-nxx.dtsi"
 
 	npi_me: npi_me@MM_NPI_ME_NPI_0 {
 		compatible = "xlnx.me-npi";

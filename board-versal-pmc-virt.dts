@@ -1,5 +1,5 @@
 /*
- * Zynq3 Virtual PMC board device tree
+ * Versal Virtual PMC board device tree
  *
  * Copyright (c) 2016, Xilinx Inc
  * All rights reserved.
@@ -29,15 +29,15 @@
 
 /dts-v1/;
 
-#include "zynq3.dtsh"
+#include "versal.dtsh"
 
 #ifndef MULTI_ARCH
-#include "zynq3-pmc.dtsi"
-#include "zynq3-psm.dtsi"
-#include "zynq3-ddrmc.dtsi"
-#include "zynq3-ps-iou.dtsi"
-#include "zynq3-pmc-ppu-cpus.dtsi"
-#include "zynq3-psm-cpu.dtsi"
+#include "versal-pmc.dtsi"
+#include "versal-psm.dtsi"
+#include "versal-ddrmc.dtsi"
+#include "versal-ps-iou.dtsi"
+#include "versal-pmc-ppu-cpus.dtsi"
+#include "versal-psm-cpu.dtsi"
 
 / {
 	/* FIXME: Once we add the NOC, these should be attached to it.  */
@@ -80,10 +80,10 @@
 };
 
 #else
-#include "zynq3-icnt.dtsi"
-#include "zynq3-rams.dtsi"
-#include "zynq3-pmc-ppu-cpus.dtsi"
-#include "zynq3-psm-cpu.dtsi"
+#include "versal-icnt.dtsi"
+#include "versal-rams.dtsi"
+#include "versal-pmc-ppu-cpus.dtsi"
+#include "versal-psm-cpu.dtsi"
 
 / {
 	/* FIXME: Once we add the NOC, these should be attached to it.  */

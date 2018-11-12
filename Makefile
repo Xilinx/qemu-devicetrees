@@ -87,12 +87,12 @@ $(LQSPI_XIP_OUTDIR)/%.dts:	%.dts $(DTSI_FILES) $(HEADER_FILES)
 
 # Auto-generated Zynq3 fragments
 # TODO: Add support for auto-generated dependency list
-zynq3-pmc-npi.dtsi: zynq3-pmc-npi-nxx.dtsi
-zynq3-pmc-npi-nxx.dtsi: Makefile
+versal-pmc-npi.dtsi: versal-pmc-npi-nxx.dtsi
+versal-pmc-npi-nxx.dtsi: Makefile
 	@python -c 'for a in range(0, 34): print("\tGEN_NMU(" + str(a) + ")")' > $@
 	@python -c 'for a in range(0, 30): print("\tGEN_NSU(" + str(a) + ")")' >> $@
 	@python -c 'for a in range(0, 75): print("\tGEN_NPS(" + str(a) + ")")' >> $@
 
 clean:
-	$(RM) zynq3-pmc-npi-nxx.dtsi
+	$(RM) versal-pmc-npi-nxx.dtsi
 	@rm -rf LATEST;

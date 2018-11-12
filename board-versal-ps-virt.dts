@@ -1,5 +1,5 @@
 /*
- * Zynq3 Virtual PMC board device tree
+ * Versal Virtual PMC board device tree
  *
  * Copyright (c) 2016, Xilinx Inc
  * All rights reserved.
@@ -33,21 +33,21 @@
 #define NUM_APUS 2
 #define HAVE_APU_GIC
 
-#include "zynq3.dtsh"
+#include "versal.dtsh"
 
-#include "zynq3-pmc.dtsi"
-#include "zynq3-psm.dtsi"
-#include "zynq3-ddrmc.dtsi"
-#include "zynq3-ps-apu.dtsi"
-#include "zynq3-ps-iou.dtsi"
-#include "zynq3-boot-init.dtsi"
+#include "versal-pmc.dtsi"
+#include "versal-psm.dtsi"
+#include "versal-ddrmc.dtsi"
+#include "versal-ps-apu.dtsi"
+#include "versal-ps-iou.dtsi"
+#include "versal-boot-init.dtsi"
 
 / {
 #ifdef MULTI_ARCH
 	ps_pmc_rp: ps_pmc_rp@0 {
 		doc-status = "complete";
 		doc-name = "Remote-port PMC";
-		doc-subdtb = "board-zynq3-pmc-virt.dtb";
+		doc-subdtb = "board-versal-pmc-virt.dtb";
 		compatible = "remote-port";
 		chrdev-id = "ps-pmc-rp";
 	};

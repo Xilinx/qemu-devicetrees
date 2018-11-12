@@ -1,5 +1,5 @@
 /*
- * Zynq3 interconnect
+ * Versal interconnect
  *
  * Copyright (c) 2016, Xilinx Inc
  * All rights reserved.
@@ -80,16 +80,16 @@ NAME ## _memattr: NAME ## _ma {				\
 		interrupt-map =
 #ifdef HAVE_APU_GIC
 			#define __intc__ &gic
-			#include "zynq3-ps-irq-map.dtsh"
+			#include "versal-ps-irq-map.dtsh"
 			#undef __intc__
 			,
 #endif
 			#define __intc__ &pmc_gic_proxy
-			#include "zynq3-ps-irq-map.dtsh"
+			#include "versal-ps-irq-map.dtsh"
 			#undef __intc__
 			,
 			#define __intc__ &psm_gic_proxy
-			#include "zynq3-ps-irq-map.dtsh"
+			#include "versal-ps-irq-map.dtsh"
 			#undef __intc__
 			,
 			/* Manual entries.  */

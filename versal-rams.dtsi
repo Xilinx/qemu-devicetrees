@@ -1,5 +1,5 @@
 /*
- * Zynq3 RAM definitions.
+ * Versal RAM definitions.
  *
  * Copyright (c) 2016, Xilinx Inc
  * All rights reserved.
@@ -27,7 +27,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "zynq3.dtsh"
+#include "versal.dtsh"
 
 /*
  * This file contains definititions for RAMs that get exported

@@ -1,5 +1,5 @@
 /*
- * Zynq3 PMC PPU block
+ * Versal PMC PPU block
  *
  * Copyright (c) 2016, Xilinx Inc.
  * All rights reserved.
@@ -27,7 +27,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "zynq3.dtsh"
+#include "versal.dtsh"
 
 #define CREATE_PPU_IOMOD(X)						\
 	pmc_ppu ## X ## _io_module: io-module@00 {			\

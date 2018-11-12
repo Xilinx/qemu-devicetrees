@@ -91,10 +91,10 @@ name: name@addr64 {							\
 #define MM_DDRMC_NPI_MAIN_SIZE		MM_DDRMC_RAM_EXCHANGE
 
 /* Include auto-generated files.  */
-#include "zynq3-top-memmap.dtsh"
-#include "zynq3-fpd-memmap.dtsh"
-#include "zynq3-pmc-memmap.dtsh"
-#include "zynq3-psm-memmap.dtsh"
-#include "zynq3-iou-memmap.dtsh"
-#include "zynq3-lpd-memmap.dtsh"
-#include "zynq3-npi-memmap.dtsh"
+#include "versal-top-memmap.dtsh"
+#include "versal-fpd-memmap.dtsh"
+#include "versal-pmc-memmap.dtsh"
+#include "versal-psm-memmap.dtsh"
+#include "versal-iou-memmap.dtsh"
+#include "versal-lpd-memmap.dtsh"
+#include "versal-npi-memmap.dtsh"

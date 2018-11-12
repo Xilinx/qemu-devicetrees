@@ -1,5 +1,5 @@
 /*
- * Zynq3 IRQs header file
+ * Versal IRQs header file
  *
  * Copyright (c) 2016, Xilinx Inc
  * All rights reserved.
@@ -28,7 +28,7 @@
  */
 
 /* Include the auto-generated stuff.  */
-#include "zynq3-ps-irqs.dtsh"
+#include "versal-ps-irqs.dtsh"
 
 /* Add manual entries.  */
 

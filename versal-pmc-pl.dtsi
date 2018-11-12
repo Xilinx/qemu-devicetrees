@@ -1,5 +1,5 @@
 /*
- * Zynq3 Virtual Cosim PS board device tree
+ * Versal PMC PL Interfaces
  *
  * Copyright (c) 2016, Xilinx Inc
  * All rights reserved.
@@ -27,5 +27,21 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "board-zynq3-ps-virt.dts"
-#include "zynq3-ps-pl-remoteport.dtsi"
+#include "versal.dtsh"
+
+&amba_pmc_pl {
+	doc-name = "PMC PL";
+	doc-status = "partial";
+
+	cfu@MM_PMC_CFU_APB {
+		doc-status = "partial";
+		doc-comments = "Stub";
+		doc-limitations = "No way to extract CFRAME data.";
+
+		compatible = "xlnx,zynq3-cfu";
+		reg = <0x0 MM_PMC_CFU_APB 0x0 0x1000 0x0
+		       0x0 MM_PMC_CFU_STREAM 0x0 0x1000 0x0>;
+		interrupts = <CFU_IRQ_0>;
+		dma = <&amba_pmc>;
+	};
+};

@@ -1,5 +1,5 @@
 /*
- * Zynq3 APU subsystem include file
+ * Versal APU subsystem include file
  *
  * Copyright (c) 2016, Xilinx Inc
  * All rights reserved.
@@ -27,7 +27,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "zynq3.dtsh"
+#include "versal.dtsh"
 
 #ifndef NUM_APUS
 #error "NUM APUs is not set!"
