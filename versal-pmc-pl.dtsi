@@ -38,7 +38,7 @@
 		doc-comments = "Stub";
 		doc-limitations = "No way to extract CFRAME data.";
 
-		compatible = "xlnx,zynq3-cfu";
+		compatible = "xlnx,versal-cfu";
 		reg = <0x0 MM_PMC_CFU_APB 0x0 0x1000 0x0
 		       0x0 MM_PMC_CFU_STREAM 0x0 0x1000 0x0>;
 		interrupts = <CFU_IRQ_0>;

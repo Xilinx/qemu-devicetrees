@@ -62,7 +62,7 @@
 #define GEN_DDRMC_UB(N)							\
 	npi_ddrmc_ub ## N: npi_ddrmc_ub ## N@MM_NPI_DDRMC_UB_ ## N {	\
 		doc-limitations = "Only the uB rst is supported";	\
-		compatible = "xlnx.zynq3-ddrmc-ub";			\
+		compatible = "xlnx.versal-ddrmc-ub";			\
 		reg = <0x0 MM_NPI_DDRMC_UB_ ## N 0x0			\
 			MM_NPI_DDRMC_UB_ ## N ## _SIZE 0x0>;		\
 		reset-gpios = <&pmc_clk_rst CRP_RST_NONPS_NPI >;	\
@@ -73,7 +73,7 @@
 #define GEN_DDRMC_MAIN(N)						\
 	npi_ddrmc_main ## N: npi_ddrmc_main ## N@MM_NPI_DDRMC_MAIN_ ## N { \
 		doc-limitations = "Just a stub";			\
-		compatible = "xlnx.zynq3-ddrmc-main";			\
+		compatible = "xlnx.versal-ddrmc-main";			\
 		reg = <0x0 MM_NPI_DDRMC_MAIN_ ## N 0x0			\
 			MM_NPI_DDRMC_MAIN_ ## N ## _SIZE 0x0>;		\
 		reset-gpios = <&pmc_clk_rst CRP_RST_NONPS_NPI >;	\
@@ -83,7 +83,7 @@
 #define GEN_DDRMC_NOC(N)						\
 	npi_ddrmc_noc ## N: npi_ddrmc_noc ## N@MM_NPI_DDRMC_NOC_ ## N { \
 		doc-limitations = "Just a stub";			\
-		compatible = "xlnx.zynq3-ddrmc-noc";			\
+		compatible = "xlnx.versal-ddrmc-noc";			\
 		reg = <0x0 MM_NPI_DDRMC_NOC_ ## N 0x0			\
 			MM_NPI_DDRMC_NOC_ ## N ## _SIZE 0xffffffff>;	\
 		reset-gpios = <&pmc_clk_rst CRP_RST_NONPS_NPI >;	\

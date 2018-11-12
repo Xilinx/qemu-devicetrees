@@ -32,11 +32,11 @@
 &amba_pmc_sec {
 	doc-name = "PMC Secure";
 	doc-status = "in-progress";
-	qemu-fdt-abort-on-error = "QEMU is missing zynq3 (ea) support.\nThis machine is not supported.";
+	qemu-fdt-abort-on-error = "QEMU is missing versal (ea) support.\nThis machine is not supported.";
 
 	trng@MM_PMC_TRNG {
 		doc-status = "complete";
-		compatible = "xlnx,zynq3-trng";
+		compatible = "xlnx,versal-trng";
 		reg = <0x0 MM_PMC_TRNG 0x0 0x1000 0x0>;
 		interrupts = <TRNG_IRQ_0>;
 	};
@@ -83,7 +83,7 @@
 	};
 	pmc_stream_switch: pmc_stream_switch@MM_PMC_PMC_SSS {
 		doc-status = "complete";
-		compatible = "zynq3,pmc-sss";
+		compatible = "versal,pmc-sss";
 		reg-extended = <&amba_pmc_sys 0x0 MM_PMC_PMC_SSS 0x0 0x4 0x1>;
 		stream-connected-dma0 = <&pmc_dma0_dst>;
 		stream-connected-dma1 = <&pmc_dma1_dst>;

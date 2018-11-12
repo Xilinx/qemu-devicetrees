@@ -82,7 +82,7 @@
 			      SYSMON_IRQ_1>;
 		reset-gpios = <&pmc_clk_rst CRP_RST_SYSMON_CFG>;
 	};
-	pmc_global_tamper: zynq3_pmc_tamper@ {
+	pmc_global_tamper: versal_pmc_tamper@ {
 		compatible = "xlnx,pmc_tamper";
 		reg-extended = <&amba_pmc_sys 0x0 0xF1110530 0x0 0x38 0x1
 				&lmb_pmc_ppu0 0x0 0xF0041100 0x0 0x38 0x2>;

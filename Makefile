@@ -85,7 +85,7 @@ $(LQSPI_XIP_OUTDIR)/%.dtb:	%.dts $(DTSI_FILES) $(HEADER_FILES)
 $(LQSPI_XIP_OUTDIR)/%.dts:	%.dts $(DTSI_FILES) $(HEADER_FILES)
 	$(call COMPILE,$(LQSPI_XIP_OUTDIR),dts,-DLQSPI_XIP)
 
-# Auto-generated Zynq3 fragments
+# Auto-generated Versal fragments
 # TODO: Add support for auto-generated dependency list
 versal-pmc-npi.dtsi: versal-pmc-npi-nxx.dtsi
 versal-pmc-npi-nxx.dtsi: Makefile
