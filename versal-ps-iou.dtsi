@@ -74,7 +74,7 @@ zname: zname@zbase {							\
 
 &amba_lpd {
 	GEM(gem0, MM_GEM0, MM_GEM0_SIZE, &amba, GEM0_IRQ_0, CRL_RST_GEM0, PLR_PWR_GEM0);
-	GEM(gem1, MM_GEM1, MM_GEM1_SIZE, &amba, GEM1_IRQ_0, CRL_RST_GEM1, PLR_PWR_GEM0);
+	GEM(gem1, MM_GEM1, MM_GEM1_SIZE, &amba, GEM1_IRQ_0, CRL_RST_GEM1, PLR_PWR_GEM1);
 
 	serial@MM_UART0 {
 		compatible = "pl011";
