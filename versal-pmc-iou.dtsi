@@ -154,6 +154,7 @@ name: name@0 {								\
 		interrupts = <QSPI_IRQ_0>;
 		dac-base = <MM_PMC_OSPI_DAC>;
 		reset-gpios = <&pmc_clk_rst CRP_RST_OSPI>;
+		gpios = <&pmc_iou_slcr 3 0>;
 	};
 
 	gpio_mr_mux: gpio_mr_mux@MM_PMC_OSPI_DAC {
