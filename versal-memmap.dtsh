@@ -90,6 +90,24 @@ name: name@addr64 {							\
 #define MM_DDRMC_NPI_MAIN		0x0
 #define MM_DDRMC_NPI_MAIN_SIZE		MM_DDRMC_RAM_EXCHANGE
 
+/* Based off MM_TOP_Reserved.  */
+#define MM_TOP_VIRTIO_MMIO_0  0xa0000000
+#define MM_TOP_VIRTIO_MMIO_1  0xa0000200
+#define MM_TOP_VIRTIO_MMIO_2  0xa0000400
+#define MM_TOP_VIRTIO_MMIO_3  0xa0000600
+#define MM_TOP_VIRTIO_MMIO_4  0xa0000800
+#define MM_TOP_VIRTIO_MMIO_5  0xa0000A00
+#define MM_TOP_VIRTIO_MMIO_6  0xa0000C00
+#define MM_TOP_VIRTIO_MMIO_7  0xa0000E00
+#define MM_TOP_VIRTIO_MMIO_8  0xa0001000
+#define MM_TOP_VIRTIO_MMIO_9  0xa0001200
+#define MM_TOP_VIRTIO_MMIO_10 0xa0001400
+#define MM_TOP_VIRTIO_MMIO_11 0xa0001600
+#define MM_TOP_VIRTIO_MMIO_12 0xa0001800
+#define MM_TOP_VIRTIO_MMIO_13 0xa0001A00
+#define MM_TOP_VIRTIO_MMIO_14 0xa0001C00
+#define MM_TOP_VIRTIO_MMIO_15 0xa0001E00
+
 /* Include auto-generated files.  */
 #include "versal-top-memmap.dtsh"
 #include "versal-fpd-memmap.dtsh"
