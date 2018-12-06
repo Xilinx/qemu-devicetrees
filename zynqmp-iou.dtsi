@@ -491,28 +491,28 @@ glue(ocm_mem_ctrl_, n): glue(ocm_mem_ctrl_, n)@n {						\
 			compatible = "xlnx,ps7-ttc-1.00.a";
 			interrupts = <TTC0_IRQ_0 TTC0_IRQ_1 TTC0_IRQ_2>;
 			reg = <BASE_ADDR(TTC0) 0x1000>;
-			timer-width = <32>;
+			width = <32>;
 		};
 		ps7_ttc_1: ps7-ttc@TTC1 {
 			clocks = <&misc_clk>;
 			compatible = "xlnx,ps7-ttc-1.00.a";
 			interrupts = <TTC1_IRQ_0 TTC1_IRQ_1 TTC1_IRQ_2>;
 			reg = <BASE_ADDR(TTC1) 0x1000>;
-			timer-width = <32>;
+			width = <32>;
 		};
 		ps7_ttc_2: ps7-ttc@TTC2 {
 			clocks = <&misc_clk>;
 			compatible = "xlnx,ps7-ttc-1.00.a";
 			interrupts = <TTC2_IRQ_0 TTC2_IRQ_1 TTC2_IRQ_2>;
 			reg = <BASE_ADDR(TTC2) 0x1000>;
-			timer-width = <32>;
+			width = <32>;
 		};
 		ps7_ttc_3: ps7-ttc@TTC3 {
 			clocks = <&misc_clk>;
 			compatible = "xlnx,ps7-ttc-1.00.a";
 			interrupts = <TTC3_IRQ_0 TTC3_IRQ_1 TTC3_IRQ_2>;
 			reg = <BASE_ADDR(TTC3) 0x1000>;
-			timer-width = <32>;
+			width = <32>;
 		};
 
 		uart_clk: uart_clk {
