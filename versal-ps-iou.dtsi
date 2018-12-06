@@ -73,8 +73,8 @@ zname: zname@zbase {							\
 };
 
 &amba_lpd {
-	GEM(gem0, MM_GEM0, MM_GEM0_SIZE, &amba, GEM0_IRQ_0, CRL_RST_GEM0, PLR_PWR_GEM0);
-	GEM(gem1, MM_GEM1, MM_GEM1_SIZE, &amba, GEM1_IRQ_0, CRL_RST_GEM1, PLR_PWR_GEM1);
+	GEM(gem0, MM_GEM0, MM_GEM0_SIZE, &smmu_tbu0, GEM0_IRQ_0, CRL_RST_GEM0, PLR_PWR_GEM0);
+	GEM(gem1, MM_GEM1, MM_GEM1_SIZE, &smmu_tbu0, GEM1_IRQ_0, CRL_RST_GEM1, PLR_PWR_GEM1);
 
 	serial@MM_UART0 {
 		compatible = "pl011";
@@ -143,14 +143,14 @@ zname: zname@zbase {							\
 		reset-gpios = < &crl CRL_RST_TTC3 >;
 	};
 
-	ZDMA_CHANNEL(adma0, adma, MM_ADMA_CH0, ADMA_IRQ_0, 128, &amba, SMID_DMA0_CH0);
-	ZDMA_CHANNEL(adma1, adma, MM_ADMA_CH1, ADMA_IRQ_1, 128, &amba, SMID_DMA0_CH1);
-	ZDMA_CHANNEL(adma2, adma, MM_ADMA_CH2, ADMA_IRQ_2, 128, &amba, SMID_DMA0_CH2);
-	ZDMA_CHANNEL(adma3, adma, MM_ADMA_CH3, ADMA_IRQ_3, 128, &amba, SMID_DMA0_CH3);
-	ZDMA_CHANNEL(adma4, adma, MM_ADMA_CH4, ADMA_IRQ_4, 128, &amba, SMID_DMA0_CH4);
-	ZDMA_CHANNEL(adma5, adma, MM_ADMA_CH5, ADMA_IRQ_5, 128, &amba, SMID_DMA0_CH5);
-	ZDMA_CHANNEL(adma6, adma, MM_ADMA_CH6, ADMA_IRQ_6, 128, &amba, SMID_DMA0_CH6);
-	ZDMA_CHANNEL(adma7, adma, MM_ADMA_CH7, ADMA_IRQ_7, 128, &amba, SMID_DMA0_CH7);
+	ZDMA_CHANNEL(adma0, adma, MM_ADMA_CH0, ADMA_IRQ_0, 128, &smmu_tbu0, SMID_DMA0_CH0);
+	ZDMA_CHANNEL(adma1, adma, MM_ADMA_CH1, ADMA_IRQ_1, 128, &smmu_tbu0, SMID_DMA0_CH1);
+	ZDMA_CHANNEL(adma2, adma, MM_ADMA_CH2, ADMA_IRQ_2, 128, &smmu_tbu0, SMID_DMA0_CH2);
+	ZDMA_CHANNEL(adma3, adma, MM_ADMA_CH3, ADMA_IRQ_3, 128, &smmu_tbu0, SMID_DMA0_CH3);
+	ZDMA_CHANNEL(adma4, adma, MM_ADMA_CH4, ADMA_IRQ_4, 128, &smmu_tbu0, SMID_DMA0_CH4);
+	ZDMA_CHANNEL(adma5, adma, MM_ADMA_CH5, ADMA_IRQ_5, 128, &smmu_tbu0, SMID_DMA0_CH5);
+	ZDMA_CHANNEL(adma6, adma, MM_ADMA_CH6, ADMA_IRQ_6, 128, &smmu_tbu0, SMID_DMA0_CH6);
+	ZDMA_CHANNEL(adma7, adma, MM_ADMA_CH7, ADMA_IRQ_7, 128, &smmu_tbu0, SMID_DMA0_CH7);
 };
 
 &amba_root {
