@@ -40,6 +40,7 @@
 #include "versal-ddrmc.dtsi"
 #include "versal-ps-apu.dtsi"
 #include "versal-ps-iou.dtsi"
+#include "versal-virtio-mmio.dtsi"
 #include "versal-boot-init.dtsi"
 
 / {
