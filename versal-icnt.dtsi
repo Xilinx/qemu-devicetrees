@@ -27,6 +27,8 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include "smmuv2.dtsh"
+
 #define SECURE 1
 #define NON_SECURE 0
 
@@ -270,5 +272,43 @@ NAME ## _memattr: NAME ## _ma {				\
 		#interrupt-cells = <1>;
 		gpio-controller;
 		#gpio-cells = <1>;
+	};
+};
+
+/* SMMU structure. See 5.7 FPD Interconnect.  */
+/ {
+	SMMU_TBU_SLAVE(0);
+	SMMU_TBU_SLAVE(1);
+	SMMU_TBU_SLAVE(2);
+	SMMU_TBU_SLAVE(3);
+	SMMU_TBU_SLAVE(4);
+	SMMU_TBU_SLAVE(5);
+	SMMU_TBU_SLAVE(6);
+};
+
+&amba_lpd {
+	smmu: smmu@MM_FPD_FPD_SMMUTCU {
+		compatible = "arm,mmu-500";
+		reg-extended = <&amba_lpd 0x0 MM_FPD_FPD_SMMUTCU 0x0 MM_FPD_FPD_SMMUTCU_SIZE 0x0
+				&smmu_tbu0 0x0 0x0 0xffffffff 0xffffffff 0x0
+				&smmu_tbu1 0x0 0x0 0xffffffff 0xffffffff 0x0
+				&smmu_tbu2 0x0 0x0 0xffffffff 0xffffffff 0x0
+				&smmu_tbu3 0x0 0x0 0xffffffff 0xffffffff 0x0
+				&smmu_tbu4 0x0 0x0 0xffffffff 0xffffffff 0x0
+				&smmu_tbu5 0x0 0x0 0xffffffff 0xffffffff 0x0
+				&smmu_tbu6 0x0 0x0 0xffffffff 0xffffffff 0x0
+				>;
+		dma = <&amba>;
+		mr-0 = <&amba>;
+		mr-1 = <&amba>;
+		mr-2 = <&amba>;
+		mr-3 = <&amba>;
+		mr-4 = <&amba>;
+		mr-5 = <&amba>;
+		mr-6 = <&amba>;
+
+		num-smr = <64>;
+		num-cb = <32>;
+		num-pages = <32>;
 	};
 };
