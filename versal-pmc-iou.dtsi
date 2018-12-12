@@ -152,7 +152,6 @@ name: name@0 {								\
 		                &lospi_mr 0x0 0x0  0x0 0x20000000 0x0>;
 		dma-src = <&ospi_dma_src>;
 		interrupts = <QSPI_IRQ_0>;
-		dac-base = <MM_PMC_OSPI_DAC>;
 		reset-gpios = <&pmc_clk_rst CRP_RST_OSPI>;
 		gpios = <&pmc_iou_slcr 3 0>;
 	};
