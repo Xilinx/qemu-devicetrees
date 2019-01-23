@@ -145,7 +145,6 @@
 		 */
 		reg = < MM_TOP_ME_H MM_TOP_ME_L MM_TOP_ME_SIZE_H MM_TOP_ME_SIZE_L 0x1
 
-			0x0 MM_TOP_PCIE_region_0 0x0 MM_TOP_PCIE_region_0_SIZE 0x1
 			0x0 MM_TOP_Reserved_2 0x0 MM_TOP_Reserved_2_SIZE 0x1
 			MM_TOP_Reserved_3_H MM_TOP_Reserved_3_L 0x0 MM_TOP_Reserved_3_SIZE 0x1
 			MM_TOP_Reserved_4_H MM_TOP_Reserved_4_L MM_TOP_Reserved_4_SIZE_H MM_TOP_Reserved_4_SIZE_L 0x1
@@ -176,7 +175,6 @@
 		compatible = "remote-port-memory-master";
 		remote-ports = <&cosim_rp_0 59>;
 		reg = <
-			 0x0 MM_TOP_PCIE_region_0 0x0 MM_TOP_PCIE_region_0_SIZE 0x1
 			 0x0 MM_TOP_Reserved_2 0x0 MM_TOP_Reserved_2_SIZE 0x1
 			 MM_TOP_PMC_ALIAS0_H MM_TOP_PMC_ALIAS0_L 0x0 MM_TOP_PMC_ALIAS0_SIZE 0x1
 			 MM_TOP_PMC_ALIAS1_H MM_TOP_PMC_ALIAS1_L 0x0 MM_TOP_PMC_ALIAS1_SIZE 0x1
