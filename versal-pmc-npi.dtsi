@@ -98,6 +98,15 @@
 		reset-gpios = <&pmc_clk_rst CRP_RST_NONPS_NPI >;	\
 	}
 
+#define GEN_XPIO_DCI(N)							\
+	npi_xpio ## N: npi_xpio ## N@MM_NPI_XPIO_DCI_COMPONENT_ ## N {	\
+		doc-limitations = "Just a stub";			\
+		compatible = "xlnx.versal-xpio-dci";			\
+		reg = <0x0 MM_NPI_XPIO_DCI_COMPONENT_ ## N 0x0		\
+			MM_NPI_XPIO_DCI_COMPONENT_ ## N ## _SIZE 0xffffffff>;\
+		reset-gpios = <&pmc_clk_rst CRP_RST_NONPS_NPI >;	\
+	}
+
 &amba_pmc_pl {
 #include "versal-pmc-npi-nxx.dtsi"
 
@@ -126,6 +135,14 @@
 	GEN_GTY_NPI(8);
 	GEN_GTY_NPI(9);
 	GEN_GTY_NPI(10);
+
+	GEN_XPIO_DCI(0);
+	GEN_XPIO_DCI(1);
+	GEN_XPIO_DCI(2);
+	GEN_XPIO_DCI(3);
+	GEN_XPIO_DCI(4);
+	GEN_XPIO_DCI(5);
+	GEN_XPIO_DCI(6);
 };
 
 // Docs
