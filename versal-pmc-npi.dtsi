@@ -89,6 +89,15 @@
 		reset-gpios = <&pmc_clk_rst CRP_RST_NONPS_NPI >;	\
 	}
 
+#define GEN_GTY_NPI(N)							\
+	npi_gty ## N: npi_gty ## N@MM_NPI_GTY_NPI_SLAVE_ ## N {		\
+		doc-limitations = "Just a stub";			\
+		compatible = "xlnx.versal-gty-npi";			\
+		reg = <0x0 MM_NPI_GTY_NPI_SLAVE_ ## N 0x0		\
+			MM_NPI_GTY_NPI_SLAVE_ ## N ## _SIZE 0xffffffff>;\
+		reset-gpios = <&pmc_clk_rst CRP_RST_NONPS_NPI >;	\
+	}
+
 &amba_pmc_pl {
 #include "versal-pmc-npi-nxx.dtsi"
 
@@ -105,6 +114,18 @@
 	GEN_DDRMC_MAIN(1);
 	GEN_DDRMC_NOC(0);
 	GEN_DDRMC_NOC(1);
+
+	GEN_GTY_NPI(0);
+	GEN_GTY_NPI(1);
+	GEN_GTY_NPI(2);
+	GEN_GTY_NPI(3);
+	GEN_GTY_NPI(4);
+	GEN_GTY_NPI(5);
+	GEN_GTY_NPI(6);
+	GEN_GTY_NPI(7);
+	GEN_GTY_NPI(8);
+	GEN_GTY_NPI(9);
+	GEN_GTY_NPI(10);
 };
 
 // Docs
