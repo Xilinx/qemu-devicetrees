@@ -107,6 +107,15 @@
 		reset-gpios = <&pmc_clk_rst CRP_RST_NONPS_NPI >;	\
 	}
 
+#define GEN_CMT_XPLL(N)							\
+	npi_cmt_xpll ## N: npi_cmt_xpll ## N@MM_NPI_CMT_XPLL_TOP_ ## N {\
+		doc-limitations = "Just a stub";			\
+		compatible = "xlnx.versal-cmt-xpll";			\
+		reg = <0x0 MM_NPI_CMT_XPLL_TOP_ ## N 0x0		\
+			MM_NPI_CMT_XPLL_TOP_ ## N ## _SIZE 0xffffffff>;	\
+		reset-gpios = <&pmc_clk_rst CRP_RST_NONPS_NPI >;	\
+	}
+
 &amba_pmc_pl {
 #include "versal-pmc-npi-nxx.dtsi"
 
@@ -143,6 +152,21 @@
 	GEN_XPIO_DCI(4);
 	GEN_XPIO_DCI(5);
 	GEN_XPIO_DCI(6);
+
+	GEN_CMT_XPLL(0);
+	GEN_CMT_XPLL(1);
+	GEN_CMT_XPLL(2);
+	GEN_CMT_XPLL(3);
+	GEN_CMT_XPLL(4);
+	GEN_CMT_XPLL(5);
+	GEN_CMT_XPLL(6);
+	GEN_CMT_XPLL(7);
+	GEN_CMT_XPLL(8);
+	GEN_CMT_XPLL(9);
+	GEN_CMT_XPLL(10);
+	GEN_CMT_XPLL(11);
+	GEN_CMT_XPLL(12);
+	GEN_CMT_XPLL(13);
 };
 
 // Docs
