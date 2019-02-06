@@ -116,6 +116,24 @@
 		reset-gpios = <&pmc_clk_rst CRP_RST_NONPS_NPI >;	\
 	}
 
+#define GEN_CMT_DPLL(N)							\
+	npi_cmt_dpll ## N: npi_cmt_dpll ## N@MM_NPI_CMT_DPLL_TOP_ ## N {\
+		doc-limitations = "Just a stub";			\
+		compatible = "xlnx.versal-cmt-dpll";			\
+		reg = <0x0 MM_NPI_CMT_DPLL_TOP_ ## N 0x0		\
+			MM_NPI_CMT_DPLL_TOP_ ## N ## _SIZE 0xffffffff>;	\
+		reset-gpios = <&pmc_clk_rst CRP_RST_NONPS_NPI >;	\
+	}
+
+#define GEN_CMT_MMCM(N)							\
+	npi_cmt_mmcm ## N: npi_cmt_mmcm ## N@MM_NPI_CMT_MMCM_TOP_ ## N {\
+		doc-limitations = "Just a stub";			\
+		compatible = "xlnx.versal-cmt-mmcm";			\
+		reg = <0x0 MM_NPI_CMT_MMCM_TOP_ ## N 0x0		\
+			MM_NPI_CMT_MMCM_TOP_ ## N ## _SIZE 0xffffffff>;	\
+		reset-gpios = <&pmc_clk_rst CRP_RST_NONPS_NPI >;	\
+	}
+
 &amba_pmc_pl {
 #include "versal-pmc-npi-nxx.dtsi"
 
@@ -167,6 +185,26 @@
 	GEN_CMT_XPLL(11);
 	GEN_CMT_XPLL(12);
 	GEN_CMT_XPLL(13);
+
+	GEN_CMT_DPLL(0);
+	GEN_CMT_DPLL(1);
+	GEN_CMT_DPLL(2);
+	GEN_CMT_DPLL(3);
+	GEN_CMT_DPLL(4);
+	GEN_CMT_DPLL(5);
+	GEN_CMT_DPLL(6);
+	GEN_CMT_DPLL(7);
+	GEN_CMT_DPLL(8);
+	GEN_CMT_DPLL(9);
+	GEN_CMT_DPLL(10);
+	GEN_CMT_DPLL(11);
+	GEN_CMT_DPLL(12);
+	GEN_CMT_DPLL(13);
+
+	GEN_CMT_MMCM(0);
+	GEN_CMT_MMCM(1);
+	GEN_CMT_MMCM(2);
+	GEN_CMT_MMCM(3);
 };
 
 // Docs
