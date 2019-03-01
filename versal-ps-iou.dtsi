@@ -98,6 +98,17 @@ zname: zname@zbase {							\
 		#gpio-cells = <1>;
 	};
 
+	rpu_ctrl: rpu_ctrl@MM_RPU {
+		compatible = "xlnx,versal-rpu";
+		reg-extended = <&amba_lpd 0x0 MM_RPU 0x0 MM_RPU_SIZE 0x0
+                                &amba_r5_0 0x0 0x0 0x0 0x80000 0x0
+                                &amba 0x0 MM_R5_0_ATCM 0x0 0x40000 0x0
+                                &amba_r5_1 0x0 0x0 0x0 0x80000 0x0
+                                &amba 0x0 0xFFE90000 0x0 0x80000 0x0>;
+		gpio-controller;
+		#gpio-cells = <1>;
+	};
+
 	ipi: ipi@MM_IPI {
 		compatible = "xlnx,versal-ipi";
 		reg = <0x0 MM_IPI 0x0 MM_IPI_SIZE 0x0>;
