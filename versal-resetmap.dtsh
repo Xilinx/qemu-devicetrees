@@ -53,6 +53,8 @@
 #define CRL_RST_FPD_SRST	29
 #define CRL_PSM_SLEEP		30
 #define CRL_PSM_WAKEUP		31
+#define CRL_RST_CPU_R5_0	32
+#define CRL_RST_CPU_R5_1	33
 
 /* PMC Reset macros.  */
 #define CRP_RST_QSPI		0
