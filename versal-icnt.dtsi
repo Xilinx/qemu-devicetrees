@@ -265,6 +265,51 @@ NAME ## _memattr: NAME ## _ma {				\
 		ranges;
 	};
 
+	amba_rpu: amba_rpu@0 {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		#priority-cells = <1>;
+		compatible = "simple-bus";
+		ranges;
+
+		downstream_amba {
+			compatible = "qemu:memory-region";
+			alias = <&amba>;
+			/* Full address range with 0 priority */
+			reg = <0x0 0x0 0xffffffff 0xffffffff 0>;
+		};
+	};
+
+	amba_r5_0: amba_r5@0 {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		#priority-cells = <1>;
+		compatible = "simple-bus";
+		ranges;
+
+		downstream_amba {
+			compatible = "qemu:memory-region";
+			alias = <&amba_rpu>;
+			/* Full address range with 0 priority */
+			reg = <0x0 0x0 0xffffffff 0xffffffff 0>;
+		};
+	};
+
+	amba_r5_1: amba_r5@1 {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		#priority-cells = <1>;
+		compatible = "simple-bus";
+		ranges;
+
+		downstream_amba {
+			compatible = "qemu:memory-region";
+			alias = <&amba_rpu>;
+			/* Full address range with 0 priority */
+			reg = <0x0 0x0 0xffffffff 0xffffffff 0>;
+		};
+	};
+
 	/* Dummy controller useful to create gaps for IRQ/GPIO connections.  */
 	dummy1: dummy1@0 {
 		doc-ignore = <1>;
