@@ -43,6 +43,9 @@ name: name@addr64 {							\
 
 #define ACPU_GIC_REDIST		0xF9080000
 
+#define R5_GIC_DIST		0xF9000000
+#define R5_GIC			0xF9001000
+
 #define MM_PMC_QSPI_DMA		0xf1030800
 #define MM_PMC_LQSPI		0xC0000000
 #define MM_PMC_LQSPI_SIZE	0x08000000
