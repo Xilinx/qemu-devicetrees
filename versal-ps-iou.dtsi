@@ -107,6 +107,8 @@ zname: zname@zbase {							\
                                 &amba 0x0 0xFFE90000 0x0 0x80000 0x0>;
 		gpio-controller;
 		#gpio-cells = <1>;
+
+		gpios = < &crl CRL_RST_CPU_R5_0 &crl CRL_RST_CPU_R5_1 >;
 	};
 
 	ipi: ipi@MM_IPI {
