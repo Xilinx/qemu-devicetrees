@@ -170,6 +170,14 @@
 		#gpio-cells = <1>;
 	};
 
+	lmb_psm: lmb_psm@0 {
+		rp_lmb_psm@0 {
+			compatible = "remote-port-memory-master";
+			remote-ports = <&ps_pmc_rp 13>;
+			reg = < 0x0 0x0 0xFFFFFFFF 0xFFFFFFFF 0xFFFFFFFF /* -1 */ >;
+		};
+	};
+
 	/* Dummy stub to avoid ifdefs in the interrupt-map.  */
 	pmc_gic_proxy: pmc_gic_proxy {
 		doc-ignore = <1>;

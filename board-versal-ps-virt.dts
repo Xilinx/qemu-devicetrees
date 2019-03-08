@@ -180,6 +180,11 @@
 		remote-ports = <&ps_pmc_rp 12>;
 		gpios = < &npi_ddrmc_ub1 0 >;
 	};
+	rp_lmb_psm: rp_lmb_psm@0 {
+		compatible = "remote-port-memory-slave";
+		remote-ports = <&ps_pmc_rp 13>;
+		mr = <&lmb_psm>;
+	};
 #else
 	/* Single ARCH PS board has no PPU MicroBlazes.  */
 	pmc_ppu0: dummy_ppu0@0 {
