@@ -120,6 +120,7 @@ NAME ## _memattr: NAME ## _ma {				\
 			#priority-cells = <1>;
 			compatible = "simple-bus";
 			ranges;
+			MR_BACKGROUND(amba_psm);
 		};
 
 		amba_fpd: amba_fpd@0 {
@@ -203,8 +204,6 @@ NAME ## _memattr: NAME ## _ma {				\
 			#priority-cells = <1>;
 			compatible = "simple-bus";
 			ranges;
-
-			MR_BACKGROUND(amba);
 		};
 	};
 
@@ -244,6 +243,7 @@ NAME ## _memattr: NAME ## _ma {				\
 		#priority-cells = <1>;
 		compatible = "simple-bus";
 		ranges;
+		MR_BACKGROUND(amba);
 
 		main_bus_for_pmc {
 			compatible = "qemu:memory-region";
