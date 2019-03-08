@@ -246,7 +246,7 @@
 		compatible = "xlnx,zynqmp-gicp";
 		reg = <0x0 MM_PMC_GIC_PROXY 0x0 MM_PMC_GIC_PROXY_SIZE 0x0>;
 		interrupt-parent = <&pmc_ppu1_io_intc>;
-		interrupts = <16>;
+		interrupts = <IRQ_PPU1_INTC_PMC_GICP>;
 	};
 };
 
