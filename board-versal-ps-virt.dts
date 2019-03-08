@@ -177,7 +177,7 @@
 	};
 	rp_npi_ddrmc_ub1: rp_npi_ddrmc_ub@1 {
 		compatible = "remote-port-gpio";
-		remote-ports = <&ps_pmc_rp 11>;
+		remote-ports = <&ps_pmc_rp 12>;
 		gpios = < &npi_ddrmc_ub1 0 >;
 	};
 #else
