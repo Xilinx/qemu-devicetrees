@@ -70,6 +70,16 @@ zname: zname@zbase {							\
 		cpu0 = <&cpu0>;
 		cpu1 = <&cpu1>;
 	};
+
+	afi_fm@MM_FPD_FPD_AFIFM0 {
+		compatible = "xlnx,versal-afi-fm";
+		reg = <0x0 MM_FPD_FPD_AFIFM0 0x0 MM_FPD_FPD_AFIFM0_SIZE 0x0>;
+	};
+
+	afi_fm@MM_FPD_FPD_AFIFM2 {
+		compatible = "xlnx,versal-afi-fm";
+		reg = <0x0 MM_FPD_FPD_AFIFM2 0x0 MM_FPD_FPD_AFIFM2_SIZE 0x0>;
+	};
 };
 
 &amba_lpd {
@@ -164,6 +174,11 @@ zname: zname@zbase {							\
 	ZDMA_CHANNEL(adma5, adma, MM_ADMA_CH5, ADMA_IRQ_5, 128, &smmu_tbu0, SMID_DMA0_CH5);
 	ZDMA_CHANNEL(adma6, adma, MM_ADMA_CH6, ADMA_IRQ_6, 128, &smmu_tbu0, SMID_DMA0_CH6);
 	ZDMA_CHANNEL(adma7, adma, MM_ADMA_CH7, ADMA_IRQ_7, 128, &smmu_tbu0, SMID_DMA0_CH7);
+
+	afi_fm@MM_AFIFM4_LPD {
+		compatible = "xlnx,versal-afi-fm";
+		reg = <0x0 MM_AFIFM4_LPD 0x0 MM_AFIFM4_LPD_SIZE 0x0>;
+	};
 };
 
 &amba_root {
