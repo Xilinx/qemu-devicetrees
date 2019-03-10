@@ -27,88 +27,9 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "zynqmp.dtsh"
-
-/dts-v1/;
-
-#include "zynqmp-arm.dtsi"
-#include "zynqmp-memory-regions.dtsi"
+#include "ultra96-arm.dts"
 
 / {
 	model = "ZynqMP ZCU100 RevA";
 	compatible = "xlnx,zynqmp-zcu100", "xlnx,zynqmp";
-};
-
-/* Invalidate all GEMs as there is no Ethernet */
-&gem0 {
-	compatible = "invalid";
-};
-
-&gem1 {
-	compatible = "invalid";
-};
-
-&gem2 {
-	compatible = "invalid";
-};
-
-&gem3 {
-	compatible = "invalid";
-};
-
-&ps7_qspi_0 {
-	qspi-flash@0 {
-		compatible = "n25q128a13";
-		spi-max-frequency = <108000000>;
-		reg = <0>;
-		partition@0 {
-			label = "qspi-fsbl-uboot";
-			reg = <0x0 0x1000000>;
-		};
-	};
-};
-
-/* Add I2C devices */
-
-/* SPI devices are WiFi/Bluetooth chip.
- * Add this if QEMU supports it
- */
-
-/* Add DP clock when it is finalised */
-
-/* Hack in the si570 clock for DP testing
- * This is not actually on the board
- */
-
-&amba {
-	i2c1: i2c1@0xFF030000 {
-		#address-cells = <1>;
-		#size-cells = <0>;
-		clocks = <I2C_CLOCKS>;
-		compatible = "xlnx,ps7-i2c-1.00.a", "cdns,i2c-r1p10";
-		interrupts = <I2C1_IRQ_0>;
-		reg = <BASE_ADDR(I2C1) 0x1000>;
-		i2cswitch@74 {
-			#address-cells = <1>;
-			#size-cells = <0>;
-			compatible = "nxp,pca9548";
-			reg = <0x74>;
-			i2c@2 {
-				#address-cells = <1>;
-				#size-cells = <0>;
-				reg = <2>;
-				si570_1: clock-generator@5d {
-					compatible = "silabs,si57x";
-					reg = <0x5d>;
-					temperature-stability=<50>;
-				};
-			};
-		};
-	};
-};
-
-&iou_slcr_0 {
-	mio-bank0-1.8v = <1>;
-	mio-bank1-1.8v = <1>;
-	mio-bank2-1.8v = <1>;
 };
