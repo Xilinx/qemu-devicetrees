@@ -39,23 +39,6 @@
 	compatible = "xlnx,zynqmp-ultra96", "xlnx,zynqmp";
 };
 
-/* Invalidate all GEMs as there is no Ethernet */
-&gem0 {
-	compatible = "invalid";
-};
-
-&gem1 {
-	compatible = "invalid";
-};
-
-&gem2 {
-	compatible = "invalid";
-};
-
-&gem3 {
-	compatible = "invalid";
-};
-
 &ps7_qspi_0 {
 	qspi-flash@0 {
 		compatible = "n25q128a13";
