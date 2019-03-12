@@ -175,9 +175,9 @@ zname: zname@zbase {							\
 	ZDMA_CHANNEL(adma6, adma, MM_ADMA_CH6, ADMA_IRQ_6, 128, &smmu_tbu0, SMID_DMA0_CH6);
 	ZDMA_CHANNEL(adma7, adma, MM_ADMA_CH7, ADMA_IRQ_7, 128, &smmu_tbu0, SMID_DMA0_CH7);
 
-	afi_fm@MM_AFIFM4_LPD {
+	afi_fm@MM_LPD_AFIFM4 {
 		compatible = "xlnx,versal-afi-fm";
-		reg = <0x0 MM_AFIFM4_LPD 0x0 MM_AFIFM4_LPD_SIZE 0x0>;
+		reg = <0x0 MM_LPD_AFIFM4 0x0 MM_LPD_AFIFM4_SIZE 0x0>;
 	};
 };
 

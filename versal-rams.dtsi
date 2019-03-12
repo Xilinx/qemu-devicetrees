@@ -44,13 +44,12 @@
 		container = <&amba>;
 	};
 
-	/* FIXME: This should be located in the PS.  */
-	ocm: ocm@MM_OCM {
+	ocm_mem: ocm_mem@MM_OCM_MEM {
 		compatible = "qemu:memory-region";
 		device_type = "memory";
 		container = <&amba>;
 		qemu,ram = <QEMU_RAM_PROPERTY>;
-		reg = <0x0 MM_OCM 0x0 MM_OCM_SIZE 0x0>;
+		reg = <0x0 MM_OCM_MEM 0x0 MM_OCM_MEM_SIZE 0x0>;
 	};
 
 	ipi_msgbuf: ipi_msgbuf@MM_IPI_MSGBUF {
