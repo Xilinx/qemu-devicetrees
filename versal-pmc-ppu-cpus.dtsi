@@ -127,6 +127,6 @@
 &pmc_ppu1 {
 	gpios = <&pmc_global PMC_GLOBAL_PPU1_RST
 		 &pmc_global PMC_GLOBAL_PPU1_WAKEUP >;
-	gpio-names = "reset", "wakeup";
+	gpio-names = "reset", "halt";
 	qemu,halt = <0x1>;
 };
