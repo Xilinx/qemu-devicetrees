@@ -89,9 +89,9 @@ $(LQSPI_XIP_OUTDIR)/%.dts:	%.dts $(DTSI_FILES) $(HEADER_FILES)
 # TODO: Add support for auto-generated dependency list
 versal-pmc-npi.dtsi: versal-pmc-npi-nxx.dtsi
 versal-pmc-npi-nxx.dtsi: Makefile
-	@python -c 'for a in range(0, 34): print("\tGEN_NMU(" + str(a) + ")")' > $@
-	@python -c 'for a in range(0, 30): print("\tGEN_NSU(" + str(a) + ")")' >> $@
-	@python -c 'for a in range(0, 75): print("\tGEN_NPS(" + str(a) + ")")' >> $@
+	@python -c 'for a in range(0, 54): print("\tGEN_NMU(" + str(a) + ")")' > $@
+	@python -c 'for a in range(0, 50): print("\tGEN_NSU(" + str(a) + ")")' >> $@
+	@python -c 'for a in range(0, 146): print("\tGEN_NPS(" + str(a) + ")")' >> $@
 
 clean:
 	$(RM) versal-pmc-npi-nxx.dtsi
