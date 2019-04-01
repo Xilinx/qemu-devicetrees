@@ -43,7 +43,8 @@
 	arm,reset-hivecs = <1>;						\
 	#interrupt-cells = <1>;						\
 	memory = < &amba_r5_ ## n >;					\
-	qemu,halt = <1>
+	qemu,halt = <1>;						\
+	memattr_ns = <&rpu ## n ## _s_memattr>
 
 / {
 	cpus {
