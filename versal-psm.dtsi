@@ -155,6 +155,10 @@
 	psm_global: psm_global_reg@MM_PSM_GLOBAL_REG {
 		compatible = "xlnx,psm-global-reg";
 		reg = <0x0 MM_PSM_GLOBAL_REG 0x0 MM_PSM_GLOBAL_REG_SIZE 0x0>;
+		interrupt-parent = <&psm0_io_intc>;
+		interrupts = <IRQ_PSM_INTC_PWRDWN_REQ IRQ_PSM_INTC_WAKEUP_REQ
+				IRQ_PSM_INTC_SW_RESET_REQ IRQ_PSM_INTC_PWRUP_REQ
+				IRQ_PSM_INTC_PWR_CONTROL_REQ IRQ_PSM_INTC_ISOLATE_REQ>;
 		gpios = < &psm_local 32 &psm_local 33	/* LOC_PWR_STATE.  */
 			  &psm_local 34 &psm_local 35
 			  &psm_local 36 &psm_local 37
