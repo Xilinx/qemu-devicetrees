@@ -40,7 +40,8 @@
 
 		compatible = "xlnx,versal-cfu";
 		reg = <0x0 MM_PMC_CFU_APB 0x0 0x1000 0x0
-		       0x0 MM_PMC_CFU_STREAM 0x0 0x1000 0x0>;
+		       0x0 MM_PMC_CFU_STREAM 0x0 MM_PMC_CFU_STREAM_SIZE 0x0
+		       0x0 MM_PMC_CFU_STREAM_2 0x0 MM_PMC_CFU_STREAM_2_SIZE 0x0>;
 		interrupts = <CFU_IRQ_0>;
 		dma = <&amba_pmc>;
 	};
