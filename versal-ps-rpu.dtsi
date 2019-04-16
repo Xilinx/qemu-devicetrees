@@ -56,8 +56,9 @@
 
 			gpios = < &crl CRL_RST_CPU_R5_0
 				  &rpu_ctrl 0
-				  &rpu_ctrl 2 >;
-			gpio-names = "reset", "halt", "wfi";
+				  &rpu_ctrl 2
+				  &rpu_ctrl 4 >;
+			gpio-names = "reset", "halt", "wfi", "vinithi";
 		};
 		rpu_cpu1: rpu_cpu@1 {
 			R5_CPU_COMMON(1);
@@ -65,8 +66,9 @@
 
 			gpios = < &crl CRL_RST_CPU_R5_1
 				  &rpu_ctrl 1
-				  &rpu_ctrl 3 >;
-			gpio-names = "reset", "halt", "wfi";
+				  &rpu_ctrl 3
+				  &rpu_ctrl 5 >;
+			gpio-names = "reset", "halt", "wfi", "vinithi";
 		};
 	};
 
