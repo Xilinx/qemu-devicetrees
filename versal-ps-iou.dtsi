@@ -115,6 +115,9 @@ zname: zname@zbase {							\
                                 &amba 0x0 MM_R5_0_ATCM 0x0 0x40000 0x0
                                 &amba_r5_1 0x0 0x0 0x0 0x80000 0x0
                                 &amba 0x0 0xFFE90000 0x0 0x80000 0x0>;
+		rpu0 = <&rpu_cpu0>;
+		rpu1 = <&rpu_cpu1>;
+
 		gpio-controller;
 		#gpio-cells = <1>;
 

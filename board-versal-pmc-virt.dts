@@ -48,6 +48,10 @@
 	};
 	cpu1: apu@1 {
 	};
+	rpu_cpu0: rpu_cpu0 {
+	};
+	rpu_cpu1: rpu_cpu1 {
+	};
 #ifndef HAVE_DDRMC_CPUS
 	ddrmc_ub0: ddrmc_ub@0 {
 		#interrupt-cells = <1>;
