@@ -193,8 +193,8 @@ glue(glue(glue(tcm_mem_ctrl_, n), _), AB): glue(glue(tcm_mem_ctrl_, AB), n)@n {	
 			gpios = <&pmu_global 6
 					 &pmu_global 7
 #ifdef MULTI_ARCH
-					 &pmu_io_gpi3 5
-					 &pmu_io_gpi3 6
+					 &pmu_io_gpi3 5 0
+					 &pmu_io_gpi3 6 0
 #endif
 			>;
 		};
