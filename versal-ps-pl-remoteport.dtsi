@@ -120,8 +120,8 @@
 	m_axi_gp0: m_axi_gp0@MM_TOP_FPD_AFI_0 {
 		compatible = "remote-port-memory-master";
 		remote-ports = <&cosim_rp_0 40>;
-		reg = <0x0 MM_TOP_FPD_AFI_0_0 0x0 MM_TOP_FPD_AFI_0_0_SIZE 0x0
-		       0x0 MM_TOP_FPD_AFI_0_1 0x0 MM_TOP_FPD_AFI_0_1_SIZE 0x0>;
+		reg = <0x0 MM_TOP_PS_PL_FPD_LowAddr0 0x0 MM_TOP_PS_PL_FPD_LowAddr0_SIZE 0x0
+		       0x0 MM_TOP_PS_PL_FPD_LowAddr1 0x0 MM_TOP_PS_PL_FPD_LowAddr1_SIZE 0x0>;
 	};
 
 	/* Device ID 41 reserved for m_axi_gp1 in Extended PS.  */
@@ -129,7 +129,7 @@
 	m_axi_gp2: m_axi_gp2@MM_TOP_LPD_AFI_FS {
 		compatible = "remote-port-memory-master";
 		remote-ports = <&cosim_rp_0 42>;
-		reg = <0x0 MM_TOP_LPD_AFI_FS 0x0 MM_TOP_LPD_AFI_FS_SIZE 0x0>;
+		reg = <0x0 MM_TOP_PS_PL_LPD_LowAddr 0x0 MM_TOP_PS_PL_LPD_LowAddr_SIZE 0x0>;
 	};
 
 	/* IF_PS_NOC_CCI_0 - 3.  ID 50 - 53 */
@@ -143,14 +143,14 @@
 		 * Since DDR never goes over I/O (we do direct shared memory acceses)
 		 * the only range that get's routed here is the ME.
 		 */
-		reg = < MM_TOP_ME_H MM_TOP_ME_L MM_TOP_ME_SIZE_H MM_TOP_ME_SIZE_L 0x1
+		reg = < MM_TOP_ME_Programming_H MM_TOP_ME_Programming_L MM_TOP_ME_Programming_SIZE_H MM_TOP_ME_Programming_SIZE_L 0x1
 
 			0x0 MM_TOP_Reserved_2 0x0 MM_TOP_Reserved_2_SIZE 0x1
 			MM_TOP_Reserved_3_H MM_TOP_Reserved_3_L 0x0 MM_TOP_Reserved_3_SIZE 0x1
-			MM_TOP_Reserved_4_H MM_TOP_Reserved_4_L MM_TOP_Reserved_4_SIZE_H MM_TOP_Reserved_4_SIZE_L 0x1
+			MM_TOP_Reserved_4_H MM_TOP_Reserved_4_L 0x0 MM_TOP_Reserved_4_SIZE 0x1
 			MM_TOP_PCIe_region_1_H MM_TOP_PCIe_region_1_L MM_TOP_PCIe_region_1_SIZE_H MM_TOP_PCIe_region_1_SIZE_L 0x1
-			MM_TOP_Reserved_5_H MM_TOP_Reserved_5_L MM_TOP_Reserved_5_SIZE_H MM_TOP_Reserved_5_SIZE_L 0x1
-			MM_TOP_Reserved_6_H MM_TOP_Reserved_6_L MM_TOP_Reserved_6_SIZE_H MM_TOP_Reserved_6_SIZE_L 0x1
+			MM_TOP_Reserved_9_H MM_TOP_Reserved_9_L MM_TOP_Reserved_9_SIZE_H MM_TOP_Reserved_9_SIZE_L 0x1
+			MM_TOP_Reserved_10_H MM_TOP_Reserved_10_L MM_TOP_Reserved_10_SIZE_H MM_TOP_Reserved_10_SIZE_L 0x1
 			MM_TOP_PL_via_NoC_H MM_TOP_PL_via_NoC_L MM_TOP_PL_via_NoC_SIZE_H MM_TOP_PL_via_NoC_SIZE_L 0x1
 		      >;
 	};
@@ -176,16 +176,16 @@
 		remote-ports = <&cosim_rp_0 59>;
 		reg = <
 			 0x0 MM_TOP_Reserved_2 0x0 MM_TOP_Reserved_2_SIZE 0x1
-			 MM_TOP_PMC_ALIAS0_H MM_TOP_PMC_ALIAS0_L 0x0 MM_TOP_PMC_ALIAS0_SIZE 0x1
-			 MM_TOP_PMC_ALIAS1_H MM_TOP_PMC_ALIAS1_L 0x0 MM_TOP_PMC_ALIAS1_SIZE 0x1
-			 MM_TOP_PMC_ALIAS2_H MM_TOP_PMC_ALIAS2_L 0x0 MM_TOP_PMC_ALIAS2_SIZE 0x1
-			 MM_TOP_PMC_ALIAS3_H MM_TOP_PMC_ALIAS3_L 0x0 MM_TOP_PMC_ALIAS3_SIZE 0x1
+			 MM_TOP_PMC_alias_region_0_H MM_TOP_PMC_alias_region_0_L 0x0 MM_TOP_PMC_alias_region_0_SIZE 0x1
+			 MM_TOP_PMC_alias_region_1_H MM_TOP_PMC_alias_region_1_L 0x0 MM_TOP_PMC_alias_region_1_SIZE 0x1
+			 MM_TOP_PMC_alias_region_2_H MM_TOP_PMC_alias_region_2_L 0x0 MM_TOP_PMC_alias_region_2_SIZE 0x1
+			 MM_TOP_PMC_alias_region_3_H MM_TOP_PMC_alias_region_3_L 0x0 MM_TOP_PMC_alias_region_3_SIZE 0x1
 			 MM_TOP_Reserved_3_H MM_TOP_Reserved_3_L 0x0 MM_TOP_Reserved_3_SIZE 0x1
-			 MM_TOP_ME_H MM_TOP_ME_L MM_TOP_ME_SIZE_H MM_TOP_ME_SIZE_L 0x1
-			 MM_TOP_Reserved_4_H MM_TOP_Reserved_4_L MM_TOP_Reserved_4_SIZE_H MM_TOP_Reserved_4_SIZE_L 0x1
+			 MM_TOP_ME_Programming_H MM_TOP_ME_Programming_L MM_TOP_ME_Programming_SIZE_H MM_TOP_ME_Programming_SIZE_L 0x1
+			 MM_TOP_Reserved_4_H MM_TOP_Reserved_4_L 0x0 MM_TOP_Reserved_4_SIZE 0x1
 			 MM_TOP_PCIe_region_1_H MM_TOP_PCIe_region_1_L MM_TOP_PCIe_region_1_SIZE_H MM_TOP_PCIe_region_1_SIZE_L 0x1
-			 MM_TOP_Reserved_5_H MM_TOP_Reserved_5_L MM_TOP_Reserved_5_SIZE_H MM_TOP_Reserved_5_SIZE_L 0x1
-			 MM_TOP_Reserved_6_H MM_TOP_Reserved_6_L MM_TOP_Reserved_6_SIZE_H MM_TOP_Reserved_6_SIZE_L 0x1
+			 MM_TOP_Reserved_9_H MM_TOP_Reserved_9_L MM_TOP_Reserved_9_SIZE_H MM_TOP_Reserved_9_SIZE_L 0x1
+			 MM_TOP_Reserved_10_H MM_TOP_Reserved_10_L MM_TOP_Reserved_10_SIZE_H MM_TOP_Reserved_10_SIZE_L 0x1
 			 MM_TOP_PL_via_NoC_H MM_TOP_PL_via_NoC_L MM_TOP_PL_via_NoC_SIZE_H MM_TOP_PL_via_NoC_SIZE_L 0x1
 			>;
 	};
