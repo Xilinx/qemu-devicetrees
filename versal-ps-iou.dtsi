@@ -213,6 +213,23 @@ zname: zname@zbase {							\
 		compatible = "xlnx,versal-afi-fm";
 		reg = <0x0 MM_LPD_AFIFM4 0x0 MM_LPD_AFIFM4_SIZE 0x0>;
 	};
+
+	lpd_i2c_wrapper {
+		ps_i2c0: ps_i2c0@MM_PS_I2C0 {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			compatible = "xlnx,ps7-i2c-1.00.a", "cdns,i2c-r1p10";
+			interrupts = <I2C0_IRQ_0>;
+			reg = <0x0 MM_PS_I2C0 0x0 MM_PS_I2C0_SIZE 0x0>;
+		};
+		ps_i2c1: ps_i2c0@MM_PS_I2C1 {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			compatible = "xlnx,ps7-i2c-1.00.a", "cdns,i2c-r1p10";
+			interrupts = <I2C1_IRQ_0>;
+			reg = <0x0 MM_PS_I2C1 0x0 MM_PS_I2C1_SIZE 0x0>;
+		};
+	};
 };
 
 &amba_root {
