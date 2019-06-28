@@ -134,6 +134,15 @@
 		reset-gpios = <&pmc_clk_rst CRP_RST_NONPS_NPI >;	\
 	}
 
+#define GEN_NOC_NCRB(N)							\
+	noc_ncrb ## N: noc_ncrb ## N@MM_NPI_NOC_NCRB_ ## N {\
+		doc-limitations = "just a stub";			\
+		compatible = "xlnx.noc_ncrb";				\
+		reg = <0x0 MM_NPI_NOC_NCRB_ ## N 0x0			\
+			MM_NPI_NOC_NCRB_ ## N ## _SIZE 0xffffffff>;	\
+		reset-gpios = <&pmc_clk_rst CRP_RST_NONPS_NPI>;		\
+	}
+
 &amba_pmc_pl {
 #include "versal-pmc-npi-nxx.dtsi"
 
@@ -211,6 +220,13 @@
 	GEN_CMT_MMCM(1);
 	GEN_CMT_MMCM(2);
 	GEN_CMT_MMCM(3);
+
+	GEN_NOC_NCRB(0);
+	GEN_NOC_NCRB(1);
+	GEN_NOC_NCRB(2);
+	GEN_NOC_NCRB(3);
+	GEN_NOC_NCRB(4);
+	GEN_NOC_NCRB(5);
 };
 
 // Docs
