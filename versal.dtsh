@@ -41,6 +41,10 @@
 #define CPU_NR_RPU0 2
 #define CPU_NR_RPU1 3
 
+#define PLATFORM_SILICON     0x0
+#define PLATFORM_QEMU        0x3
+#define PLATFORM_QEMU_COSIM  0x7
+
 /* QEMU RAM Settings */
 #if defined(MULTI_ARCH)
 	#define IS_MULTI_ARCH(a) a
