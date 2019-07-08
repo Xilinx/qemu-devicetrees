@@ -79,8 +79,43 @@
 				xlnx,intc-positive = <0xffff>;
 				xlnx,intc-use-ext-intr = <0x1>;
 			};
-
-			pmu_io_gpi1: pmu_gpi@20 {
+			pmu_io_gpo0: pmu_gpo@10 {
+				#gpio-cells = <2>;
+				gpio-controller;
+				compatible = "xlnx,io-gpo-1.02.a", "xlnx,io_gpo";
+				reg = <BASE_ADDR(PMUIOM(10)) 0x4>;
+				xlnx,gpo-init = <0x0>;
+				xlnx,gpo-size = <0x9>;
+				xlnx,use-gpo = <0x1>;
+			};
+			pmu_io_gpo1: pmu_gpo@14 {
+				#gpio-cells = <2>;
+				gpio-controller;
+				compatible = "xlnx,io-gpo-1.02.a", "xlnx,io_gpo";
+				reg = <BASE_ADDR(PMUIOM(14)) 0x4>;
+				xlnx,gpo-init = <0x0>;
+				xlnx,gpo-size = <0x20>;
+				xlnx,use-gpo = <0x1>;
+			};
+			pmu_io_gpo2: pmu_gpo@18 {
+				#gpio-cells = <2>;
+				gpio-controller;
+				compatible = "xlnx,io-gpo-1.02.a", "xlnx,io_gpo";
+				reg = <BASE_ADDR(PMUIOM(18)) 0x4>;
+				xlnx,gpo-init = <0x0>;
+				xlnx,gpo-size = <0x20>;
+				xlnx,use-gpo = <0x1>;
+			};
+			pmu_io_gpo3: pmu_gpo@1c {
+				#gpio-cells = <2>;
+				gpio-controller;
+				compatible = "xlnx,io-gpo-1.02.a", "xlnx,io_gpo";
+				reg = <BASE_ADDR(PMUIOM(1c)) 0x4>;
+				xlnx,gpo-init = <0x0>;
+				xlnx,gpo-size = <0x20>;
+				xlnx,use-gpo = <0x1>;
+			};
+			pmu_io_gpi0: pmu_gpi@20 {
 				#gpio-cells = <2>;
 				gpio-controller;
 				compatible = "xlnx,io-gpi-1.02.a", "xlnx,io_gpi";
@@ -91,7 +126,7 @@
 				xlnx,gpi-size = <0x20>;
 				xlnx,use-gpi = <0x1>;
 			};
-			pmu_io_gpi2: pmu_gpi@24 {
+			pmu_io_gpi1: pmu_gpi@24 {
 				#gpio-cells = <2>;
 				gpio-controller;
 				compatible = "xlnx,io-gpi-1.02.a", "xlnx,io_gpi";
@@ -103,7 +138,7 @@
 				xlnx,use-gpi = <0x1>;
 				gpios = <&pmu_local 29>;
 			};
-			pmu_io_gpi3: pmu_gpi@28 {
+			pmu_io_gpi2: pmu_gpi@28 {
 				#gpio-cells = <2>;
 				gpio-controller;
 				compatible = "xlnx,io-gpi-1.02.a", "xlnx,io_gpi";
@@ -115,7 +150,7 @@
 				xlnx,use-gpi = <0x1>;
 				gpios = <&pmu_local 30>;
 			};
-			pmu_io_gpi4: pmu_gpi@2c {
+			pmu_io_gpi3: pmu_gpi@2c {
 				#gpio-cells = <2>;
 				gpio-controller;
 				compatible = "xlnx,io-gpi-1.02.a", "xlnx,io_gpi";
@@ -127,44 +162,7 @@
 				xlnx,use-gpi = <0x1>;
 			};
 
-			pmu_io_gpo1: pmu_gpo@10 {
-				#gpio-cells = <2>;
-				gpio-controller;
-				compatible = "xlnx,io-gpo-1.02.a", "xlnx,io_gpo";
-				reg = <BASE_ADDR(PMUIOM(10)) 0x4>;
-				xlnx,gpo-init = <0x0>;
-				xlnx,gpo-size = <0x9>;
-				xlnx,use-gpo = <0x1>;
-			};
-			pmu_io_gpo2: pmu_gpo@14 {
-				#gpio-cells = <2>;
-				gpio-controller;
-				compatible = "xlnx,io-gpo-1.02.a", "xlnx,io_gpo";
-				reg = <BASE_ADDR(PMUIOM(14)) 0x4>;
-				xlnx,gpo-init = <0x0>;
-				xlnx,gpo-size = <0x20>;
-				xlnx,use-gpo = <0x1>;
-			};
-			pmu_io_gpo3: pmu_gpo@18 {
-				#gpio-cells = <2>;
-				gpio-controller;
-				compatible = "xlnx,io-gpo-1.02.a", "xlnx,io_gpo";
-				reg = <BASE_ADDR(PMUIOM(18)) 0x4>;
-				xlnx,gpo-init = <0x0>;
-				xlnx,gpo-size = <0x20>;
-				xlnx,use-gpo = <0x1>;
-			};
-			pmu_io_gpo4: pmu_gpo@1c {
-				#gpio-cells = <2>;
-				gpio-controller;
-				compatible = "xlnx,io-gpo-1.02.a", "xlnx,io_gpo";
-				reg = <BASE_ADDR(PMUIOM(1c)) 0x4>;
-				xlnx,gpo-init = <0x0>;
-				xlnx,gpo-size = <0x20>;
-				xlnx,use-gpo = <0x1>;
-			};
-
-			pmu_io_pit1: pmu_pit@40 {
+			pmu_io_pit0: pmu_pit@40 {
 				compatible = "xlnx,io-pit-1.02.a", "xlnx,io_pit";
 				interrupt-parent = <&pmu_io_intc>;
 				interrupts = <3 0>;
@@ -174,12 +172,12 @@
 				xlnx,pit-readable = <0x1>;
 				xlnx,pit-size = <0x20>;
 				xlnx,use-pit = <0x1>;
-				gpios = <&pmu_io_gpo1 2 0 &pmu_io_pit2 0>;
+				gpios = <&pmu_io_gpo0 2 0 &pmu_io_pit1 0>;
 				gpio-names = "ps_config","ps_hit_in";
 				gpio-controller;
 				#gpio-cells = <1>;
 			};
-			pmu_io_pit2: pmu_pit@50 {
+			pmu_io_pit1: pmu_pit@50 {
 				compatible = "xlnx,io-pit-1.02.a", "xlnx,io_pit";
 				interrupt-parent = <&pmu_io_intc>;
 				interrupts = <4 0>;
@@ -192,7 +190,7 @@
 				gpio-controller;
 				#gpio-cells = <1>;
 			};
-			pmu_io_pit3: pmu_pit@60 {
+			pmu_io_pit2: pmu_pit@60 {
 				compatible = "xlnx,io-pit-1.02.a", "xlnx,io_pit";
 				interrupt-parent = <&pmu_io_intc>;
 				interrupts = <5 0>;
@@ -202,12 +200,12 @@
 				xlnx,pit-readable = <0x1>;
 				xlnx,pit-size = <0x20>;
 				xlnx,use-pit = <0x1>;
-				gpios = <&pmu_io_gpo1 6 0 &pmu_io_pit4 0>;
+				gpios = <&pmu_io_gpo0 6 0 &pmu_io_pit2 0>;
 				gpio-names = "ps_config","ps_hit_in";
 				gpio-controller;
 				#gpio-cells = <1>;
 			};
-			pmu_io_pit4: pmu_pit@70 {
+			pmu_io_pit3: pmu_pit@70 {
 				compatible = "xlnx,io-pit-1.02.a", "xlnx,io_pit";
 				interrupt-parent = <&pmu_io_intc>;
 				interrupts = <6 0>;

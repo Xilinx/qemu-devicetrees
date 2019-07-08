@@ -346,7 +346,7 @@ glue(ocm_mem_ctrl_, n): glue(ocm_mem_ctrl_, n)@n {						\
 			reg = <BASE_ADDR(USB3_0_XHCI) 0x4000>;
 			interrupts = <USB3_0_1_PMU_WAKEUP_IRQ_0>;
 #ifdef MULTI_ARCH
-			gpios = <&pmu_io_gpi2 7 0 &pmu_local 7>;
+			gpios = <&pmu_io_gpi1 7 0 &pmu_local 7>;
 			gpio-names = "wake", "pwr_cntrl";
 #endif
 		};
@@ -355,7 +355,7 @@ glue(ocm_mem_ctrl_, n): glue(ocm_mem_ctrl_, n)@n {						\
 			reg = <BASE_ADDR(USB3_1_XHCI) 0x4000>;
 			interrupts = <USB3_0_1_PMU_WAKEUP_IRQ_1>;
 #ifdef MULTI_ARCH
-			gpios = <&pmu_io_gpi2 8 0 &pmu_local 8>;
+			gpios = <&pmu_io_gpi1 8 0 &pmu_local 8>;
 			gpio-names = "wake", "pwr_cntrl";
 #endif
 		};
@@ -583,7 +583,7 @@ glue(ocm_mem_ctrl_, n): glue(ocm_mem_ctrl_, n)@n {						\
 			reg = <BASE_ADDR(0xff418000) 0x100>;
 			compatible = "xlnx,zynqmp-gicp";
 			interrupt-controller;
-			gpios = <&pmu_io_gpi2 17 0>;
+			gpios = <&pmu_io_gpi1 17 0>;
 		};
 #endif
 
@@ -626,7 +626,7 @@ glue(ocm_mem_ctrl_, n): glue(ocm_mem_ctrl_, n)@n {						\
 #ifdef MULTI_ARCH
 			gpios = <&rp_gpio_pmu 3>;
 			gpio-names = "mb_sleep";
-			error-out-gpios = <&pmu_io_gpi2 29 0 &pmu_io_gpi2 30  0>;
+			error-out-gpios = <&pmu_io_gpi1 29 0 &pmu_io_gpi1 30  0>;
 
 			pwr-state-gpios = <	&pmu_local 1		\
 								&pmu_local 2		\
