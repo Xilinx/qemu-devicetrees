@@ -90,6 +90,16 @@ zname: zname@zbase {							\
 		compatible = "xlnx.cci500";
 		reg = <0x0 MM_FPD_FPD_MAINCCI 0x0 MM_FPD_FPD_MAINCCI_SIZE 0x0>;
 	};
+
+	cpm_crcpm@MM_CPM_CPM_CRCPM {
+		compatible = "xlnx.versal_cpm_crcpm";
+		reg = <0x0 MM_CPM_CPM_CRCPM 0x0 MM_CPM_CPM_CRCPM_SIZE 0x0>;
+	};
+
+	cpm_pcsr@MM_CPM_CPM_PCSR {
+		compatible = "xlnx.versal_cpm_pcsr";
+		reg = <0x0 MM_CPM_CPM_PCSR 0x0 MM_CPM_CPM_PCSR_SIZE 0x0>;
+	};
 };
 
 &amba_lpd {
