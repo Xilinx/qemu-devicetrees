@@ -119,3 +119,4 @@ name: name@addr64 {							\
 #include "versal-iou-memmap.dtsh"
 #include "versal-lpd-memmap.dtsh"
 #include "versal-npi-memmap.dtsh"
+#include "versal-cpm-memmap.dtsh"
