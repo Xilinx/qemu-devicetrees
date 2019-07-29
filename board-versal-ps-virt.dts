@@ -226,6 +226,34 @@
 };
 
 /*
+ * One flash for each SPI-master to match prebuilt system.dtb in BSP
+ * xilinx-versal-virt-2019.1
+ */
+#define BDEV_SPI_FLASH(_NAME, _COMPAT, _SIZEM, _REGVAL)	\
+_NAME: _NAME@0 {							\
+	#address-cells = <1>;						\
+	#size-cells = <1>;						\
+	#priority-cells = <0>;						\
+	#bus-cells = <1>;						\
+	compatible = _COMPAT, "st,m25p80";				\
+	spi-max-frequency = <50000000>;					\
+	reg = <_REGVAL>;						\
+	blockdev-node-name = #_NAME;					\
+	_NAME@0x00000000 {						\
+		label = #_NAME;						\
+		reg = <0x00000000 _SIZEM>;				\
+	};								\
+};
+
+&ps7_spi_0 {
+	BDEV_SPI_FLASH(spi0_flash0, "m25p80", 0x00100000, 0x0 0x0)
+};
+
+&ps7_spi_1 {
+	BDEV_SPI_FLASH(spi1_flash0, "m25p80", 0x00100000, 0x0 0x0)
+};
+
+/*
  * Use 2Gbit QSPI flashes to allow verification of Image-searching
  * in ROM upto 256MB.
  */
