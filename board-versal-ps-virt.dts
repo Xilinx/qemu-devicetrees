@@ -229,18 +229,34 @@
  * Use 2Gbit QSPI flashes to allow verification of Image-searching
  * in ROM upto 256MB.
  */
+#define DI_SPI_FLASH(_DI, _NAME, _COMPAT, _SIZEM, _REGVAL) \
+_NAME: _NAME@0 {							\
+	#address-cells = <1>;						\
+	#size-cells = <1>;						\
+	#priority-cells = <0>;						\
+	#bus-cells = <1>;						\
+	compatible = _COMPAT, "st,m25p80";				\
+	spi-max-frequency = <50000000>;					\
+	reg = <_REGVAL>;						\
+	drive-index = <_DI>;						\
+	_NAME@0x00000000 {						\
+		label = #_NAME;						\
+		reg = <0x00000000 _SIZEM>;				\
+	};								\
+};
+
 &pmc_qspi_0 {
-	SPI_FLASH(qspi_flash_lcs_lb,"m25qu02gcbb", 0x02000000, 0x0 0x0)
-	SPI_FLASH(qspi_flash_lcs_ub,"m25qu02gcbb", 0x02000000, 0x2 0x1)
-	SPI_FLASH(qspi_flash_ucs_lb,"m25qu02gcbb", 0x02000000, 0x1 0x0)
-	SPI_FLASH(qspi_flash_ucs_ub,"m25qu02gcbb", 0x02000000, 0x3 0x1)
+	DI_SPI_FLASH(0, qspi_flash_lcs_lb, "m25qu02gcbb", 0x02000000, 0x0 0x0)
+	DI_SPI_FLASH(1, qspi_flash_lcs_ub, "m25qu02gcbb", 0x02000000, 0x2 0x1)
+	DI_SPI_FLASH(2, qspi_flash_ucs_lb, "m25qu02gcbb", 0x02000000, 0x1 0x0)
+	DI_SPI_FLASH(3, qspi_flash_ucs_ub, "m25qu02gcbb", 0x02000000, 0x3 0x1)
 };
 
 &ospi {
-	SPI_FLASH(ospi_flash_lcs_lb, "mt35xu01gbba", 0x02000000, 0x0 0x0)
-	SPI_FLASH(ospi_flash_lcs_ub, "mt35xu01gbba", 0x02000000, 0x1 0x0)
-	SPI_FLASH(ospi_flash_ucs_lb, "mt35xu01gbba", 0x02000000, 0x2 0x0)
-	SPI_FLASH(ospi_flash_ucs_ub, "mt35xu01gbba", 0x02000000, 0x3 0x0)
+	DI_SPI_FLASH(4, ospi_flash_lcs_lb, "mt35xu01gbba", 0x02000000, 0x0 0x0)
+	DI_SPI_FLASH(5, ospi_flash_lcs_ub, "mt35xu01gbba", 0x02000000, 0x1 0x0)
+	DI_SPI_FLASH(6, ospi_flash_ucs_lb, "mt35xu01gbba", 0x02000000, 0x2 0x0)
+	DI_SPI_FLASH(7, ospi_flash_ucs_ub, "mt35xu01gbba", 0x02000000, 0x3 0x0)
 };
 
 &gem0 {
