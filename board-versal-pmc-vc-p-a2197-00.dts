@@ -27,4 +27,4 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "board-versal-pmc-vc-p-a2197-00.dts"
+#include "board-versal-pmc-virt.dts"
