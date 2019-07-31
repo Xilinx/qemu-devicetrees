@@ -360,6 +360,11 @@ NAME ## _memattr: NAME ## _ma {				\
 				&smmu_tbu5 0x0 0x0 0xffffffff 0xffffffff 0x0
 				&smmu_tbu6 0x0 0x0 0xffffffff 0xffffffff 0x0
 				>;
+		interrupt-parent = <&smmu_reg>;
+		interrupts = < 0 1 2 3 4 5 6 7 8
+			       8 9 10 11 12 13 14 15 16
+			       17>;
+
 		dma = <&amba>;
 		mr-0 = <&amba>;
 		mr-1 = <&amba>;
@@ -372,5 +377,12 @@ NAME ## _memattr: NAME ## _ma {				\
 		num-smr = <64>;
 		num-cb = <32>;
 		num-pages = <32>;
+	};
+
+	smmu_reg: smmu0@MM_FPD_FPD_SMMU {
+		compatible = "xlnx,smmu-reg";
+		reg = <0x0 MM_FPD_FPD_SMMU 0x0 MM_FPD_FPD_SMMU_SIZE 0x0>;
+		interrupt-controller;
+		interrupts = <INTF_FPD_SMMU_IRQ_0>;
 	};
 };
