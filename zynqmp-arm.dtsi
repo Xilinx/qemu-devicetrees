@@ -360,7 +360,6 @@ glue(glue(glue(tcm_mem_ctrl_, n), _), AB): glue(glue(tcm_mem_ctrl_, AB), n)@n {	
 			num-cpu = <4>;
 			revision = <2>;
 			has-security-extensions = <1>;
-			map-stride = <ACPU_GIC_STRIDE>;
 			int-id = <0x0202143B>;
 		};
 
@@ -438,7 +437,8 @@ glue(glue(glue(tcm_mem_ctrl_, n), _), AB): glue(glue(tcm_mem_ctrl_, AB), n)@n {	
 		zynqmp-gic-cpu-alias@0xf902f000 {
 			compatible = "qemu:memory-region";
 			alias = <&gic 1>;
-			reg = <BASE_ADDR(0xf902f000) 0x1000 1>;
+			/* 8K to place GIC_DIR right at the 0x10000 offset.  */
+			reg = <BASE_ADDR(0xf902f000) 0x2000 1>;
 		};
 
 		/* Alias the VCPU as well */
@@ -515,7 +515,8 @@ glue(glue(glue(tcm_mem_ctrl_, n), _), AB): glue(glue(tcm_mem_ctrl_, AB), n)@n {	
 		zynqmp-gic-vcpu-alias@0xf906f000 {
 			compatible = "qemu:memory-region";
 			alias = <&gic 3>;
-			reg = <BASE_ADDR(0xf906f000) 0x1000 1>;
+			/* 8K to place GIC_DIR right at the 0x10000 offset.  */
+			reg = <BASE_ADDR(0xf906f000) 0x2000 1>;
 		};
 	};
 
