@@ -64,7 +64,7 @@
 			xlnx,lmb-dwidth = <0x20>;
 			xlnx,mask = <0xffffff80>;
 			xlnx,use-io-bus = <0x1>;
-
+#ifdef MULTI_ARCH
 			pmu_io_intc: pmu_intc@0C {
 				#interrupt-cells = <2>;
 				compatible = "xlnx,io-intc-1.02.a", "xlnx,io_intc";
@@ -79,6 +79,13 @@
 				xlnx,intc-positive = <0xffff>;
 				xlnx,intc-use-ext-intr = <0x1>;
 			};
+#else
+			/* Dummy sink for interrupts.  */
+			pmu_io_intc: dummy_pmu_intc@0 {
+				#interrupt-cells = <2>;
+				interrupt-controller;
+			};
+#endif
 			pmu_io_gpo0: pmu_gpo@10 {
 				#gpio-cells = <2>;
 				gpio-controller;

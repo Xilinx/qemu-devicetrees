@@ -202,9 +202,7 @@ glue(glue(glue(tcm_mem_ctrl_, n), _), AB): glue(glue(tcm_mem_ctrl_, AB), n)@n {	
 	};
 };
 
-#ifdef MULTI_ARCH
 #include "zynqmp-pmu-dev.dtsi"
-#endif
 
 / {
 	cpus {
@@ -586,19 +584,6 @@ glue(glue(glue(tcm_mem_ctrl_, n), _), AB): glue(glue(tcm_mem_ctrl_, AB), n)@n {	
 		};
 	};
 };
-
-#ifndef MULTI_ARCH
-/ {
-	#address-cells = <MEMORY_ADDRESS_CELLS>;
-	#size-cells = <1>;
-
-	/* Dummy sink for interrupts.  */
-	pmu_io_intc: dummy_pmu_intc@0 {
-		#interrupt-cells = <2>;
-		interrupt-controller;
-	};
-};
-#endif
 
 #include "zynqmp-iou.dtsi"
 #include "zynqmp-csu.dtsi"
