@@ -135,73 +135,12 @@
 		i2cWire-peer= <&pmc_i2c_wire>;
 	};
 };
-
 &ps_i2c1 {
-	ps_i2c1_wire: ps_i2c1_wire@0 {
-		compatible = "i2c-wire";
-		i2cWire-peer = <&i2c_se1>;
+	eeprom_versal: eeprom@51 { /* U116 */
+		compatible = "at,24c08";
+		reg = <0x51>;
+		size = <0x4000>;
 	};
-	i2cswitch@74 {
-		#address-cells = <1>;
-		#size-cells = <0>;
-		reg = <0x74>;
-		compatible = "pca9548";
-		chip-enable = <1>;
-		i2c@0 {
-			i2c_se1: i2c_se1@0 {
-				compatible = "i2c-wire";
-				i2cWire-peer= <&ps_i2c1_wire>;
-			};
-			eeprom@54 {
-				compatible = "at,24c08";
-				reg = <0x54>;
-				size = <0x4000>;
-			};
-			clock-generator@5d {
-				compatible = "silabs,si57x";
-				reg = <0x5d>;
-				temperature-stability=<50>;
-			};
-		};
-		i2c@2 {
-			eeprom@51 {
-				compatible = "at,24c08";
-				reg = <0x51>;
-				size = <0x4000>;
-			};
-		};
-		i2c@3 {
-			clock-generator@5d {
-				compatible = "silabs,si57x";
-				reg = <0x5d>;
-				temperature-stability=<50>;
-			};
-			dimm1_spd@0x50 {
-				compatible = "sodimm-spd";
-				reg = <0x50>;
-			};
-		};
-		i2c@4 {
-			clock-generator@5d {
-				compatible = "silabs,si57x";
-				reg = <0x5d>;
-				temperature-stability=<50>;
-			};
-			dimm2_spd@0x50 {
-				compatible = "sodimm-spd";
-				reg = <0x50>;
-			};
-		};
-		i2c@5 {
-			clock-generator@5d {
-				compatible = "silabs,si57x";
-				reg = <0x5d>;
-				temperature-stability=<50>;
-			};
-		};
-	};
-
-
 };
 &pmc_i2c {
 	pmc_i2c_wire: pmc_i2c_wire@0 {
