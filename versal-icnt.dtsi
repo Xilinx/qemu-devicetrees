@@ -148,6 +148,7 @@ NAME ## _memattr: NAME ## _ma {				\
 			MR_BACKGROUND(amba_pmc_sec);
 			MR_BACKGROUND(amba_pmc_sys);
 			MR_BACKGROUND(amba_pmc_pl);
+			MR_BACKGROUND(amba_pmc_bat);
 		};
 
 		/* amba_pmc represents the PMC Main Switch.  */
@@ -195,6 +196,14 @@ NAME ## _memattr: NAME ## _ma {				\
 		};
 
 		amba_pmc_pl: amba_pmc_pl@0 {
+			#address-cells = <2>;
+			#size-cells = <2>;
+			#priority-cells = <1>;
+			compatible = "simple-bus";
+			ranges;
+		};
+
+		amba_pmc_bat: amba_pmc_bat@0 {
 			#address-cells = <2>;
 			#size-cells = <2>;
 			#priority-cells = <1>;
