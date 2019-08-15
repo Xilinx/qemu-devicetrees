@@ -55,7 +55,7 @@ NAME ## _memattr: NAME ## _ma {				\
 	MEMATTR(pmc_ppu0, SECURE, SMID_PPU0);
 	MEMATTR(pmc_ppu1, SECURE, SMID_PPU1);
 	MEMATTR(psm, SECURE, SMID_PSM);
-        /* DDRMC Master IDs?  */
+	/* DDRMC Master IDs?  */
 	MEMATTR(ddrmc_ub0, SECURE, 0x0);
 	MEMATTR(ddrmc_ub1, SECURE, 0x0);
 	MEMATTR(pmc_dma0, SECURE, SMID_PMC_DMA0);
