@@ -302,20 +302,16 @@ glue(ocm_mem_ctrl_, n): glue(ocm_mem_ctrl_, n)@n {						\
 		};
 
 		ps7_can_0: ps7-can@CAN0 {
-			clock-names = "ref_clk", "aper_clk";
-			clocks = <&misc_clk>, <&misc_clk>;
-			compatible = "xlnx,ps7-can-1.00.a";
+			compatible = "xlnx,zynqmp-can";
 			interrupts = <CAN0_IRQ_0>;
 			reg = <BASE_ADDR(CAN0) 0x1000>;
-			xlnx,can-clk-freq-hz = <100000000>;
+			ctrl-idx = <0x0>;
 		};
 		ps7_can_1: ps7-can@CAN1 {
-			clock-names = "ref_clk", "aper_clk";
-			clocks = <&misc_clk>, <&misc_clk>;
-			compatible = "xlnx,ps7-can-1.00.a";
+			compatible = "xlnx,zynqmp-can";
 			interrupts = <CAN1_IRQ_0>;
 			reg = <BASE_ADDR(CAN1) 0x1000>;
-			xlnx,can-clk-freq-hz = <100000000>;
+			ctrl-idx = <0x1>;
 		};
 
 		serdes_0: serdes@SERDES {
