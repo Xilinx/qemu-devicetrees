@@ -139,7 +139,7 @@
 					&smmu_tbu4 BASE_ADDR(0) 0xffffffff 0xffffffff
 					&smmu_tbu5 BASE_ADDR(0) 0xffffffff 0xffffffff>;
 			interrupt-parent = <&smmu_reg>;
-			interrupts = <0 1 2 3 4 5 6 7 8
+			interrupts = <0 1 2 3 4 5 6 7
 					8 9 10 11 12 13 14 15 16
 					17>;
 
