@@ -143,7 +143,22 @@
 				xlnx,gpi-interrupt = <0x1>;
 				xlnx,gpi-size = <0x20>;
 				xlnx,use-gpi = <0x1>;
-				gpios = <&pmu_local 29>;
+				gpios = <&pmu_local 29
+						&dummy_pmu_gpio 0 0
+						&dummy_pmu_gpio 0 0
+						&dummy_pmu_gpio 0 0
+						&dummy_pmu_gpio 0 0
+						&dummy_pmu_gpio 0 0
+						&dummy_pmu_gpio 0 0
+						&dummy_pmu_gpio 0 0
+						&dummy_pmu_gpio 0 0
+						&dummy_pmu_gpio 0 0
+						&mio_in 26 0
+						&mio_in 27 0
+						&mio_in 28 0
+						&mio_in 29 0
+						&mio_in 30 0
+						&mio_in 31 0>;
 			};
 			pmu_io_gpi2: pmu_gpi@28 {
 				#gpio-cells = <2>;
@@ -241,6 +256,11 @@
 				xlnx,uart-use-parity = <0x0>;
 				xlnx,use-uart-rx = <0x0>;
 				xlnx,use-uart-tx = <0x0>;
+			};
+
+			dummy_pmu_gpio: dummy_pmu_gpio {
+				#gpio-cells = <2>;
+				gpio-controller;
 			};
 		};
 

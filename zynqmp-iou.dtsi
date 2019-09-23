@@ -693,6 +693,11 @@ glue(ocm_mem_ctrl_, n): glue(ocm_mem_ctrl_, n)@n {						\
 			gpios-names = "reset";
 #endif
 		};
+
+		mio_in: rp_cosim_mio_in {
+				gpio-controller;
+				#gpio-cells = <2>;
+		};
 	};
 
 	/* This is the AS that PCI Devices access to reach the PS.  */
