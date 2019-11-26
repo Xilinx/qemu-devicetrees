@@ -42,10 +42,8 @@
 	};
 
 	pmc_reset_domain@0 {
-		compatible = "qemu.reset-domain";
-		mr0 = <&amba_pmc_internal>;
-		max-alias-depth = <1>;
-		reset-gpios = < &pmc_clk_rst CRP_RST_PS_PMC_SRST >;
+		compatible = "qemu.reset-device";
+		gpios = < &pmc_clk_rst CRP_RST_PS_PMC_SRST >;
 	};
 
 	pmc_global: pmc_global@MM_PMC_PMC_GLOBAL {
