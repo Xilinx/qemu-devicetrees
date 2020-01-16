@@ -73,6 +73,13 @@
 		};
 	};
 
+	zynqmp_csu_puf: csu_puf@CSU_PUF {
+		compatible = "xlnx,zynqmp-pufop";
+		zynqmp-aes-key-sink-puf = <&zynqmp_csu_aes>;
+		efuse = <&xlnx_efuse>;
+		reg = <BASE_ADDR(CSU_PUF) 0x1C>;
+	};
+
 	zynqmp_csu_efuse: csu_efuse@EFUSE {
 		compatible = "xlnx,zynqmp-efuse";
 		zynqmp-aes-key-sink-efuses = <&zynqmp_csu_aes>;
