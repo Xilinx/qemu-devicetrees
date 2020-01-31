@@ -44,6 +44,12 @@
 		container = <&amba>;
 	};
 
+	ddr_high_bank1: memory@8_0000_0000 {
+		compatible = "qemu:memory-region";
+		device_type = "memory";
+		container = <&amba>;
+	};
+
 	ocm_mem: ocm_mem@MM_OCM_MEM {
 		compatible = "qemu:memory-region";
 		device_type = "memory";

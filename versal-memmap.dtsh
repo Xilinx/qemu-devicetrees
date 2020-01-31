@@ -35,6 +35,18 @@ name: name@addr64 {							\
 	reg = <addrH addrL 0x0 s 0x0 >;					\
 };
 
+/* The MEM_SPEC macro tells QEMU that memory can be created here, but does
+ * NOT create memory regions.
+ * Do not change this macro without changing the QEMU code.
+ */
+#define MEM_SPEC(name, addrH, addrL, addr64, sizeH, sizeL, c)			\
+name: name@addr64 {														\
+	compatible = "qemu:memory-region-spec";								\
+	container = <c>;													\
+	qemu,ram = <QEMU_RAM_PROPERTY>;										\
+	reg = <addrH addrL sizeH sizeL 0x0>;									\
+};
+
 /* Manual entries.  */
 
 #define ACPU_GIC_STRIDE		0x10000
