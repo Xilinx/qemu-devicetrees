@@ -89,6 +89,22 @@
 		reset-gpios = <&pmc_clk_rst CRP_RST_NONPS_NPI >;	\
 	}
 
+/*
+ * On hardware, DDRMC_XMPU is contained inside DDRMC_NOC so
+ * give it higher priority
+ */
+#define GEN_DDRMC_XMPU(N, addr)						\
+	npi_ddrmc_xmpu ## N: npi_ddrmc_xmpu ## N@addr { \
+		compatible = "xlnx,versal-ddrmc-xmpu";		\
+		reg-extended =	<							\
+			&amba_pmc_pl 0x0 addr 0x0 0x10000 0x1	\
+			&amba 0x0 0x0 0x0 0x80000000 0x0		\
+		>;											\
+		protected-mr = <&ddr>;						\
+		mr-0 = <&amba>;								\
+		protected-base = <0x0>;						\
+	}
+
 #define GEN_GTY_NPI(N)							\
 	npi_gty ## N: npi_gty ## N@MM_NPI_GTY_NPI_SLAVE_ ## N {		\
 		doc-limitations = "Just a stub";			\
@@ -165,6 +181,7 @@
 	GEN_DDRMC_NOC(1);
 	GEN_DDRMC_NOC(2);
 	GEN_DDRMC_NOC(3);
+	GEN_DDRMC_XMPU(0, 0xf6080000);
 
 	GEN_GTY_NPI(0);
 	GEN_GTY_NPI(1);
