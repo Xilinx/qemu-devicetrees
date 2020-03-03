@@ -412,6 +412,25 @@ NAME ## _memattr: NAME ## _ma {				\
 	};
 };
 
+&amba_lpd {
+	xppu_lpd: xppu_lpd@MM_LPD_XPPU {
+		compatible = "xlnx,versal-xppu";
+		reg-extended = <
+			&amba_lpd 0x0 MM_LPD_XPPU 0x0 MM_LPD_XPPU_SIZE 0x0
+			/* 64KB * 256 */
+			&amba_pmc_iou 0x0 0xff000000 0x0 0x1000000 0x2
+			/* 1MB * 16 */
+			&amba_pmc_iou 0x0 0xfe000000 0x0 0x1000000 0x2
+			/* 512MB * 1 */
+			/* Coverage is shortened to avoid overlapping with other areas */
+			&amba 0x0 0xe0000000 0x0 0x10000000 0x2
+		>;
+		mr = <&amba_lpd>;
+		interrupts = <XPPU_IRQ_0>;
+		region = <0>;
+	};
+};
+
 &amba_pmc_internal {
 	xmpu_pmc: xmpu_pmc@0 {
 		compatible = "xlnx,versal-xmpu";
@@ -423,5 +442,33 @@ NAME ## _memattr: NAME ## _ma {				\
 		protected-mr = <&pmc_ram>;
 		mr-0 = <&amba_pmc_internal>;
 		protected-base = <MM_PMC_PMC_RAM>;
+	};
+	xppu_pmc_npi: xppu_pmc_npi@MM_PMC_PMC_XPPU_NPI {
+		compatible = "xlnx,versal-xppu";
+		reg-extended = <
+			&amba_pmc_internal 0x0 MM_PMC_PMC_XPPU_NPI 0x0 MM_PMC_PMC_XPPU_NPI_SIZE 0x0
+			/* 64KB * 256 */
+			&amba_pmc_internal 0x0 0xf6000000 0x0 0x1000000 0x2
+			/* 1MB * 16 */
+			&amba_pmc_internal 0x0 0xf7000000 0x0 0x1000000 0x2
+		>;
+		mr = <&amba_pmc_pl>;
+		interrupts = <XPPU_PMC_IRQ_0>;
+		region = <2>;
+	};
+	xppu_pmc: xppu_pmc@MM_PMC_PMC_XPPU {
+		compatible = "xlnx,versal-xppu";
+		reg-extended = <
+			&amba_pmc_internal 0x0 MM_PMC_PMC_XPPU 0x0 MM_PMC_PMC_XPPU_SIZE 0x0
+			/* 64KB * 256 */
+			&amba 0x0 0xf1000000 0x0 0x1000000 0x2
+			/* 1MB * 16 */
+			&amba 0x0 0xf0000000 0x0 0x1000000 0x2
+			/* 512MB * 1 */
+			&amba 0x0 MM_TOP_QSPI 0x0 MM_TOP_QSPI_SIZE 0x2
+		>;
+		mr = <&amba_pmc_internal>;
+		interrupts = <XPPU_PMC_IRQ_0>;
+		region = <1>;
 	};
 };
