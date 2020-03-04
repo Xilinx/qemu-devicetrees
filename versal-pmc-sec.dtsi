@@ -137,7 +137,7 @@
 		zynqmp-aes-key-sink-efuses = <&pmc_aes>;
 		zynqmp-aes-key-sink-efuses-user0 = <&pmc_aes>;
 		zynqmp-aes-key-sink-efuses-user1 = <&pmc_aes>;
-		reg = <0x0 MM_PMC_EFUSE_CTRL 0x0 0x2000 0x0>;
+		reg = <0x0 MM_PMC_EFUSE_CTRL 0x0 MM_PMC_EFUSE_CTRL_SIZE 0x0>;
 		interrupts = <EFUSE_IRQ_0>;
 		efuse = <&xlnx_efuse>;
 
