@@ -156,5 +156,6 @@
 		reg = <0x0 MM_PMC_BBRAM_CTRL 0x0 MM_PMC_BBRAM_CTRL_SIZE 0x0>;
 		interrupts = <BBRAM_APB_IRQ_0>;
 		zynqmp-aes-key-sink-bbram = <&pmc_aes>;
+		crc-zpads = <0>;
 	};
 };
