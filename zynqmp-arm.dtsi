@@ -599,3 +599,7 @@ glue(glue(glue(tcm_mem_ctrl_, n), _), AB): glue(glue(tcm_mem_ctrl_, AB), n)@n {	
 &rpu_ctrl {
 	ddr-mem-for-rpu = <&ddr_memory_2_for_rpu>;
 };
+
+&zynqmp_csu_puf {
+	puf-acc-err-sink = <&xlnx_zynqmp_csu_core>;
+};
