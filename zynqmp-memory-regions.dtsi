@@ -59,6 +59,8 @@ NAME ## _memattr: NAME ## _ma {				\
 	MEMATTR(gem2, NON_SECURE, 0x876);
 	MEMATTR(gem3, NON_SECURE, 0x877);
 	MEMATTR(qspi_dma, NON_SECURE, 0x873);
+	MEMATTR(sd0, NON_SECURE, 0x870);
+	MEMATTR(sd1, NON_SECURE, 0x871);
 
 	MEMATTR(pcie_ns, NON_SECURE, 0x4d0);
 	MEMATTR(csu_dma, NON_SECURE, 0x851);

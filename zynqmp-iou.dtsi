@@ -430,7 +430,8 @@ glue(ocm_mem_ctrl_, n): glue(ocm_mem_ctrl_, n)@n {						\
 			drive-index = <0>;
 			interrupts = <SDIO0_IRQ_0>;
 			reg = <BASE_ADDR(SD0) 0x1000>;
-			dma = <&protected_amba>;
+			dma = <&smmu_tbu2>;
+			memattr = <&sd0_memattr>;
 			gpios = <&iou_slcr_0 0 0>;
 			gpio-names = "SLOTTYPE";
 			is-mmc = <0x0>;
@@ -446,7 +447,8 @@ glue(ocm_mem_ctrl_, n): glue(ocm_mem_ctrl_, n)@n {						\
 			drive-index = <1>;
 			interrupts = <SDIO1_IRQ_0>;
 			reg = <BASE_ADDR(SD1) 0x1000>;
-			dma = <&protected_amba>;
+			dma = <&smmu_tbu2>;
+			memattr = <&sd1_memattr>;
 			gpios = <&iou_slcr_0 1 0>;
 			gpio-names = "SLOTTYPE";
 			is-mmc = <0x1>;
