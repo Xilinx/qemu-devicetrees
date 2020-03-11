@@ -107,6 +107,9 @@
 		reg = <0x0 MM_PMC_AES 0x0 0x100 0x0>;
 		interrupts = <AES_IRQ_0>;
 
+		gpios = <&xlnx_aes 0
+			 &xlnx_aes 1>;
+		gpio-names = "busy", "done";
 		aes-core = <&xlnx_aes>;
 		xlnx_aes: xlnx_aes@0 {
 			#gpio-cells = <1>;
