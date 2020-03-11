@@ -175,7 +175,8 @@ name: name@0 {								\
 		drive-index = <0>;
 		reg = <0x0 MM_PMC_SD0 0x0 0x1000 0x0>;
 		interrupts = <SD0_IRQ_0>;
-		dma = <&amba_pmc>;
+		dma = <&smmu_tbu0>;
+		memattr = <&sd0_memattr>;
 		gpios = <&pmc_iou_slcr 0 0>;
 		gpio-names = "SLOTTYPE";
 		reset-gpios = <	&pmc_clk_rst CRP_RST_SDIO0 >;
@@ -192,7 +193,8 @@ name: name@0 {								\
 		drive-index = <1>;
 		reg = <0x0 MM_PMC_SD1 0x0 0x1000 0x0>;
 		interrupts = <SD1_IRQ_0>;
-		dma = <&amba_pmc>;
+		dma = <&smmu_tbu0>;
+		memattr = <&sd1_memattr>;
 		gpios = <&pmc_iou_slcr 1 0>;
 		gpio-names = "SLOTTYPE";
 		reset-gpios = <	&pmc_clk_rst CRP_RST_SDIO1 >;

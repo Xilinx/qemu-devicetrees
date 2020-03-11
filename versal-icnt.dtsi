@@ -75,6 +75,8 @@ NAME ## _memattr: NAME ## _ma {				\
 	MEMATTR(gem0, NON_SECURE, SMID_GEM0);
 	MEMATTR(gem1, NON_SECURE, SMID_GEM1);
 	MEMATTR(ospi_dma, NON_SECURE, SMID_OSPI);
+	MEMATTR(sd0, NON_SECURE, SMID_SD0);
+	MEMATTR(sd1, NON_SECURE, SMID_SD1);
 
 	amba_root: amba_root@0 {
 		#address-cells = <2>;
