@@ -186,6 +186,21 @@
 			      PL_PS_GRP1_IRQ_7
 			      >;
        };
+
+	/* PS to PL interrupts. 81 */
+	/* PL to PS wires. 82 */
+
+	/* PS to PL wires. 83 */
+	rp_ps2pl_wires: rp_ps2pl_wires@0 {
+		compatible = "remote-port-gpio";
+		remote-ports = <&cosim_rp_0 83>;
+		num-gpios = <4>;
+		gpios = < &pmc_clk_rst CRP_RST_PL0
+			  &pmc_clk_rst CRP_RST_PL1
+			  &pmc_clk_rst CRP_RST_PL2
+			  &pmc_clk_rst CRP_RST_PL3
+			>;
+       };
 };
 
 &amba_pmc_internal {
