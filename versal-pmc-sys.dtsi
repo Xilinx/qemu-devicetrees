@@ -41,6 +41,14 @@
 		#gpio-cells = <1>;
 	};
 
+	pmc_int: pmc_int@MM_PMC_INTPMC_CONFIG {
+		doc-status = "partial";
+		compatible = "xlnx,versal-pmc-int";
+		reg = <0x0 MM_PMC_INTPMC_CONFIG
+                       0x0 MM_PMC_INTPMC_CONFIG_SIZE 0x0>;
+		interrupts = <PMC_INT_IRQ_0>;
+	};
+
 	pmc_reset_domain@0 {
 		compatible = "qemu.reset-device";
 		gpios = < &pmc_clk_rst CRP_RST_PS_PMC_SRST >;
