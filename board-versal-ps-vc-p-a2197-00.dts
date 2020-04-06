@@ -55,6 +55,9 @@
 
 &pmc_ppu1_io_pit3 {
 	frequency = <100000000>;
+
+	/* This fastens the windows emulation by slowing down the plm scheduler.  */
+	windows-frequency = <1300000>;
 };
 
 &pmc_ppu1_io_pit4 {
