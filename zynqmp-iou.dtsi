@@ -606,6 +606,7 @@ glue(ocm_mem_ctrl_, n): glue(ocm_mem_ctrl_, n)@n {						\
 
 		zynqmp_rtc: zynqmp_rtc@RTC {
 			compatible = "xlnx-zynmp.rtc";
+			interrupts = <RTC_APB_IRQ_0 RTC_ALARM_IRQ_0 RTC_SECONDS_IRQ_0>;
 			reg = <0x00 RTC 0x100>;
 		};
 
