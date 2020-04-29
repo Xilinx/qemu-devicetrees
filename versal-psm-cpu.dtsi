@@ -2,8 +2,9 @@
 	cpus {
 		psm0: psm@0 {
 			#interrupt-cells = <1>;
+			gdb-id = "PSM";
 			clock-frequency = <100000000>;
-			compatible = "microblaze-cpu";
+			compatible = "xlnx,microblaze-cpu";
 			d-cache-size = <0x0>;
 			device_type = "cpu";
 			i-cache-size = <0x0>;
