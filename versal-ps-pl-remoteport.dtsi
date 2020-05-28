@@ -41,7 +41,7 @@
 	 *        serves to roughly allocate the devids.
 	 *        All still subject to change.
 	 */
-	s_axi_gp_0: s_axi_gp_0@0 {
+	s_axi_fpd: s_axi_fpd@0 {
 		compatible = "remote-port-memory-slave";
 		remote-ports = <&cosim_rp_0 10>;
 		mr = <&amba>;
@@ -55,69 +55,70 @@
 		mr = <&amba>;
 	};
 
-	s_axi_gp_4: s_axi_gp_4@0 {
+	s_axi_lpd: s_axi_lpd@0 {
 		compatible = "remote-port-memory-slave";
 		remote-ports = <&cosim_rp_0 14>;
 		mr = <&amba>;
 	};
 
 	/* ACP via APU.  */
-	s_axi_acp: s_axi_acp@0 {
+	s_acp_fpd: s_acp_fpd@0 {
 		compatible = "remote-port-memory-slave";
 		remote-ports = <&cosim_rp_0 15>;
 		mr = <&amba>;
 	};
 
-	s_axi_ace: s_axi_ace@0 {
+	s_ace_fpd: s_ace_fpd@0 {
 		compatible = "remote-port-memory-slave";
 		remote-ports = <&cosim_rp_0 16>;
 		mr = <&amba>;
 	};
 
-	if_noc_ps_nci_0: if_noc_ps_nci_0@0 {
+	noc_fpd_axi_0: noc_fpd_axi_0@0 {
 		compatible = "remote-port-memory-slave";
 		remote-ports = <&cosim_rp_0 17>;
 		mr = <&amba>;
 	};
 
-	if_noc_ps_nci_1: if_noc_ps_nci_1@0 {
+	noc_fpd_axi_1: noc_fpd_axi_1@0 {
 		compatible = "remote-port-memory-slave";
 		remote-ports = <&cosim_rp_0 18>;
 		mr = <&amba>;
 	};
 
-	if_noc_ps_cci_0: if_noc_ps_cci_0@0 {
+	noc_fpd_cci_0: noc_fpd_cci_0@0 {
 		compatible = "remote-port-memory-slave";
 		remote-ports = <&cosim_rp_0 19>;
 		mr = <&amba>;
 	};
 
-	if_noc_ps_cci_1: if_noc_ps_cci_1@0 {
+	noc_fpd_cci_1: noc_fpd_cci_1@0 {
 		compatible = "remote-port-memory-slave";
 		remote-ports = <&cosim_rp_0 20>;
 		mr = <&amba>;
 	};
 
-	if_noc_ps_pcie_0: if_noc_ps_pcie_0@0 {
+	noc_cpm_pcie_0: noc_cpm_pcie_0@0 {
 		compatible = "remote-port-memory-slave";
 		remote-ports = <&cosim_rp_0 21>;
 		mr = <&amba>;
 	};
 
+	/* Does not exist */
 	if_noc_ps_pcie_1: if_noc_ps_pcie_1@0 {
 		compatible = "remote-port-memory-slave";
 		remote-ports = <&cosim_rp_0 22>;
 		mr = <&amba>;
 	};
 
-	if_noc_pmc_axi_0: if_noc_pmc_axi_0@0 {
+	noc_pmc_axi_0: noc_pmc_axi_0@0 {
 		compatible = "remote-port-memory-slave";
 		remote-ports = <&cosim_rp_0 23>;
 		mr = <&amba_pmc>;
 	};
 
 	/* AXI ports directly from PS to PL, bypassing NoC.  */
-	m_axi_gp0: m_axi_gp0@MM_TOP_FPD_AFI_0 {
+	m_axi_fpd: m_axi_fpd@MM_TOP_FPD_AFI_0 {
 		compatible = "remote-port-memory-master";
 		remote-ports = <&cosim_rp_0 40>;
 		reg = <0x0 MM_TOP_PS_PL_FPD_LowAddr0 0x0 MM_TOP_PS_PL_FPD_LowAddr0_SIZE 0x0
@@ -126,14 +127,14 @@
 
 	/* Device ID 41 reserved for m_axi_gp1 in Extended PS.  */
 
-	m_axi_gp2: m_axi_gp2@MM_TOP_LPD_AFI_FS {
+	m_axi_lpd: m_axi_lpd@MM_TOP_LPD_AFI_FS {
 		compatible = "remote-port-memory-master";
 		remote-ports = <&cosim_rp_0 42>;
 		reg = <0x0 MM_TOP_PS_PL_LPD_LowAddr 0x0 MM_TOP_PS_PL_LPD_LowAddr_SIZE 0x0>;
 	};
 
-	/* IF_PS_NOC_CCI_0 - 3.  ID 50 - 53 */
-	if_ps_noc_cci_0: if_ps_noc_cci_0@0 {
+	/* FPD_CCI_NOC_0 - 3.  ID 50 - 53 */
+	fpd_cci_noc_0: fpd_cci_noc_0@0 {
 		compatible = "remote-port-memory-master";
 		remote-ports = <&cosim_rp_0 50>;
 		/*
@@ -155,10 +156,10 @@
 		      >;
 	};
 
-	/* IF_PS_NOC_NCI_0 - 1.  ID 54 - 55 */
-	/* IF_PS_NOC_PCIE_0 - 1. ID 56 - 57 */
+	/* FPD_AXI_NOC_0 - 1.  ID 54 - 55 */
+	/* CPM_PCIE_NOC_0 - 1. ID 56 - 57 */
 
-	if_ps_noc_rpu_0: if_ps_noc_rpu_0@0 {
+	noc_lpd_axi_0: noc_lpd_axi_0@0 {
 		compatible = "remote-port-memory-master";
 		remote-ports = <&cosim_rp_0 58>;
 	};
@@ -210,7 +211,7 @@
 	 * of address ranges will go out on this dedicated port from
 	 * the PMC to the NoC.
 	 */
-	if_pmc_noc_axi_0: if_pmc_noc_axi_0@0 {
+	pmc_noc_axi_0: pmc_noc_axi_0@0 {
 		compatible = "remote-port-memory-master";
 		remote-ports = <&cosim_rp_0 59>;
 		reg = <
