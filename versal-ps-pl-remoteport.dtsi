@@ -44,7 +44,7 @@
 	s_axi_fpd: s_axi_fpd@0 {
 		compatible = "remote-port-memory-slave";
 		remote-ports = <&cosim_rp_0 10>;
-		mr = <&amba>;
+		mr = <&smmu_tbu5>;
 	};
 
 	/* DevID 11 reserved for s_axi_gp_1.  */
@@ -52,13 +52,13 @@
 	s_axi_gp_2: s_axi_gp_2@0 {
 		compatible = "remote-port-memory-slave";
 		remote-ports = <&cosim_rp_0 12>;
-		mr = <&amba>;
+		mr = <&smmu_tbu5>;
 	};
 
 	s_axi_lpd: s_axi_lpd@0 {
 		compatible = "remote-port-memory-slave";
 		remote-ports = <&cosim_rp_0 14>;
-		mr = <&amba>;
+		mr = <&smmu_tbu2>;
 	};
 
 	/* ACP via APU.  */
@@ -77,25 +77,25 @@
 	noc_fpd_axi_0: noc_fpd_axi_0@0 {
 		compatible = "remote-port-memory-slave";
 		remote-ports = <&cosim_rp_0 17>;
-		mr = <&amba>;
+		mr = <&smmu_tbu5>;
 	};
 
 	noc_fpd_axi_1: noc_fpd_axi_1@0 {
 		compatible = "remote-port-memory-slave";
 		remote-ports = <&cosim_rp_0 18>;
-		mr = <&amba>;
+		mr = <&smmu_tbu4>;
 	};
 
 	noc_fpd_cci_0: noc_fpd_cci_0@0 {
 		compatible = "remote-port-memory-slave";
 		remote-ports = <&cosim_rp_0 19>;
-		mr = <&amba>;
+		mr = <&smmu_tbu2>;
 	};
 
 	noc_fpd_cci_1: noc_fpd_cci_1@0 {
 		compatible = "remote-port-memory-slave";
 		remote-ports = <&cosim_rp_0 20>;
-		mr = <&amba>;
+		mr = <&smmu_tbu2>;
 	};
 
 	noc_cpm_pcie_0: noc_cpm_pcie_0@0 {
