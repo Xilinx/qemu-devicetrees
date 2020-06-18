@@ -82,6 +82,15 @@ name: name@addr64 {														\
 #define MM_PRAM_ZEROIZE 0xf1110518
 #define MM_PRAM_ZEROIZE_SIZE 4
 
+/* Split PMC_GLOBAL into areas matching separate ods */
+#define MM_PMC_PMC_GLOBAL_SYS_SIZE 0x10000
+#define MM_PMC_PPU1_PRIVATE        0xf1120000
+#define MM_PMC_PPU1_PRIVATE_SIZE   0x10000
+#define MM_PMC_PMC_ERR_MANAGEMENT      0xf1130000
+#define MM_PMC_PMC_ERR_MANAGEMENT_SIZE 0x10000
+#define MM_PMC_PUF_CTRL        0xf1150000
+#define MM_PMC_PUF_CTRL_SIZE   0x10000
+
 /* PMC GIC Proxy at MM_PMC_PMC_GLOBAL + 0x30000 offset.  */
 #define MM_PMC_GIC_PROXY 0xf1140000
 #define MM_PMC_GIC_PROXY_SIZE 0x100
