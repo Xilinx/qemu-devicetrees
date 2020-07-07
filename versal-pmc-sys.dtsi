@@ -70,6 +70,8 @@
 				       &dummy1 0 /* PMC GLOBAL_IMR.  */
 				       &pmc_ppu0_io_intc IRQ_PPU0_INTC_TAMPER_REG>;
 		reg = <0x0 MM_PMC_PMC_GLOBAL 0x0 MM_PMC_PMC_GLOBAL_SYS_SIZE 0x0>;
+		gpios = <&pmc_puf_ctrl PMC_PUF_CTRL_PUF_ERROR>;
+
 		compatible = "xlnx,pmc_global";
 	};
 	pmc_stream_zero: pmc_stream_zero@ {

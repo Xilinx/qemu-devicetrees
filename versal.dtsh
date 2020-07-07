@@ -32,6 +32,7 @@
 #include "versal-memmap.dtsh"
 #include "versal-resetmap.dtsh"
 #include "versal-powermap.dtsh"
+#include "versal-wiremap.dtsh"
 #include "versal-smid.dtsh"
 
 
