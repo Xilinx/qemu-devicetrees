@@ -137,6 +137,15 @@
 		efuse = <&xlnx_efuse>;
 	};
 
+	pmc_puf_ctrl: pmc_puf_ctrl@MM_PMC_PUF_CTRL {
+		compatible = "xlnx,versal-puf-ctrl";
+		zynqmp-aes-key-sink-puf = <&pmc_aes>;
+		efuse = <&xlnx_efuse>;
+		reg = <0x0 MM_PMC_PUF_CTRL 0x0 MM_PMC_PUF_CTRL_SIZE 0x0>;
+		#gpio-cells = <1>;
+		gpio-controller;
+	};
+
 	pmc_efuse: pmc_efuse@MM_PMC_EFUSE_CTRL {
 		doc-status = "complete";
 		compatible = "xlnx,versal-efuse";
