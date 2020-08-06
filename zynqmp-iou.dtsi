@@ -279,6 +279,7 @@ glue(ocm_mem_ctrl_, n): glue(ocm_mem_ctrl_, n)@n {						\
 		swdt@0xFF150000 {
 			compatible = "xlnx,swdt";
 			reg = <0x0 0xff150000 0x10>;
+			interrupts = <LP_WDT_IRQ_0>;
 			pclk = <1000000>;
 			gpios = <&pmu_global 12>;
 		};
@@ -286,6 +287,7 @@ glue(ocm_mem_ctrl_, n): glue(ocm_mem_ctrl_, n)@n {						\
 		wdt@0xFD4D0000 {
 			compatible = "xlnx,swdt";
 			reg = <0x0 0xfd4d0000 0x10>;
+			interrupts = <FP_WDT_IRQ_0>;
 			pclk = <1000000>;
 			gpios = <&pmu_global 13>;
 		};
@@ -293,6 +295,7 @@ glue(ocm_mem_ctrl_, n): glue(ocm_mem_ctrl_, n)@n {						\
 		csu_wdt@0xFFCB0000 {
 			compatible = "xlnx,swdt";
 			reg = <0x0 0xffcb0000 0x10>;
+			interrupts = <CSUPMU_WDT_IRQ_0>;
 			pclk = <1000000>;
 		};
 
