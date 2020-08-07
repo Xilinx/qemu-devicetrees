@@ -176,7 +176,7 @@ glue(glue(glue(tcm_mem_ctrl_, n), _), AB): glue(glue(tcm_mem_ctrl_, AB), n)@n {	
 			cpu2 = <&cpu2>;
 			cpu3 = <&cpu3>;
 #ifdef MULTI_ARCH
-			gpios = <&pmu_io_gpi2 1 0 &pmu_io_gpi2 2 0 &pmu_io_gpi2 3 0 &pmu_io_gpi2 4 0>;
+			gpios = <&pmu_io_gpi2 0 0 &pmu_io_gpi2 1 0 &pmu_io_gpi2 2 0 &pmu_io_gpi2 3 0>;
 #endif
 		};
 
@@ -193,8 +193,8 @@ glue(glue(glue(tcm_mem_ctrl_, n), _), AB): glue(glue(tcm_mem_ctrl_, AB), n)@n {	
 			gpios = <&pmu_global 6
 					 &pmu_global 7
 #ifdef MULTI_ARCH
+					 &pmu_io_gpi2 4 0
 					 &pmu_io_gpi2 5 0
-					 &pmu_io_gpi2 6 0
 #endif
 			>;
 		};
@@ -283,10 +283,10 @@ glue(glue(glue(tcm_mem_ctrl_, n), _), AB): glue(glue(tcm_mem_ctrl_, AB), n)@n {	
 			#interrupt-cells = <1>;
 		};
 
-		IS_MULTI_ARCH(APU_INTC_REDIRECT(0,4,1))
-		IS_MULTI_ARCH(APU_INTC_REDIRECT(1,5,2))
-		IS_MULTI_ARCH(APU_INTC_REDIRECT(2,6,3))
-		IS_MULTI_ARCH(APU_INTC_REDIRECT(3,7,4))
+		IS_MULTI_ARCH(APU_INTC_REDIRECT(0,4,0))
+		IS_MULTI_ARCH(APU_INTC_REDIRECT(1,5,1))
+		IS_MULTI_ARCH(APU_INTC_REDIRECT(2,6,2))
+		IS_MULTI_ARCH(APU_INTC_REDIRECT(3,7,3))
 
 	};
 
@@ -520,8 +520,8 @@ glue(glue(glue(tcm_mem_ctrl_, n), _), AB): glue(glue(tcm_mem_ctrl_, AB), n)@n {	
 
 	amba_rpu: amba_rpu@0 {
 #ifdef MULTI_ARCH
-		RPU_INTC_REDIRECT(0, 5, 3)
-		RPU_INTC_REDIRECT(1, 6, 4)
+		RPU_INTC_REDIRECT(0, 4, 3)
+		RPU_INTC_REDIRECT(1, 5, 4)
 
 		TCM_MEM_CTRL(0, A, 24, 20)
 		TCM_MEM_CTRL(0, B, 25, 21)
