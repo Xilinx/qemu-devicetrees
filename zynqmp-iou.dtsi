@@ -338,22 +338,18 @@ glue(ocm_mem_ctrl_, n): glue(ocm_mem_ctrl_, n)@n {						\
 		};
 
 		usb3_0: usb3@USB3_0_XHCI {
-			compatible = "qemu,irq-test-component";
-			reg = <BASE_ADDR(USB3_0_XHCI) 0x4000>;
-			interrupts = <USB3_0_1_PMU_WAKEUP_IRQ_0>;
-#ifdef MULTI_ARCH
-			gpios = <&pmu_io_gpi1 7 0 &pmu_local 7>;
-			gpio-names = "wake", "pwr_cntrl";
-#endif
+			compatible = "usb_dwc3";
+			reg = <0x0 0xFE20C100 0x600 BASE_ADDR(USB3_0_XHCI) 0x4000>;
+			interrupts = <USB3_0_Endpoint_IRQ_0 USB3_0_Endpoint_IRQ_1
+							USB3_0_Endpoint_IRQ_2 USB3_0_Endpoint_IRQ_3>;
+			dma = <&amba>;
 		};
 		usb3_1: usb3@USB3_1_XHCI {
-			compatible = "qemu,irq-test-component";
-			reg = <BASE_ADDR(USB3_1_XHCI) 0x4000>;
-			interrupts = <USB3_0_1_PMU_WAKEUP_IRQ_1>;
-#ifdef MULTI_ARCH
-			gpios = <&pmu_io_gpi1 8 0 &pmu_local 8>;
-			gpio-names = "wake", "pwr_cntrl";
-#endif
+			compatible = "usb_dwc3";
+			reg = <0x0 0xFE30C100 0x600 BASE_ADDR(USB3_1_XHCI) 0x4000>;
+			interrupts = <USB3_1_Endpoint_IRQ_0 USB3_1_Endpoint_IRQ_1
+							USB3_1_Endpoint_IRQ_2 USB3_1_Endpoint_IRQ_3>;
+			dma = <&amba>;
 		};
 
 		nand: arasan_nfc@NAND {
