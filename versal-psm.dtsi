@@ -136,6 +136,12 @@
 			compatible = "xlnx,psm-local-reg";
 			reg = <0x0 MM_PSM_LOCAL_REG 0x0 MM_PSM_LOCAL_REG_SIZE 0x0>;
 			/* TODO: Connect interrupts.  */
+			gpios = <
+				&apu_ctrl 0
+				&apu_ctrl 1
+				&apu_ctrl 2
+				&apu_ctrl 3
+			>;
 		};
 	};
 };
@@ -159,6 +165,7 @@
 		interrupts = <IRQ_PSM_INTC_PWRDWN_REQ IRQ_PSM_INTC_WAKEUP_REQ
 				IRQ_PSM_INTC_SW_RESET_REQ IRQ_PSM_INTC_PWRUP_REQ
 				IRQ_PSM_INTC_PWR_CONTROL_REQ IRQ_PSM_INTC_ISOLATE_REQ>;
+		#gpio-cells = <1>;
 		gpios = < &psm_local 32 &psm_local 33	/* LOC_PWR_STATE.  */
 			  &psm_local 34 &psm_local 35
 			  &psm_local 36 &psm_local 37
@@ -192,6 +199,9 @@
 			  &psm_local 90 &psm_local 91
 			  &psm_local 92 &psm_local 93
 			  &psm_local 94 &psm_local 95
+			  &psm_local 96 &psm_local 97	/* APU powerdown req */
+			  &psm_local 98 &psm_local 99
+			  &rpu_ctrl 8 &rpu_ctrl 9	/* RPU powerdown req */
 			>;
 	};
 };

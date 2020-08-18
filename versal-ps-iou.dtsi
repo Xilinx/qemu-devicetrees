@@ -69,6 +69,7 @@ zname: zname@zbase {							\
 		reg = <0x0 MM_FPD_FPD_APU 0x0 MM_FPD_FPD_APU_SIZE 0x0>;
 		cpu0 = <&cpu0>;
 		cpu1 = <&cpu1>;
+		#gpio-cells = <1>;
 	};
 
 	afi_fm@MM_FPD_FPD_AFIFM0 {
@@ -146,7 +147,9 @@ zname: zname@zbase {							\
 		gpio-controller;
 		#gpio-cells = <1>;
 
-		gpios = < &crl CRL_RST_CPU_R5_0 &crl CRL_RST_CPU_R5_1 >;
+		gpios = < &crl CRL_RST_CPU_R5_0 &crl CRL_RST_CPU_R5_1
+			  &psm_local 42 &psm_local 43
+			>;
 	};
 
 	ipi: ipi@MM_IPI {
