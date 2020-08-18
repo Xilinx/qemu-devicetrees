@@ -64,7 +64,7 @@ zname: zname@zbase {							\
 }
 
 &amba_fpd {
-	apu_ctrl@MM_FPD_FPD_APU {
+	apu_ctrl: apu_ctrl@MM_FPD_FPD_APU {
 		compatible = "xlnx,versal-apu-ctrl";
 		reg = <0x0 MM_FPD_FPD_APU 0x0 MM_FPD_FPD_APU_SIZE 0x0>;
 		cpu0 = <&cpu0>;

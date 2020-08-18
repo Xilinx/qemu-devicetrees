@@ -33,6 +33,14 @@
 #define NUM_APUS 2
 #define HAVE_APU_GIC
 
+#ifdef MULTI_ARCH
+	#define APU_GIC_INTERRUPT_TARGET_STEM apu_intc_redirect_
+	#define RPU_GIC_INTERRUPT_TARGET_STEM rpu_intc_redirect_
+#else
+	#define APU_GIC_INTERRUPT_TARGET_STEM cpu
+	#define RPU_GIC_INTERRUPT_TARGET_STEM rpu_cpu
+#endif
+
 #include "versal.dtsh"
 
 #include "versal-pmc.dtsi"
@@ -185,6 +193,40 @@
 		remote-ports = <&ps_pmc_rp 13>;
 		mr = <&lmb_psm>;
 	};
+
+#define APU_INTC_REDIRECT(n,a,p)					\
+	glue(apu_intc_redirect_, n): glue(apu_intc_redirect, n)@n {	\
+		#interrupt-cells = <1>;					\
+		compatible = "xlnx,zynqmp-intc-redirect";		\
+		interrupt-controller;					\
+		interrupts-extended = <glue(&cpu,n) 0>,			\
+				<glue(&cpu,n) 1>,			\
+				<glue(&cpu,n) 2>,			\
+				<glue(&cpu,n) 3>;			\
+		gpios = <&psm_global p &psm_local a>;			\
+};
+
+	amba_apu: amba_apu@0 {
+		APU_INTC_REDIRECT(0, 100, 0)
+		APU_INTC_REDIRECT(1, 101, 1)
+		APU_INTC_REDIRECT(2, 102, 2)
+		APU_INTC_REDIRECT(3, 103, 3)
+	};
+
+#define RPU_INTC_REDIRECT(NCPU, PSMOUT, RPUN)							\
+glue(rpu_intc_redirect_, NCPU): glue(rpu_intc_redirect, NCPU)@NCPU {	\
+	#interrupt-cells = <1>;									\
+	compatible = "xlnx,zynqmp-intc-redirect";						\
+	interrupt-controller;									\
+	interrupts-extended = <glue(&rpu_cpu,NCPU) 0>;						\
+	gpios = <&psm_global PSMOUT &rpu_ctrl RPUN>;						\
+};
+
+	amba_rpu: amba_rpu@0 {
+		RPU_INTC_REDIRECT(0, 4, 6)
+		RPU_INTC_REDIRECT(1, 5, 7)
+	};
+
 #else
 	/* Single ARCH PS board has no PPU MicroBlazes.  */
 	pmc_ppu0: dummy_ppu0@0 {

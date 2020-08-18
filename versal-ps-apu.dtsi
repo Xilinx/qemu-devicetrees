@@ -48,7 +48,6 @@
 	core-count = <2>;						\
 	arm,reset-hivecs = <1>;						\
 	arm,rvbar = <0xffff0000>;					\
-	#interrupt-cells = <1>;						\
 	arm,reset-cbar = <ACPU_GIC_CPUIF>;				\
 	mr = <&amba_apu>;						\
 	memory = <&amba_apu>;						\
@@ -67,22 +66,26 @@
 		cpu0: apu_cpu@0 {
 			APU_COMMON(0, 0x80000001)
 			gdb-id = "Cortex-A72 #0";
+			#interrupt-cells = <1>;
 		};
 		cpu1: apu_cpu@1 {
 			APU_COMMON(1, 0x80000002)
 			gdb-id = "Cortex-A72 #1";
+			#interrupt-cells = <1>;
 		};
 		cpu2: apu_cpu@2 {
 #if NUM_APUS == 4
 			APU_COMMON(2, 0x80000001)
 			gdb-id = "Cortex-A72 #2";
 #endif
+			#interrupt-cells = <1>;
 		};
 		cpu3: apu_cpu@3 {
 #if NUM_APUS == 4
 			APU_COMMON(3, 0x80000002)
 			gdb-id = "Cortex-A72 #3";
 #endif
+			#interrupt-cells = <1>;
 		};
 	};
 
@@ -130,35 +133,35 @@
 			interrupt-controller ;
 			interrupts-extended =
 				/* IRQs.  */
-				<&cpu0 0>,
-				<&cpu1 0>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 0) 0>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 1) 0>,
 #if NUM_APUS == 4
-				<&cpu2 0>,
-				<&cpu3 0>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 2) 0>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 3) 0>,
 #endif
 
 				/* FIQs.  */
-				<&cpu0 1>,
-				<&cpu1 1>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 0) 1>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 1) 1>,
 #if NUM_APUS == 4
-				<&cpu2 1>,
-				<&cpu3 1>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 2) 1>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 3) 1>,
 #endif
 
 				/* Virtual IRQs.  */
-				<&cpu0 2>,
-				<&cpu1 2>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 0) 2>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 1) 2>,
 #if NUM_APUS == 4
-				<&cpu2 2>,
-				<&cpu3 2>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 2) 2>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 3) 2>,
 #endif
 
 				/* Virtual FIQs.  */
-				<&cpu0 3>,
-				<&cpu1 3>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 0) 3>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 1) 3>,
 #if NUM_APUS == 4
-				<&cpu2 3>,
-				<&cpu3 3>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 2) 3>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 3) 3>,
 #endif
 				<&gic 0x1 0x9 0x104>,
 				<&gic 0x1 0x9 0x204>,
