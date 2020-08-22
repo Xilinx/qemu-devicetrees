@@ -579,7 +579,7 @@ glue(glue(glue(tcm_mem_ctrl_, n), _), AB): glue(glue(tcm_mem_ctrl_, AB), n)@n {	
 			gic-for-apu = <&gic>;
 		};
 		lpd_slcr_secure: zynqmp_lpd_slcr_secure@LPD_SLCR_SECURE {
-			compatible = "xlnx.lpd-slcr-secure";
+			compatible = "xlnx,lpd-slcr-secure";
 			reg = <BASE_ADDR(LPD_SLCR_SECURE) 0x38>;
 		};
 	};

@@ -50,7 +50,7 @@
 	};
 
 	pmc_reset_domain@0 {
-		compatible = "qemu.reset-device";
+		compatible = "qemu,reset-device";
 		gpios = < &pmc_clk_rst CRP_RST_PS_PMC_SRST >;
 	};
 

@@ -601,7 +601,7 @@ glue(ocm_mem_ctrl_, n): glue(ocm_mem_ctrl_, n)@n {						\
 		};
 
 		zynqmp_rtc: zynqmp_rtc@RTC {
-			compatible = "xlnx-zynmp.rtc";
+			compatible = "xlnx-zynmp,rtc";
 			interrupts = <RTC_APB_IRQ_0 RTC_ALARM_IRQ_0 RTC_SECONDS_IRQ_0>;
 			reg = <0x00 RTC 0x100>;
 		};
@@ -653,7 +653,7 @@ glue(ocm_mem_ctrl_, n): glue(ocm_mem_ctrl_, n)@n {						\
 		};
 
 		cxtsgen: cxtsgen@IOU_SCNTR {
-			compatible = "arm.generic-timer";
+			compatible = "arm,generic-timer";
 			reg = <BASE_ADDR(IOU_SCNTRS) 0x1000>;
 		};
 
@@ -663,13 +663,13 @@ glue(ocm_mem_ctrl_, n): glue(ocm_mem_ctrl_, n)@n {						\
 		};
 
 		pcie_attrib: pcie_attrib@PCIE_ATTRIB {
-			compatible = "xlnx.nwl-pcie-attrib";
+			compatible = "xlnx,nwl-pcie-attrib";
 			reg = <BASE_ADDR(PCIE_ATTRIB) 0x1000>;
 			interrupts = <PCIE_MSC_IRQ_0>;
 		};
 
 		pcie_main: pcie_main@AXIPCIE_MAIN {
-			compatible = "xlnx.nwl-pcie-main";
+			compatible = "xlnx,nwl-pcie-main";
 			reg-extended = <&amba BASE_ADDR(AXIPCIE_MAIN) 0x1000
 					/* Wierdo. At AXIPEICE_MAIN, but on the ingress side,
 					 * we find the MSI forwarders.  */

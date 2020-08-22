@@ -62,7 +62,7 @@
 #define GEN_DDRMC_UB(N)							\
 	npi_ddrmc_ub ## N: npi_ddrmc_ub ## N@MM_NPI_DDRMC_UB_ ## N {	\
 		doc-limitations = "Only the uB rst is supported";	\
-		compatible = "xlnx.versal-ddrmc-ub";			\
+		compatible = "xlnx,versal-ddrmc-ub";			\
 		reg = <0x0 MM_NPI_DDRMC_UB_ ## N 0x0			\
 			MM_NPI_DDRMC_UB_ ## N ## _SIZE 0x0>;		\
 		reset-gpios = <&pmc_clk_rst CRP_RST_NONPS_NPI >;	\
@@ -73,7 +73,7 @@
 #define GEN_DDRMC_MAIN(N)						\
 	npi_ddrmc_main ## N: npi_ddrmc_main ## N@MM_NPI_DDRMC_MAIN_ ## N { \
 		doc-limitations = "Just a stub";			\
-		compatible = "xlnx.versal-ddrmc-main";			\
+		compatible = "xlnx,versal-ddrmc-main";			\
 		reg = <0x0 MM_NPI_DDRMC_MAIN_ ## N 0x0			\
 			MM_NPI_DDRMC_MAIN_ ## N ## _SIZE 0x0>;		\
 		reset-gpios = <&pmc_clk_rst CRP_RST_NONPS_NPI >;	\
@@ -83,7 +83,7 @@
 #define GEN_DDRMC_NOC(N)						\
 	npi_ddrmc_noc ## N: npi_ddrmc_noc ## N@MM_NPI_DDRMC_NOC_ ## N { \
 		doc-limitations = "Just a stub";			\
-		compatible = "xlnx.versal-ddrmc-noc";			\
+		compatible = "xlnx,versal-ddrmc-noc";			\
 		reg = <0x0 MM_NPI_DDRMC_NOC_ ## N 0x0			\
 			MM_NPI_DDRMC_NOC_ ## N ## _SIZE 0xffffffff>;	\
 		reset-gpios = <&pmc_clk_rst CRP_RST_NONPS_NPI >;	\
@@ -108,7 +108,7 @@
 #define GEN_GTY_NPI(N)							\
 	npi_gty ## N: npi_gty ## N@MM_NPI_GTY_NPI_SLAVE_ ## N {		\
 		doc-limitations = "Just a stub";			\
-		compatible = "xlnx.versal-gty-npi";			\
+		compatible = "xlnx,versal-gty-npi";			\
 		reg = <0x0 MM_NPI_GTY_NPI_SLAVE_ ## N 0x0		\
 			MM_NPI_GTY_NPI_SLAVE_ ## N ## _SIZE 0xffffffff>;\
 		reset-gpios = <&pmc_clk_rst CRP_RST_NONPS_NPI >;	\
@@ -117,7 +117,7 @@
 #define GEN_XPIO_DCI(N)							\
 	npi_xpio ## N: npi_xpio ## N@MM_NPI_XPIO_DCI_COMPONENT_ ## N {	\
 		doc-limitations = "Just a stub";			\
-		compatible = "xlnx.versal-xpio-dci";			\
+		compatible = "xlnx,versal-xpio-dci";			\
 		reg = <0x0 MM_NPI_XPIO_DCI_COMPONENT_ ## N 0x0		\
 			MM_NPI_XPIO_DCI_COMPONENT_ ## N ## _SIZE 0xffffffff>;\
 		reset-gpios = <&pmc_clk_rst CRP_RST_NONPS_NPI >;	\
@@ -126,7 +126,7 @@
 #define GEN_CMT_XPLL(N)							\
 	npi_cmt_xpll ## N: npi_cmt_xpll ## N@MM_NPI_CMT_XPLL_ ## N {\
 		doc-limitations = "Just a stub";			\
-		compatible = "xlnx.versal-cmt-xpll";			\
+		compatible = "xlnx,versal-cmt-xpll";			\
 		reg = <0x0 MM_NPI_CMT_XPLL_ ## N 0x0		\
 			MM_NPI_CMT_XPLL_ ## N ## _SIZE 0xffffffff>;	\
 		reset-gpios = <&pmc_clk_rst CRP_RST_NONPS_NPI >;	\
@@ -135,7 +135,7 @@
 #define GEN_CMT_DPLL(N)							\
 	npi_cmt_dpll ## N: npi_cmt_dpll ## N@MM_NPI_CMT_DPLL_ ## N {\
 		doc-limitations = "Just a stub";			\
-		compatible = "xlnx.versal-cmt-dpll";			\
+		compatible = "xlnx,versal-cmt-dpll";			\
 		reg = <0x0 MM_NPI_CMT_DPLL_ ## N 0x0		\
 			MM_NPI_CMT_DPLL_ ## N ## _SIZE 0xffffffff>;	\
 		reset-gpios = <&pmc_clk_rst CRP_RST_NONPS_NPI >;	\
@@ -144,7 +144,7 @@
 #define GEN_CMT_MMCM(N)							\
 	npi_cmt_mmcm ## N: npi_cmt_mmcm ## N@MM_NPI_CMT_MMCM_ ## N {\
 		doc-limitations = "Just a stub";			\
-		compatible = "xlnx.versal-cmt-mmcm";			\
+		compatible = "xlnx,versal-cmt-mmcm";			\
 		reg = <0x0 MM_NPI_CMT_MMCM_ ## N 0x0		\
 			MM_NPI_CMT_MMCM_ ## N ## _SIZE 0xffffffff>;	\
 		reset-gpios = <&pmc_clk_rst CRP_RST_NONPS_NPI >;	\
@@ -153,7 +153,7 @@
 #define GEN_NOC_NCRB(N)							\
 	noc_ncrb ## N: noc_ncrb ## N@MM_NPI_NOC_NCRB_ ## N {\
 		doc-limitations = "just a stub";			\
-		compatible = "xlnx.noc_ncrb";				\
+		compatible = "xlnx,noc_ncrb";				\
 		reg = <0x0 MM_NPI_NOC_NCRB_ ## N 0x0			\
 			MM_NPI_NOC_NCRB_ ## N ## _SIZE 0xffffffff>;	\
 		reset-gpios = <&pmc_clk_rst CRP_RST_NONPS_NPI>;		\
@@ -163,7 +163,7 @@
 #include "versal-pmc-npi-nxx.dtsi"
 
 	npi_me: npi_me@MM_NPI_ME_NPI_0 {
-		compatible = "xlnx.me-npi";
+		compatible = "xlnx,me-npi";
 		reg = <0x0 MM_NPI_ME_NPI_0 0x0 MM_NPI_ME_NPI_0_SIZE 0x0>;
 		reset-gpios = <&pmc_clk_rst CRP_RST_NONPS_NPI >;
 	};
