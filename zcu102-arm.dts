@@ -64,12 +64,6 @@
 		phy0: phy@7 {
 			compatible = "88e1118r";
 			device_type = "ethernet-phy";
-			reg = <7>;
-		};
-		phy1: phy@12 {
-			compatible = "88e1118r";
-			device_type = "ethernet-phy";
-			reg = <12>;
 		};
 	};
 };
