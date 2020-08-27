@@ -122,6 +122,29 @@ zname: zname@zbase {							\
 		chardev = "serial3";
 	};
 
+	canfdbus0: canfdbus@0 {
+		compatible = "can-bus";
+	};
+
+	canfd0: can_core@MM_CANFD0 {
+		compatible = "xlnx,versal-canfd";
+		rx-fifo0 = <0x40>;
+		rx-fifo1 = <0x40>;
+		enable-rx-fifo1 = <0x1>;
+		canfdbus = <&canfdbus0>;
+		interrupts = <CAN0_IRQ_0>;
+		reg = <0x0 MM_CANFD0 0x0 MM_CANFD0_SIZE 0x0>;
+	};
+	canfd1: can_core@MM_CANFD1 {
+		compatible = "xlnx,versal-canfd";
+		rx-fifo0 = <0x40>;
+		rx-fifo1 = <0x40>;
+		enable-rx-fifo1 = <0x1>;
+		canfdbus = <&canfdbus0>;
+		interrupts = <CAN1_IRQ_0>;
+		reg = <0x0 MM_CANFD1 0x0 MM_CANFD1_SIZE 0x0>;
+	};
+
 	crl: crl@MM_CRL {
 		compatible = "xlnx,versal-crl";
 		reg = <0x0 MM_CRL 0x0 MM_CRL_SIZE 0x0>;
