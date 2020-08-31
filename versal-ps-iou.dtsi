@@ -214,7 +214,7 @@ zname: zname@zbase {							\
 
 	usb2_0: usb2@USB2_0_XHCI {
 		compatible = "usb_dwc3";
-		reg = <0x0 MM_USB_XHCI 0x0 MM_USB_XHCI_SIZE 0x0>;
+		reg = <0x0 MM_USB_DWC3_0 0x0 MM_USB_DWC3_0_SIZE 0x0 0x0 MM_USB_XHCI 0x0 MM_USB_XHCI_SIZE 0x0>;
 		interrupts = <USB2_IRQ_0 USB2_IRQ_1 USB2_IRQ_2 USB2_IRQ_3>;
 		dma = <&amba_lpd>;
 	};
