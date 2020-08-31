@@ -38,13 +38,13 @@
  * filenames.
  */
 / {
-	ddr_low: memory@00000000 {
+	ddr_mem: memory@00000000 {
 		compatible = "qemu:memory-region";
 		device_type = "memory";
 		container = <&amba>;
 	};
 
-	ddr_high_bank1: memory@8_0000_0000 {
+	ddr_2_mem: memory@8_0000_0000 {
 		compatible = "qemu:memory-region";
 		device_type = "memory";
 		container = <&amba>;

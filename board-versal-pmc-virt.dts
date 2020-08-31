@@ -41,7 +41,7 @@
 
 / {
 	/* FIXME: Once we add the NOC, these should be attached to it.  */
-	MEM_REGION(ddr, 0x0, 0x00000000, 0x00000000, 0x08000000, &ddr_low)
+	MEM_REGION(ddr, 0x0, 0x00000000, 0x00000000, 0x08000000, &ddr_mem)
 
 	/* Dummy APUs.  */
 	cpu0: apu@0 {
@@ -91,7 +91,7 @@
 
 / {
 	/* FIXME: Once we add the NOC, these should be attached to it.  */
-	MEM_REGION(ddr, 0x0, 0x00000000, 0x00000000, 0x80000000, &ddr_low)
+	MEM_REGION(ddr, 0x0, 0x00000000, 0x00000000, 0x80000000, &ddr_mem)
 
 	ps_pmc_rp: ps_pmc_rp@0 {
 		doc-name = "Remote-port PMC-PS";
