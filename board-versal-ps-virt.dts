@@ -247,8 +247,9 @@ glue(rpu_intc_redirect_, NCPU): glue(rpu_intc_redirect, NCPU)@NCPU {	\
 #endif
 
 	/* FIXME: Once we add the NOC, these should be attached to it.  */
-	MEM_REGION(ddr, 0x0, 0x00000000, 0x00000000, 0x80000000, &ddr_low)  // 2 GB
-	MEM_SPEC(ddr_h_1, 0x8, 0x0, 0x800000000, 0x10, 0x0, &ddr_high_bank1) // 32 GB
+	MEM_REGION(ddr, 0x0, MM_TOP_DDR, 0x00000000, MM_TOP_DDR_SIZE, &ddr_low)  // 2 GB
+	MEM_SPEC(ddr_h_1, MM_TOP_DDR_2_H, MM_TOP_DDR_2_L, MM_TOP_DDR_2,
+                 MM_TOP_DDR_2_SIZE_H, MM_TOP_DDR_2_SIZE_L, &ddr_high_bank1) // 32 GB
         mdio0: mdio {
 		#address-cells = <1>;
 		#size-cells = <0>;
