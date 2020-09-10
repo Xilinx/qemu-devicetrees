@@ -28,41 +28,7 @@
  */
 
 #include "board-versal-ps-virt.dts"
-
-&cpu0 {
-	generic-timer-frequency = <100000000>;
-};
-
-&cpu1 {
-	generic-timer-frequency = <100000000>;
-};
-
-&cpu2 {
-	generic-timer-frequency = <100000000>;
-};
-
-&cpu3 {
-	generic-timer-frequency = <100000000>;
-};
-
-&pmc_ppu1_io_pit1 {
-	frequency = <100000000>;
-};
-
-&pmc_ppu1_io_pit2 {
-	frequency = <100000000>;
-};
-
-&pmc_ppu1_io_pit3 {
-	frequency = <100000000>;
-
-	/* This fastens the windows emulation by slowing down the plm scheduler.  */
-	windows-frequency = <1300000>;
-};
-
-&pmc_ppu1_io_pit4 {
-	frequency = <100000000>;
-};
+#include "versal-silicon-freq.dtsi"
 
 #define I2C_DUMMY(name, addr)			\
 	name@addr {				\

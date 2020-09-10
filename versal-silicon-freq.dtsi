@@ -1,5 +1,5 @@
 /*
- * Versal Virtual vck5000 board device tree
+ * Versal Silicon specific configurations
  *
  * Copyright (c) 2020, Xilinx Inc
  * All rights reserved.
@@ -27,15 +27,40 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "board-versal-ps-virt.dts"
-#include "versal-silicon-freq.dtsi"
 
-&ospi {
-	/delete-node/ ospi_flash_lcs_ub@0;
-	/delete-node/ ospi_flash_ucs_lb@0;
-	/delete-node/ ospi_flash_ucs_ub@0;
+&cpu0 {
+	generic-timer-frequency = <100000000>;
 };
 
-&ospi_flash_lcs_lb {
-	compatible = "mt35xu02gbba";
+&cpu1 {
+	generic-timer-frequency = <100000000>;
 };
+
+&cpu2 {
+	generic-timer-frequency = <100000000>;
+};
+
+&cpu3 {
+	generic-timer-frequency = <100000000>;
+};
+
+&pmc_ppu1_io_pit1 {
+	frequency = <100000000>;
+};
+
+&pmc_ppu1_io_pit2 {
+	frequency = <100000000>;
+};
+
+&pmc_ppu1_io_pit3 {
+	frequency = <100000000>;
+
+	/* This fastens the windows emulation by slowing down the plm scheduler.  */
+	windows-frequency = <1300000>;
+};
+
+&pmc_ppu1_io_pit4 {
+	frequency = <100000000>;
+};
+
+
