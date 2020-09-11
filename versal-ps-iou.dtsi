@@ -48,7 +48,6 @@ g_name: g_name@0 {							\
 #define ZDMA_CHANNEL(zname, zdomain, zbase, zirq, zbuswidth, zdma, mid, num)	\
 zname ## _mattr: zname ## mattr {					\
 	compatible = "qemu:memory-transaction-attr";			\
-	secure = <0>;							\
 	requester-id = <mid>;						\
 };									\
 									\
