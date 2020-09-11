@@ -47,7 +47,7 @@ HEADER_FILES			:= $(wildcard *.dtsh)
 HEADER_FILES			+= $(wildcard include/*.dtsh)
 
 
-CPPFLAGS = -Iinclude/
+CPPFLAGS = -I. -Iinclude/
 
 .PHONY:	all source
 
