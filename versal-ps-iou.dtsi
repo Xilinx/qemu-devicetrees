@@ -101,6 +101,12 @@ zname: zname@zbase {							\
 		compatible = "xlnx,versal_cpm_pcsr";
 		reg = <0x0 MM_CPM_CPM_PCSR 0x0 MM_CPM_CPM_PCSR_SIZE 0x0>;
 	};
+
+	fpd_slcr@MM_FPD_FPD_SLCR {
+		compatible = "xlnx,versal-fpd-slcr";
+		interrupts = <SLCR_FPD_APB_IRQ_0>;
+		reg = <0x0 MM_FPD_FPD_SLCR 0x0 MM_FPD_FPD_SLCR_SIZE 0x0>;
+	};
 };
 
 &amba_lpd {
