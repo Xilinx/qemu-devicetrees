@@ -107,6 +107,12 @@ zname: zname@zbase {							\
 		interrupts = <SLCR_FPD_APB_IRQ_0>;
 		reg = <0x0 MM_FPD_FPD_SLCR 0x0 MM_FPD_FPD_SLCR_SIZE 0x0>;
 	};
+
+	fpd_slcr_secure@MM_FPD_FPD_SLCR {
+		compatible = "xlnx,versal-fpd-slcr-secure";
+		interrupts = <SLCR_SECURE_FPD_APB_IRQ_0>;
+		reg = <0x0 MM_FPD_FPD_SLCR_SECURE 0x0 MM_FPD_FPD_SLCR_SECURE_SIZE 0x0>;
+	};
 };
 
 &amba_lpd {
