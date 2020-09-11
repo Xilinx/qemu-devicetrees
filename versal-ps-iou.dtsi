@@ -303,6 +303,11 @@ zname: zname@zbase {							\
 		compatible = "xlnx,versal-lpd-slcr";
 		reg = <0x0 MM_LPD_SLCR 0x0 MM_LPD_SLCR_SIZE 0x0>;
 	};
+
+	lpd_slcr_secure@MM_LPD_SLCR_SECURE {
+		compatible = "xlnx,versal-lpd-slcr-secure";
+		reg = <0x0 MM_LPD_SLCR_SECURE 0x0 MM_LPD_SLCR_SECURE_SIZE 0x0>;
+	};
 };
 
 &amba_root {
