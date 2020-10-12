@@ -1,0 +1,54 @@
+/*
+ * Versal Virtual Cosim PS board device tree instantiating an iomem-cache
+ * making it possible to have DDR through the remote port.
+ *
+ * Copyright (c) 2020, Xilinx Inc
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *     * Redistributions of source code must retain the above copyright
+ *       notice, this list of conditions and the following disclaimer.
+ *     * Redistributions in binary form must reproduce the above copyright
+ *       notice, this list of conditions and the following disclaimer in the
+ *       documentation and/or other materials provided with the distribution.
+ *     * Neither the name of the <organization> nor the
+ *       names of its contributors may be used to endorse or promote products
+ *       derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY
+ * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+#include "board-versal-ps-virt.dts"
+#include "versal-ps-pl-remoteport.dtsi"
+
+&pmc_tap {
+	platform = <PLATFORM_QEMU_COSIM>;
+};
+
+&amba {
+	iomem_cache: iomem_cache@0 {
+		compatible = "iomem-cache";
+
+		reg = <
+			0x0 MM_TOP_DDR 0x0 MM_TOP_DDR_SIZE 0x1
+			MM_TOP_DDR_2_H MM_TOP_DDR_2_L MM_TOP_DDR_2_SIZE_H MM_TOP_DDR_2_SIZE_L 0x1
+			MM_TOP_DDR_3_H MM_TOP_DDR_3_L MM_TOP_DDR_3_SIZE_H MM_TOP_DDR_3_SIZE_L 0x1
+			MM_TOP_DDR_4_H MM_TOP_DDR_4_L MM_TOP_DDR_4_SIZE_H MM_TOP_DDR_4_SIZE_L 0x1
+			MM_TOP_DDR_CH1_H MM_TOP_DDR_CH1_L MM_TOP_DDR_CH1_SIZE_H MM_TOP_DDR_CH1_SIZE_L 0x1
+			MM_TOP_DDR_CH2_H MM_TOP_DDR_CH2_L MM_TOP_DDR_CH2_SIZE_H MM_TOP_DDR_CH2_SIZE_L 0x1
+			MM_TOP_DDR_CH3_H MM_TOP_DDR_CH3_L MM_TOP_DDR_CH3_SIZE_H MM_TOP_DDR_CH3_SIZE_L 0x1
+		>;
+
+		downstream-mr = <&cci_mr>;
+	};
+};
