@@ -133,27 +133,34 @@
 		reg = <0x0 MM_TOP_PS_PL_LPD_LowAddr 0x0 MM_TOP_PS_PL_LPD_LowAddr_SIZE 0x0>;
 	};
 
-	/* FPD_CCI_NOC_0 - 3.  ID 50 - 53 */
-	fpd_cci_noc_0: fpd_cci_noc_0@0 {
-		compatible = "remote-port-memory-master";
-		remote-ports = <&cosim_rp_0 50>;
-		/*
-		 * TODO: Verify this list.
-		 * Since we don't yet have a model of the CCI, we'll only use PORT 0.
-		 * The only ranges we know go on this port are DDR accesses and ME.
-		 * Since DDR never goes over I/O (we do direct shared memory acceses)
-		 * the only range that get's routed here is the ME.
-		 */
-		reg = < MM_TOP_ME_Programming_H MM_TOP_ME_Programming_L MM_TOP_ME_Programming_SIZE_H MM_TOP_ME_Programming_SIZE_L 0x1
+	cci_mr: cci_mr@0 {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		#priority-cells = <1>;
+		compatible = "simple-bus";
 
-			0x0 MM_TOP_Reserved_2 0x0 MM_TOP_Reserved_2_SIZE 0x1
-			MM_TOP_Reserved_3_H MM_TOP_Reserved_3_L 0x0 MM_TOP_Reserved_3_SIZE 0x1
-			MM_TOP_Reserved_4_H MM_TOP_Reserved_4_L 0x0 MM_TOP_Reserved_4_SIZE 0x1
-			MM_TOP_PCIe_region_1_H MM_TOP_PCIe_region_1_L MM_TOP_PCIe_region_1_SIZE_H MM_TOP_PCIe_region_1_SIZE_L 0x1
-			MM_TOP_Reserved_9_H MM_TOP_Reserved_9_L MM_TOP_Reserved_9_SIZE_H MM_TOP_Reserved_9_SIZE_L 0x1
-			MM_TOP_Reserved_10_H MM_TOP_Reserved_10_L MM_TOP_Reserved_10_SIZE_H MM_TOP_Reserved_10_SIZE_L 0x1
-			MM_TOP_PL_via_NoC_H MM_TOP_PL_via_NoC_L MM_TOP_PL_via_NoC_SIZE_H MM_TOP_PL_via_NoC_SIZE_L 0x1
-		      >;
+		/* IF_PS_NOC_CCI_0 - 3.  ID 50 - 53 */
+		if_ps_noc_cci_0: if_ps_noc_cci_0@0 {
+			compatible = "remote-port-memory-master";
+			remote-ports = <&cosim_rp_0 50>;
+			/*
+			 * TODO: Verify this list.
+			 * Since we don't yet have a model of the CCI, we'll only use PORT 0.
+			 * The only ranges we know go on this port are DDR accesses and ME.
+			 * Since DDR never goes over I/O (we do direct shared memory acceses)
+			 * the only range that get's routed here is the ME.
+			 */
+			reg = <
+				MM_TOP_ME_Programming_H MM_TOP_ME_Programming_L MM_TOP_ME_Programming_SIZE_H MM_TOP_ME_Programming_SIZE_L 0x1
+				0x0 MM_TOP_Reserved_2 0x0 MM_TOP_Reserved_2_SIZE 0x1
+				MM_TOP_Reserved_3_H MM_TOP_Reserved_3_L 0x0 MM_TOP_Reserved_3_SIZE 0x1
+				MM_TOP_Reserved_4_H MM_TOP_Reserved_4_L 0x0 MM_TOP_Reserved_4_SIZE 0x1
+				MM_TOP_PCIe_region_1_H MM_TOP_PCIe_region_1_L MM_TOP_PCIe_region_1_SIZE_H MM_TOP_PCIe_region_1_SIZE_L 0x1
+				MM_TOP_Reserved_9_H MM_TOP_Reserved_9_L MM_TOP_Reserved_9_SIZE_H MM_TOP_Reserved_9_SIZE_L 0x1
+				MM_TOP_Reserved_10_H MM_TOP_Reserved_10_L MM_TOP_Reserved_10_SIZE_H MM_TOP_Reserved_10_SIZE_L 0x1
+				MM_TOP_PL_via_NoC_H MM_TOP_PL_via_NoC_L MM_TOP_PL_via_NoC_SIZE_H MM_TOP_PL_via_NoC_SIZE_L 0x1
+			      >;
+		};
 	};
 
 	/* FPD_AXI_NOC_0 - 1.  ID 54 - 55 */
@@ -202,6 +209,10 @@
 			  &pmc_clk_rst CRP_RST_PL3
 			>;
        };
+};
+
+&amba {
+	MR_BACKGROUND(cci_mr);
 };
 
 &amba_pmc_internal {
