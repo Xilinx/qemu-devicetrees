@@ -676,9 +676,11 @@ glue(ocm_mem_ctrl_, n): glue(ocm_mem_ctrl_, n)@n {						\
 		pcie_main: pcie_main@AXIPCIE_MAIN {
 			compatible = "xlnx,nwl-pcie-main";
 			reg-extended = <&amba BASE_ADDR(AXIPCIE_MAIN) 0x1000
-					/* Wierdo. At AXIPEICE_MAIN, but on the ingress side,
-					 * we find the MSI forwarders.  */
-					&pcie_ingress BASE_ADDR(PCIE_ATTRIB) 0x0 0x1000 0x2
+					/* FIXME: The following region base addr should be controlled
+					 * at runtime via registers. While we wait for that support,
+					 * we hard code it to the recommended value.
+					 */
+					&pcie_ingress BASE_ADDR(0xFE440000) 0x0 0x1000 0x2
 
 					&amba 0x80 0x0 0x10000000
 					&pcie_overlay 0x0 0x0 0xFFFFFFFF 0xFFFFFFFF 0x0
