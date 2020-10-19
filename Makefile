@@ -58,10 +58,12 @@ TARGETS = \
 
 COMPILE = \
 	$(QUIET)mkdir -p $(1); \
-	$(GCC) -E -nostdinc ${CPPFLAGS} -x assembler-with-cpp $(3) -o - $< | \
+	$(GCC) -E -nostdinc ${CPPFLAGS} -x assembler-with-cpp $(3) -MD -MF $@.cd -o - $< | \
 		$(DTC) -q -O $(2) -I dts -o $@ - -b 0;
 
 all:	$(call TARGETS,dtb)
+
+-include $(call TARGETS, cd)
 
 source:	all $(call TARGETS,dts)
 
