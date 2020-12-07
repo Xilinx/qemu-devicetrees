@@ -1,7 +1,7 @@
 /*
- * Versal Virtual PMC board device tree
+ * Versal PMX Overlay
  *
- * Copyright (c) 2016, Xilinx Inc
+ * Copyright (c) 2020, Xilinx Inc
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -27,8 +27,29 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#define VERSAL_PMX
-#define VERSAL_KSB_PMX
+#include "versal.dtsh"
 
-#include "board-versal-pmc-virt.dts"
-#include "versal-pmx.dtsi"
+/* PMX has increased the ROM size from 128K -> 256K.  */
+#define MM_PMX_PMX_ROM			MM_PMC_PMC_ROM
+#define MM_PMX_PMX_ROM_SIZE		0x40000
+
+/*
+ * PMX has increased the PPU1 INSTR RAM size from 128K -> 384K.
+ * This re-size causes the DATA RAM to move up in the address-space.
+ */
+#define MM_PMX_PPU1_RAM_INSTR		MM_PMC_PPU1_RAM_INSTR
+#define MM_PMX_PPU1_RAM_INSTR_SIZE	0x60000
+#define MM_PMX_PPU1_RAM_DATA		0xf0260000
+#define MM_PMX_PPU1_RAM_DATA_SIZE	MM_PMC_PPU1_RAM_DATA_SIZE
+
+&pmc_rom {
+	reg = <0x0 MM_PMX_PMX_ROM 0x0 MM_PMX_PMX_ROM_SIZE 0x1>;
+};
+
+&pmc_ppu1_insn_ram {
+	reg = <0x0 MM_PMX_PPU1_RAM_INSTR 0x0 MM_PMX_PPU1_RAM_INSTR_SIZE 0x0>;
+};
+
+&pmc_ppu1_data_ram {
+	reg = <0x0 MM_PMX_PPU1_RAM_DATA 0x0 MM_PMX_PPU1_RAM_DATA_SIZE 0x0>;
+};
