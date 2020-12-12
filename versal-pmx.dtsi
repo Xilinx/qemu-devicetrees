@@ -28,6 +28,7 @@
  */
 
 #include "versal.dtsh"
+#include "versal-pmc-sec.dtsi"
 
 /* PMX has increased the ROM size from 128K -> 256K.  */
 #define MM_PMX_PMX_ROM			MM_PMC_PMC_ROM
@@ -52,4 +53,20 @@
 
 &pmc_ppu1_data_ram {
 	reg = <0x0 MM_PMX_PPU1_RAM_DATA 0x0 MM_PMX_PPU1_RAM_DATA_SIZE 0x0>;
+};
+
+&pmc_dma0_src {
+	byte-align = <1>;
+};
+
+&pmc_dma0_dst {
+	byte-align = <1>;
+};
+
+&pmc_dma1_src {
+	byte-align = <1>;
+};
+
+&pmc_dma1_dst {
+	byte-align = <1>;
 };
