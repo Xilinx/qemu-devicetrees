@@ -100,7 +100,7 @@
 		remote-ports = <&ps_pmc_rp 6>;
 		gpio-controller;
 		#gpio-cells = <1>;
-		num-gpios = <32>;
+		num-gpios = <35>;
 
 		gpios = <
 			  &crl 0
@@ -134,7 +134,10 @@
 			  &crl 28
 			  &crl 29
 			  &crl 30
-			  &crl 31 >;
+			  &crl 31
+			  &dummy1 0
+			  &dummy1 0
+			  &crl 34 >;
 	};
 	rp_pmc_clk_rst: rp_pmc_clk_rst@0 {
 		compatible = "remote-port-gpio";
