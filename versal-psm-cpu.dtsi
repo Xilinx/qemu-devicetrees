@@ -78,8 +78,8 @@
 			xlnx,use-stack-protection = <0x1>;
 			xlnx,addr-size= <52>;
 
-			gpios = < &crl 30 &crl 31 >;
-			gpio-names = "reset", "wakeup";
+			gpios = < &crl 30 &crl 31 &crl 34>;
+			gpio-names = "halt", "wakeup", "reset";
 			qemu,halt = <0x1>;
 
 			mr = <&lmb_psm>;

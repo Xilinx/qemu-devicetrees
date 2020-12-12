@@ -132,7 +132,7 @@
 		compatible = "remote-port-gpio";
 		remote-ports = <&ps_pmc_rp 6>;
 		#gpio-cells = <1>;
-		num-gpios = <32>;
+		num-gpios = <35>;
 	};
 	pmc_clk_rst: pmc_clk_rst@0 {
 		compatible = "remote-port-gpio";
