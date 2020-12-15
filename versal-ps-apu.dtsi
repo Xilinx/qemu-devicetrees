@@ -28,6 +28,7 @@
  */
 
 #include "versal.dtsh"
+#include "versal/apu.dtsh"
 
 #ifndef NUM_APUS
 #error "NUM APUs is not set!"
@@ -35,29 +36,6 @@
 #error "NUM APUs must be set to 2 or 4"
 #endif
 
-#ifndef APU_CPU_MODEL
-#define APU_CPU_MODEL "cortex-a72-arm-cpu"
-#endif
-
-#define APU_COMMON(n,p)							\
-	compatible = APU_CPU_MODEL;					\
-	device_type = "cpu";						\
-	arm,ccsidr0 = <0x701fe00a>;					\
-	arm,ccsidr1 = <0x201fe012>;					\
-	reg = <n>;							\
-	core-count = <2>;						\
-	arm,reset-hivecs = <1>;						\
-	arm,rvbar = <0xffff0000>;					\
-	arm,reset-cbar = <ACPU_GIC_CPUIF>;				\
-	mr = <&amba_apu>;						\
-	memory = <&amba_apu>;						\
-	gpios = <&psm_local PLR_APU_WFI_ACPU ## n>;			\
-	gpio-names = "wfi";						\
-	reset-gpios = <&crf n>;						\
-	power-gpios = < &psm_local PLR_PWR_ACPU ## n ##_0 >;		\
-	qemu,halt = <0x1>;						\
-	memattr_s = <&apu ## n ## _s_memattr>;				\
-	memattr_ns = <&apu ## n ## _ns_memattr>;
 
 / {
 	cpus {

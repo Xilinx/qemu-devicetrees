@@ -1,0 +1,53 @@
+/*
+ * Versal APU header file
+ *
+ * Copyright (c) 2020, Xilinx Inc
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *     * Redistributions of source code must retain the above copyright
+ *       notice, this list of conditions and the following disclaimer.
+ *     * Redistributions in binary form must reproduce the above copyright
+ *       notice, this list of conditions and the following disclaimer in the
+ *       documentation and/or other materials provided with the distribution.
+ *     * Neither the name of the <organization> nor the
+ *       names of its contributors may be used to endorse or promote products
+ *       derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY
+ * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+#ifndef APU_CPU_MODEL
+#define APU_CPU_MODEL "cortex-a72-arm-cpu"
+#endif
+
+#define APU_COMMON(n,p)							\
+	compatible = APU_CPU_MODEL;					\
+	device_type = "cpu";						\
+	arm,ccsidr0 = <0x701fe00a>;					\
+	arm,ccsidr1 = <0x201fe012>;					\
+	reg = <n>;							\
+	core-count = <2>;						\
+	arm,reset-hivecs = <1>;						\
+	arm,rvbar = <0xffff0000>;					\
+	arm,reset-cbar = <ACPU_GIC_CPUIF>;				\
+	mr = <&amba_apu>;						\
+	memory = <&amba_apu>;						\
+	gpios = <&psm_local PLR_APU_WFI_ACPU ## n>;			\
+	gpio-names = "wfi";						\
+	reset-gpios = <&crf n>;						\
+	power-gpios = < &psm_local PLR_PWR_ACPU ## n ##_0 >;		\
+	qemu,halt = <0x1>;						\
+	memattr_s = <&apu ## n ## _s_memattr>;				\
+	memattr_ns = <&apu ## n ## _ns_memattr>;
+
