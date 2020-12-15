@@ -38,10 +38,6 @@
 #define APU_COMMON(n,p)							\
 	compatible = "cortex-a72-arm-cpu";				\
 	device_type = "cpu";						\
-	arm,midr = <0x410fd083>;					\
-	arm,ctr = <0x8444c004>;						\
-	arm,clidr = <0x0a200023>;					\
-	arm,id_pfr0 = <0x131>;						\
 	arm,ccsidr0 = <0x701fe00a>;					\
 	arm,ccsidr1 = <0x201fe012>;					\
 	reg = <n>;							\
