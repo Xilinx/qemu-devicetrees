@@ -212,13 +212,13 @@
 				<glue(&cpu,n) 2>,			\
 				<glue(&cpu,n) 3>;			\
 		gpios = <&psm_global p &psm_local a>;			\
-};
+}
 
 	amba_apu: amba_apu@0 {
-		APU_INTC_REDIRECT(0, 100, 0)
-		APU_INTC_REDIRECT(1, 101, 1)
-		APU_INTC_REDIRECT(2, 102, 2)
-		APU_INTC_REDIRECT(3, 103, 3)
+		APU_INTC_REDIRECT(0, 100, 0);
+		APU_INTC_REDIRECT(1, 101, 1);
+		APU_INTC_REDIRECT(2, 102, 2);
+		APU_INTC_REDIRECT(3, 103, 3);
 	};
 
 #define RPU_INTC_REDIRECT(NCPU, PSMOUT, RPUN)							\
