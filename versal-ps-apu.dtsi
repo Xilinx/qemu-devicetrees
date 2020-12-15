@@ -36,6 +36,14 @@
 #error "NUM APUs must be set to 2 or 4"
 #endif
 
+#define APU_GPIOS(n)						\
+	gpios = <&psm_local PLR_APU_WFI_ACPU ## n>;		\
+	gpio-names = "wfi";					\
+	reset-gpios = <&crf n>;					\
+	power-gpios = < &psm_local PLR_PWR_ACPU ## n ##_0 >;	\
+	memattr_s = <&apu ## n ## _s_memattr>;			\
+	memattr_ns = <&apu ## n ## _ns_memattr>
+
 
 / {
 	cpus {
@@ -43,17 +51,20 @@
 		#size-cells = <0>;
 		cpu0: apu_cpu@0 {
 			APU_COMMON(0);
+			APU_GPIOS(0);
 			gdb-id = "Cortex-A72 #0";
 			#interrupt-cells = <1>;
 		};
 		cpu1: apu_cpu@1 {
 			APU_COMMON(1);
+			APU_GPIOS(1);
 			gdb-id = "Cortex-A72 #1";
 			#interrupt-cells = <1>;
 		};
 		cpu2: apu_cpu@2 {
 #if NUM_APUS == 4
 			APU_COMMON(2);
+			APU_GPIOS(2);
 			gdb-id = "Cortex-A72 #2";
 #endif
 			#interrupt-cells = <1>;
@@ -61,6 +72,7 @@
 		cpu3: apu_cpu@3 {
 #if NUM_APUS == 4
 			APU_COMMON(3);
+			APU_GPIOS(3);
 			gdb-id = "Cortex-A72 #3";
 #endif
 			#interrupt-cells = <1>;
