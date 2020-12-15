@@ -28,7 +28,7 @@
  */
 
 #define VERSAL_PMX
-#define VERSAL_KSB_PMX
+#define VERSAL_KSB
 
 #include "board-versal-pmc-virt.dts"
 #include "versal-pmx.dtsi"
