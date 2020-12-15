@@ -35,8 +35,12 @@
 #error "NUM APUs must be set to 2 or 4"
 #endif
 
+#ifndef APU_CPU_MODEL
+#define APU_CPU_MODEL "cortex-a72-arm-cpu"
+#endif
+
 #define APU_COMMON(n,p)							\
-	compatible = "cortex-a72-arm-cpu";				\
+	compatible = APU_CPU_MODEL;					\
 	device_type = "cpu";						\
 	arm,ccsidr0 = <0x701fe00a>;					\
 	arm,ccsidr1 = <0x201fe012>;					\
