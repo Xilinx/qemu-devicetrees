@@ -29,16 +29,21 @@
 
 /dts-v1/;
 
+#ifndef NUM_APUS
 /* Base platform has 2 APUs.  */
 #define NUM_APUS 2
+#endif
+
 #define HAVE_APU_GIC
 
+#ifndef APU_GIC_INTERRUPT_TARGET_STEM
 #ifdef MULTI_ARCH
 	#define APU_GIC_INTERRUPT_TARGET_STEM apu_intc_redirect_
 	#define RPU_GIC_INTERRUPT_TARGET_STEM rpu_intc_redirect_
 #else
 	#define APU_GIC_INTERRUPT_TARGET_STEM cpu
 	#define RPU_GIC_INTERRUPT_TARGET_STEM rpu_cpu
+#endif
 #endif
 
 #include "versal.dtsh"
