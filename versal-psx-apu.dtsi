@@ -1,0 +1,196 @@
+/*
+ * Versal APU subsystem include file
+ *
+ * Copyright (c) 2016, Xilinx Inc
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *     * Redistributions of source code must retain the above copyright
+ *       notice, this list of conditions and the following disclaimer.
+ *     * Redistributions in binary form must reproduce the above copyright
+ *       notice, this list of conditions and the following disclaimer in the
+ *       documentation and/or other materials provided with the distribution.
+ *     * Neither the name of the <organization> nor the
+ *       names of its contributors may be used to endorse or promote products
+ *       derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY
+ * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+#include "versal.dtsh"
+#include "versal/apu.dtsh"
+
+#ifndef NUM_APUS
+#error "NUM APUs is not set!"
+#elif NUM_APUS != 8
+#error "NUM APUs must be set to 8"
+#endif
+
+#define APU_GPIOS(n)						\
+	reset-gpios = <&crf n>
+
+
+/ {
+	cpus {
+		#address-cells = <1>;
+		#size-cells = <0>;
+		cpu0: apu_cpu@0 {
+			APU_COMMON(0);
+			APU_GPIOS(0);
+			gdb-id = "Cortex-A78 #0";
+			#interrupt-cells = <1>;
+		};
+		cpu1: apu_cpu@1 {
+			APU_COMMON(1);
+			APU_GPIOS(0);
+			gdb-id = "Cortex-A78 #1";
+			#interrupt-cells = <1>;
+		};
+		cpu2: apu_cpu@2 {
+			APU_COMMON(2);
+			APU_GPIOS(0);
+			gdb-id = "Cortex-A78 #2";
+			#interrupt-cells = <1>;
+		};
+		cpu3: apu_cpu@3 {
+			APU_COMMON(3);
+			APU_GPIOS(3);
+			gdb-id = "Cortex-A78 #3";
+			#interrupt-cells = <1>;
+		};
+		cpu4: apu_cpu@4 {
+			APU_COMMON(4);
+			APU_GPIOS(4);
+			gdb-id = "Cortex-A78 #4";
+			#interrupt-cells = <1>;
+		};
+		cpu5: apu_cpu@5 {
+			APU_COMMON(5);
+			APU_GPIOS(5);
+			gdb-id = "Cortex-A78 #5";
+			#interrupt-cells = <1>;
+		};
+		cpu6: apu_cpu@6 {
+			APU_COMMON(6);
+			APU_GPIOS(6);
+			gdb-id = "Cortex-A78 #6";
+			#interrupt-cells = <1>;
+		};
+		cpu7: apu_cpu@7 {
+			APU_COMMON(7);
+			APU_GPIOS(7);
+			gdb-id = "Cortex-A78 #7";
+			#interrupt-cells = <1>;
+		};
+	};
+
+	amba_apu: amba_apu@0 {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		#priority-cells = <1>;
+		compatible = "simple-bus";
+		ranges ;
+
+		downstream_amba {
+			compatible = "qemu:memory-region";
+			alias = <&amba>;
+			/* Full address range with -1 priority.  */
+			reg = <0x0 0x0 0xffffffff 0xffffffff 0xffffffff >;
+		};
+
+		timer {
+			compatible = "arm,armv8-timer";
+			interrupt-parent = <&gic>;
+			interrupts = <1 13 0xff01>,
+						 <1 14 0xff01>,
+						 <1 11 0xff01>,
+						 <1 10 0xff01>;
+			clock-frequency = <100000000>;
+		};
+	};
+
+	amba_apu_gic: amba_apu_gic@0 {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		#priority-cells = <1>;
+		compatible = "simple-bus";
+		ranges ;
+		container = <&amba>;
+		priority = <0xFFFFFFFF>; /* -1 */
+		gic: interrupt-controller@APU_GIC_DIST {
+			#address-cells = <0>;
+			#size-cells = <0>;
+			#interrupt-cells = <3>;
+
+			compatible = "arm-gicv3";
+			reg = < 0x0 ACPU_GIC_DIST 0x0 0x10000 0
+				0x0 ACPU_GIC_REDIST 0x0 0x200000 0>;
+			interrupt-controller ;
+			interrupts-extended =
+				/* IRQs.  */
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 0) 0>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 1) 0>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 2) 0>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 3) 0>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 4) 0>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 5) 0>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 6) 0>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 7) 0>,
+
+				/* FIQs.  */
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 0) 1>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 1) 1>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 2) 1>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 3) 1>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 4) 1>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 5) 1>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 6) 1>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 7) 1>,
+
+
+				/* Virtual IRQs.  */
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 0) 2>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 1) 2>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 2) 2>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 3) 2>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 4) 2>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 5) 2>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 6) 2>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 7) 2>,
+
+
+				/* Virtual FIQs.  */
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 0) 3>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 1) 3>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 2) 3>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 3) 3>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 4) 3>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 5) 3>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 6) 3>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 7) 3>,
+
+				<&gic 0x1 0x9 0x0104>,
+				<&gic 0x1 0x9 0x0204>,
+				<&gic 0x1 0x9 0x0404>,
+				<&gic 0x1 0x9 0x0804>,
+				<&gic 0x1 0x9 0x1004>,
+				<&gic 0x1 0x9 0x2004>,
+				<&gic 0x1 0x9 0x4004>,
+				<&gic 0x1 0x9 0x8004>;
+			num-cpu = <NUM_APUS>;
+			num-irq = <224>;
+			has-security-extensions = <1>;
+			redist-region-count = <2 2 2 2>;
+		};
+	};
+};

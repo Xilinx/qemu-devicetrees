@@ -70,7 +70,11 @@
 #include "versal-pmc.dtsi"
 #include "versal-psm.dtsi"
 #include "versal-ddrmc.dtsi"
+#ifdef VERSAL_PSX
+#include "versal-psx-apu.dtsi"
+#else
 #include "versal-ps-apu.dtsi"
+#endif
 #include "versal-ps-rpu.dtsi"
 #include "versal-ps-iou.dtsi"
 #include "versal-virtio-mmio.dtsi"
