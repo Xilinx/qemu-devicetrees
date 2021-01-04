@@ -42,6 +42,8 @@
 #define MM_PMX_PPU1_RAM_INSTR_SIZE	0x60000
 #define MM_PMX_PPU1_RAM_DATA		0xf0260000
 #define MM_PMX_PPU1_RAM_DATA_SIZE	MM_PMC_PPU1_RAM_DATA_SIZE
+#define MM_PMX_SHA1			0xF1800000
+#define MM_PMX_SHA1_SIZE		0x10000
 
 &pmc_rom {
 	reg = <0x0 MM_PMX_PMX_ROM 0x0 MM_PMX_PMX_ROM_SIZE 0x1>;
@@ -70,3 +72,16 @@
 &pmc_dma1_dst {
 	byte-align = <1>;
 };
+
+&pmc_stream_switch {
+	stream-connected-sha1 = <&pmc_sha3_1>;
+};
+
+&amba_pmc_sec {
+	pmc_sha3_1: pmc_sha1@MM_PMX_SHA1 {
+		doc-status = "complete";
+		compatible = "zynqmp,csu-sha3";
+		reg = <0x0 MM_PMX_SHA1 0x0 MM_PMX_SHA1_SIZE 0x0>;
+	};
+};
+
