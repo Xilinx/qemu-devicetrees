@@ -52,13 +52,13 @@
 		};
 		cpu1: apu_cpu@1 {
 			APU_COMMON(1);
-			APU_GPIOS(0);
+			APU_GPIOS(1);
 			gdb-id = "Cortex-A78 #1";
 			#interrupt-cells = <1>;
 		};
 		cpu2: apu_cpu@2 {
 			APU_COMMON(2);
-			APU_GPIOS(0);
+			APU_GPIOS(2);
 			gdb-id = "Cortex-A78 #2";
 			#interrupt-cells = <1>;
 		};
