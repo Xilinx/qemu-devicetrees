@@ -115,6 +115,17 @@ zname: zname@zbase {							\
 		interrupts = <SLCR_SECURE_FPD_APB_IRQ_0>;
 		reg = <0x0 MM_FPD_FPD_SLCR_SECURE 0x0 MM_FPD_FPD_SLCR_SECURE_SIZE 0x0>;
 	};
+
+	fpd_wwdt: wwdt@MM_FPD_FPD_WWDT {
+		compatible = "xlnx,versal-wwdt";
+		reg = <0x0 MM_FPD_FPD_WWDT 0x0 MM_FPD_FPD_WWDT_SIZE 0x0>;
+		/* IRQ order must match the QEMU model */
+		interrupts = <FP_WDT_IRQ_0
+					FPD_WWDT_RST_PENDING_IRQ_0
+					FPD_GWDT_WS0_IRQ_0
+					FPD_GWDT_WS1_IRQ_0>;
+		pclk = <100000000>;
+	};
 };
 
 &amba_lpd {
@@ -311,6 +322,17 @@ zname: zname@zbase {							\
 		reg = <0x0 MM_LPD_SLCR_SECURE 0x0 MM_LPD_SLCR_SECURE_SIZE 0x0>;
 		gpio-controller;
 		#gpio-cells = <1>;
+	};
+
+	lpd_wwdt: wwdt@MM_WWDT {
+		compatible = "xlnx,versal-wwdt";
+		reg = <0x0 MM_WWDT 0x0 MM_WWDT_SIZE 0x0>;
+		/* IRQ order must match the QEMU model */
+		interrupts = <WWDT_IRQ_0
+					WWDT_RST_PENDING_IRQ_0
+					GWDT_WS0_IRQ_0
+					GWDT_WS1_IRQ_0>;
+		pclk = <100000000>;
 	};
 };
 
