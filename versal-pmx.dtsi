@@ -44,6 +44,8 @@
 #define MM_PMX_PPU1_RAM_DATA_SIZE	MM_PMC_PPU1_RAM_DATA_SIZE
 #define MM_PMX_SHA1			0xF1800000
 #define MM_PMX_SHA1_SIZE		0x10000
+#define MM_PMX_WWDT			0xf03f0000
+#define MM_PMX_WWDT_SIZE	0x10000
 
 &pmc_rom {
 	reg = <0x0 MM_PMX_PMX_ROM 0x0 MM_PMX_PMX_ROM_SIZE 0x1>;
@@ -85,3 +87,10 @@
 	};
 };
 
+&amba_pmc_iou {
+	pmx_wwdt: wwdt@MM_PMX_WWDT {
+		compatible = "xlnx,versal-wwdt";
+		reg = <0x0 MM_PMX_WWDT 0x0 MM_PMX_WWDT_SIZE 0x0>;
+		pclk = <100000000>;
+	};
+};
