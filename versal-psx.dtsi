@@ -53,3 +53,7 @@
 &crf {
 	compatible = "xlnx,versal-psx-crf";
 };
+
+&pmc_iou_slcr {
+	compatible = "xlnx,versal-pmx-iou-slcr";
+};
