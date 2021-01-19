@@ -134,7 +134,7 @@
 
 			compatible = "arm-gicv3";
 			reg = < 0x0 ACPU_GIC_DIST 0x0 0x10000 0
-				0x0 ACPU_GIC_REDIST 0x0 0x200000 0>;
+				0x0 ACPU_GIC_REDIST 0x0 0x100000 0>;
 			interrupt-controller ;
 			interrupts-extended =
 				/* IRQs.  */
@@ -190,7 +190,7 @@
 			num-cpu = <NUM_APUS>;
 			num-irq = <224>;
 			has-security-extensions = <1>;
-			redist-region-count = <2 2 2 2>;
+			redist-region-count = <8>;
 		};
 	};
 };
