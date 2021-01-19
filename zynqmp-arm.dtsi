@@ -55,17 +55,17 @@
 	gpios = <&crf n IS_MULTI_ARCH(&apu n &pmu_local p &pmu_local 0x8000001C &pmu_global 2)>;	\
 	gpio-names = "rst_cntrl" IS_MULTI_ARCH(LC "wfi" LC "pwr_cntrl" LC "pwr_cntrl" LC "rst_cntrl");
 
-#define APU_INTC_REDIRECT(n,a,p)								\
-	glue(apu_intc_redirect_, n): glue(apu_intc_redirect, n)@n {	\
-		#interrupt-cells = <1>;									\
+#define APU_INTC_REDIRECT(n,a,p)							\
+	glue(apu_intc_redirect_, n): glue(apu_intc_redirect, n)@n {			\
+		#interrupt-cells = <1>;							\
 		compatible = "xlnx,zynqmp-intc-redirect";				\
-		interrupt-controller;									\
+		interrupt-controller;							\
 		interrupts-extended = <glue(&cpu,n) 0>,					\
-				<glue(&cpu,n) 1>,								\
-				<glue(&cpu,n) 2>,								\
-				<glue(&cpu,n) 3>;								\
-		gpios = <&pmu_io_gpi1 p 0 &apu a>;						\
-};
+				<glue(&cpu,n) 1>,					\
+				<glue(&cpu,n) 2>,					\
+				<glue(&cpu,n) 3>;					\
+		gpios = <&pmu_io_gpi1 p 0 &apu a>;					\
+}
 
 #define R5_CPU_COMMON(n)										\
 	compatible = "cortex-r5f-arm-cpu";								\
@@ -283,10 +283,10 @@ glue(glue(glue(tcm_mem_ctrl_, n), _), AB): glue(glue(tcm_mem_ctrl_, AB), n)@n {	
 			#interrupt-cells = <1>;
 		};
 
-		IS_MULTI_ARCH(APU_INTC_REDIRECT(0,4,0))
-		IS_MULTI_ARCH(APU_INTC_REDIRECT(1,5,1))
-		IS_MULTI_ARCH(APU_INTC_REDIRECT(2,6,2))
-		IS_MULTI_ARCH(APU_INTC_REDIRECT(3,7,3))
+		IS_MULTI_ARCH(APU_INTC_REDIRECT(0,4,0);)
+		IS_MULTI_ARCH(APU_INTC_REDIRECT(1,5,1);)
+		IS_MULTI_ARCH(APU_INTC_REDIRECT(2,6,2);)
+		IS_MULTI_ARCH(APU_INTC_REDIRECT(3,7,3);)
 
 	};
 
