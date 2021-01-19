@@ -41,3 +41,16 @@
 
 #include "board-versal-ps-virt.dts"
 #include "versal-psx.dtsi"
+
+&cpu4 {
+	generic-timer-frequency = <2720000>;
+};
+&cpu5 {
+	generic-timer-frequency = <2720000>;
+};
+&cpu6 {
+	generic-timer-frequency = <2720000>;
+};
+&cpu7 {
+	generic-timer-frequency = <2720000>;
+};
