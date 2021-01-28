@@ -143,5 +143,9 @@ name: name@addr64 {														\
 #include "versal-psm-memmap.dtsh"
 #include "versal-iou-memmap.dtsh"
 #include "versal-lpd-memmap.dtsh"
+#ifdef VERSAL_H10
+#include "versal-h10-npi-memmap.dtsh"
+#else
 #include "versal-npi-memmap.dtsh"
+#endif
 #include "versal-cpm-memmap.dtsh"
