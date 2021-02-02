@@ -38,6 +38,7 @@
 #define RPU_GIC_INTERRUPT_TARGET_STEM rpu_cpu
 
 #define APU_CPU_MODEL "cortex-a78-arm-cpu"
+#define RPU_CPU_MODEL "cortex-r52-arm-cpu"
 
 #include "board-versal-ps-virt.dts"
 #include "versal-psx.dtsi"
