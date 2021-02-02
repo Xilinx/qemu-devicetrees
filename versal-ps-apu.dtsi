@@ -50,13 +50,13 @@
 		#address-cells = <1>;
 		#size-cells = <0>;
 		cpu0: apu_cpu@0 {
-			APU_COMMON(0);
+			APU_COMMON(0, NUM_APUS);
 			APU_GPIOS(0);
 			gdb-id = "Cortex-A72 #0";
 			#interrupt-cells = <1>;
 		};
 		cpu1: apu_cpu@1 {
-			APU_COMMON(1);
+			APU_COMMON(1, NUM_APUS);
 			APU_GPIOS(1);
 			APU_SECONDARY(1);
 			gdb-id = "Cortex-A72 #1";
@@ -64,7 +64,7 @@
 		};
 		cpu2: apu_cpu@2 {
 #if NUM_APUS == 4
-			APU_COMMON(2);
+			APU_COMMON(2, NUM_APUS);
 			APU_GPIOS(2);
 			APU_SECONDARY(2);
 			gdb-id = "Cortex-A72 #2";
@@ -73,7 +73,7 @@
 		};
 		cpu3: apu_cpu@3 {
 #if NUM_APUS == 4
-			APU_COMMON(3);
+			APU_COMMON(3, NUM_APUS);
 			APU_GPIOS(3);
 			APU_SECONDARY(3);
 			gdb-id = "Cortex-A72 #3";

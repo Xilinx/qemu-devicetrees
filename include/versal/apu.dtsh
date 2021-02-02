@@ -31,13 +31,13 @@
 #define APU_CPU_MODEL "cortex-a72-arm-cpu"
 #endif
 
-#define APU_COMMON(n)							\
+#define APU_COMMON(n, cc)						\
 	compatible = APU_CPU_MODEL;					\
 	device_type = "cpu";						\
 	arm,ccsidr0 = <0x701fe00a>;					\
 	arm,ccsidr1 = <0x201fe012>;					\
 	reg = <n>;							\
-	core-count = <NUM_APUS>;					\
+	core-count = <cc>;						\
 	arm,reset-hivecs = <1>;						\
 	arm,rvbar = <0xffff0000>;					\
 	arm,reset-cbar = <ACPU_GIC_CPUIF>;				\
