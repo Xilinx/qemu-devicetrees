@@ -27,8 +27,12 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#ifndef RPU_CPU_MODEL
+#define RPU_CPU_MODEL "cortex-r5f-arm-cpu"
+#endif
+
 #define RPU_CPU_COMMON(n)						\
-	compatible = "cortex-r5f-arm-cpu";				\
+	compatible = RPU_CPU_MODEL;					\
 	device_type = "cpu";						\
 	arm,midr=<0x411fc153>;						\
 	arm,tcmtr=<0x00010001>;						\
