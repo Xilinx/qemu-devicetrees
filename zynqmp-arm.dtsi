@@ -55,6 +55,15 @@
 	gpios = <&crf n IS_MULTI_ARCH(&apu n &pmu_local p &pmu_local 0x8000001C &pmu_global 2)>;	\
 	gpio-names = "rst_cntrl" IS_MULTI_ARCH(LC "wfi" LC "pwr_cntrl" LC "pwr_cntrl" LC "rst_cntrl");
 
+/*
+ * When doing direct Linux boots, we expect the cores to start powered off
+ * regardless of clock/reset/power register settings. QEMU's PSCI
+ * implementation is responsible for releasing out of clock/reset/power gates.
+ */
+#define APU_SECONDARY(n)						\
+	direct-lnx-start-powered-off = <1>;				\
+	start-powered-off = <0>
+
 #define APU_INTC_REDIRECT(n,a,p)							\
 	glue(apu_intc_redirect_, n): glue(apu_intc_redirect, n)@n {			\
 		#interrupt-cells = <1>;							\
@@ -216,18 +225,21 @@ glue(glue(glue(tcm_mem_ctrl_, n), _), AB): glue(glue(tcm_mem_ctrl_, AB), n)@n {	
 		};
 		cpu1: apu_cpu@1 {
 			APU_COMMON(1, 0x80000002)
+			APU_SECONDARY(1);
 			gdb-id = "Cortex-A53 #1";
 			memattr_s = <&apu1_s_memattr>;
 			memattr_ns = <&apu1_ns_memattr>;
 		};
 		cpu2: apu_cpu@2 {
 			APU_COMMON(2, 0x80000003)
+			APU_SECONDARY(2);
 			gdb-id = "Cortex-A53 #2";
 			memattr_s = <&apu2_s_memattr>;
 			memattr_ns = <&apu2_ns_memattr>;
 		};
 		cpu3: apu_cpu@3 {
 			APU_COMMON(3, 0x80000004)
+			APU_SECONDARY(3);
 			gdb-id = "Cortex-A53 #3";
 			memattr_s = <&apu3_s_memattr>;
 			memattr_ns = <&apu3_ns_memattr>;
