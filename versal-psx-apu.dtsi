@@ -53,42 +53,49 @@
 		cpu1: apu_cpu@1 {
 			APU_COMMON(1);
 			APU_GPIOS(1);
+			APU_SECONDARY(1);
 			gdb-id = "Cortex-A78 #1";
 			#interrupt-cells = <1>;
 		};
 		cpu2: apu_cpu@2 {
 			APU_COMMON(2);
 			APU_GPIOS(2);
+			APU_SECONDARY(2);
 			gdb-id = "Cortex-A78 #2";
 			#interrupt-cells = <1>;
 		};
 		cpu3: apu_cpu@3 {
 			APU_COMMON(3);
 			APU_GPIOS(3);
+			APU_SECONDARY(3);
 			gdb-id = "Cortex-A78 #3";
 			#interrupt-cells = <1>;
 		};
 		cpu4: apu_cpu@4 {
 			APU_COMMON(4);
 			APU_GPIOS(4);
+			APU_SECONDARY(4);
 			gdb-id = "Cortex-A78 #4";
 			#interrupt-cells = <1>;
 		};
 		cpu5: apu_cpu@5 {
 			APU_COMMON(5);
 			APU_GPIOS(5);
+			APU_SECONDARY(5);
 			gdb-id = "Cortex-A78 #5";
 			#interrupt-cells = <1>;
 		};
 		cpu6: apu_cpu@6 {
 			APU_COMMON(6);
 			APU_GPIOS(6);
+			APU_SECONDARY(6);
 			gdb-id = "Cortex-A78 #6";
 			#interrupt-cells = <1>;
 		};
 		cpu7: apu_cpu@7 {
 			APU_COMMON(7);
 			APU_GPIOS(7);
+			APU_SECONDARY(7);
 			gdb-id = "Cortex-A78 #7";
 			#interrupt-cells = <1>;
 		};
