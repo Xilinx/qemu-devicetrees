@@ -45,3 +45,12 @@
 	memory = <&amba_apu>;						\
 	qemu,halt = <0x1>
 
+/*
+ * When doing direct Linux boots, we expect the cores to start powered off
+ * regardless of clock/reset/power register settings. QEMU's PSCI
+ * implementation is responsible for releasing out of clock/reset/power gates.
+ */
+#define APU_SECONDARY(n)						\
+	direct-lnx-start-powered-off = <1>;				\
+	start-powered-off = <0>
+

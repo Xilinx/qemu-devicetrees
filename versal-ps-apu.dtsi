@@ -58,6 +58,7 @@
 		cpu1: apu_cpu@1 {
 			APU_COMMON(1);
 			APU_GPIOS(1);
+			APU_SECONDARY(1);
 			gdb-id = "Cortex-A72 #1";
 			#interrupt-cells = <1>;
 		};
@@ -65,6 +66,7 @@
 #if NUM_APUS == 4
 			APU_COMMON(2);
 			APU_GPIOS(2);
+			APU_SECONDARY(2);
 			gdb-id = "Cortex-A72 #2";
 #endif
 			#interrupt-cells = <1>;
@@ -73,6 +75,7 @@
 #if NUM_APUS == 4
 			APU_COMMON(3);
 			APU_GPIOS(3);
+			APU_SECONDARY(3);
 			gdb-id = "Cortex-A72 #3";
 #endif
 			#interrupt-cells = <1>;
