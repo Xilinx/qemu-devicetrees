@@ -192,6 +192,14 @@
 	};
 #endif
 
+#ifdef VERSAL_NPI_GENERIC
+	noc_npi_devs: noc_npi_devs@0 {
+		compatible="xlnx,noc-npi-dev";
+		reg = <0x0 0xF6000000 0x0 0x2000000 0x0>;
+	};
+#endif
+};
+
 #if !defined(VERSAL_NPI_GENERIC)
 &amba_pmc_pl {
 #ifdef VERSAL_H10
