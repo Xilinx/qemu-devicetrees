@@ -244,6 +244,7 @@ zname: zname@zbase {							\
 		interrupts = <USB2_IRQ_0 USB2_IRQ_1 USB2_IRQ_2 USB2_IRQ_3>;
 		dma = <&smmu_tbu0>;
 		memattr = <&usb0_memattr>;
+		reset-gpios = <&crl CRL_RST_USB0>;
 	};
 
 	ps7_ttc_0: ps7-ttc@TTC0 {
