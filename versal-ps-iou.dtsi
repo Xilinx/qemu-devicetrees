@@ -301,6 +301,7 @@ zname: zname@zbase {							\
 			compatible = "xlnx,ps7-i2c-1.00.a", "cdns,i2c-r1p10";
 			interrupts = <I2C0_IRQ_0>;
 			reg-extended = <&amba_lpd 0x0 MM_PS_I2C0 0x0 MM_PS_I2C0_SIZE 0x0>;
+			reset-gpios = <&crl CRL_RST_I2C0>;
 		};
 		ps_i2c1: ps_i2c0@MM_PS_I2C1 {
 			#address-cells = <1>;
@@ -308,6 +309,7 @@ zname: zname@zbase {							\
 			compatible = "xlnx,ps7-i2c-1.00.a", "cdns,i2c-r1p10";
 			interrupts = <I2C1_IRQ_0>;
 			reg-extended = <&amba_lpd 0x0 MM_PS_I2C1 0x0 MM_PS_I2C1_SIZE 0x0>;
+			reset-gpios = <&crl CRL_RST_I2C1>;
 		};
 	};
 
