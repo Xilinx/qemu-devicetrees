@@ -125,6 +125,7 @@ zname: zname@zbase {							\
 					FPD_GWDT_WS0_IRQ_0
 					FPD_GWDT_WS1_IRQ_0>;
 		pclk = <100000000>;
+		reset-gpios = <&crf 27>;
 	};
 };
 
@@ -333,6 +334,7 @@ zname: zname@zbase {							\
 					GWDT_WS0_IRQ_0
 					GWDT_WS1_IRQ_0>;
 		pclk = <100000000>;
+		reset-gpios = <&crl CRL_RST_SWDT>;
 	};
 };
 
