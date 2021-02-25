@@ -318,6 +318,7 @@ zname: zname@zbase {							\
 		interrupts = <OCMINTR_IRQ_0>;
 		memsize = <MM_OCM_MEM_SIZE>;
 		reg = <0x0 MM_OCM 0x0 MM_OCM_SIZE 0x0>;
+		reset-gpios = <&crl CRL_RST_OCM>;
 	};
 
 	lpd_slcr@MM_LPD_SLCR {
