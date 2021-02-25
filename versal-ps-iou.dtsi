@@ -160,6 +160,7 @@ zname: zname@zbase {							\
 		canfdbus = <&canfdbus0>;
 		interrupts = <CAN0_IRQ_0>;
 		reg = <0x0 MM_CANFD0 0x0 MM_CANFD0_SIZE 0x0>;
+		reset-gpios = <&crl CRL_RST_CAN0>;
 	};
 	canfd1: can_core@MM_CANFD1 {
 		compatible = "xlnx,versal-canfd";
@@ -169,6 +170,7 @@ zname: zname@zbase {							\
 		canfdbus = <&canfdbus0>;
 		interrupts = <CAN1_IRQ_0>;
 		reg = <0x0 MM_CANFD1 0x0 MM_CANFD1_SIZE 0x0>;
+		reset-gpios = <&crl CRL_RST_CAN1>;
 	};
 
 	crl: crl@MM_CRL {
