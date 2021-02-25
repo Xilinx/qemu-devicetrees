@@ -217,6 +217,7 @@ zname: zname@zbase {							\
 			      IPI6_IRQ_0
 			      IPI_PMC_NOBUF_IRQ_0
 			      IPI_APB_IRQ_0>;
+		reset-gpios = <&crl CRL_RST_IPI>;
 	};
 
 	ps7_spi_0: ps7-spi@MM_SPI0 {
