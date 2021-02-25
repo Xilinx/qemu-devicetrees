@@ -226,6 +226,7 @@ zname: zname@zbase {							\
 		#address-cells = <1>; /* For child; must match SPI_FLASH() */
 		#size-cells = <0>;
 		#bus-cells = <1>;
+		reset-gpios = <&crl CRL_RST_SPI0>;
 	};
 	ps7_spi_1: ps7-spi@MM_SPI1 {
 		compatible = "cdns,spi-r1p6";
@@ -236,6 +237,7 @@ zname: zname@zbase {							\
 		#address-cells = <1>; /* For child; must match SPI_FLASH() */
 		#size-cells = <0>;
 		#bus-cells = <1>;
+		reset-gpios = <&crl CRL_RST_SPI1>;
 	};
 
 	usb2_0: usb2@USB2_0_XHCI {
