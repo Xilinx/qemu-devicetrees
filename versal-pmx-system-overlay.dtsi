@@ -1,7 +1,9 @@
 /*
- * Versal PMX Overlay
+ * Versal PMX System Overlay. This contains the overlay suitable
+ * for the system parts (ARM instance) of the multi-arch PSX/PMX
+ * setup.
  *
- * Copyright (c) 2020, Xilinx Inc
+ * Copyright (c) 2021, Xilinx Inc
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -28,36 +30,11 @@
  */
 
 #include "versal.dtsh"
-#include "versal-pmc-sec.dtsi"
 
-/* PMX has increased the ROM size from 128K -> 256K.  */
-#define MM_PMX_PMX_ROM			MM_PMC_PMC_ROM
-#define MM_PMX_PMX_ROM_SIZE		0x40000
-
-/*
- * PMX has increased the PPU1 INSTR RAM size from 128K -> 384K.
- * This re-size causes the DATA RAM to move up in the address-space.
- */
-#define MM_PMX_PPU1_RAM_INSTR		MM_PMC_PPU1_RAM_INSTR
-#define MM_PMX_PPU1_RAM_INSTR_SIZE	0x60000
-#define MM_PMX_PPU1_RAM_DATA		0xf0260000
-#define MM_PMX_PPU1_RAM_DATA_SIZE	MM_PMC_PPU1_RAM_DATA_SIZE
 #define MM_PMX_SHA1			0xF1800000
 #define MM_PMX_SHA1_SIZE		0x10000
 #define MM_PMX_WWDT			0xf03f0000
-#define MM_PMX_WWDT_SIZE	0x10000
-
-&pmc_rom {
-	reg = <0x0 MM_PMX_PMX_ROM 0x0 MM_PMX_PMX_ROM_SIZE 0x1>;
-};
-
-&pmc_ppu1_insn_ram {
-	reg = <0x0 MM_PMX_PPU1_RAM_INSTR 0x0 MM_PMX_PPU1_RAM_INSTR_SIZE 0x0>;
-};
-
-&pmc_ppu1_data_ram {
-	reg = <0x0 MM_PMX_PPU1_RAM_DATA 0x0 MM_PMX_PPU1_RAM_DATA_SIZE 0x0>;
-};
+#define MM_PMX_WWDT_SIZE		0x10000
 
 &pmc_dma0_src {
 	byte-align = <1>;

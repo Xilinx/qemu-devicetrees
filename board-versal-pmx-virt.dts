@@ -31,4 +31,7 @@
 #define VERSAL_KSB
 
 #include "board-versal-pmc-virt.dts"
-#include "versal-pmx.dtsi"
+#include "versal-pmx-shared-overlay.dtsi"
+#ifndef MULTI_ARCH
+#include "versal-pmx-system-overlay.dtsi"
+#endif
