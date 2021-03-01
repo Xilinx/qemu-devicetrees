@@ -380,6 +380,7 @@ NAME ## _memattr: NAME ## _ma {				\
 		num-smr = <64>;
 		num-cb = <32>;
 		num-pages = <32>;
+		version = <0x24>;
 	};
 
 	smmu_reg: smmu0@MM_FPD_FPD_SMMU {
