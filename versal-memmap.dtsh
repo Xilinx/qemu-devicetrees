@@ -143,7 +143,7 @@ name: name@addr64 {														\
 #include "versal-psm-memmap.dtsh"
 #include "versal-iou-memmap.dtsh"
 #include "versal-lpd-memmap.dtsh"
-#ifdef VERSAL_H10
+#ifdef VERSAL_VP1202
 #include "versal-h10-npi-memmap.dtsh"
 #else
 #include "versal-npi-memmap.dtsh"

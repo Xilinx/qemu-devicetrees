@@ -1,5 +1,5 @@
 /*
- * Versal H10 PMC device tree
+ * Versal vp1202 PMC device tree
  *
  * Copyright (c) 2021, Xilinx Inc
  * All rights reserved.
@@ -27,5 +27,5 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#define VERSAL_H10
+#define VERSAL_VP1202
 #include "board-versal-pmc-vc-p-a2197-00.dts"

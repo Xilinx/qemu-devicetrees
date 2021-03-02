@@ -1,5 +1,5 @@
 /*
- * Versal H10 Virt model
+ * Versal vp1202 Virtual Cosim PS board
  *
  * Copyright (c) 2021, Xilinx Inc
  * All rights reserved.
@@ -27,6 +27,6 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#define VERSAL_H10
-#include "board-versal-ps-vc-p-a2197-00.dts"
+#define VERSAL_VP1202
+#include "board-versal-ps-cosim-vc-p-a2197-00.dts"
 

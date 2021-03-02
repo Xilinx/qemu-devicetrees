@@ -184,7 +184,7 @@
 	GEN_DDRMC_XMPU(0, 0xf6080000);
 #endif
 
-#ifndef VERSAL_H10
+#ifndef VERSAL_VP1202
 	npi_me: npi_me@MM_NPI_ME_NPI_0 {
 		compatible = "xlnx,me-npi";
 		reg = <0x0 MM_NPI_ME_NPI_0 0x0 MM_NPI_ME_NPI_0_SIZE 0x1>;
@@ -202,13 +202,13 @@
 
 #if !defined(VERSAL_NPI_GENERIC)
 &amba_pmc_pl {
-#ifdef VERSAL_H10
+#ifdef VERSAL_VP1202
 #include "versal-h10-pmc-npi-nxx.dtsi"
 #else
 #include "versal-pmc-npi-nxx.dtsi"
 #endif
 
-#ifndef VERSAL_H10
+#ifndef VERSAL_VP1202
 	GEN_GTY_NPI(0);
 	GEN_GTY_NPI(1);
 	GEN_GTY_NPI(2);
@@ -234,7 +234,7 @@
 	GEN_XPIO_DCI(9);
 	GEN_XPIO_DCI(10);
 	GEN_XPIO_DCI(11);
-#ifdef VERSAL_H10
+#ifdef VERSAL_VP1202
 	GEN_XPIO_DCI(12);
 #endif
 
@@ -252,7 +252,7 @@
 	GEN_CMT_XPLL(11);
 	GEN_CMT_XPLL(12);
 	GEN_CMT_XPLL(13);
-#ifdef VERSAL_H10
+#ifdef VERSAL_VP1202
 	GEN_CMT_XPLL(14);
 	GEN_CMT_XPLL(15);
 	GEN_CMT_XPLL(16);
@@ -281,7 +281,7 @@
 	GEN_CMT_DPLL(11);
 	GEN_CMT_DPLL(12);
 	GEN_CMT_DPLL(13);
-#ifdef VERSAL_H10
+#ifdef VERSAL_VP1202
 	GEN_CMT_DPLL(14);
 	GEN_CMT_DPLL(15);
 	GEN_CMT_DPLL(16);
@@ -295,7 +295,7 @@
 	GEN_CMT_MMCM(1);
 	GEN_CMT_MMCM(2);
 	GEN_CMT_MMCM(3);
-#ifdef VERSAL_H10
+#ifdef VERSAL_VP1202
 	GEN_CMT_MMCM(4);
 	GEN_CMT_MMCM(5);
 	GEN_CMT_MMCM(6);
@@ -313,7 +313,7 @@
 	GEN_NOC_NCRB(3);
 	GEN_NOC_NCRB(4);
 	GEN_NOC_NCRB(5);
-#ifdef VERSAL_H10
+#ifdef VERSAL_VP1202
 	GEN_NOC_NCRB(6);
 	GEN_NOC_NCRB(7);
 #endif
