@@ -55,6 +55,7 @@ zname: zname@zbase {							\
 	compatible = "xlnx,zdma";					\
 	reg = <0x0 zbase 0x0 MM_ADMA_CH0_SIZE 0x0>;			\
 	bus-width = <zbuswidth>;					\
+	has-parity = <1>;							\
 	interrupts = <zirq>;						\
 	#stream-id-cells = <0x1>;					\
 	dma = <zdma>;							\
