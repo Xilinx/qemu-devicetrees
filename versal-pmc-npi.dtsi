@@ -35,7 +35,7 @@
 		doc-status = "partial";					\
 		doc-comments = "A stub including minimal setup.";	\
 		compatible = "xlnx,noc-nmu";				\
-		reg = <0x0 MM_NPI_NOC_NMU_ ## N 0x0 MM_NPI_NOC_NMU_ ## N ## _SIZE 0x0>; \
+		reg = <0x0 MM_NPI_NOC_NMU_ ## N 0x0 MM_NPI_NOC_NMU_ ## N ## _SIZE 0x1>; \
 		reset-gpios = <&pmc_clk_rst CRP_RST_NONPS_NPI >;	\
 	};
 
@@ -45,7 +45,7 @@
 		doc-status = "partial";					\
 		doc-comments = "A stub including minimal setup.";	\
 		compatible = "xlnx,noc-nsu";				\
-		reg = <0x0 MM_NPI_NOC_NSU_ ## N 0x0 MM_NPI_NOC_NSU_ ## N ## _SIZE 0x0>; \
+		reg = <0x0 MM_NPI_NOC_NSU_ ## N 0x0 MM_NPI_NOC_NSU_ ## N ## _SIZE 0x1>; \
 		reset-gpios = <&pmc_clk_rst CRP_RST_NONPS_NPI >;	\
 	};
 
@@ -55,7 +55,7 @@
 		doc-status = "partial";					\
 		doc-comments = "A stub including minimal setup.";	\
 		compatible = "xlnx,noc-nps";				\
-		reg = <0x0 MM_NPI_NOC_NPS_ ## N 0x0 MM_NPI_NOC_NPS_ ## N ## _SIZE 0x0>; \
+		reg = <0x0 MM_NPI_NOC_NPS_ ## N 0x0 MM_NPI_NOC_NPS_ ## N ## _SIZE 0x1>; \
 		reset-gpios = <&pmc_clk_rst CRP_RST_NONPS_NPI >;	\
 	};
 
@@ -64,7 +64,7 @@
 		doc-limitations = "Only the uB rst is supported";	\
 		compatible = "xlnx,versal-ddrmc-ub";			\
 		reg = <0x0 MM_NPI_DDRMC_UB_ ## N 0x0			\
-			MM_NPI_DDRMC_UB_ ## N ## _SIZE 0x0>;		\
+			MM_NPI_DDRMC_UB_ ## N ## _SIZE 0x1>;		\
 		reset-gpios = <&pmc_clk_rst CRP_RST_NONPS_NPI >;	\
 		#gpio-cells = <1>;					\
 		gpio-controller;					\
@@ -75,7 +75,7 @@
 		doc-limitations = "Just a stub";			\
 		compatible = "xlnx,versal-ddrmc-main";			\
 		reg = <0x0 MM_NPI_DDRMC_MAIN_ ## N 0x0			\
-			MM_NPI_DDRMC_MAIN_ ## N ## _SIZE 0x0>;		\
+			MM_NPI_DDRMC_MAIN_ ## N ## _SIZE 0x1>;		\
 		reset-gpios = <&pmc_clk_rst CRP_RST_NONPS_NPI >;	\
 	}
 
@@ -162,7 +162,7 @@
 &amba_pmc_pl {
 	noc_npi_nir: noc_npi_nir@MM_NPI_NPI_NIR_0 {
 		compatible="xlnx.npi-nir";
-		reg = <0x0 MM_NPI_NPI_NIR_0 0x0 MM_NPI_NPI_NIR_0_SIZE 0x0>;
+		reg = <0x0 MM_NPI_NPI_NIR_0 0x0 MM_NPI_NPI_NIR_0_SIZE 0x1>;
 	};
 
 	/* DDRMC NPI registers.  */
