@@ -160,6 +160,11 @@
 	}
 
 &amba_pmc_pl {
+	noc_npi_nir: noc_npi_nir@MM_NPI_NPI_NIR_0 {
+		compatible="xlnx.npi-nir";
+		reg = <0x0 MM_NPI_NPI_NIR_0 0x0 MM_NPI_NPI_NIR_0_SIZE 0x0>;
+	};
+
 	/* DDRMC NPI registers.  */
 #ifdef VERSAL_SLAVE_SLR
 	npi_ddrmc_ub0: npi_ddrmc_ub@0 {
