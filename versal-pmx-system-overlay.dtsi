@@ -35,6 +35,8 @@
 #define MM_PMX_SHA1_SIZE		0x10000
 #define MM_PMX_WWDT			0xf03f0000
 #define MM_PMX_WWDT_SIZE		0x10000
+#define MM_XMPU_PMC_CFU			0xf1340000
+#define MM_XMPU_PMC_CFU_SIZE	0x10000
 
 &pmc_dma0_src {
 	byte-align = <1>;
@@ -69,5 +71,48 @@
 		compatible = "xlnx,versal-wwdt";
 		reg = <0x0 MM_PMX_WWDT 0x0 MM_PMX_WWDT_SIZE 0x0>;
 		pclk = <100000000>;
+	};
+};
+
+&amba_pmc_pl {
+	/delete-node/ cfu@MM_PMC_CFU_APB;
+
+	/*
+	 * For the XMPU to protect peripherals, they must be inside of a memory
+	 * region at the address of the peripheral.
+	 * The peripheral itself is then placed inside of the dummy region.
+	 */
+	dummy_cfu_mem: dummy_cfu_mem@MM_PMC_CFU_APB {
+		compatible = "qemu:memory-region";
+		pmx_cfu: cfu@0x0 {
+			doc-status = "partial";
+			doc-comments = "Stub";
+			doc-limitations = "No way to extract CFRAME data.";
+			compatible = "xlnx,versal-cfu";
+			/*
+			 * For XMPU to work, register and stream addresses must be relative
+			 * to the CFU dummy memory region base.
+			 */
+			reg = <0x0 (MM_PMC_CFU_APB - MM_PMC_CFU_APB) 0x0 MM_PMC_CFU_APB_SIZE 0x0
+				   0x0 (MM_PMC_CFU_STREAM - MM_PMC_CFU_APB) 0x0 MM_PMC_CFU_STREAM_SIZE 0x0
+				   0x0 (MM_PMC_CFU_STREAM_2 - MM_PMC_CFU_APB) 0x0 MM_PMC_CFU_STREAM_2_SIZE 0x0
+				   >;
+			chardev = "pmc-cfu";
+			dma = <&amba_pmc>;
+		};
+	};
+};
+
+&amba_pmc {
+	xmpu_pmc_cfu: xmpu_pmc_cfu@MM_XMPU_PMC_CFU {
+		compatible = "xlnx,versal-xmpu";
+		reg-extended = <
+			&amba_pmc 0x0 MM_XMPU_PMC_CFU 0x0 MM_XMPU_PMC_CFU_SIZE 0x0
+			&amba_pmc_pl 0x0 MM_PMC_CFU_APB 0x0 (MM_PMC_CFU_APB_SIZE + MM_PMC_CFU_STREAM_SIZE) 0x2
+			&amba_pmc_pl 0x0 MM_PMC_CFU_STREAM_2 0x0 MM_PMC_CFU_STREAM_2_SIZE 0x2
+		>;
+		protected-mr = <&dummy_cfu_mem>;
+		mr-0 = <&amba_pmc_pl>;
+		protected-base = <MM_PMC_CFU_APB>;
 	};
 };
