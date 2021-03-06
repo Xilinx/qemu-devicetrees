@@ -29,6 +29,9 @@
 
 #include "versal.dtsh"
 
+#define MM_FPD_CMN			0xa0000000
+#define MM_FPD_CMN_SIZE			0x03000000
+
 #define MM_FPD_FPD_APU_CLUSTER1		0xfd5d0000
 #define MM_FPD_FPD_APU_CLUSTER2		0xfd5e0000
 #define MM_FPD_FPD_APU_CLUSTER3		0xfd5f0000
@@ -48,6 +51,17 @@
 	GEN_APU_CLUSTER(1, 2, 3);
 	GEN_APU_CLUSTER(2, 4, 5);
 	GEN_APU_CLUSTER(3, 6, 7);
+
+	/*
+	 * Keystone-B PSX replaces the CCI-500 with a CMN-600AE.
+	 * Delete the old nodes and add the CMN.
+	 */
+	/delete-node/ cci_reg@MM_FPD_FPD_GPCCI;
+	/delete-node/ cci500@MM_FPD_FPD_MAINCCI;
+	cmn600ae@MM_FPD_CMN {
+		compatible = "arm-cmn600ae";
+		reg = <0x0 MM_FPD_CMN 0x0 MM_FPD_CMN_SIZE 0x0>;
+	};
 };
 
 &crf {
