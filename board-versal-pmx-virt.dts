@@ -32,6 +32,24 @@
 
 #include "board-versal-pmc-virt.dts"
 #include "versal-pmx-shared-overlay.dtsi"
+
 #ifndef MULTI_ARCH
+/*
+ * The single-arch setup has the entire system except
+ * the ARM cores. So we need to add the missing dummy
+ * ARM cores (pmc-virt.dts already has 0 - 1) and include
+ * the PSX and PMX system overlays.
+ */
 #include "versal-pmx-system-overlay.dtsi"
+#include "versal-psx.dtsi"
+
+/ {
+	/* Dummy APUs.  */
+	cpu2: apu@2 { };
+	cpu3: apu@3 { };
+	cpu4: apu@4 { };
+	cpu5: apu@5 { };
+	cpu6: apu@6 { };
+	cpu7: apu@7 { };
+};
 #endif
