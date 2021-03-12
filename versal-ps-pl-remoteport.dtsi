@@ -36,6 +36,13 @@
 		chrdev-id = "pl-rp";
 	};
 
+	/* This area can be used for implentation specific emulation */
+	rp_cosim_reserved: rp_cosim_reserved@0{
+		compatible = "remote-port-memory-master";
+		remote-ports = <&cosim_rp_0 2>;
+		reg = <0x0 0xF5F00000 0x0 0x100000 0>;
+	};
+
 	/* FIXME: These PL to PS ports are not fully implemented, we
 	 *        need to apply SMMU translation. At least this
 	 *        serves to roughly allocate the devids.
