@@ -58,6 +58,11 @@ name: name@addr64 {														\
 #define R5_GIC_DIST		0xF9000000
 #define R5_GIC			0xF9001000
 
+#define MM_XRAM_CTRL0           MM_OCM2
+#define MM_XRAM_CTRL1           0xff8f0000
+#define MM_XRAM_CTRL2           0xff900000
+#define MM_XRAM_CTRL3           0xff910000
+
 #define MM_PMC_QSPI_DMA		0xf1030800
 #define MM_PMC_LQSPI		0xC0000000
 #define MM_PMC_LQSPI_SIZE	0x08000000

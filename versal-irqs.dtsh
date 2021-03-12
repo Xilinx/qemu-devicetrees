@@ -30,6 +30,10 @@
 /* Include the auto-generated stuff.  */
 #include "versal-ps-irqs.dtsh"
 
+/* According to specs, XRAM IRQs are at 111 and 112 (-32).  */
+#define XRAM_IRQ_0				79
+#define XRAM_UNCORR_IRQ_0			80
+
 /* Add manual entries.  */
 
 /* PMC PPU0.  */
