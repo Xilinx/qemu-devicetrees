@@ -126,6 +126,7 @@
 		compatible = "at,24c08";
 		reg = <0x51>;
 		size = <0x4000>;
+		blockdev-node-name = "ps_i2c1.eeprom-51";
 	};
 };
 &pmc_i2c {
