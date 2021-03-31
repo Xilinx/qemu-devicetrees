@@ -32,7 +32,7 @@
 #define GEN_VIRTIO_MMIO(n, addrh, addrl, irq)			\
 	virtio_mmio_ ## n {					\
 		compatible = "virtio-mmio";			\
-		reg = < addrh addrl 0x0 0x200 0x0 >;		\
+		reg = < addrh addrl 0x0 MM_TOP_VIRTIO_MMIO_SIZE 0x0 >;		\
 		interrupts = < irq >;				\
 	}
 
