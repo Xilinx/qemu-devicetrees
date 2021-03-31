@@ -59,7 +59,7 @@
 	/delete-node/ cci_reg@MM_FPD_FPD_GPCCI;
 	/delete-node/ cci500@MM_FPD_FPD_MAINCCI;
 	cmn600ae@MM_FPD_CMN {
-		compatible = "arm-cmn600ae";
+		compatible = "arm,cmn600ae";
 		reg = <0x0 MM_FPD_CMN 0x0 MM_FPD_CMN_SIZE 0x0>;
 	};
 };
