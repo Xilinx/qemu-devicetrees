@@ -64,6 +64,14 @@
 	};
 };
 
+&rpu_cpu0 {
+	core-count = <2>;
+};
+
+&rpu_cpu1 {
+	core-count = <2>;
+};
+
 &crf {
 	compatible = "xlnx,versal-psx-crf";
 };
