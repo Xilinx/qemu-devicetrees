@@ -56,7 +56,7 @@
 			#priority-cells = <0>;
 			compatible = "xlnx,iomodule-1.02.a", "syscon", "simple-bus";
 			container = <&lmb_pmu>;
-			priority = <0xffffffff>;
+			priority = <0x1>;
 			xlnx,freq = <0x47868c0>;
 			xlnx,instance = "iomodule_1";
 			xlnx,io-mask = <0xfffe0000>;
@@ -139,11 +139,12 @@
 				compatible = "xlnx,io-gpi-1.02.a", "xlnx,io_gpi";
 				interrupt-parent = <&pmu_io_intc>;
 				interrupts = <12 0>;
-				reg = <BASE_ADDR(PMUIOM(24)) 0x4>;
+				reg = <BASE_ADDR(PMUIOM(24)) 0x4
+					BASE_ADDR(0xFFD60224) 0x4>;
 				xlnx,gpi-interrupt = <0x1>;
 				xlnx,gpi-size = <0x20>;
 				xlnx,use-gpi = <0x1>;
-				gpios = <&pmu_local 29
+				gpios = <&dummy_pmu_gpio 0 0
 						&dummy_pmu_gpio 0 0
 						&dummy_pmu_gpio 0 0
 						&dummy_pmu_gpio 0 0
@@ -166,11 +167,11 @@
 				compatible = "xlnx,io-gpi-1.02.a", "xlnx,io_gpi";
 				interrupt-parent = <&pmu_io_intc>;
 				interrupts = <13 0>;
-				reg = <BASE_ADDR(PMUIOM(28)) 0x4>;
+				reg = <BASE_ADDR(PMUIOM(28)) 0x4
+					BASE_ADDR(0xFFD60228) 0x4>;
 				xlnx,gpi-interrupt = <0x1>;
 				xlnx,gpi-size = <0x20>;
 				xlnx,use-gpi = <0x1>;
-				gpios = <&pmu_local 30>;
 			};
 			pmu_io_gpi3: pmu_gpi@2c {
 				#gpio-cells = <2>;
