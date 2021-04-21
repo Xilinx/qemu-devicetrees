@@ -36,7 +36,7 @@
 #define MM_FPD_FPD_APU_CLUSTER2		0xfd5e0000
 #define MM_FPD_FPD_APU_CLUSTER3		0xfd5f0000
 
-#define GEN_APU_CLUSTER(n, a, b)					\
+#define GEN_APU_CLUSTER(n, a, b, c, d)					\
 	apu_cluster ## n: apu_cluster@MM_FPD_FPD_APU_CLUSTER ## n {	\
 		#gpio-cells = <1>;					\
 		gpio-controller;					\
@@ -45,13 +45,35 @@
 		       0x0 MM_FPD_FPD_APU_SIZE 0x0>;			\
 		cpu0 = <&cpu ## a>;					\
 		cpu1 = <&cpu ## b>;					\
+		cpu2 = <&cpu ## c>;					\
+		cpu3 = <&cpu ## d>;					\
+		cores-per-cluster = <NUM_APUS_PER_CLUSTER>;		\
 	}
 
-&amba_fpd {
-	GEN_APU_CLUSTER(1, 2, 3);
-	GEN_APU_CLUSTER(2, 4, 5);
-	GEN_APU_CLUSTER(3, 6, 7);
+/* Dummy node.  */
+/ { cpunone: cpu_dummy { }; };
 
+#if NUM_APUS_PER_CLUSTER == 2
+&amba_fpd {
+	GEN_APU_CLUSTER(1, 2, 3, none, none);
+	GEN_APU_CLUSTER(2, 4, 5, none, none);
+	GEN_APU_CLUSTER(3, 6, 7, none, none);
+};
+#else
+&amba_fpd {
+	GEN_APU_CLUSTER(1, 4, 5, 6, 7);
+	GEN_APU_CLUSTER(2, 8, 9, 10, 11);
+	GEN_APU_CLUSTER(3, 12, 13, 14, 15);
+};
+
+/* Connect the missing cores compared to Versal PS.  */
+&apu_ctrl {
+	cpu2 = <&cpu2>;
+	cpu3 = <&cpu3>;
+};
+#endif
+
+&amba_fpd {
 	/*
 	 * Keystone-B PSX replaces the CCI-500 with a CMN-600AE.
 	 * Delete the old nodes and add the CMN.

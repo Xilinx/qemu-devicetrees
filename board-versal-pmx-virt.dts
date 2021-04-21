@@ -29,6 +29,8 @@
 
 #define VERSAL_PMX
 #define VERSAL_KSB
+#define NUM_APUS 16
+#define NUM_APUS_PER_CLUSTER 4
 
 #include "board-versal-pmc-virt.dts"
 #include "versal-pmx-shared-overlay.dtsi"
@@ -51,5 +53,15 @@
 	cpu5: apu@5 { };
 	cpu6: apu@6 { };
 	cpu7: apu@7 { };
+#if NUM_APUS == 16
+	cpu8: apu@8 { };
+	cpu9: apu@9 { };
+	cpu10: apu@10 { };
+	cpu11: apu@11 { };
+	cpu12: apu@12 { };
+	cpu13: apu@13 { };
+	cpu14: apu@14 { };
+	cpu15: apu@15 { };
+#endif
 };
 #endif

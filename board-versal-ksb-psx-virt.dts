@@ -27,7 +27,9 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#define NUM_APUS 8
+#define NUM_APUS 16
+#define NUM_APUS_PER_CLUSTER 4
+
 #define VERSAL_PSX
 #define VERSAL_KSB
 
@@ -43,15 +45,26 @@
 #include "versal-pmx-shared-overlay.dtsi"
 #include "versal-pmx-system-overlay.dtsi"
 
-&cpu4 {
-	generic-timer-frequency = <2720000>;
-};
-&cpu5 {
-	generic-timer-frequency = <2720000>;
-};
-&cpu6 {
-	generic-timer-frequency = <2720000>;
-};
-&cpu7 {
-	generic-timer-frequency = <2720000>;
-};
+#define SET_CPU_FREQ(n, f)					\
+&cpu ## n {							\
+	generic-timer-frequency = <f>;				\
+}
+
+SET_CPU_FREQ(0, 2720000);
+SET_CPU_FREQ(1, 2720000);
+SET_CPU_FREQ(2, 2720000);
+SET_CPU_FREQ(3, 2720000);
+SET_CPU_FREQ(4, 2720000);
+SET_CPU_FREQ(5, 2720000);
+SET_CPU_FREQ(6, 2720000);
+SET_CPU_FREQ(7, 2720000);
+#if NUM_APUS == 16
+SET_CPU_FREQ(8, 2720000);
+SET_CPU_FREQ(9, 2720000);
+SET_CPU_FREQ(10, 2720000);
+SET_CPU_FREQ(11, 2720000);
+SET_CPU_FREQ(12, 2720000);
+SET_CPU_FREQ(13, 2720000);
+SET_CPU_FREQ(14, 2720000);
+SET_CPU_FREQ(15, 2720000);
+#endif

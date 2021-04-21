@@ -32,73 +32,130 @@
 
 #ifndef NUM_APUS
 #error "NUM APUs is not set!"
-#elif NUM_APUS != 8
-#error "NUM APUs must be set to 8"
+#elif NUM_APUS != 8 && NUM_APUS != 16
+#error "NUM APUs must be set to 8 or 16"
 #endif
 
 #define APU_GPIOS(n)						\
 	reset-gpios = <&crf n>
-
 
 / {
 	cpus {
 		#address-cells = <1>;
 		#size-cells = <0>;
 		cpu0: apu_cpu@0 {
-			APU_COMMON(0, 2);
+			APU_COMMON(0, NUM_APUS_PER_CLUSTER);
 			APU_GPIOS(0);
 			gdb-id = "Cortex-A78 #0";
 			#interrupt-cells = <1>;
 		};
 		cpu1: apu_cpu@1 {
-			APU_COMMON(1, 2);
+			APU_COMMON(1, NUM_APUS_PER_CLUSTER);
 			APU_GPIOS(1);
 			APU_SECONDARY(1);
 			gdb-id = "Cortex-A78 #1";
 			#interrupt-cells = <1>;
 		};
 		cpu2: apu_cpu@2 {
-			APU_COMMON(2, 2);
+			APU_COMMON(2, NUM_APUS_PER_CLUSTER);
 			APU_GPIOS(2);
 			APU_SECONDARY(2);
 			gdb-id = "Cortex-A78 #2";
 			#interrupt-cells = <1>;
 		};
 		cpu3: apu_cpu@3 {
-			APU_COMMON(3, 2);
+			APU_COMMON(3, NUM_APUS_PER_CLUSTER);
 			APU_GPIOS(3);
 			APU_SECONDARY(3);
 			gdb-id = "Cortex-A78 #3";
 			#interrupt-cells = <1>;
 		};
 		cpu4: apu_cpu@4 {
-			APU_COMMON(4, 2);
+			APU_COMMON(4, NUM_APUS_PER_CLUSTER);
 			APU_GPIOS(4);
 			APU_SECONDARY(4);
 			gdb-id = "Cortex-A78 #4";
 			#interrupt-cells = <1>;
 		};
 		cpu5: apu_cpu@5 {
-			APU_COMMON(5, 2);
+			APU_COMMON(5, NUM_APUS_PER_CLUSTER);
 			APU_GPIOS(5);
 			APU_SECONDARY(5);
 			gdb-id = "Cortex-A78 #5";
 			#interrupt-cells = <1>;
 		};
 		cpu6: apu_cpu@6 {
-			APU_COMMON(6, 2);
+			APU_COMMON(6, NUM_APUS_PER_CLUSTER);
 			APU_GPIOS(6);
 			APU_SECONDARY(6);
 			gdb-id = "Cortex-A78 #6";
 			#interrupt-cells = <1>;
 		};
 		cpu7: apu_cpu@7 {
-			APU_COMMON(7, 2);
+			APU_COMMON(7, NUM_APUS_PER_CLUSTER);
 			APU_GPIOS(7);
 			APU_SECONDARY(7);
 			gdb-id = "Cortex-A78 #7";
 			#interrupt-cells = <1>;
 		};
+#if NUM_APUS == 16
+		cpu8: apu_cpu@8 {
+			APU_COMMON(8, NUM_APUS_PER_CLUSTER);
+			APU_GPIOS(8);
+			APU_SECONDARY(8);
+			gdb-id = "Cortex-A78 #8";
+			#interrupt-cells = <1>;
+		};
+		cpu9: apu_cpu@9 {
+			APU_COMMON(9, NUM_APUS_PER_CLUSTER);
+			APU_GPIOS(9);
+			APU_SECONDARY(9);
+			gdb-id = "Cortex-A78 #9";
+			#interrupt-cells = <1>;
+		};
+		cpu10: apu_cpu@10 {
+			APU_COMMON(10, NUM_APUS_PER_CLUSTER);
+			APU_GPIOS(10);
+			APU_SECONDARY(10);
+			gdb-id = "Cortex-A78 #10";
+			#interrupt-cells = <1>;
+		};
+		cpu11: apu_cpu@11 {
+			APU_COMMON(11, NUM_APUS_PER_CLUSTER);
+			APU_GPIOS(11);
+			APU_SECONDARY(11);
+			gdb-id = "Cortex-A78 #11";
+			#interrupt-cells = <1>;
+		};
+		cpu12: apu_cpu@12 {
+			APU_COMMON(12, NUM_APUS_PER_CLUSTER);
+			APU_GPIOS(12);
+			APU_SECONDARY(12);
+			gdb-id = "Cortex-A78 #12";
+			#interrupt-cells = <1>;
+		};
+		cpu13: apu_cpu@13 {
+			APU_COMMON(13, NUM_APUS_PER_CLUSTER);
+			APU_GPIOS(13);
+			APU_SECONDARY(13);
+			gdb-id = "Cortex-A78 #13";
+			#interrupt-cells = <1>;
+		};
+		cpu14: apu_cpu@14 {
+			APU_COMMON(14, NUM_APUS_PER_CLUSTER);
+			APU_GPIOS(14);
+			APU_SECONDARY(14);
+			gdb-id = "Cortex-A78 #14";
+			#interrupt-cells = <1>;
+		};
+		cpu15: apu_cpu@15 {
+			APU_COMMON(15, NUM_APUS_PER_CLUSTER);
+			APU_GPIOS(15);
+			APU_SECONDARY(15);
+			gdb-id = "Cortex-A78 #15";
+			#interrupt-cells = <1>;
+		};
+#endif
 	};
 
 	amba_apu: amba_apu@0 {
@@ -118,10 +175,10 @@
 		timer {
 			compatible = "arm,armv8-timer";
 			interrupt-parent = <&gic>;
-			interrupts = <1 13 0xff01>,
-						 <1 14 0xff01>,
-						 <1 11 0xff01>,
-						 <1 10 0xff01>;
+			interrupts = <1 13 0xffff01>,
+						 <1 14 0xffff01>,
+						 <1 11 0xffff01>,
+						 <1 10 0xffff01>;
 			clock-frequency = <100000000>;
 		};
 	};
@@ -153,6 +210,17 @@
 				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 5) 0>,
 				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 6) 0>,
 				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 7) 0>,
+#if NUM_APUS == 16
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 8) 0>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 9) 0>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 10) 0>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 11) 0>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 12) 0>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 13) 0>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 14) 0>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 15) 0>,
+#endif
+
 
 				/* FIQs.  */
 				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 0) 1>,
@@ -163,7 +231,16 @@
 				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 5) 1>,
 				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 6) 1>,
 				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 7) 1>,
-
+#if NUM_APUS == 16
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 8) 1>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 9) 1>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 10) 1>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 11) 1>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 12) 1>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 13) 1>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 14) 1>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 15) 1>,
+#endif
 
 				/* Virtual IRQs.  */
 				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 0) 2>,
@@ -174,7 +251,16 @@
 				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 5) 2>,
 				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 6) 2>,
 				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 7) 2>,
-
+#if NUM_APUS == 16
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 8) 2>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 9) 2>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 10) 2>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 11) 2>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 12) 2>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 13) 2>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 14) 2>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 15) 2>,
+#endif
 
 				/* Virtual FIQs.  */
 				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 0) 3>,
@@ -185,6 +271,16 @@
 				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 5) 3>,
 				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 6) 3>,
 				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 7) 3>,
+#if NUM_APUS == 16
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 8) 3>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 9) 3>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 10) 3>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 11) 3>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 12) 3>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 13) 3>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 14) 3>,
+				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 15) 3>,
+#endif
 
 				<&gic 0x1 0x9 0x0104>,
 				<&gic 0x1 0x9 0x0204>,
@@ -193,11 +289,53 @@
 				<&gic 0x1 0x9 0x1004>,
 				<&gic 0x1 0x9 0x2004>,
 				<&gic 0x1 0x9 0x4004>,
-				<&gic 0x1 0x9 0x8004>;
+				<&gic 0x1 0x9 0x8004>
+#if NUM_APUS == 16
+				,<&gic 0x1 0x9 0x00010004>,
+				<&gic 0x1 0x9 0x00020004>,
+				<&gic 0x1 0x9 0x00040004>,
+				<&gic 0x1 0x9 0x00080004>,
+				<&gic 0x1 0x9 0x00100004>,
+				<&gic 0x1 0x9 0x00200004>,
+				<&gic 0x1 0x9 0x00400004>
+#endif
+				;
 			num-cpu = <NUM_APUS>;
 			num-irq = <224>;
 			has-security-extensions = <1>;
-			redist-region-count = <8>;
+			redist-region-count = <16>;
 		};
 	};
 };
+
+/* Setup the CPU affinity.  */
+#define CPU_AFFINITY(n, a)			\
+&cpu ## n {					\
+		mp-affinity = <a>;		\
+}
+
+CPU_AFFINITY(0, 0x000);
+CPU_AFFINITY(1, 0x001);
+#if NUM_APUS == 8
+CPU_AFFINITY(2, 0x100);
+CPU_AFFINITY(3, 0x101);
+CPU_AFFINITY(4, 0x200);
+CPU_AFFINITY(5, 0x201);
+CPU_AFFINITY(6, 0x300);
+CPU_AFFINITY(7, 0x301);
+#else
+CPU_AFFINITY(2, 0x002);
+CPU_AFFINITY(3, 0x003);
+CPU_AFFINITY(4, 0x100);
+CPU_AFFINITY(5, 0x101);
+CPU_AFFINITY(6, 0x102);
+CPU_AFFINITY(7, 0x103);
+CPU_AFFINITY(8, 0x200);
+CPU_AFFINITY(9, 0x201);
+CPU_AFFINITY(10, 0x202);
+CPU_AFFINITY(11, 0x203);
+CPU_AFFINITY(12, 0x300);
+CPU_AFFINITY(13, 0x301);
+CPU_AFFINITY(14, 0x302);
+CPU_AFFINITY(15, 0x303);
+#endif
