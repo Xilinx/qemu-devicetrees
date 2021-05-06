@@ -1,6 +1,43 @@
 #include "versal.dtsh"
 #include "versal/rpu.dtsh"
 
+#define TCM_CLUSTER(c, cpu0, cpu1)				\
+	tcm_cluster_## c: tcm_cluster_## c@0 {			\
+		#address-cells = <2>;				\
+		#size-cells = <2>;				\
+		#priority-cells = <1>;				\
+		compatible = "qemu:memory-region";		\
+		tcm_core_0 {					\
+			compatible = "qemu:memory-region";	\
+			alias = <&tcm_core## cpu0>;		\
+			reg = <0x0 0x0 0x0 0x40000 0x0>;	\
+		};						\
+		tcm_core_1 {					\
+			compatible = "qemu:memory-region";	\
+			alias = <&tcm_core## cpu1>;		\
+			reg = <0x0 0x40000 0x0 0x40000 0x0>;	\
+		};						\
+	};
+
+
+#define TCM_CREATE(n)	\
+	tcm_core ## n: tcm_core@ ## n {				\
+		#address-cells = <2>;				\
+		#size-cells = <2>;				\
+		#priority-cells = <1>;				\
+		compatible = "qemu:memory-region";		\
+		MEM_REGION(atcm_rpu_core ## n, 0x0, 0x00000, 0x00000, 0x10000, &tcm_core ## n)	\
+		MEM_REGION(btcm_rpu_core ## n, 0x0, 0x10000, 0x00000, 0x10000, &tcm_core ## n)	\
+		MEM_REGION(ctcm_rpu_core ## n, 0x0, 0x20000, 0x00000, 0x10000, &tcm_core ## n)	\
+	};
+
+#define S_AXI_TCM_CONNECT(c, a)				\
+	s_axi_tcm_## c: s_axi_tcm_## c@0 {		\
+		compatible = "qemu:memory-region";	\
+		alias = <&tcm_cluster_## c>;		\
+		reg = <0x0 a 0x0 0x800000 0x0>;		\
+	};
+
 / {
 	cpus {
 		rpu_a: rpu_a@0 {
@@ -50,36 +87,80 @@
 		rpu_gic: interrupt-controller@R5_GIC_DIST {
 			interrupt-contoller;
 		};
+	};
 
-		amba_r5_2: amba_r5@2 {
-			#address-cells = <2>;
-			#size-cells = <2>;
-			#priority-cells = <1>;
-			compatible = "simple-bus";
-			ranges;
+	TCM_CREATE(0)
+	TCM_CREATE(1)
+	TCM_CREATE(2)
+	TCM_CREATE(3)
 
-			downstream_amba {
-				compatible = "qemu:memory-region";
-				alias = <&amba_rpu>;
-				/* Full address range with 0 priority */
-				reg = <0x0 0x0 0xffffffff 0xffffffff 0>;
-			};
-		};
-		amba_r5_3: amba_r5@3 {
-			#address-cells = <2>;
-			#size-cells = <2>;
-			#priority-cells = <1>;
-			compatible = "simple-bus";
-			ranges;
+	TCM_CLUSTER(a, 0, 1)
+	TCM_CLUSTER(b, 2, 3)
 
-			downstream_amba {
-				compatible = "qemu:memory-region";
-				alias = <&amba_rpu>;
-				/* Full address range with 0 priority */
-				reg = <0x0 0x0 0xffffffff 0xffffffff 0>;
-			};
+	amba_r5_0: amba_r5@0 {
+		downstream_tcm {
+			compatible = "qemu:memory-region";
+			alias = <&tcm_core0>;
+			reg = <0x0 0x0 0x0 0x400000 0x1>;
 		};
 	};
+
+	amba_r5_1: amba_r5@1 {
+		downstream_tcm {
+			compatible = "qemu:memory-region";
+			alias = <&tcm_core1>;
+			reg = <0x0 0x0 0x0 0x400000 0x1>;
+		};
+	};
+
+	amba_r5_2: amba_r5@2 {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		#priority-cells = <1>;
+		compatible = "simple-bus";
+		ranges;
+
+		downstream_tcm {
+			compatible = "qemu:memory-region";
+			alias = <&tcm_core2>;
+			reg = <0x0 0x0 0x0 0x400000 0x1>;
+		};
+		downstream_amba {
+			compatible = "qemu:memory-region";
+			alias = <&amba_rpu>;
+			/* Full address range with 0 priority */
+			reg = <0x0 0x0 0xffffffff 0xffffffff 0>;
+		};
+	};
+
+	amba_r5_3: amba_r5@3 {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		#priority-cells = <1>;
+		compatible = "simple-bus";
+		ranges;
+
+		downstream_tcm {
+			compatible = "qemu:memory-region";
+			alias = <&tcm_core3>;
+			reg = <0x0 0x0 0x0 0x400000 0x1>;
+		};
+
+		downstream_amba {
+			compatible = "qemu:memory-region";
+			alias = <&amba_rpu>;
+			/* Full address range with 0 priority */
+			reg = <0x0 0x0 0xffffffff 0xffffffff 0>;
+		};
+	};
+
 	MEMATTR(rpu2_s, SECURE, SMID_RPU2);
 	MEMATTR(rpu3_s, SECURE, SMID_RPU3);
+
 };
+
+&amba {
+		S_AXI_TCM_CONNECT(a, 0xFFA00000)
+		S_AXI_TCM_CONNECT(b, 0xFFA80000)
+};
+

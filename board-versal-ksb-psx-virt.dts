@@ -74,10 +74,12 @@ SET_CPU_FREQ(15, 2720000);
 &rpu_ctrl_a {
 	cpu0 = <&rpu_cpu0>;
 	cpu1 = <&rpu_cpu1>;
+	tcm-mr = <&s_axi_tcm_a>;
 };
 
 &rpu_ctrl_b {
 	cpu0 = <&rpu_cpu2>;
 	cpu1 = <&rpu_cpu3>;
+	tcm-mr = <&s_axi_tcm_b>;
 };
 
