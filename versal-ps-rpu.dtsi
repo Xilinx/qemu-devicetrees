@@ -70,7 +70,6 @@
 			reg = <0x0 0x0 0xffffffff 0xffffffff 0xffffffff >;
 		};
 
-
 		rpu_gic: interrupt-controller@R5_GIC_DIST {
 			#address-cells = <0>;
 			#interrupt-cells = <3>;

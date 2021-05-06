@@ -1,0 +1,85 @@
+#include "versal.dtsh"
+#include "versal/rpu.dtsh"
+
+/ {
+	cpus {
+		rpu_a: rpu_a@0 {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			rpu_cpu0: rpu_cpu_a@0 {
+				RPU_CPU_COMMON(0, 1, 0);
+				core-count = <2>;
+				gdb-id = "Cortex-R52 #a0";
+				gpios = < &crl CRL_RST_RPU_A_0
+				  &rpu_ctrl_a 0 >;
+				gpio-names = "reset", "halt";
+			};
+			rpu_cpu1: rpu_cpu_a@1 {
+				RPU_CPU_COMMON(1, 1, 1);
+				core-count = <2>;
+				gdb-id = "Cortex-R52 #a1";
+				gpios = < &crl CRL_RST_RPU_A_1
+				  &rpu_ctrl_a 1 >;
+				gpio-names = "reset", "halt";
+			};
+		};
+
+		rpu_b: rpu_b@0 {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			rpu_cpu2: rpu_cpu_b@0 {
+				RPU_CPU_COMMON(2, 2, 0);
+				core-count = <2>;
+				gdb-id = "Cortex-R52 #b0";
+				gpios = < &crl CRL_RST_RPU_B_0
+				  &rpu_ctrl_b 0 >;
+				gpio-names = "reset", "halt";
+			};
+			rpu_cpu3: rpu_cpu_b@1 {
+				RPU_CPU_COMMON(3, 2, 1);
+				core-count = <2>;
+				gdb-id = "Cortex-R52 #b1";
+				gpios = < &crl CRL_RST_RPU_B_1
+				  &rpu_ctrl_b 1 >;
+				gpio-names = "reset", "halt";
+			};
+		};
+	};
+
+	amba_rpu: amba_rpu@0 {
+		rpu_gic: interrupt-controller@R5_GIC_DIST {
+			interrupt-contoller;
+		};
+
+		amba_r5_2: amba_r5@2 {
+			#address-cells = <2>;
+			#size-cells = <2>;
+			#priority-cells = <1>;
+			compatible = "simple-bus";
+			ranges;
+
+			downstream_amba {
+				compatible = "qemu:memory-region";
+				alias = <&amba_rpu>;
+				/* Full address range with 0 priority */
+				reg = <0x0 0x0 0xffffffff 0xffffffff 0>;
+			};
+		};
+		amba_r5_3: amba_r5@3 {
+			#address-cells = <2>;
+			#size-cells = <2>;
+			#priority-cells = <1>;
+			compatible = "simple-bus";
+			ranges;
+
+			downstream_amba {
+				compatible = "qemu:memory-region";
+				alias = <&amba_rpu>;
+				/* Full address range with 0 priority */
+				reg = <0x0 0x0 0xffffffff 0xffffffff 0>;
+			};
+		};
+	};
+	MEMATTR(rpu2_s, SECURE, SMID_RPU2);
+	MEMATTR(rpu3_s, SECURE, SMID_RPU3);
+};

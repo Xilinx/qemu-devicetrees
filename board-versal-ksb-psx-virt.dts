@@ -42,6 +42,7 @@
 
 #include "board-versal-ps-virt.dts"
 #include "versal-psx.dtsi"
+#include "versal-psx-rpu.dtsi"
 #include "versal-pmx-shared-overlay.dtsi"
 #include "versal-pmx-system-overlay.dtsi"
 #include "versal-psx-shared-overlay.dtsi"
@@ -69,3 +70,14 @@ SET_CPU_FREQ(13, 2720000);
 SET_CPU_FREQ(14, 2720000);
 SET_CPU_FREQ(15, 2720000);
 #endif
+
+&rpu_ctrl_a {
+	cpu0 = <&rpu_cpu0>;
+	cpu1 = <&rpu_cpu1>;
+};
+
+&rpu_ctrl_b {
+	cpu0 = <&rpu_cpu2>;
+	cpu1 = <&rpu_cpu3>;
+};
+

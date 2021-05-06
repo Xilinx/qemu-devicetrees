@@ -32,6 +32,14 @@
 #define MM_FPD_CMN			0xa0000000
 #define MM_FPD_CMN_SIZE			0x03000000
 
+#define MM_LPD_PSX_RPU_CLUSTER_A	0xFF580000
+#define MM_LPD_PSX_RPU_CLUSTER_B	0xFF590000
+
+#define CRL_RST_RPU_A_0 0
+#define CRL_RST_RPU_A_1 1
+#define CRL_RST_RPU_B_0 2
+#define CRL_RST_RPU_B_1 3
+
 #define MM_FPD_FPD_APU_CLUSTER1		0xfd5d0000
 #define MM_FPD_FPD_APU_CLUSTER2		0xfd5e0000
 #define MM_FPD_FPD_APU_CLUSTER3		0xfd5f0000
@@ -86,18 +94,45 @@
 	};
 };
 
-&rpu_cpu0 {
-	core-count = <2>;
-};
-
-&rpu_cpu1 {
-	core-count = <2>;
-};
-
 &crf {
 	compatible = "xlnx,versal-psx-crf";
 };
 
 &pmc_iou_slcr {
 	compatible = "xlnx,versal-pmx-iou-slcr";
+};
+
+&crl {
+	compatible = "xlnx,psx_crl";
+};
+
+&amba_lpd {
+	/delete-node/ rpu_ctrl@MM_RPU;
+	rpu_ctrl: rpu_ctrl@MM_RPU {
+		/*TODO: Delete this node after we connect
+		 all the power management signal to psx-crl.
+		*/
+		#gpio-cells = <1>;
+		gpio-contorller;
+	};
+
+	rpu_ctrl_a: rpu_cluster@MM_LPD_PSX_RPU_CLUSTER_A {
+		compatible = "xlnx,psx_rpu_cluster";
+		reg = <0x0 MM_LPD_PSX_RPU_CLUSTER_A 0x0 0x10000 0x0>;
+		gpio-contorller;
+		#gpio-cells = <1>;
+		gpios = <&crl CRL_RST_RPU_A_0
+			 &crl CRL_RST_RPU_A_1
+			>;
+	};
+
+	rpu_ctrl_b: rpu_cluster@MM_LPD_PSX_RPU_CLUSTER_B {
+		compatible = "xlnx,psx_rpu_cluster";
+		reg = <0x0 MM_LPD_PSX_RPU_CLUSTER_B 0x0 0x10000 0x0>;
+		gpio-contorller;
+		#gpio-cells = <1>;
+		gpios = <&crl CRL_RST_RPU_B_0
+			 &crl CRL_RST_RPU_B_1
+			>;
+	};
 };
