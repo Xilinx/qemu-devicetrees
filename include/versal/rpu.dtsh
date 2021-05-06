@@ -31,7 +31,13 @@
 #define RPU_CPU_MODEL "cortex-r5f-arm-cpu"
 #endif
 
-#define RPU_CPU_COMMON(n)						\
+/* Creates a base ARM-R cpu node
+ * arguments:
+ * 	n : cpu index
+ * 	c : cluster id
+ * 	i : cpu id
+ */
+#define RPU_CPU_COMMON(n, c, i)						\
 	compatible = RPU_CPU_MODEL;					\
 	device_type = "cpu";						\
 	arm,tcmtr=<0x00010001>;						\
@@ -39,7 +45,7 @@
 	arm,clidr=<0x09200003>;						\
 	arm,ccsidr0 = <0xf01fe019>;					\
 	arm,ccsidr1 = <0xf01fe019>;					\
-	arm,mp-affinity = <glue(0x10,n)>;				\
+	arm,mp-affinity = <glue(glue(0x,c), 0 ## i)>;			\
 	arm,id_pfr0 = <0x131>;						\
 	arm,reset-hivecs = <1>;						\
 	#interrupt-cells = <1>;						\

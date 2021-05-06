@@ -35,7 +35,7 @@
 		#address-cells = <1>;
 		#size-cells = <0>;
 		rpu_cpu0: rpu_cpu@0 {
-			RPU_CPU_COMMON(0);
+			RPU_CPU_COMMON(0, 1, 0);
 			gdb-id = "Cortex-R5 #0";
 
 			gpios = < &crl CRL_RST_CPU_R5_0
@@ -45,7 +45,7 @@
 			gpio-names = "reset", "halt", "wfi", "vinithi";
 		};
 		rpu_cpu1: rpu_cpu@1 {
-			RPU_CPU_COMMON(1);
+			RPU_CPU_COMMON(1, 1, 1);
 			gdb-id = "Cortex-R5 #1";
 
 			gpios = < &crl CRL_RST_CPU_R5_1
