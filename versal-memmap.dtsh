@@ -27,13 +27,15 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#define MEM_REGION(name, addrH, addrL, addr64, s, c)			\
+#define MEM_REGION64(name, addrH, addrL, addr64, sizeH, sizeL, c)	\
 name: name@addr64 {							\
 	compatible = "qemu:memory-region";				\
 	container = <c>;						\
 	qemu,ram = <QEMU_RAM_PROPERTY>;					\
-	reg = <addrH addrL 0x0 s 0x0 >;					\
+	reg = <addrH addrL sizeH sizeL 0x0 >;				\
 };
+#define MEM_REGION(name, addrH, addrL, addr64, s, c)			\
+	MEM_REGION64(name, addrH, addrL, addr64, 0, s, c)
 
 /* The MEM_SPEC macro tells QEMU that memory can be created here, but does
  * NOT create memory regions.
