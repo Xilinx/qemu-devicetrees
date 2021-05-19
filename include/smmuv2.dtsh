@@ -61,3 +61,6 @@
 			reg = <0x0 0x0 0xFFFFFFFF 0xFFFFFFFF 0xFFFFFFFF>; \
 		};						\
 	}
+
+#define SMMU_TBU_SLAVE_DELNODE(x)    \
+    /delete-node/ tbu ## x ## _slave@0
