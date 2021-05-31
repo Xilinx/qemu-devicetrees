@@ -129,7 +129,9 @@
 		compatible = "remote-port-memory-master";
 		remote-ports = <&cosim_rp_0 40>;
 		reg = <0x0 MM_TOP_PS_PL_FPD_LowAddr0 0x0 MM_TOP_PS_PL_FPD_LowAddr0_SIZE 0x0
-		       0x0 MM_TOP_PS_PL_FPD_LowAddr1 0x0 MM_TOP_PS_PL_FPD_LowAddr1_SIZE 0x0>;
+		       0x0 MM_TOP_PS_PL_FPD_LowAddr1 0x0 MM_TOP_PS_PL_FPD_LowAddr1_SIZE 0x0
+		       MM_TOP_PS_PL_HighAddr0_H MM_TOP_PS_PL_HighAddr0_L MM_TOP_PS_PL_HighAddr0_SIZE_H MM_TOP_PS_PL_HighAddr0_SIZE_L 0x0
+		       MM_TOP_PS_PL_HighAddr1_H MM_TOP_PS_PL_HighAddr1_L MM_TOP_PS_PL_HighAddr1_SIZE_H MM_TOP_PS_PL_HighAddr1_SIZE_L 0x0>;
 	};
 
 	/* Device ID 41 reserved for m_axi_gp1 in Extended PS.  */
