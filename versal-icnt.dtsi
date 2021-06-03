@@ -105,7 +105,17 @@ NAME ## _memattr_smid: NAME ## _ma_smid {			\
 			#include "versal-ps-irq-map.dtsh"
 			#undef __intc__
 			,
-#ifndef VERSAL_KSB
+#ifdef VERSAL_KSB
+			#define __intc__ &rpu_gic_a
+			#include "versal-ps-irq-map.dtsh"
+			#undef __intc__
+			,
+
+			#define __intc__ &rpu_gic_b
+			#include "versal-ps-irq-map.dtsh"
+			#undef __intc__
+			,
+#else
 			#define __intc__ &rpu_gic
 			#include "versal-ps-irq-map.dtsh"
 			#undef __intc__
