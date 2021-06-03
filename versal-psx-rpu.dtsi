@@ -1,6 +1,12 @@
 #include "versal.dtsh"
 #include "versal/rpu.dtsh"
 
+#define RPU_GIC_DIST 0x0
+#define RPU_GIC_REDIST 0x100000
+#define NUM_CLUSTER_RPUS 2
+#define FIRST_CPU_GIC_A (NUM_APUS)
+#define FIRST_CPU_GIC_B (FIRST_CPU_GIC_A + NUM_CLUSTER_RPUS)
+
 #define TCM_CLUSTER(c, cpu0, cpu1)				\
 	tcm_cluster_## c: tcm_cluster_## c@0 {			\
 		#address-cells = <2>;				\
@@ -83,10 +89,89 @@
 		};
 	};
 
-	amba_rpu: amba_rpu@0 {
-		rpu_gic: interrupt-controller@R5_GIC_DIST {
-			interrupt-contoller;
+	mr_rpu_gic_a: mr_rpu_gic_a@0 {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		#priority-cells = <1>;
+		compatible = "simple-bus";
+
+		rpu_gic_a: rpu_gic_a@RPU_GIC_DIST {
+			#address-cells = <0>;
+			#size-cells = <0>;
+			#interrupt-cells = <3>;
+
+			compatible = "arm-gicv3";
+			reg = < 0x0 RPU_GIC_DIST 0x0 0x10000 0
+				0x0 RPU_GIC_REDIST 0x0 0x40000 0>;
+			interrupt-controller ;
+			interrupts-extended =
+				/* IRQs.  */
+				<&glue(RPU_GIC_INTERRUPT_TARGET_STEM, 0) 0>,
+				<&glue(RPU_GIC_INTERRUPT_TARGET_STEM, 1) 0>,
+
+				/* FIQs.  */
+				<&glue(RPU_GIC_INTERRUPT_TARGET_STEM, 0) 1>,
+				<&glue(RPU_GIC_INTERRUPT_TARGET_STEM, 1) 1>,
+
+				/* Virtual IRQs.  */
+				<&glue(RPU_GIC_INTERRUPT_TARGET_STEM, 0) 2>,
+				<&glue(RPU_GIC_INTERRUPT_TARGET_STEM, 1) 2>,
+
+				/* Virtual FIQs.  */
+				<&glue(RPU_GIC_INTERRUPT_TARGET_STEM, 0) 3>,
+				<&glue(RPU_GIC_INTERRUPT_TARGET_STEM, 1) 3>,
+
+				<&rpu_gic_a 0x1 0x9 0x104>,
+				<&rpu_gic_a 0x1 0x9 0x204>;
+			first-cpu-idx = <FIRST_CPU_GIC_A>;
+			num-cpu = <NUM_CLUSTER_RPUS>;
+			num-irq = <256>;
+			redist-region-count = <2>;
 		};
+	};
+
+	mr_rpu_gic_b: mr_rpu_gic_b@0 {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		#priority-cells = <1>;
+		compatible = "simple-bus";
+
+		rpu_gic_b: rpu_gic_b@RPU_GIC_DIST {
+			#address-cells = <0>;
+			#size-cells = <0>;
+			#interrupt-cells = <3>;
+
+			compatible = "arm-gicv3";
+			reg = < 0x0 RPU_GIC_DIST 0x0 0x10000 0
+				0x0 RPU_GIC_REDIST 0x0 0x40000 0>;
+			interrupt-controller ;
+			interrupts-extended =
+				/* IRQs.  */
+				<&glue(RPU_GIC_INTERRUPT_TARGET_STEM, 2) 0>,
+				<&glue(RPU_GIC_INTERRUPT_TARGET_STEM, 3) 0>,
+
+				/* FIQs.  */
+				<&glue(RPU_GIC_INTERRUPT_TARGET_STEM, 2) 1>,
+				<&glue(RPU_GIC_INTERRUPT_TARGET_STEM, 3) 1>,
+
+				/* Virtual IRQs.  */
+				<&glue(RPU_GIC_INTERRUPT_TARGET_STEM, 2) 2>,
+				<&glue(RPU_GIC_INTERRUPT_TARGET_STEM, 3) 2>,
+
+				/* Virtual FIQs.  */
+				<&glue(RPU_GIC_INTERRUPT_TARGET_STEM, 2) 3>,
+				<&glue(RPU_GIC_INTERRUPT_TARGET_STEM, 3) 3>,
+
+				<&rpu_gic_b 0x1 0x9 0x104>,
+				<&rpu_gic_b 0x1 0x9 0x204> ;
+			first-cpu-idx = <FIRST_CPU_GIC_B>;
+			num-cpu = <NUM_CLUSTER_RPUS>;
+			num-irq = <256>;
+			redist-region-count = <2>;
+		};
+	};
+
+	amba_rpu: amba_rpu@0 {
 	};
 
 	TCM_CREATE(0)
@@ -103,6 +188,11 @@
 			alias = <&tcm_core0>;
 			reg = <0x0 0x0 0x0 0x400000 0x1>;
 		};
+		downstream_gic0 {
+			compatible = "qemu:memory-region";
+			alias = <&mr_rpu_gic_a>;
+			reg = <0x0 R5_GIC_DIST 0x0 0x140000 0x1>;
+		};
 	};
 
 	amba_r5_1: amba_r5@1 {
@@ -110,6 +200,11 @@
 			compatible = "qemu:memory-region";
 			alias = <&tcm_core1>;
 			reg = <0x0 0x0 0x0 0x400000 0x1>;
+		};
+		downstream_gic0 {
+			compatible = "qemu:memory-region";
+			alias = <&mr_rpu_gic_a>;
+			reg = <0x0 R5_GIC_DIST 0x0 0x140000 0x1>;
 		};
 	};
 
@@ -124,6 +219,11 @@
 			compatible = "qemu:memory-region";
 			alias = <&tcm_core2>;
 			reg = <0x0 0x0 0x0 0x400000 0x1>;
+		};
+		downstream_gic1 {
+			compatible = "qemu:memory-region";
+			alias = <&mr_rpu_gic_b>;
+			reg = <0x0 R5_GIC_DIST 0x0 0x140000 0x1>;
 		};
 		downstream_amba {
 			compatible = "qemu:memory-region";
@@ -145,7 +245,11 @@
 			alias = <&tcm_core3>;
 			reg = <0x0 0x0 0x0 0x400000 0x1>;
 		};
-
+		downstream_gic1 {
+			compatible = "qemu:memory-region";
+			alias = <&mr_rpu_gic_b>;
+			reg = <0x0 R5_GIC_DIST 0x0 0x140000 0x1>;
+		};
 		downstream_amba {
 			compatible = "qemu:memory-region";
 			alias = <&amba_rpu>;
