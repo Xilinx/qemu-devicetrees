@@ -66,6 +66,10 @@
 	};
 };
 
+&pmc_rsa {
+	ram-nr-words = <256>;
+};
+
 &amba_pmc_iou {
 	pmx_wwdt: wwdt@MM_PMX_WWDT {
 		compatible = "xlnx,versal-wwdt";
