@@ -155,8 +155,13 @@ name: name@addr64 {														\
 #include "versal-fpd-memmap.dtsh"
 #include "versal-pmc-memmap.dtsh"
 #include "versal-psm-memmap.dtsh"
-#include "versal-iou-memmap.dtsh"
 #include "versal-lpd-memmap.dtsh"
+
+#ifdef VERSAL_KSB
+ #include "ksb-iou-memmap.dtsh"
+#else
+ #include "versal-iou-memmap.dtsh"
+#endif
 
 #define MM_XRAM MM_OCM2
 #define MM_XRAM_SIZE MM_OCM2_SIZE

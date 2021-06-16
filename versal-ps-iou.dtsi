@@ -319,6 +319,7 @@ zname: zname@zbase {							\
 	};
 
 	lpd_i2c_wrapper {
+#ifdef MM_PS_I2C0
 		ps_i2c0: ps_i2c0@MM_PS_I2C0 {
 			#address-cells = <1>;
 			#size-cells = <0>;
@@ -335,6 +336,7 @@ zname: zname@zbase {							\
 			reg-extended = <&amba_lpd 0x0 MM_PS_I2C1 0x0 MM_PS_I2C1_SIZE 0x0>;
 			reset-gpios = <&crl CRL_RST_I2C1>;
 		};
+#endif
 	};
 
 	ocm_ctrl0: ocm_ctrl@OCM {
@@ -373,6 +375,7 @@ zname: zname@zbase {							\
 		memattr-write-gem1 = <&gem1_w_memattr_smid>;
 	};
 
+#ifdef MM_WWDT
 	lpd_wwdt: wwdt@MM_WWDT {
 		compatible = "xlnx,versal-wwdt";
 		reg = <0x0 MM_WWDT 0x0 MM_WWDT_SIZE 0x0>;
@@ -384,6 +387,7 @@ zname: zname@zbase {							\
 		pclk = <100000000>;
 		reset-gpios = <&crl CRL_RST_SWDT>;
 	};
+#endif
 };
 
 &amba_xram {
