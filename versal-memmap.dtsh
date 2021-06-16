@@ -153,13 +153,19 @@ name: name@addr64 {														\
 /* Include auto-generated files.  */
 #include "versal-top-memmap.dtsh"
 #include "versal-fpd-memmap.dtsh"
-#include "versal-pmc-memmap.dtsh"
 #include "versal-psm-memmap.dtsh"
 #include "versal-lpd-memmap.dtsh"
 
 #ifdef VERSAL_KSB
+ #include "ksb-pmx-memmap.dtsh"
+ #define MM_PMC_SD1 MM_PMC_EMMC
+ #define MM_PMC_SD1_SIZE MM_PMC_EMMC_SIZE
+ #define MM_PMC_SHA3 MM_PMC_SHA0
+ #define MM_PMC_SHA3_SIZE MM_PMC_SHA0_SIZE
+
  #include "ksb-iou-memmap.dtsh"
 #else
+ #include "versal-pmc-memmap.dtsh"
  #include "versal-iou-memmap.dtsh"
 #endif
 

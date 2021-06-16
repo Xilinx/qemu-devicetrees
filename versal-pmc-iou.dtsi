@@ -232,6 +232,7 @@ name: name@0 {								\
 	};
 
 	pmc_i2c_wrapper {
+#ifdef MM_PMC_PMC_I2C
 		pmc_i2c: pmc_i2c@MM_PMC_PMC_I2C {
 			compatible = "xlnx,ps7-i2c-1.00.a", "cdns,i2c-r1p10";
 			interrupts = <I2C_PMC_IRQ_0>;
@@ -240,5 +241,6 @@ name: name@0 {								\
 			#size-cells = <0>;
 			reset-gpios = <&pmc_clk_rst CRP_RST_I2C>;
 		};
+#endif
 	};
 };
