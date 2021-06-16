@@ -152,7 +152,6 @@ name: name@addr64 {														\
 
 /* Include auto-generated files.  */
 #include "versal-top-memmap.dtsh"
-#include "versal-psm-memmap.dtsh"
 
 #ifdef VERSAL_KSB
  #include "ksb-fpd-memmap.dtsh"
@@ -189,11 +188,18 @@ name: name@addr64 {														\
  #define MM_PMC_SHA3_SIZE MM_PMC_SHA0_SIZE
 
  #include "ksb-iou-memmap.dtsh"
+ #include "ksb-psm-memmap.dtsh"
+ #define MM_PSM_LOCAL_REG MM_PSMX_LOCAL_REG
+ #define MM_PSM_LOCAL_REG_SIZE MM_PSMX_LOCAL_REG_SIZE
+ #define MM_PSM_GLOBAL_REG MM_PSMX_GLOBAL_REG
+ #define MM_PSM_GLOBAL_REG_SIZE MM_PSMX_GLOBAL_REG_SIZE
+
 #else
  #include "versal-fpd-memmap.dtsh"
  #include "versal-lpd-memmap.dtsh"
  #include "versal-pmc-memmap.dtsh"
  #include "versal-iou-memmap.dtsh"
+ #include "versal-psm-memmap.dtsh"
 #endif
 
 #ifndef VERSAL_KSB
