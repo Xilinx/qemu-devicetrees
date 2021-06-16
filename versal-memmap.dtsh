@@ -151,9 +151,11 @@ name: name@addr64 {														\
 #define MM_USB_DWC3_0_SIZE 0x600
 
 /* Include auto-generated files.  */
-#include "versal-top-memmap.dtsh"
 
 #ifdef VERSAL_KSB
+ #include "ksb-top-memmap.dtsh"
+ #include "ksb-versal-memmap-aliases.dtsh"
+
  #include "ksb-fpd-memmap.dtsh"
  #define MM_FPD_CRF MM_FPD_PSX_CRF
  #define MM_FPD_CRF_SIZE MM_FPD_PSX_CRF_SIZE
@@ -195,6 +197,7 @@ name: name@addr64 {														\
  #define MM_PSM_GLOBAL_REG_SIZE MM_PSMX_GLOBAL_REG_SIZE
 
 #else
+ #include "versal-top-memmap.dtsh"
  #include "versal-fpd-memmap.dtsh"
  #include "versal-lpd-memmap.dtsh"
  #include "versal-pmc-memmap.dtsh"
