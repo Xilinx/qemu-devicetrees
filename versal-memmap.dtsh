@@ -153,7 +153,6 @@ name: name@addr64 {														\
 /* Include auto-generated files.  */
 #include "versal-top-memmap.dtsh"
 #include "versal-psm-memmap.dtsh"
-#include "versal-lpd-memmap.dtsh"
 
 #ifdef VERSAL_KSB
  #include "ksb-fpd-memmap.dtsh"
@@ -167,6 +166,22 @@ name: name@addr64 {														\
  #define MM_FPD_FPD_SMMU  0xfd5f0000
  #define MM_FPD_FPD_SMMU_SIZE     0x10000
 
+ #include "ksb-lpd-memmap.dtsh"
+ #define MM_OCM_XMPU MM_OCM0_XMPU
+ #define MM_OCM_XMPU_SIZE MM_OCM0_XMPU_SIZE
+ #define MM_OCM_MEM MM_OCM0_MEM
+ #define MM_OCM_MEM_SIZE MM_OCM0_MEM_SIZE
+ #define MM_OCM2_XMPU MM_OCM1_XMPU
+ #define MM_OCM2_XMPU_SIZE MM_OCM1_XMPU_SIZE
+ #define MM_OCM2_MEM MM_OCM1_MEM
+ #define MM_OCM2_MEM_SIZE MM_OCM1_MEM_SIZE
+ #define MM_CRL MM_PSX_CRL
+ #define MM_CRL_SIZE MM_PSX_CRL_SIZE
+ #define MM_OCM MM_PSX_OCM0_REGS
+ #define MM_OCM_SIZE MM_PSX_OCM0_REGS_SIZE
+ #define MM_OCM2 MM_PSX_OCM1_REGS
+ #define MM_OCM2_SIZE MM_PSX_OCM1_REGS_SIZE
+
  #include "ksb-pmx-memmap.dtsh"
  #define MM_PMC_SD1 MM_PMC_EMMC
  #define MM_PMC_SD1_SIZE MM_PMC_EMMC_SIZE
@@ -176,15 +191,18 @@ name: name@addr64 {														\
  #include "ksb-iou-memmap.dtsh"
 #else
  #include "versal-fpd-memmap.dtsh"
+ #include "versal-lpd-memmap.dtsh"
  #include "versal-pmc-memmap.dtsh"
  #include "versal-iou-memmap.dtsh"
 #endif
 
+#ifndef VERSAL_KSB
 #define MM_XRAM MM_OCM2
 #define MM_XRAM_SIZE MM_OCM2_SIZE
 #define MM_XRAM_MEM MM_OCM2_MEM
 #define MM_XRAM_MEM_SIZE MM_OCM2_MEM_SIZE
 #define MM_XRAM_XMPU MM_OCM2_XMPU
 #define MM_XRAM_XMPU_SIZE MM_OCM2_XMPU_SIZE
+#endif
 
 #include "versal-cpm-memmap.dtsh"

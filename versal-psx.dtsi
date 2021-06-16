@@ -174,8 +174,7 @@
 };
 
 &amba_lpd {
-	/delete-node/ rpu_ctrl@MM_RPU;
-	rpu_ctrl: rpu_ctrl@MM_RPU {
+	rpu_ctrl: rpu_ctrl@0 {
 		/*TODO: Delete this node after we connect
 		 all the power management signal to psx-crl.
 		*/

@@ -214,6 +214,7 @@ zname: zname@zbase {							\
 		reg = <0x0 MM_LPD_IOU_SLCR 0x0 MM_LPD_IOU_SLCR_SIZE 0x0>;
 	};
 
+#ifdef MM_RPU
 	rpu_ctrl: rpu_ctrl@MM_RPU {
 		compatible = "xlnx,versal-rpu";
 		reg-extended = <&amba_lpd 0x0 MM_RPU 0x0 MM_RPU_SIZE 0x0
@@ -231,6 +232,7 @@ zname: zname@zbase {							\
 			  &psm_local 42 &psm_local 43
 			>;
 	};
+#endif
 
 	ipi: ipi@MM_IPI {
 		compatible = "xlnx,versal-ipi";
