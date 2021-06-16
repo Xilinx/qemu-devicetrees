@@ -152,11 +152,21 @@ name: name@addr64 {														\
 
 /* Include auto-generated files.  */
 #include "versal-top-memmap.dtsh"
-#include "versal-fpd-memmap.dtsh"
 #include "versal-psm-memmap.dtsh"
 #include "versal-lpd-memmap.dtsh"
 
 #ifdef VERSAL_KSB
+ #include "ksb-fpd-memmap.dtsh"
+ #define MM_FPD_CRF MM_FPD_PSX_CRF
+ #define MM_FPD_CRF_SIZE MM_FPD_PSX_CRF_SIZE
+ /*TODO: Delete below SMMU macros after availabilty
+ *       of SMMU V3
+ */
+ #define MM_FPD_FPD_SMMUTCU       0xfd800000
+ #define MM_FPD_FPD_SMMUTCU_SIZE  0x800000
+ #define MM_FPD_FPD_SMMU  0xfd5f0000
+ #define MM_FPD_FPD_SMMU_SIZE     0x10000
+
  #include "ksb-pmx-memmap.dtsh"
  #define MM_PMC_SD1 MM_PMC_EMMC
  #define MM_PMC_SD1_SIZE MM_PMC_EMMC_SIZE
@@ -165,6 +175,7 @@ name: name@addr64 {														\
 
  #include "ksb-iou-memmap.dtsh"
 #else
+ #include "versal-fpd-memmap.dtsh"
  #include "versal-pmc-memmap.dtsh"
  #include "versal-iou-memmap.dtsh"
 #endif

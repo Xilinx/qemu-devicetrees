@@ -136,12 +136,14 @@
 			compatible = "xlnx,psm-local-reg";
 			reg = <0x0 MM_PSM_LOCAL_REG 0x0 MM_PSM_LOCAL_REG_SIZE 0x0>;
 			/* TODO: Connect interrupts.  */
+#ifdef MM_FPD_FPD_APU
 			gpios = <
 				&apu_ctrl 0
 				&apu_ctrl 1
 				&apu_ctrl 2
 				&apu_ctrl 3
 			>;
+#endif
 		};
 	};
 };

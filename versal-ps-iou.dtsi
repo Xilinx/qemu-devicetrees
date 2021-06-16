@@ -82,6 +82,7 @@ zname: zname@zbase {							\
 }
 
 &amba_fpd {
+#ifdef MM_FPD_FPD_APU
 	apu_ctrl: apu_ctrl@MM_FPD_FPD_APU {
 		compatible = "xlnx,versal-apu-ctrl";
 		reg = <0x0 MM_FPD_FPD_APU 0x0 MM_FPD_FPD_APU_SIZE 0x0>;
@@ -89,6 +90,7 @@ zname: zname@zbase {							\
 		cpu1 = <&cpu1>;
 		#gpio-cells = <1>;
 	};
+#endif
 
 	afi_fm@MM_FPD_FPD_AFIFM0 {
 		compatible = "xlnx,versal-afi-fm";
@@ -100,15 +102,19 @@ zname: zname@zbase {							\
 		reg = <0x0 MM_FPD_FPD_AFIFM2 0x0 MM_FPD_FPD_AFIFM2_SIZE 0x0>;
 	};
 
+#ifdef MM_FPD_FPD_GPCCI
 	cci_reg@MM_FPD_FPD_GPCCI {
 		compatible = "xlnx,cci_reg";
 		reg = <0x0 MM_FPD_FPD_GPCCI 0x0 MM_FPD_FPD_MAINCCI_SIZE 0x0>;
 	};
+#endif
 
+#ifdef MM_FPD_FPD_MAINCCI
 	cci500@MM_FPD_FPD_MAINCCI {
 		compatible = "xlnx,cci500";
 		reg = <0x0 MM_FPD_FPD_MAINCCI 0x0 MM_FPD_FPD_MAINCCI_SIZE 0x0>;
 	};
+#endif
 
 	cpm_crcpm@MM_CPM_CPM_CRCPM {
 		compatible = "xlnx,versal_cpm_crcpm";
@@ -137,6 +143,7 @@ zname: zname@zbase {							\
 		reg = <0x0 MM_FPD_FPD_SLCR_SECURE 0x0 MM_FPD_FPD_SLCR_SECURE_SIZE 0x0>;
 	};
 
+#ifdef MM_FPD_FPD_WWDT
 	fpd_wwdt: wwdt@MM_FPD_FPD_WWDT {
 		compatible = "xlnx,versal-wwdt";
 		reg = <0x0 MM_FPD_FPD_WWDT 0x0 MM_FPD_FPD_WWDT_SIZE 0x0>;
@@ -148,6 +155,7 @@ zname: zname@zbase {							\
 		pclk = <100000000>;
 		reset-gpios = <&crf 27>;
 	};
+#endif
 };
 
 &amba_lpd {

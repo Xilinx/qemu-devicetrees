@@ -43,17 +43,13 @@
 #define CRL_RST_RPU_B_0 2
 #define CRL_RST_RPU_B_1 3
 
-#define MM_FPD_FPD_APU_CLUSTER1		0xfd5d0000
-#define MM_FPD_FPD_APU_CLUSTER2		0xfd5e0000
-#define MM_FPD_FPD_APU_CLUSTER3		0xfd5f0000
-
 #define GEN_APU_CLUSTER(n, a, b, c, d)					\
 	apu_cluster ## n: apu_cluster@MM_FPD_FPD_APU_CLUSTER ## n {	\
 		#gpio-cells = <1>;					\
 		gpio-controller;					\
 		compatible = "xlnx,versal-apu-ctrl";			\
-		reg = <0x0 MM_FPD_FPD_APU_CLUSTER ## n			\
-		       0x0 MM_FPD_FPD_APU_SIZE 0x0>;			\
+		reg = <0x0 MM_FPD_APU_CLUSTER ## n			\
+		       0x0 MM_FPD_APU_CLUSTER0_SIZE 0x0>;		\
 		cpu0 = <&cpu ## a>;					\
 		cpu1 = <&cpu ## b>;					\
 		cpu2 = <&cpu ## c>;					\
@@ -66,22 +62,19 @@
 
 #if NUM_APUS_PER_CLUSTER == 2
 &amba_fpd {
+	GEN_APU_CLUSTER(0, 0, 1, none, none);
 	GEN_APU_CLUSTER(1, 2, 3, none, none);
 	GEN_APU_CLUSTER(2, 4, 5, none, none);
 	GEN_APU_CLUSTER(3, 6, 7, none, none);
 };
 #else
 &amba_fpd {
+	GEN_APU_CLUSTER(0, 0, 1, 2, 3);
 	GEN_APU_CLUSTER(1, 4, 5, 6, 7);
 	GEN_APU_CLUSTER(2, 8, 9, 10, 11);
 	GEN_APU_CLUSTER(3, 12, 13, 14, 15);
 };
 
-/* Connect the missing cores compared to Versal PS.  */
-&apu_ctrl {
-	cpu2 = <&cpu2>;
-	cpu3 = <&cpu3>;
-};
 #endif
 
 &amba_lpd {
