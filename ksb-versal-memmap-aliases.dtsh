@@ -119,6 +119,8 @@
 /* FPD aliases */
 #define MM_FPD_CRF MM_FPD_PSX_CRF
 #define MM_FPD_CRF_SIZE MM_FPD_PSX_CRF_SIZE
+#define MM_FPD_FPD_WWDT MM_FPD_FPD_WWDT0
+#define MM_FPD_FPD_WWDT_SIZE MM_FPD_FPD_WWDT0_SIZE
 /*TODO: Delete below SMMU macros after availabilty
 *       of SMMU V3
 */
