@@ -172,6 +172,22 @@
 	};
 
 	amba_rpu: amba_rpu@0 {
+		timer_a {
+			compatible = "arm,armv8-timer";
+			interrupt-parent = <&rpu_gic_a>;
+			interrupts = <1 14 0xffff01>,
+					<1 11 0xffff01>,
+					<1 10 0xffff01>;
+			clock-frequency = <100000000>;
+		};
+		timer_b {
+			compatible = "arm,armv8-timer";
+			interrupt-parent = <&rpu_gic_b>;
+			interrupts = <1 14 0xffff01>,
+					<1 11 0xffff01>,
+					<1 10 0xffff01>;
+			clock-frequency = <100000000>;
+		};
 	};
 
 	TCM_CREATE(0)
