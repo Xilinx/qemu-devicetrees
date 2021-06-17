@@ -60,11 +60,6 @@ name: name@addr64 {														\
 #define R5_GIC_DIST		0xF9000000
 #define R5_GIC			0xF9001000
 
-#define MM_XRAM_CTRL0           MM_OCM2
-#define MM_XRAM_CTRL1           0xff8f0000
-#define MM_XRAM_CTRL2           0xff900000
-#define MM_XRAM_CTRL3           0xff910000
-
 #define MM_PMC_QSPI_DMA		0xf1030800
 #define MM_PMC_LQSPI		0xC0000000
 #define MM_PMC_LQSPI_SIZE	0x08000000
@@ -151,6 +146,14 @@ name: name@addr64 {														\
 #include "versal-psm-memmap.dtsh"
 #include "versal-iou-memmap.dtsh"
 #include "versal-lpd-memmap.dtsh"
+
+#define MM_XRAM MM_OCM2
+#define MM_XRAM_SIZE MM_OCM2_SIZE
+#define MM_XRAM_MEM MM_OCM2_MEM
+#define MM_XRAM_MEM_SIZE MM_OCM2_MEM_SIZE
+#define MM_XRAM_XMPU MM_OCM2_XMPU
+#define MM_XRAM_XMPU_SIZE MM_OCM2_XMPU_SIZE
+
 #ifdef VERSAL_VP1202
 #include "versal-h10-npi-memmap.dtsh"
 #else

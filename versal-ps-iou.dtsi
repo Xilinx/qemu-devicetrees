@@ -73,9 +73,9 @@ zname: zname@zbase {							\
  * To support shared memories for co-sim, we provide the
  * actual RAMs externally and not from the XRAMC model.
  */
-#define XRAM_CTRL(n) xram_ctrl@MM_XRAM_CTRL ## n {	\
+#define XRAM_CTRL(n) xram_ctrl_ ## n {	\
 	compatible = "xlnx,versal-xramc";		\
-	reg = <0x0 MM_XRAM_CTRL ## n 0 0x10000 0x0 >;	\
+	reg = <0x0 (MM_XRAM + 0x## n ##0000) 0 0x10000 0x0 >;	\
 	interrupts = <XRAM_IRQ_0>;			\
 	alloc-ram = <0>;				\
 }

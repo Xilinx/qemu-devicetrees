@@ -58,13 +58,13 @@
 	MEM_REGION(ocm_mem_bank_2, 0x0, 0x20000, 0x20000, 0x10000, &ocm_mem)
 	MEM_REGION(ocm_mem_bank_3, 0x0, 0x30000, 0x30000, 0x10000, &ocm_mem)
 
-	ocm2_mem: ocm2_mem@MM_OCM2_MEM {
+	xram_mem: xram_mem@MM_XRAM_MEM {
 		compatible = "qemu:memory-region";
 	};
-	MEM_REGION(ocm2_mem_bank_0, 0x0, 0x0, 0x0, 0x200000, &ocm2_mem)
-	MEM_REGION(ocm2_mem_bank_1, 0x0, 0x200000, 0x200000, 0x200000, &ocm2_mem)
-	MEM_REGION(ocm2_mem_bank_2, 0x0, 0x400000, 0x400000, 0x200000, &ocm2_mem)
-	MEM_REGION(ocm2_mem_bank_3, 0x0, 0x600000, 0x600000, 0x200000, &ocm2_mem)
+	MEM_REGION(xram_mem_bank_0, 0x0, 0x0, 0x0, 0x200000, &xram_mem)
+	MEM_REGION(xram_mem_bank_1, 0x0, 0x200000, 0x200000, 0x200000, &xram_mem)
+	MEM_REGION(xarm_mem_bank_2, 0x0, 0x400000, 0x400000, 0x200000, &xram_mem)
+	MEM_REGION(xarm_mem_bank_3, 0x0, 0x600000, 0x600000, 0x200000, &xram_mem)
 
 	ipi_msgbuf: ipi_msgbuf@MM_IPI_MSGBUF {
 		compatible = "qemu:memory-region";
