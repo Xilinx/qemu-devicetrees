@@ -175,6 +175,21 @@
 		timer_a {
 			compatible = "arm,armv8-timer";
 			interrupt-parent = <&rpu_gic_a>;
+
+			/*
+			 * Cell[0]: 1 for connecting a PPI
+			 *
+			 * Cell[1]: PPI
+			 *
+			 * PPI  INTID
+			 * 14   30    Non-secure physical timer interrupt
+			 * 11   27    Virtual timer interrupt
+			 * 10   26    Hypervisor timer interrupt
+			 *
+			 * Cell[2] bits[x:8]: mask with the CPUs to connect,
+			 * '3' connects GIC CPU0 and CPU1.
+			 *
+			 */
 			interrupts = <1 14 0x301>,
 					<1 11 0x301>,
 					<1 10 0x301>;
@@ -183,6 +198,21 @@
 		timer_b {
 			compatible = "arm,armv8-timer";
 			interrupt-parent = <&rpu_gic_b>;
+
+			/*
+			 * Cell[0]: 1 for connecting a PPI
+			 *
+			 * Cell[1]: PPI
+			 *
+			 * PPI  INTID
+			 * 14   30    Non-secure physical timer interrupt
+			 * 11   27    Virtual timer interrupt
+			 * 10   26    Hypervisor timer interrupt
+			 *
+			 * Cell[2] bits[x:8]: mask with the CPUs to connect,
+			 * '3' connects GIC CPU0 and CPU1.
+			 *
+			 */
 			interrupts = <1 14 0x301>,
 					<1 11 0x301>,
 					<1 10 0x301>;
