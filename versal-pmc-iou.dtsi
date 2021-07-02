@@ -186,8 +186,8 @@ name: name@0 {								\
 		reg = <0x0 MM_PMC_SD0 0x0 MM_PMC_SD0_SIZE 0x0>;
 		interrupts = <SD0_IRQ_0>;
 		dma = <&smmu_tbu0>;
-		memattr = <&sd0_memattr>;
-		memattr-write = <&sd0_w_memattr>;
+		memattr = <&sd0_memattr_smid>;
+		memattr-write = <&sd0_w_memattr_smid>;
 		gpios = <&pmc_iou_slcr 0 0>;
 		gpio-names = "SLOTTYPE";
 		reset-gpios = <	&pmc_clk_rst CRP_RST_SDIO0 >;
@@ -205,8 +205,8 @@ name: name@0 {								\
 		reg = <0x0 MM_PMC_SD1 0x0 MM_PMC_SD1_SIZE 0x0>;
 		interrupts = <SD1_IRQ_0>;
 		dma = <&smmu_tbu0>;
-		memattr = <&sd1_memattr>;
-		memattr-write = <&sd1_w_memattr>;
+		memattr = <&sd1_memattr_smid>;
+		memattr-write = <&sd1_w_memattr_smid>;
 		gpios = <&pmc_iou_slcr 1 0>;
 		gpio-names = "SLOTTYPE";
 		reset-gpios = <	&pmc_clk_rst CRP_RST_SDIO1 >;
