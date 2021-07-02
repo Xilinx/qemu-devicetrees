@@ -82,6 +82,12 @@ name: name@0 {								\
 		#gpio-cells = <2>;
 	};
 
+	pmc_iou_slcr_secure: pmc_iou_slcr_secure@MM_PMC_PMC_IOU_SECURE_SLCR {
+		compatible = "xlnx,versal-pmc-iou-slcr-secure";
+		reg = <0x0 MM_PMC_PMC_IOU_SECURE_SLCR 0x0 MM_PMC_PMC_IOU_SECURE_SLCR_SIZE 0x0>;
+		interrupts = <PMC_IOU_SEC_SLCR_IRQ_0>;
+	};
+
 	pmc_qspi_dma_0: pmc_qspi_dma@QSPI_DMA {
 		doc-status = "complete";
 		compatible = "zynqmp,csu-dma";
