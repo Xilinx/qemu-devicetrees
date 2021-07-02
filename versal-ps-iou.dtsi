@@ -354,6 +354,11 @@ zname: zname@zbase {							\
 		#gpio-cells = <1>;
 	};
 
+	lpd_iou_slcr_secure: lpd_iou_slcr_secure@MM_LPD_IOU_SECURE_SLCR {
+		compatible = "xlnx,versal-lpd-iou-slcr-secure";
+		reg = <0x0 MM_LPD_IOU_SECURE_SLCR 0x0 MM_LPD_IOU_SECURE_SLCR_SIZE 0x0>;
+	};
+
 	lpd_wwdt: wwdt@MM_WWDT {
 		compatible = "xlnx,versal-wwdt";
 		reg = <0x0 MM_WWDT 0x0 MM_WWDT_SIZE 0x0>;
