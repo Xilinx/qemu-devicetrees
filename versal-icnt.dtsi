@@ -47,6 +47,13 @@ NAME ## _memattr: NAME ## _ma {				\
 	requester-id = <MASTERID>;			\
 }
 
+#define MEMATTR_SMID(NAME, MASTERID)				\
+NAME ## _memattr_smid: NAME ## _ma_smid {			\
+	doc-ignore = <1>;								\
+	compatible = "qemu:memory-transaction-attr";	\
+	requester-id = <MASTERID>;						\
+}
+
 / {
 	#address-cells = <2>;
 	#size-cells = <2>;
