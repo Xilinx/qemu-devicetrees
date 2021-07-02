@@ -141,6 +141,7 @@ name: name@0 {								\
 		reg = <0x0 MM_PMC_OSPI_DMA_DST 0x0 0x800 0x0>;
 		dma = <&amba_pmc>;
 		memattr = <&ospi_dma_memattr>;
+		memattr-write = <&ospi_dma_w_memattr>;
 		is-dst = <1>;
 		reset-gpios = <&pmc_clk_rst CRP_RST_OSPI>;
 	};
@@ -151,6 +152,7 @@ name: name@0 {								\
 		reg = <0x0 MM_PMC_OSPI_DMA_SRC 0x0 0x800 0x0>;
 		dma = <&lospi_mr>;
 		memattr = <&ospi_dma_memattr>;
+		memattr-write = <&ospi_dma_w_memattr>;
 		stream-connected-dma = <&ospi_dma_dst>;
 		reset-gpios = <&pmc_clk_rst CRP_RST_OSPI>;
 	};
