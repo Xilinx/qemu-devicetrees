@@ -85,7 +85,9 @@ NAME ## _memattr_smid: NAME ## _ma_smid {			\
 	MEMATTR_SMID(gem1_w, SMID_GEM1);
 	MEMATTR(ospi_dma, NON_SECURE, SMID_OSPI);
 	MEMATTR(sd0, NON_SECURE, SMID_SD0);
+	MEMATTR(sd0_w, NON_SECURE, SMID_SD0);
 	MEMATTR(sd1, NON_SECURE, SMID_SD1);
+	MEMATTR(sd1_w, NON_SECURE, SMID_SD1);
 	MEMATTR(usb0, NON_SECURE, SMID_USB0);
 
 	amba_root: amba_root@0 {
