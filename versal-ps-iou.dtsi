@@ -37,8 +37,8 @@ g_name: g_name@0 {							\
 	compatible = "cdns,gem";					\
 	interrupts = <g_irq g_irq>;					\
 	dma = <g_dma>;							\
-	memattr = <& ## g_name ## _memattr>;				\
-	memattr-write = <& ## g_name ## _w_memattr>;			\
+	memattr = <& ## g_name ## _memattr_smid>;				\
+	memattr-write = <& ## g_name ## _w_memattr_smid>;			\
 	reg = <0x0 g_base 0x0 g_size 0x0>;				\
 	num-priority-queues = <2>;					\
 	reset-gpios = <&crl rst_idx>;					\
@@ -358,10 +358,10 @@ zname: zname@zbase {							\
 	lpd_iou_slcr_secure: lpd_iou_slcr_secure@MM_LPD_IOU_SECURE_SLCR {
 		compatible = "xlnx,versal-lpd-iou-slcr-secure";
 		reg = <0x0 MM_LPD_IOU_SECURE_SLCR 0x0 MM_LPD_IOU_SECURE_SLCR_SIZE 0x0>;
-		memattr-gem0 = <&gem0_memattr>;
-		memattr-write-gem0 = <&gem0_w_memattr>;
-		memattr-gem1 = <&gem1_memattr>;
-		memattr-write-gem1 = <&gem1_w_memattr>;
+		memattr-gem0 = <&gem0_memattr_smid>;
+		memattr-write-gem0 = <&gem0_w_memattr_smid>;
+		memattr-gem1 = <&gem1_memattr_smid>;
+		memattr-write-gem1 = <&gem1_w_memattr_smid>;
 	};
 
 	lpd_wwdt: wwdt@MM_WWDT {
