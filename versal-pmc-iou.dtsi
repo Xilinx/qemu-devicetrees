@@ -86,10 +86,11 @@ name: name@0 {								\
 		compatible = "xlnx,versal-pmc-iou-slcr-secure";
 		reg = <0x0 MM_PMC_PMC_IOU_SECURE_SLCR 0x0 MM_PMC_PMC_IOU_SECURE_SLCR_SIZE 0x0>;
 		interrupts = <PMC_IOU_SEC_SLCR_IRQ_0>;
-		memattr-sd0 = <&sd0_memattr>;
-		memattr-write-sd0 = <&sd0_w_memattr>;
-		memattr-sd1 = <&sd1_memattr>;
-		memattr-write-sd1 = <&sd1_w_memattr>;
+		memattr-sd0 = <&sd0_memattr_smid>;
+		memattr-write-sd0 = <&sd0_w_memattr_smid>;
+		memattr-sd1 = <&sd1_memattr_smid>;
+		memattr-write-sd1 = <&sd1_w_memattr_smid>;
+		memattr-write-qspi = <&pmc_qspi_dma_w_memattr>;
 	};
 
 	pmc_qspi_dma_0: pmc_qspi_dma@QSPI_DMA {
