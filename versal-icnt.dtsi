@@ -67,8 +67,8 @@ NAME ## _memattr_smid: NAME ## _ma_smid {			\
 	MEMATTR(ddrmc_ub1, SECURE, 0x0);
 	MEMATTR(pmc_dma0, SECURE, SMID_PMC_DMA0);
 	MEMATTR(pmc_dma1, SECURE, SMID_PMC_DMA1);
-	MEMATTR(pmc_qspi_dma, SECURE, SMID_QSPI);
-	MEMATTR(pmc_qspi_dma_w, SECURE, SMID_QSPI);
+	MEMATTR_SMID(pmc_qspi_dma, SMID_QSPI);
+	MEMATTR_SMID(pmc_qspi_dma_w, SMID_QSPI);
 
 	/* APU.  */
 	MEMATTR(apu0_s, SECURE, SMID_APU_CORE0);

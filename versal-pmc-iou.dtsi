@@ -90,7 +90,7 @@ name: name@0 {								\
 		memattr-write-sd0 = <&sd0_w_memattr_smid>;
 		memattr-sd1 = <&sd1_memattr_smid>;
 		memattr-write-sd1 = <&sd1_w_memattr_smid>;
-		memattr-write-qspi = <&pmc_qspi_dma_w_memattr>;
+		memattr-write-qspi = <&pmc_qspi_dma_w_memattr_smid>;
 	};
 
 	pmc_qspi_dma_0: pmc_qspi_dma@QSPI_DMA {
@@ -100,8 +100,8 @@ name: name@0 {								\
 		#stream-id-cells = <0x1>;
 		reg = <0x0 MM_PMC_QSPI_DMA 0x0 0x800 0x0>;
 		dma = <&amba_pmc>;
-		memattr = <&pmc_qspi_dma_memattr>;
-		memattr-write = <&pmc_qspi_dma_w_memattr>;
+		memattr = <&pmc_qspi_dma_memattr_smid>;
+		memattr-write = <&pmc_qspi_dma_w_memattr_smid>;
 		is-dst = <1>;
 		reset-gpios = <&pmc_clk_rst CRP_RST_QSPI>;
 	};
