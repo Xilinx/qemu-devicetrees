@@ -91,6 +91,7 @@ name: name@0 {								\
 		memattr-sd1 = <&sd1_memattr_smid>;
 		memattr-write-sd1 = <&sd1_w_memattr_smid>;
 		memattr-write-qspi = <&pmc_qspi_dma_w_memattr_smid>;
+		memattr-write-ospi = <&ospi_dma_w_memattr>;
 	};
 
 	pmc_qspi_dma_0: pmc_qspi_dma@QSPI_DMA {
