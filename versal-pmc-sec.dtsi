@@ -133,7 +133,11 @@
 
 	xlnx_pmc_efuse_cache: xlnx_pmc_efuse_cache@MM_PMC_EFUSE_CACHE {
 		doc-status = "complete";
+#if defined(VERSAL_PSX) || defined(VERSAL_PMX)
+		compatible = "xlnx,pmx_efuse_cache";
+#else
 		compatible = "xlnx,pmc-efuse-cache";
+#endif
 		reg = <0x0 MM_PMC_EFUSE_CACHE 0x0 MM_PMC_EFUSE_CACHE_SIZE 0x0>;
 		efuse = <&xlnx_efuse>;
 	};
@@ -149,7 +153,11 @@
 
 	pmc_efuse: pmc_efuse@MM_PMC_EFUSE_CTRL {
 		doc-status = "complete";
+#if defined(VERSAL_PSX) || defined(VERSAL_PMX)
+		compatible = "xlnx,pmx_efuse_ctrl";
+#else
 		compatible = "xlnx,versal-efuse";
+#endif
 		#gpio-cells = <2>;
 		zynqmp-aes-key-sink-efuses = <&pmc_aes>;
 		zynqmp-aes-key-sink-efuses-user0 = <&pmc_aes>;
