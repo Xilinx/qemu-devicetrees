@@ -93,6 +93,11 @@ name: name@addr64 {														\
 #define MM_PMC_PUF_CTRL        0xf1150000
 #define MM_PMC_PUF_CTRL_SIZE   0x10000
 
+/* PMC Sysmon AMS Satellite subregions within MM_PMC_PMC_SYSMON */
+#define MM_PMC_AMS_SAT0        0xf1280000
+#define MM_PMC_AMS_SAT1        0xf1290000
+#define MM_PMC_AMS_SAT_SIZE    0x00010000
+
 /* PMC GIC Proxy at MM_PMC_PMC_GLOBAL + 0x30000 offset.  */
 #define MM_PMC_GIC_PROXY 0xf1140000
 #define MM_PMC_GIC_PROXY_SIZE 0x100

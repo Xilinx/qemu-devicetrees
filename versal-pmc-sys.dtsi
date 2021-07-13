@@ -89,6 +89,18 @@
 		interrupts = <SYSMON_IRQ_0
 			      SYSMON_IRQ_1>;
 		reset-gpios = <&pmc_clk_rst CRP_RST_SYSMON_CFG>;
+
+		ams-sat0 = <&pmc_ams_sat0>;
+		ams-sat1 = <&pmc_ams_sat1>;
+
+	};
+	pmc_ams_sat0: pmc_ams_sat@0 {
+		compatible = "xlnx,ams-sat";
+		reg = <0x0 MM_PMC_AMS_SAT0 0x0 MM_PMC_AMS_SAT_SIZE 0x1>;
+	};
+	pmc_ams_sat1: pmc_ams_sat@1 {
+		compatible = "xlnx,ams-sat";
+		reg = <0x0 MM_PMC_AMS_SAT1 0x0 MM_PMC_AMS_SAT_SIZE 0x1>;
 	};
 	pmc_global_tamper: versal_pmc_tamper@ {
 		compatible = "xlnx,pmc_tamper";
