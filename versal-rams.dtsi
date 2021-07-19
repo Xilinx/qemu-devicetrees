@@ -53,10 +53,14 @@
 	ocm_mem: ocm_mem@MM_OCM_MEM {
 		compatible = "qemu:memory-region";
 	};
-	MEM_REGION(ocm_mem_bank_0, 0x0, 0x00000, 0x00000, 0x10000, &ocm_mem)
-	MEM_REGION(ocm_mem_bank_1, 0x0, 0x10000, 0x10000, 0x10000, &ocm_mem)
-	MEM_REGION(ocm_mem_bank_2, 0x0, 0x20000, 0x20000, 0x10000, &ocm_mem)
-	MEM_REGION(ocm_mem_bank_3, 0x0, 0x30000, 0x30000, 0x10000, &ocm_mem)
+
+	MEM_REGION(ocm_mem_bank_0, 0x0, 0x00000, , (MM_OCM_MEM_SIZE / 4), &ocm_mem)
+	MEM_REGION(ocm_mem_bank_1, 0x0, (MM_OCM_MEM_SIZE / 4), ,
+				(MM_OCM_MEM_SIZE / 4), &ocm_mem)
+	MEM_REGION(ocm_mem_bank_2, 0x0, ((MM_OCM_MEM_SIZE / 4) * 2), ,
+				(MM_OCM_MEM_SIZE / 4), &ocm_mem)
+	MEM_REGION(ocm_mem_bank_3, 0x0, ((MM_OCM_MEM_SIZE / 4) * 3), ,
+				(MM_OCM_MEM_SIZE / 4), &ocm_mem)
 
 	xram_mem: xram_mem@MM_XRAM_MEM {
 		compatible = "qemu:memory-region";
