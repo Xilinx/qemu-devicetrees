@@ -54,6 +54,10 @@
 #define IRQ_PPU0_INTC_SEC_DBG			30
 #define IRQ_PPU0_INTC_PUF_CMD			31
 
+/* PMX PPU0 */
+#define IRQ_PMX_PPU0_HW_INT			18
+#define IRQ_PMX_PPU0_SVR_INT			27
+
 /* PMC PPU1.  */
 #define IRQ_PPU1_INTC_PMC_GICP			16
 #define IRQ_PPU1_INTC_PPU1_RAM_ECC		17
@@ -71,6 +75,12 @@
 #define IRQ_PPU1_INTC_REQ_SWRST			29
 #define IRQ_PPU1_INTC_REQ_ISOLATION		30
 #define IRQ_PPU1_INTC_WAKEUP			31
+
+/* PMX PPU1 */
+#define IRQ_PMX_PPU1_HW_INT			16
+#define IRQ_PMX_PPU1_PL				17
+#define IRQ_PMX_PPU1_ROM_INT			19
+#define IRQ_PMX_PPU1_SRV_INT			27
 
 /* PSM IO-Module interrupt controller. These are from spec + 16 */
 #define IRQ_PSM_INTC_PSM_RAM_ERROR		16
