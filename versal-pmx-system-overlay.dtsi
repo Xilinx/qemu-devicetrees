@@ -120,3 +120,8 @@
 		protected-base = <MM_PMC_CFU_APB>;
 	};
 };
+
+
+&pmc_global {
+       compatible = "xlnx,pmx_global";
+};
