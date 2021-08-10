@@ -121,13 +121,6 @@
 #define MM_FPD_CRF_SIZE MM_FPD_PSX_CRF_SIZE
 #define MM_FPD_FPD_WWDT MM_FPD_FPD_WWDT0
 #define MM_FPD_FPD_WWDT_SIZE MM_FPD_FPD_WWDT0_SIZE
-/*TODO: Delete below SMMU macros after availabilty
-*       of SMMU V3
-*/
-#define MM_FPD_FPD_SMMUTCU       0xfd800000
-#define MM_FPD_FPD_SMMUTCU_SIZE  0x800000
-#define MM_FPD_FPD_SMMU  0xfd5f0000
-#define MM_FPD_FPD_SMMU_SIZE     0x10000
 
 /* LDP aliases */
 #define MM_OCM_XMPU MM_OCM0_XMPU
