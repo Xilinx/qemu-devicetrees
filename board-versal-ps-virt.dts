@@ -39,6 +39,7 @@
 #define NUM_APUS 2
 #endif
 
+#define HAS_SMMU
 #define HAVE_APU_GIC
 #ifdef MM_NPI_DDRMC_MAIN_0
 #define HAS_DDRMC0 1

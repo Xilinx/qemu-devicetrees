@@ -27,6 +27,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#define HAS_SMMU
 #include "zynqmp.dtsh"
 
 /dts-v1/;

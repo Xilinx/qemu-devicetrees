@@ -33,6 +33,7 @@
  *
  * @x:			SMMU TBU instance number
  */
+#ifdef HAS_SMMU
 #define SMMU_TBU_SLAVE(x)					\
 	smmu_tbu ## x: tbu ## x ## _slave@0 {			\
 		#address-cells = <2>;				\
@@ -42,6 +43,14 @@
 		ranges;						\
 	}
 
+#else
+#define SMMU_TBU_SLAVE(x)					\
+	smmu_tbu ## x: tbu ## x ## _slave@0 {			\
+		compatible = "qemu:memory-region";		\
+		alias = <&amba_pmc>;				\
+		reg = <0x0 0x0 0xffffffff 0xffffffff 0xffffffff /* -1 */ >; \
+	}
+#endif
 /*
  * SMMU_TBU_SLAVE:	Generates a memory region representing the slave
  *                 	ports of a TBU.
