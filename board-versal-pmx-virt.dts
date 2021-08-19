@@ -65,12 +65,4 @@
 	cpu15: apu@15 { };
 #endif
 };
-
-&sd_0 {
-	dma = <&amba_pmc>;
-};
-
-&sd_1 {
-	dma = <&amba_pmc>;
-};
 #endif
