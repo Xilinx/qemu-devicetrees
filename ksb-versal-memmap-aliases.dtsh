@@ -20,7 +20,11 @@
  * THE SOFTWARE.
  */
 #define MM_TOP_DDR	MM_TOP_DDR_CH0_LEGACY
-#define MM_TOP_DDR_SIZE	MM_TOP_DDR_CH0_LEGACY_SIZE
+/* The MM_TOP_DDR_CH0_LEGACY_SIZE defines a smaller range taking
+ * into account the OCM overlay for the RPU. Other bus masters
+ * are able to see the full lower 2G, so define that here.
+ */
+#define MM_TOP_DDR_SIZE	0x80000000
 #define MM_TOP_PS_PL_LPD_LowAddr	MM_TOP_PS_LPD_AFI_FS
 #define MM_TOP_PS_PL_LPD_LowAddr_SIZE	MM_TOP_PS_LPD_AFI_FS_SIZE
 #define MM_TOP_Reserved	MM_TOP_PS_FPD_CMN
