@@ -27,6 +27,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include "utils.dtsh"
 #include "loader.dtsh"
 #include "zynqmp-irqs.dtsh"
 #include "zynqmp-memmap.dtsh"
@@ -39,9 +40,6 @@
 	#define IS_MULTI_ARCH(a)
 	#define QEMU_RAM_PROPERTY 1
 #endif
-
-#define xglue(a, b) a ## b
-#define glue(a, b) xglue(a, b)
 
 #define LC ,
 

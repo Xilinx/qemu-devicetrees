@@ -1,6 +1,4 @@
 /*
- * Versal header file
- *
  * Copyright (c) 2016, Xilinx Inc
  * All rights reserved.
  *
@@ -26,32 +24,13 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+#ifndef UTILS_DTSH__
+#define UTILS_DTSH__
 
-#include "utils.dtsh"
-#include "loader.dtsh"
-#include "versal-irqs.dtsh"
-#include "versal-memmap.dtsh"
-#include "versal-resetmap.dtsh"
-#include "versal-powermap.dtsh"
-#include "versal-wiremap.dtsh"
-#include "versal-smid.dtsh"
+#define STRINGIFY(x) #x
+#define STRINGIFY_EXPANDED(x) STRINGIFY(x)
 
+#define xglue(a, b) a ## b
+#define glue(a, b) xglue(a, b)
 
-/* CPU CORE ID's */
-#define CPU_NR_APU0 0
-#define CPU_NR_APU1 1
-#define CPU_NR_RPU0 2
-#define CPU_NR_RPU1 3
-
-#define PLATFORM_SILICON     0x0
-#define PLATFORM_QEMU        0x3
-#define PLATFORM_QEMU_COSIM  0x7
-
-/* QEMU RAM Settings */
-#if defined(MULTI_ARCH)
-	#define IS_MULTI_ARCH(a) a
-	#define QEMU_RAM_PROPERTY 2
-#else
-	#define IS_MULTI_ARCH(a)
-	#define QEMU_RAM_PROPERTY 1
 #endif
