@@ -58,8 +58,8 @@ TARGETS = \
 
 COMPILE = \
 	$(QUIET)mkdir -p $(1); \
-	$(GCC) -E -nostdinc ${CPPFLAGS} -x assembler-with-cpp $(3) -MD -MF $@.cd -o - $< | \
-		$(DTC) -q -O $(2) -I dts -o $@ - -b 0;
+	$(GCC) -E -nostdinc ${CPPFLAGS} -x assembler-with-cpp $(3) -MD -MF $@.cd -o $(@:.dtb=.dts.i) $<; \
+	$(DTC) -q -O $(2) -I dts -o $@ $(@:.dtb=.dts.i) -b 0;
 
 all:	$(call TARGETS,dtb)
 
