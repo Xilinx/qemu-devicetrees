@@ -343,6 +343,13 @@ zname: zname@zbase {							\
 	XRAM_CTRL(2);
 	XRAM_CTRL(3);
 
+#ifdef MM_XRAM_SLCR
+	xram_slcr@MM_XRAM_SLCR {
+		compatible = "xlnx,xram_slcr";
+		reg = <0x0 MM_XRAM_SLCR 0x0 MM_XRAM_SLCR_SIZE 0x0>;
+	};
+#endif
+
 	lpd_slcr@MM_LPD_SLCR {
 		compatible = "xlnx,versal-lpd-slcr";
 		reg = <0x0 MM_LPD_SLCR 0x0 MM_LPD_SLCR_SIZE 0x0>;
