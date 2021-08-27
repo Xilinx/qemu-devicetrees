@@ -103,3 +103,5 @@
 #define MM_R5_1_Data_Cache_SIZE	0x10000
 #define MM_OCM_MEM	0xfffc0000
 #define MM_OCM_MEM_SIZE	0x40000
+
+#include "versal-xram-memmap.dtsh"

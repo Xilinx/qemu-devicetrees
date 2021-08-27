@@ -1,0 +1,52 @@
+/*
+ * XRAM memory map
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+#define MM_XRAM_BANK0	0xfe800000
+#define MM_XRAM_BANK0_SIZE	0x100000
+#define MM_XRAM_BANK1	0xfe900000
+#define MM_XRAM_BANK1_SIZE	0x100000
+#define MM_XRAM_BANK2	0xfea00000
+#define MM_XRAM_BANK2_SIZE	0x100000
+#define MM_XRAM_BANK3	0xfeb00000
+#define MM_XRAM_BANK3_SIZE	0x100000
+#define MM_XRAM_CTRL0	0xff8e0000
+#define MM_XRAM_CTRL0_SIZE	0x10000
+#define MM_XRAM_CTRL1	0xff8f0000
+#define MM_XRAM_CTRL1_SIZE	0x10000
+#define MM_XRAM_CTRL2	0xff900000
+#define MM_XRAM_CTRL2_SIZE	0x10000
+#define MM_XRAM_CTRL3	0xff910000
+#define MM_XRAM_CTRL3_SIZE	0x10000
+#define MM_XRAM_XMPU0	0xff930000
+#define MM_XRAM_XMPU0_SIZE	0x4000
+#define MM_XRAM_XMPU1	0xff934000
+#define MM_XRAM_XMPU1_SIZE	0x4000
+#define MM_XRAM_XMPU2	0xff938000
+#define MM_XRAM_XMPU2_SIZE	0x4000
+#define MM_XRAM_XMPU3	0xff93c000
+#define MM_XRAM_XMPU3_SIZE	0x4000
+#define MM_XRAM_GPV	0xff940000
+#define MM_XRAM_GPV_SIZE	0x10000
+#define MM_XRAM_SLCR	0xff950000
+#define MM_XRAM_SLCR_SIZE	0x10000
+#define MM_XRAM_APM	0xff970000
+#define MM_XRAM_APM_SIZE	0x10000
