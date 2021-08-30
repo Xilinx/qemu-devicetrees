@@ -120,6 +120,11 @@ zname: zname@zbase {							\
 		reg = <0x0 MM_CPM_CPM_PCSR 0x0 MM_CPM_CPM_PCSR_SIZE 0x0>;
 	};
 
+	cpm_slcr_secure@MM_CPM_CPM_SLCR_SECURE {
+		compatible = "xlnx.cpm_slcr_secure";
+		reg = <0x0 MM_CPM_CPM_SLCR_SECURE 0x0 MM_CPM_CPM_SLCR_SECURE_SIZE 0x0>;
+	};
+
 	fpd_slcr@MM_FPD_FPD_SLCR {
 		compatible = "xlnx,versal-fpd-slcr";
 		interrupts = <SLCR_FPD_APB_IRQ_0>;
