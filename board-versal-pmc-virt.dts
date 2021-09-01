@@ -29,6 +29,19 @@
 
 /dts-v1/;
 
+#ifndef HAS_DDRMC0
+#define HAS_DDRMC0 1
+#endif
+#ifndef HAS_DDRMC1
+#define HAS_DDRMC1 1
+#endif
+#ifndef HAS_DDRMC2
+#define HAS_DDRMC2 1
+#endif
+#ifndef HAS_DDRMC3
+#define HAS_DDRMC3 1
+#endif
+
 #include "versal.dtsh"
 
 #ifndef MULTI_ARCH
@@ -145,21 +158,13 @@
 		remote-ports = <&ps_pmc_rp 8>;
 		interrupts-extended = < &psm0 0 >;
 	};
-
+#if HAS_DDRMC0
 	rp_ddrmc_ub0: rp_ddrmc_ub@0 {
 		compatible = "remote-port-gpio";
 		remote-ports = <&ps_pmc_rp 9>;
-#ifdef HAVE_DDRMC_CPUS
+# ifdef HAVE_DDRMC_CPUS
 		interrupts-extended = < &ddrmc_ub0 0 >;
-#endif
-	};
-
-	rp_ddrmc_ub1: rp_ddrmc_ub@1 {
-		compatible = "remote-port-gpio";
-		remote-ports = <&ps_pmc_rp 10>;
-#ifdef HAVE_DDRMC_CPUS
-		interrupts-extended = < &ddrmc_ub1 0 >;
-#endif
+# endif
 	};
 
 	npi_ddrmc_ub0: rp_npi_ddrmc_ub@0 {
@@ -167,13 +172,22 @@
 		remote-ports = <&ps_pmc_rp 11>;
 		#gpio-cells = <1>;
 	};
+#endif
+#if HAS_DDRMC1
+	rp_ddrmc_ub1: rp_ddrmc_ub@1 {
+		compatible = "remote-port-gpio";
+		remote-ports = <&ps_pmc_rp 10>;
+ # ifdef HAVE_DDRMC_CPUS
+		interrupts-extended = < &ddrmc_ub1 0 >;
+ # endif
+	};
 
 	npi_ddrmc_ub1: rp_npi_ddrmc_ub@1 {
 		compatible = "remote-port-gpio";
 		remote-ports = <&ps_pmc_rp 12>;
 		#gpio-cells = <1>;
 	};
-
+#endif
 	lmb_psm: lmb_psm@0 {
 		rp_lmb_psm@0 {
 			compatible = "remote-port-memory-master";

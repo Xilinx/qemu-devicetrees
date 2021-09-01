@@ -75,7 +75,11 @@
 	}
 / {
 	cpus {
+#if HAS_DDRMC0
 		CREATE_UB(0, MM_DDRMC_RAM_INSTR, "DDRMC-UB0", 0x0);
+#endif
+#if HAS_DDRMC1
 		CREATE_UB(1, MM_DDRMC_RAM_INSTR, "DDRMC-UB1", 0x0);
+#endif
 	};
 };

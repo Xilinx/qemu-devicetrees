@@ -35,6 +35,18 @@
 #endif
 
 #define HAVE_APU_GIC
+#ifndef HAS_DDRMC0
+#define HAS_DDRMC0 1
+#endif
+#ifndef HAS_DDRMC1
+#define HAS_DDRMC1 1
+#endif
+#ifndef HAS_DDRMC2
+#define HAS_DDRMC2 1
+#endif
+#ifndef HAS_DDRMC3
+#define HAS_DDRMC3 1
+#endif
 
 #ifndef APU_GIC_INTERRUPT_TARGET_STEM
 #ifdef MULTI_ARCH
@@ -174,15 +186,10 @@
 		#interrupt-cells = <1>;
 		interrupt-controller;
 	};
+#if HAS_DDRMC0
 	ddrmc_ub0: rp_ddrmc@0 {
 		compatible = "remote-port-gpio";
 		remote-ports = <&ps_pmc_rp 9>;
-		#interrupt-cells = <1>;
-		interrupt-controller;
-	};
-	ddrmc_ub1: rp_ddrmc@1 {
-		compatible = "remote-port-gpio";
-		remote-ports = <&ps_pmc_rp 10>;
 		#interrupt-cells = <1>;
 		interrupt-controller;
 	};
@@ -191,11 +198,20 @@
 		remote-ports = <&ps_pmc_rp 11>;
 		gpios = < &npi_ddrmc_ub0 0 >;
 	};
+#endif
+#if HAS_DDRMC1
+	ddrmc_ub1: rp_ddrmc@1 {
+		compatible = "remote-port-gpio";
+		remote-ports = <&ps_pmc_rp 10>;
+		#interrupt-cells = <1>;
+		interrupt-controller;
+	};
 	rp_npi_ddrmc_ub1: rp_npi_ddrmc_ub@1 {
 		compatible = "remote-port-gpio";
 		remote-ports = <&ps_pmc_rp 12>;
 		gpios = < &npi_ddrmc_ub1 0 >;
 	};
+#endif
 	rp_lmb_psm: rp_lmb_psm@0 {
 		compatible = "remote-port-memory-slave";
 		remote-ports = <&ps_pmc_rp 13>;
