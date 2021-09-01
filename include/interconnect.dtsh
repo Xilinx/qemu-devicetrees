@@ -1,7 +1,7 @@
 /*
- * Versal APU header file
+ * Interconnect macros.
  *
- * Copyright (c) 2020, Xilinx Inc
+ * Copyright (c) 2021, Xilinx Inc
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -27,33 +27,28 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef APU_CPU_MODEL
-#define APU_CPU_MODEL "cortex-a72-arm-cpu"
-#endif
+#define SECURE 1
+#define NON_SECURE 0
 
-#define APU_COMMON_MR(n, cc, MR)					\
-	compatible = APU_CPU_MODEL;					\
-	device_type = "cpu";						\
-	arm,ccsidr0 = <0x701fe00a>;					\
-	arm,ccsidr1 = <0x201fe012>;					\
-	reg = <n>;							\
-	core-count = <cc>;						\
-	arm,reset-hivecs = <1>;						\
-	arm,rvbar = <0xffff0000>;					\
-	arm,reset-cbar = <ACPU_GIC_CPUIF>;				\
-	mr = <MR>;							\
-	memory = <MR>;							\
-	qemu,halt = <0x1>
+#define MR_BACKGROUND(name)					\
+	downstream_ ## name {					\
+		compatible = "qemu:memory-region";		\
+		alias = < & ## name >;				\
+		reg = <0x0 0x0 0xffffffff 0xffffffff 0xffffffff /* -1 */ >; \
+	}
 
-#define APU_COMMON(n, cc)						\
-	APU_COMMON_MR(n, cc, &amba_apu)
+#define MEMATTR(NAME, SEC, MASTERID)				\
+NAME ## _memattr: NAME ## _ma {					\
+	doc-ignore = <1>;					\
+	compatible = "qemu:memory-transaction-attr";		\
+	secure = <SEC>;						\
+	requester-id = <MASTERID>;				\
+}
 
-/*
- * When doing direct Linux boots, we expect the cores to start powered off
- * regardless of clock/reset/power register settings. QEMU's PSCI
- * implementation is responsible for releasing out of clock/reset/power gates.
- */
-#define APU_SECONDARY(n)						\
-	direct-lnx-start-powered-off = <1>;				\
-	start-powered-off = <0>
+#define MEMATTR_SMID(NAME, MASTERID)				\
+NAME ## _memattr_smid: NAME ## _ma_smid {			\
+	doc-ignore = <1>;					\
+	compatible = "qemu:memory-transaction-attr";		\
+	requester-id = <MASTERID>;				\
+}
 

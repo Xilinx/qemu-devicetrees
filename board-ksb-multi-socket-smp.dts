@@ -1,0 +1,138 @@
+/*
+ * Keystone-B Virtual Multi-socket SMP board device tree.
+ *
+ * Copyright (c) 2021, Xilinx Inc
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *     * Redistributions of source code must retain the above copyright
+ *       notice, this list of conditions and the following disclaimer.
+ *     * Redistributions in binary form must reproduce the above copyright
+ *       notice, this list of conditions and the following disclaimer in the
+ *       documentation and/or other materials provided with the distribution.
+ *     * Neither the name of the <organization> nor the
+ *       names of its contributors may be used to endorse or promote products
+ *       derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY
+ * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+#define NUM_APUS 32
+#include "board-versal-ksb-psx-virt.dts"
+
+/ {
+	amba_socket0: amba_socket0@0 {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		#priority-cells = <1>;
+		compatible = "simple-bus";
+		ranges;
+
+		MR_BACKGROUND(amba_lpd);
+		MR_BACKGROUND(amba_fpd);
+		/* Don't map the complete PMC, it overflows the number of sections.  */
+		MR_BACKGROUND(amba_pmc_iou);
+	};
+
+	amba_socket1: amba_socket1@1 {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		#priority-cells = <1>;
+		compatible = "simple-bus";
+		ranges;
+
+		MEM_REGION(sk1_ddr, 0x0, MM_TOP_DDR, 0x00000000, MM_TOP_DDR_SIZE, &ddr_mem)  // 2 GB
+	};
+
+	amba1: amba1@1 {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		#priority-cells = <1>;
+		compatible = "simple-bus";
+		ranges;
+
+		MR_BACKGROUND(amba_socket1);
+	};
+
+	amba_apu1: amba_apu1@1 {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		#priority-cells = <1>;
+		compatible = "simple-bus";
+		ranges;
+
+		MR_BACKGROUND(amba_apu_gic);
+		MR_BACKGROUND(amba1);
+	};
+};
+
+/* Map the upper socket views into amba and amba1.  */
+&amba {
+	downstream_amba_sk0 {
+		compatible = "qemu:memory-region";
+		alias = <&amba_socket0>;
+		reg = <MM_TOP_PSX_SOCKET_0_HIGH_H MM_TOP_PSX_SOCKET_0_HIGH_L
+			MM_TOP_PSX_SOCKET_0_HIGH_SIZE_H MM_TOP_PSX_SOCKET_0_HIGH_SIZE_L 0>;
+	};
+	downstream_amba_sk1 {
+		compatible = "qemu:memory-region";
+		alias = <&amba_socket1>;
+		reg = <MM_TOP_PSX_SOCKET_1_HIGH_H MM_TOP_PSX_SOCKET_1_HIGH_L
+			MM_TOP_PSX_SOCKET_1_HIGH_SIZE_H MM_TOP_PSX_SOCKET_1_HIGH_SIZE_L 0>;
+	};
+};
+
+&amba_apu {
+	downstream_amba_sk0 {
+		compatible = "qemu:memory-region";
+		alias = <&amba_apu_gic>;
+		reg = <MM_TOP_PSX_SOCKET_0_HIGH_H MM_TOP_PSX_SOCKET_0_HIGH_L
+			MM_TOP_PSX_SOCKET_0_HIGH_SIZE_H MM_TOP_PSX_SOCKET_0_HIGH_SIZE_L 0>;
+	};
+	downstream_amba_sk1 {
+		compatible = "qemu:memory-region";
+		alias = <&amba_apu_gic>;
+		reg = <MM_TOP_PSX_SOCKET_1_HIGH_H MM_TOP_PSX_SOCKET_1_HIGH_L
+			MM_TOP_PSX_SOCKET_1_HIGH_SIZE_H MM_TOP_PSX_SOCKET_1_HIGH_SIZE_L 0>;
+	};
+};
+
+&amba1 {
+	downstream_amba_sk0 {
+		compatible = "qemu:memory-region";
+		alias = <&amba_socket0>;
+		reg = <MM_TOP_PSX_SOCKET_0_HIGH_H MM_TOP_PSX_SOCKET_0_HIGH_L
+			MM_TOP_PSX_SOCKET_0_HIGH_SIZE_H MM_TOP_PSX_SOCKET_0_HIGH_SIZE_L 0>;
+	};
+	downstream_amba_sk1 {
+		compatible = "qemu:memory-region";
+		alias = <&amba_socket1>;
+		reg = <MM_TOP_PSX_SOCKET_1_HIGH_H MM_TOP_PSX_SOCKET_1_HIGH_L
+			MM_TOP_PSX_SOCKET_1_HIGH_SIZE_H MM_TOP_PSX_SOCKET_1_HIGH_SIZE_L 0>;
+	};
+};
+
+&amba_apu1 {
+	downstream_amba_sk0 {
+		compatible = "qemu:memory-region";
+		alias = <&amba_apu_gic>;
+		reg = <MM_TOP_PSX_SOCKET_0_HIGH_H MM_TOP_PSX_SOCKET_0_HIGH_L
+			MM_TOP_PSX_SOCKET_0_HIGH_SIZE_H MM_TOP_PSX_SOCKET_0_HIGH_SIZE_L 0>;
+	};
+	downstream_amba_sk1 {
+		compatible = "qemu:memory-region";
+		alias = <&amba_apu_gic>;
+		reg = <MM_TOP_PSX_SOCKET_1_HIGH_H MM_TOP_PSX_SOCKET_1_HIGH_L
+			MM_TOP_PSX_SOCKET_1_HIGH_SIZE_H MM_TOP_PSX_SOCKET_1_HIGH_SIZE_L 0>;
+	};
+};

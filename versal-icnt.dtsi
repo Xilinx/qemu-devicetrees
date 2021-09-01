@@ -28,31 +28,7 @@
  */
 
 #include "smmuv2.dtsh"
-
-#define SECURE 1
-#define NON_SECURE 0
-
-#define MR_BACKGROUND(name)					\
-	downstream_ ## name {					\
-		compatible = "qemu:memory-region";		\
-		alias = < & ## name >;				\
-		reg = <0x0 0x0 0xffffffff 0xffffffff 0xffffffff /* -1 */ >; \
-	}
-
-#define MEMATTR(NAME, SEC, MASTERID)			\
-NAME ## _memattr: NAME ## _ma {				\
-	doc-ignore = <1>;				\
-	compatible = "qemu:memory-transaction-attr";	\
-	secure = <SEC>;					\
-	requester-id = <MASTERID>;			\
-}
-
-#define MEMATTR_SMID(NAME, MASTERID)				\
-NAME ## _memattr_smid: NAME ## _ma_smid {			\
-	doc-ignore = <1>;								\
-	compatible = "qemu:memory-transaction-attr";	\
-	requester-id = <MASTERID>;						\
-}
+#include "interconnect.dtsh"
 
 / {
 	#address-cells = <2>;
