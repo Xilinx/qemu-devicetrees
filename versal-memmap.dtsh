@@ -153,12 +153,8 @@ name: name@addr64 {														\
 /* Include auto-generated files.  */
 
 #ifdef VERSAL_KSB
- #include "ksb-top-memmap.dtsh"
- #include "ksb-fpd-memmap.dtsh"
- #include "ksb-lpd-memmap.dtsh"
- #include "ksb-pmx-memmap.dtsh"
- #include "ksb-iou-memmap.dtsh"
- #include "ksb-psm-memmap.dtsh"
+ #include "ksb-memmap.dtsh"
+ #include "versal-gic-memmap.dtsh"
  #include "ksb-versal-memmap-aliases.dtsh"
 #else
  #include "versal-top-memmap.dtsh"

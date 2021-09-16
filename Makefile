@@ -29,6 +29,7 @@
 OUTDIR 	?= ./
 GCC		?= gcc
 DTC		?= dtc
+KSB_MM_VERSION	?= main
 
 ifeq ($V,)
 QUIET=@
@@ -47,7 +48,7 @@ HEADER_FILES			:= $(wildcard *.dtsh)
 HEADER_FILES			+= $(wildcard include/*.dtsh)
 
 
-CPPFLAGS = -I. -Iinclude/
+CPPFLAGS = -I. -Iinclude/ -Iinclude/memmap/ksb/$(KSB_MM_VERSION)
 
 .PHONY:	all source
 
