@@ -238,7 +238,7 @@
 };
 
 &amba_pmc_ppu {
-	pmc_gic_proxy: pmc_gic_proxy@MM_PMC_GIC_PROXY {
+	pmc_gic_proxy: pmc_gic_proxy@0 {
 		doc-status = "complete";
 		#interrupt-cells = <3>;
 		interrupt-controller;

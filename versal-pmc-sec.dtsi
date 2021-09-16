@@ -41,7 +41,7 @@
 		interrupts = <TRNG_IRQ_0>;
 	};
 
-	pmc_dma0_src: pmc_dma0_src@MM_PMC_PMC_DMA0_SRC {
+	pmc_dma0_src: pmc_dma0_src@0 {
 		doc-status = "complete";
 		compatible = "zynqmp,csu-dma";
 		stream-connected-dma0 = <&pmc_stream_switch> ;
@@ -52,7 +52,7 @@
 		interrupts = <PMC_DMA0_IRQ_0>;
 		reset-gpios = <&pmc_clk_rst CRP_RST_PDMA0>;
 	};
-	pmc_dma0_dst: pmc_dma0_dst@MM_PMC_PMC_DMA0_DST {
+	pmc_dma0_dst: pmc_dma0_dst@0 {
 		doc-status = "complete";
 		compatible = "zynqmp,csu-dma";
 		reg = <0x0 MM_PMC_PMC_DMA0_DST 0x0 0x800 0x0>;
@@ -63,7 +63,7 @@
 		interrupts = <PMC_DMA0_IRQ_0>;
 		reset-gpios = <&pmc_clk_rst CRP_RST_PDMA0>;
 	};
-	pmc_dma1_src: pmc_dma1_src@MM_PMC_PMC_DMA1_SRC {
+	pmc_dma1_src: pmc_dma1_src@0 {
 		doc-status = "complete";
 		compatible = "zynqmp,csu-dma";
 		stream-connected-dma1 = <&pmc_stream_switch> ;
@@ -74,7 +74,7 @@
 		interrupts = <PMC_DMA1_IRQ_0>;
 		reset-gpios = <&pmc_clk_rst CRP_RST_PDMA1>;
 	};
-	pmc_dma1_dst: pmc_dma1_dst@MM_PMC_PMC_DMA1_DST {
+	pmc_dma1_dst: pmc_dma1_dst@0 {
 		doc-status = "complete";
 		compatible = "zynqmp,csu-dma";
 		reg = <0x0 MM_PMC_PMC_DMA1_DST 0x0 0x800 0x0>;
@@ -85,7 +85,7 @@
 		interrupts = <PMC_DMA1_IRQ_0>;
 		reset-gpios = <&pmc_clk_rst CRP_RST_PDMA1>;
 	};
-	pmc_stream_switch: pmc_stream_switch@MM_PMC_PMC_SSS {
+	pmc_stream_switch: pmc_stream_switch@0 {
 		doc-status = "complete";
 		compatible = "versal,pmc-sss";
 		reg-extended = <&amba_pmc_sys 0x0 MM_PMC_PMC_SSS 0x0 0x4 0x1>;
@@ -138,7 +138,7 @@
 		efuse = <&xlnx_efuse>;
 	};
 
-	pmc_puf_ctrl: pmc_puf_ctrl@MM_PMC_PUF_CTRL {
+	pmc_puf_ctrl: pmc_puf_ctrl@0 {
 		compatible = "xlnx,versal-puf-ctrl";
 		zynqmp-aes-key-sink-puf = <&pmc_aes>;
 		efuse = <&xlnx_efuse>;

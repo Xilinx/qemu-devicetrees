@@ -33,3 +33,6 @@
 #include "ksb-pmx-memmap.dtsh"
 #include "ksb-iou-memmap.dtsh"
 #include "ksb-psm-memmap.dtsh"
+
+/* TODO: Fix the hardcodes */
+#define MM_RPU_GIC             0xF9000000

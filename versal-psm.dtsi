@@ -149,7 +149,7 @@
 };
 
 &amba_psm {
-	psm_gic_proxy: psm_gic_proxy@MM_PSM_GIC_PROXY {
+	psm_gic_proxy: psm_gic_proxy@0 {
 		doc-status = "complete";
 		#interrupt-cells = <3>;
 		interrupt-controller;

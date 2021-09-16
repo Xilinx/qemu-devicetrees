@@ -135,7 +135,7 @@ name: name@0 {								\
 		reset-gpios = <&pmc_clk_rst CRP_RST_QSPI>;
 	};
 
-	ospi_dma_dst: ospi_dma@MM_PMC_OSPI_DMA_DST {
+	ospi_dma_dst: ospi_dst_dma@0 {
 		doc-status = "complete";
 		compatible = "zynqmp,csu-dma";
 		interrupts = <OSPI_IRQ_0>;
@@ -146,7 +146,7 @@ name: name@0 {								\
 		is-dst = <1>;
 		reset-gpios = <&pmc_clk_rst CRP_RST_OSPI>;
 	};
-	ospi_dma_src: ospi_dma@MM_PMC_OSPI_DMA_SRC {
+	ospi_dma_src: ospi_src_dma@0 {
 		doc-status = "complete";
 		compatible = "zynqmp,csu-dma";
 		interrupts = <OSPI_IRQ_0>;

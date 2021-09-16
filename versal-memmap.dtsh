@@ -52,61 +52,55 @@ name: name@addr64 {														\
 /* Manual entries.  */
 
 #define ACPU_GIC_STRIDE		0x10000
-#define ACPU_GIC_DIST		0xF9000000
-#define ACPU_GIC_CPUIF		0xF9040000
+#define ACPU_GIC_DIST		MM_APU_GIC_DIST_MAIN
+#define ACPU_GIC_CPUIF		MM_APU_GIC_CPUIF
 
-#define ACPU_GIC_REDIST		0xF9080000
+#define ACPU_GIC_REDIST		MM_APU_GIC_REDIST_CTLLPI_0
 
-#define R5_GIC_DIST		0xF9000000
-#define R5_GIC			0xF9001000
+#define R5_GIC_DIST		MM_RPU_GIC
+#define R5_GIC			(MM_RPU_GIC + 0x1000)
 
-#define MM_PMC_QSPI_DMA		0xf1030800
-#define MM_PMC_LQSPI		0xC0000000
-#define MM_PMC_LQSPI_SIZE	0x08000000
+#define MM_PMC_QSPI_DMA		(MM_PMC_QSPI + 0x800)
+#define MM_PMC_LQSPI		MM_TOP_QSPI
+#define MM_PMC_LQSPI_SIZE	MM_TOP_QSPI_SIZE
 
-#define MM_PMC_PPU0_IOM(a)     0xf00800 ## a
-#define MM_PMC_PPU1_IOM(a)     0xf02800 ## a
-#define MM_PSM_IOM(a)          0xffc800 ## a
+#define MM_PMC_PPU0_IOM(a)     (MM_PMC_PPU0_IOMODULE | 0x ## a)
+#define MM_PMC_PPU1_IOM(a)     (MM_PMC_PPU1_IOMODULE | 0x ## a)
+#define MM_PSM_IOM(a)          (MM_PSM_IOMODULE | 0x ## a)
 
 /* Split the PMC DMA into a SRC and a DST.  */
 #define MM_PMC_PMC_DMA0_SRC MM_PMC_PMC_DMA0
-#define MM_PMC_PMC_DMA0_DST 0xf11c0800
+#define MM_PMC_PMC_DMA0_DST (MM_PMC_PMC_DMA0 + 0x800)
 
 #define MM_PMC_PMC_DMA1_SRC MM_PMC_PMC_DMA1
-#define MM_PMC_PMC_DMA1_DST 0xf11d0800
+#define MM_PMC_PMC_DMA1_DST (MM_PMC_PMC_DMA1 + 0x800)
 
-#define MM_PMC_OSPI_DMA_SRC  0xf1011000
-#define MM_PMC_OSPI_DMA_DST  0xf1011800
-#define MM_PMC_OSPI_DAC      0xc0000000
+#define MM_PMC_OSPI_DMA_SRC  (MM_PMC_OSPI + 0x1000)
+#define MM_PMC_OSPI_DMA_DST  (MM_PMC_OSPI + 0x1800)
+#define MM_PMC_OSPI_DAC      MM_TOP_QSPI
 
-/* FIXME: Randomly chosen location for SSS (MM_PMC_PMC_GLOBAL + 0x500).  */
-#define MM_PMC_PMC_SSS 0xf1110500
-#define MM_PRAM_ZEROIZE 0xf1110518
+#define MM_PMC_PMC_SSS (MM_PMC_PMC_GLOBAL + 0x500)
+#define MM_PRAM_ZEROIZE (MM_PMC_PMC_GLOBAL + 0x518)
 #define MM_PRAM_ZEROIZE_SIZE 4
 
 /* Split PMC_GLOBAL into areas matching separate ods */
-#define MM_PMC_PMC_GLOBAL_SYS_SIZE 0x10000
-#define MM_PMC_PPU1_PRIVATE        0xf1120000
-#define MM_PMC_PPU1_PRIVATE_SIZE   0x10000
-#define MM_PMC_PMC_ERR_MANAGEMENT      0xf1130000
-#define MM_PMC_PMC_ERR_MANAGEMENT_SIZE 0x10000
-#define MM_PMC_PUF_CTRL        0xf1150000
+#define MM_PMC_PUF_CTRL        (MM_PMC_PMC_GLOBAL + 0x40000)
 #define MM_PMC_PUF_CTRL_SIZE   0x10000
 
 /* PMC Sysmon AMS Satellite subregions within MM_PMC_PMC_SYSMON */
-#define MM_PMC_AMS_SAT0        0xf1280000
-#define MM_PMC_AMS_SAT1        0xf1290000
+#define MM_PMC_AMS_SAT0        (MM_PMC_PMC_SYSMON + 0x10000)
+#define MM_PMC_AMS_SAT1        (MM_PMC_PMC_SYSMON + 0x20000)
 #define MM_PMC_AMS_SAT_SIZE    0x00010000
 
 /* PMC GIC Proxy at MM_PMC_PMC_GLOBAL + 0x30000 offset.  */
-#define MM_PMC_GIC_PROXY 0xf1140000
+#define MM_PMC_GIC_PROXY (MM_PMC_PMC_GLOBAL + 0x30000)
 #define MM_PMC_GIC_PROXY_SIZE 0x100
 
-#define MM_PSM_GIC_PROXY 0xffc92000
+#define MM_PSM_GIC_PROXY (MM_PSM_GLOBAL_REG + 0x2000)
 #define MM_PSM_GIC_PROXY_SIZE 0x100
 
 /* IPI Message buffers.  */
-#define MM_IPI_MSGBUF		0xFF3F0000
+#define MM_IPI_MSGBUF		(MM_IPI + 0xF0000)
 #define MM_IPI_MSGBUF_SIZE	0x1000
 
 /* DDRMC as seen from the UBs, not from PMC nor PS.  */
@@ -147,7 +141,7 @@ name: name@addr64 {														\
 #define MM_TOP_VIRTIO_MMIO_15  (MM_TOP_VIRTIO_MMIO_0 + (MM_TOP_VIRTIO_MMIO_SIZE * 15))
 
 /* USB dwc3 base */
-#define MM_USB_DWC3_0 0xFE20C100 // (MM_USB_XHCI + 0xC100)
+#define MM_USB_DWC3_0 (MM_USB_XHCI + 0xC100)
 #define MM_USB_DWC3_0_SIZE 0x600
 
 /* Include auto-generated files.  */
@@ -163,6 +157,9 @@ name: name@addr64 {														\
  #include "versal-pmc-memmap.dtsh"
  #include "versal-iou-memmap.dtsh"
  #include "versal-psm-memmap.dtsh"
+ #include "versal-gic-memmap.dtsh"
+ #define MM_RPU_GIC	0xf9000000
+ #define MM_RPU_GIC_SIZE	0x3000
 #endif
 
 #ifndef VERSAL_KSB

@@ -70,7 +70,7 @@
 	MEM_REGION(xram_mem_bank_2, 0x0, 0x400000, 0x400000, 0x200000, &xram_mem)
 	MEM_REGION(xram_mem_bank_3, 0x0, 0x600000, 0x600000, 0x200000, &xram_mem)
 
-	ipi_msgbuf: ipi_msgbuf@MM_IPI_MSGBUF {
+	ipi_msgbuf: ipi_msgbuf@0 {
 		compatible = "qemu:memory-region";
 		device_type = "memory";
 		container = <&amba_lpd>;
