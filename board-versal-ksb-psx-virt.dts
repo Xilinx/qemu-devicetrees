@@ -33,6 +33,7 @@
 
 #define NUM_APUS_PER_CLUSTER 4
 
+#define VERSAL_NPI_GENERIC
 #define VERSAL_PSX
 #define VERSAL_KSB
 
