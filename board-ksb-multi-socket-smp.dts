@@ -32,6 +32,8 @@
 #include "board-versal-ksb-psx-virt.dts"
 
 / {
+	kernel-base = <0x8000 0x0>;
+
 	amba_socket0: amba_socket0@0 {
 		#address-cells = <2>;
 		#size-cells = <2>;
