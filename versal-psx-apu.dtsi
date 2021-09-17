@@ -59,7 +59,7 @@
 
 #define GEN_APU_SECONDARY_SOCKET(n)				\
 		cpu ## n: apu_cpu@ ## n {			\
-			GEN_APU_BODY(n, &amba_apu);		\
+			GEN_APU_BODY(n, &amba_apu1);		\
 			APU_SECONDARY(n);			\
 			APU_GPIOS(&crf, n);			\
 		}
