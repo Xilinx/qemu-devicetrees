@@ -54,7 +54,9 @@
 
 / {
 	/* FIXME: Once we add the NOC, these should be attached to it.  */
-	MEM_REGION(ddr, 0x0, 0x00000000, 0x00000000, 0x08000000, &ddr_mem)
+	MEM_REGION(ddr, 0x0, MM_TOP_DDR, 0x00000000, MM_TOP_DDR_SIZE, &ddr_mem)  // 2 GB
+	MEM_SPEC(ddr_2, MM_TOP_DDR_2_H, MM_TOP_DDR_2_L, MM_TOP_DDR_2,
+                 MM_TOP_DDR_2_SIZE_H, MM_TOP_DDR_2_SIZE_L, &ddr_2_mem) // 32 GB
 
 	/* Dummy APUs.  */
 	cpu0: apu@0 {
