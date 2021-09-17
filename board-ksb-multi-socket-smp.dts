@@ -27,6 +27,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#define VERSAL_NPI_GENERIC
 #define NUM_APUS 32
 #include "board-versal-ksb-psx-virt.dts"
 
@@ -38,10 +39,12 @@
 		compatible = "simple-bus";
 		ranges;
 
-		MR_BACKGROUND(amba_lpd);
-		MR_BACKGROUND(amba_fpd);
-		/* Don't map the complete PMC, it overflows the number of sections.  */
-		MR_BACKGROUND(amba_pmc_iou);
+		downstream_amba_sk0 {
+			compatible = "qemu:memory-region";
+			alias = <&amba>;
+			reg = <0x0 0x0
+			       MM_TOP_PSX_SOCKET_1_TO_0_SIZE_H MM_TOP_PSX_SOCKET_1_TO_0_SIZE_L 0x0>;
+		};
 	};
 
 	amba_socket1: amba_socket1@1 {
