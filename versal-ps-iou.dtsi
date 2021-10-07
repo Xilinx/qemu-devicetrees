@@ -271,6 +271,8 @@ zname: zname@zbase {							\
 		dma = <&smmu_tbu0>;
 		memattr = <&usb0_memattr>;
 		reset-gpios = <&crl CRL_RST_USB0>;
+		intrs = <4>;
+		slots = <2>;
 	};
 
 	ps7_ttc_0: ps7-ttc@TTC0 {
