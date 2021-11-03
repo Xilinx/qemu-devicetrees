@@ -66,6 +66,12 @@
 	};
 };
 
+&amba_pmc_sys {
+	pmc_clk_rst: pmc_clk_rst@MM_PMC_CRP {
+		compatible = "xlnx,pmx_crp";
+	};
+};
+
 &pmc_rsa {
 	ram-nr-words = <256>;
 };
