@@ -74,6 +74,20 @@
 	};
 };
 
+/* Override selected set of NPI regions from QEMU to SystemC/RTL.  */
+#define VITIS_ENABLE_NPI_FORWARDING 0
+
+#if VITIS_ENABLE_NPI_FORWARDING
+&amba_pmc_pl {
+	rp_pmc_npi@0 {
+		compatible = "remote-port-memory-master";
+		reg = < 0x0 MM_NPI_ME_NPI_0 0x0 MM_NPI_ME_NPI_0_SIZE 0x1
+			0x0 MM_NPI_AIE2_NPI_0 0x0 MM_NPI_AIE2_NPI_0_SIZE 0x1>;
+		remote-ports = <&cosim_rp_0 60>;
+	};
+};
+#endif
+
 #ifdef __has_include
 # if __has_include("ddr_memspec.dtsi")
 #  include "ddr_memspec.dtsi"
