@@ -188,6 +188,8 @@
 		remote-ports = <&cosim_rp_0 58>;
 	};
 
+	/* PMC NPI. ID 60  This is allocated for NPI SystemC/RTL models.  */
+
 	/* PL to PS interrupts.  */
 	rp_pl2ps_irq: rp_pl2ps_irq@0 {
 		compatible = "remote-port-gpio";
