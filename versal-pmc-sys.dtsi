@@ -74,6 +74,11 @@
 
 		compatible = "xlnx,pmc_global";
 	};
+	pmc_err_mng: pmc_err_mng@0xF1130000 {
+		compatible = "xlnx,PmcErrMngmnt";
+		reg = <0x0 0xF1130000 0x0 0x10000 0x0>;
+		interrupts = <PMC_APB_IRQ_0>;
+	};
 	pmc_stream_zero: pmc_stream_zero@ {
 		compatible = "xlnx,pmc-stream-zero";
 		reg = <0x0 MM_PRAM_ZEROIZE 0x0 MM_PRAM_ZEROIZE_SIZE 0x1>;
