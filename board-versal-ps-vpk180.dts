@@ -1,0 +1,67 @@
+/*
+ *Versal Virtual VPK180 board device tree
+ * Supported Features
+ *   LPDDR4
+ *   USB
+ *   QSPI
+ *   Versal Micro SD
+ *   Versal MIO Ethernet
+ *   BBRAM
+ *   RTC
+ * Un-Supported Features
+ *   SSIT
+ *   PMIC Power System
+ *   System Controller
+ *   OSFPconnector Banks
+ *   QSFP-DDconnectorBank
+ *   SFPDDconnectors
+ *
+ * Boot Devices Supported: QSPI (Dual Parellel), SD1
+ *
+ * Copyright (c) 2021, Xilinx Inc
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *     * Redistributions of source code must retain the above copyright
+ *       notice, this list of conditions and the following disclaimer.
+ *     * Redistributions in binary form must reproduce the above copyright
+ *       notice, this list of conditions and the following disclaimer in the
+ *       documentation and/or other materials provided with the distribution.
+ *     * Neither the name of the <organization> nor the
+ *       names of its contributors may be used to endorse or promote products
+ *       derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY
+ * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+#include "board-versal-ps-xcvp1802-virt.dts"
+
+&ps_i2c1 {
+	eeprom_versal: eeprom@51 {
+		compatible = "at,24c08";
+		reg = <0x54>;
+		size = <0x4000>;
+		blockdev-node-name = "ps_i2c1.eeprom-54";
+	};
+};
+
+&ospi {
+	/delete-node/ ospi_flash_lcs_lb@0;
+	/delete-node/ ospi_flash_lcs_ub@0;
+	/delete-node/ ospi_flash_ucs_lb@0;
+	/delete-node/ ospi_flash_ucs_ub@0;
+};
+
+&pmc_qspi_0 {
+	/delete-node/ qspi_flash_lcs_ub@0;
+	/delete-node/ qspi_flash_ucs_ub@0;
+};
