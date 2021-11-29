@@ -39,3 +39,7 @@
 &pmc_tap {
 	idcode = <0x04D14093>;
 };
+
+&pmc_err_mng {
+	ssit = <1>;
+};
