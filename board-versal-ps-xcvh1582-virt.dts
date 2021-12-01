@@ -1,0 +1,25 @@
+/*
+ * Versal Virtual xcvh1582 board device tree
+ *
+ * Copyright (c) 2021, Xilinx Inc
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+/*
+ * xcvh1582 is an SSIT devices.
+ * We are emulating only Master SLR, no support for slave SLR's as SBI interface
+ * needs ROM for initial PLM loading.
+ */
+#define VERSAL_NPI_GENERIC
+#include "board-versal-ps-virt.dts"
+#include "versal-silicon-freq.dtsi"
+
+&pmc_tap {
+	idcode = <0x04D28093>;
+};
+
+&pmc_err_mng {
+	ssit = <1>;
+};

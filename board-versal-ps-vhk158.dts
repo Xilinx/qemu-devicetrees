@@ -1,0 +1,48 @@
+/*
+ * Versal VHK158 board device tree
+ * Supported Features:
+ * OSPI
+ * SD/EMMC
+ * EEPROM
+ *
+ * Un-supported Features:
+ * HBM
+ * CPM
+ * PCIE
+ * QSFP
+ * System Controller
+ * I2C PM Bus
+ *
+ * Boot Devices Supported: OSPI & SD
+ *
+ * Copyright (c) 2021, Xilinx Inc
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+#include "board-versal-ps-xcvh1582-virt.dts"
+
+/* QSPI is not preferred boot device */
+&pmc_qspi_0 {
+	/delete-node/ qspi_flash_lcs_lb@0;
+	/delete-node/ qspi_flash_lcs_ub@0;
+	/delete-node/ qspi_flash_ucs_lb@0;
+	/delete-node/ qspi_flash_ucs_ub@0;
+};
+
+/* Attach only one OSPI Flash */
+&ospi {
+	/delete-node/ ospi_flash_lcs_ub@0;
+	/delete-node/ ospi_flash_ucs_lb@0;
+	/delete-node/ ospi_flash_ucs_ub@0;
+};
+
+&ps_i2c1 {
+	eeprom_versal: eeprom@51 {
+		compatible = "at,24c08";
+		reg = <0x54>;
+		size = <0x4000>;
+		blockdev-node-name = "ps_i2c1.eeprom-54";
+	};
+};
