@@ -64,3 +64,7 @@
 &adma7{
 	reg = <0x0 MM_PMX_ADMA_CH7 0x0 MM_ADMA_CH0_SIZE 0x0>;
 };
+
+&ipi {
+	num-master-ids = <32>;
+};
