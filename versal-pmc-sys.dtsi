@@ -95,6 +95,7 @@
 			      SYSMON_IRQ_1>;
 		reset-gpios = <&pmc_clk_rst CRP_RST_SYSMON_CFG>;
 
+		efuse = <&xlnx_pmc_efuse_cache>;
 		ams-sat0 = <&pmc_ams_sat0>;
 		ams-sat1 = <&pmc_ams_sat1>;
 
