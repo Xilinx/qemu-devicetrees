@@ -341,7 +341,7 @@
 #endif
 				;
 			num-cpu = <NUM_APUS>;
-			num-irq = <224>;
+			num-irq = <256>;
 			has-security-extensions = <1>;
 			redist-region-count = <NUM_APUS>;
 		};
