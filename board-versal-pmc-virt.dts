@@ -220,6 +220,11 @@
 		#interrupt-cells = <1>;
 		interrupt-controller;
 	};
+	pmc_ppu1_io_intc: pmc_ppu1_io_intc {
+		doc-ignore = <1>;
+		#interrupt-cells = <1>;
+		interrupt-controller;
+	};
 };
 #endif
 
