@@ -733,19 +733,18 @@ glue(ocm_mem_ctrl_, n): glue(ocm_mem_ctrl_, n)@n {						\
 		container = <&amba>;
 	};
 
-	/* QEMUs  VirtIO does not support IOMMUs nor selectable ASs.  */
-	ddr_alias: ddr_alias@0 {
-		compatible = "qemu:memory-region";
-		container = <&qemu_sysmem>;
-		alias = <&ddr3_ram>;
-		reg = <0x0 0x0 0xFFFFFFFF 0xFFFFFFFF 0x0>;
-	};
-
 	/* Magic node representing QEMU's default address-space.  */
 	qemu_sysmem: qemu_sysmem@0 {
 		#address-cells = <2>;
 		#size-cells = <2>;
 		#priority-cells = <1>;
 		compatible = "qemu:system-memory";
+
+		/* QEMUs  VirtIO does not support IOMMUs nor selectable ASs.  */
+		downstream@0 {
+			compatible = "qemu:memory-region";
+			alias = <&ddr3_ram>;
+			reg = <0x0 0x0 0xFFFFFFFF 0xFFFFFFFF 0x0>;
+		};
 	};
 };
