@@ -66,5 +66,19 @@
 };
 
 &ipi {
+	interrupts = <IRQ_PSMX_PPU1_IPI
+		      IRQ_PPU1_INTC_PMX_IPI
+		      IPI0_IRQ_0 IPI1_IRQ_0
+		      IPI2_IRQ_0 IPI3_IRQ_0
+		      IPI4_IRQ_0 IPI5_IRQ_0
+		      IPI6_IRQ_0
+		      IRQ_PPU1_INTC_PMX_IPI_NOBUF
+		      IPI_MISC_IRQ_0
+		      IPI_NOBUF1_IRQ_0
+		      IPI_NOBUF2_IRQ_0
+		      IPI_NOBUF3_IRQ_0
+		      IPI_NOBUF4_IRQ_0
+		      IPI_NOBUF5_IRQ_0
+		      IPI_NOBUF6_IRQ_0>;
 	num-master-ids = <32>;
 };

@@ -28,7 +28,12 @@
  */
 
 /* Include the auto-generated stuff.  */
+#ifdef VERSAL_KSB
+#include "ksb-psx-irqs.dtsh"
+#include "include/ksb/ksb-versal-irq-aliases.dtsh"
+#else
 #include "versal-ps-irqs.dtsh"
+#endif
 
 /* According to specs, XRAM IRQs are at 111 and 112 (-32).  */
 #define XRAM_IRQ_0				79
