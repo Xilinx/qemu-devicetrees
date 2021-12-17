@@ -79,8 +79,14 @@
 /* PMX PPU1 */
 #define IRQ_PMX_PPU1_HW_INT			16
 #define IRQ_PMX_PPU1_PL				17
+#define IRQ_PMX_PPU1_PMC_ERR			18
 #define IRQ_PMX_PPU1_ROM_INT			19
 #define IRQ_PMX_PPU1_SRV_INT			27
+#define IRQ_PPU1_INTC_PMX_IPI			28
+#define IRQ_PPU1_INTC_PMX_IPI_NOBUF		29
+
+#define IRQ_PSMX_PPU1_IPI			18
+
 
 /* PSM IO-Module interrupt controller. These are from spec + 16 */
 #define IRQ_PSM_INTC_PSM_RAM_ERROR		16
