@@ -1,0 +1,82 @@
+/*
+ * Aliases for ksb w.r.t versal interrupts.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+#define PMC_APB_IRQ_0          IRQ_PMX_PPU1_PMC_ERR
+#define PMC_IOU_SLCR_IRQ_0     IOU_IRQ_IRQ_0
+#define PMC_IOU_SEC_SLCR_IRQ_0 IRQ_PMX_PPU1_PMC_ERR
+#define CRP_IRQ_0              IRQ_PMX_PPU1_PMC_ERR
+#define SHA_IRQ_0              SHA0_IRQ_0
+#define BBRAM_APB_IRQ_0        IRQ_PMX_PPU1_PMC_ERR
+#define RTC_APB_IRQ_0          IRQ_PMX_PPU1_PMC_ERR
+
+#define IPI_PSM_IRQ_0          IRQ_PSMX_PPU1_IPI
+#define IPI_PMC_IRQ_0          IRQ_PPU1_INTC_PMX_IPI
+#define IPI_PMC_NOBUF_IRQ_0    IRQ_PPU1_INTC_PMX_IPI_NOBUF
+#define IPI_APB_IRQ_0          IPI_MISC_IRQ_0
+
+#define PL_PS_GRP0_IRQ_0       PL_PS_GRPO_IRQ_0
+#define PL_PS_GRP0_IRQ_1       PL_PS_GRPO_IRQ_1
+#define PL_PS_GRP0_IRQ_2       PL_PS_GRPO_IRQ_2
+#define PL_PS_GRP0_IRQ_3       PL_PS_GRPO_IRQ_3
+#define PL_PS_GRP0_IRQ_4       PL_PS_GRPO_IRQ_4
+#define PL_PS_GRP0_IRQ_5       PL_PS_GRPO_IRQ_5
+#define PL_PS_GRP0_IRQ_6       PL_PS_GRPO_IRQ_6
+#define PL_PS_GRP0_IRQ_7       PL_PS_GRPO_IRQ_7
+#define PL_PS_GRP1_IRQ_0       PL_PS_GPR1_IRQ_0
+#define PL_PS_GRP1_IRQ_1       PL_PS_GPR1_IRQ_1
+#define PL_PS_GRP1_IRQ_2       PL_PS_GPR1_IRQ_2
+#define PL_PS_GRP1_IRQ_3       PL_PS_GPR1_IRQ_3
+#define PL_PS_GRP1_IRQ_4       PL_PS_GPR1_IRQ_4
+#define PL_PS_GRP1_IRQ_5       PL_PS_GPR1_IRQ_5
+#define PL_PS_GRP1_IRQ_6       PL_PS_GPR1_IRQ_6
+#define PL_PS_GRP1_IRQ_7       PL_PS_GPR1_IRQ_7
+
+#define RESERVED_6_IRQ_1       RESERVED_7_IRQ_0
+#define RESERVED_6_IRQ_2       RESERVED_8_IRQ_0
+#define RESERVED_6_IRQ_3       RESERVED_9_IRQ_0
+#define RESERVED_6_IRQ_4       RESERVED_10_IRQ_0
+#define RESERVED_6_IRQ_5       RESERVED_11_IRQ_0
+#define RESERVED_6_IRQ_6       RESERVED_12_IRQ_0
+#define RESERVED_6_IRQ_7       RESERVED_13_IRQ_0
+
+#define SLCR_FPD_APB_IRQ_0        INT_FPD_IRQ_0
+#define SLCR_SECURE_FPD_APB_IRQ_0 INT_FPD_IRQ_0
+
+#define FP_WDT_IRQ_0               FPD_WWDT0_INTERRUPT_IRQ_0
+#define FPD_WWDT_RST_PENDING_IRQ_0 FPD_WWDT0_RST_PENDING_IRQ_0
+#define FPD_GWDT_WS0_IRQ_0         FPD_GWDT0_WS0_IRQ_0
+#define FPD_GWDT_WS1_IRQ_0         FPD_GWDT0_WS1_IRQ_0
+
+#define USB2_IRQ_0                 USB1_int_IRQ_0
+#define USB2_IRQ_1                 USB1_int_IRQ_1
+#define USB2_IRQ_2                 USB1_int_IRQ_2
+#define USB2_IRQ_3                 USB1_int_IRQ_3
+
+#define OCMINTR_IRQ_0              OCM0INTR_IRQ_0
+
+#define SYSMON_IRQ_0               AMS_ROOT_IRQ_0
+#define SYSMON_IRQ_1               AMS_ROOT_IRQ_1
+
+#define XMPU_OCM_IRQ_0             INT_OCM_IRQ_0
+#define XPPU_IRQ_0                 INT_LPD_IRQ_0
+#define XMPU_PRAM_IRQ_0            PMC_INT_IRQ_0
+#define XPPU_PMC_IRQ_0             PMC_INT_IRQ_0
