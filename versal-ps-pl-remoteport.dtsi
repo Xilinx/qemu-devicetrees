@@ -124,6 +124,12 @@
 		mr = <&amba_pmc>;
 	};
 
+	s_axi_xram: noc_pmc_axi_0@0 {
+		compatible = "remote-port-memory-slave";
+		remote-ports = <&cosim_rp_0 24>;
+		mr = <&amba_xram>;
+	};
+
 	/* AXI ports directly from PS to PL, bypassing NoC.  */
 	m_axi_fpd: m_axi_fpd@MM_TOP_FPD_AFI_0 {
 		compatible = "remote-port-memory-master";
