@@ -141,6 +141,7 @@ NAME ## _memattr_smid: NAME ## _ma_smid {			\
 			compatible = "simple-bus";
 			ranges;
 			MR_BACKGROUND(amba_psm);
+			MR_BACKGROUND(amba_xram);
 		};
 
 		amba_fpd: amba_fpd@0 {
@@ -228,6 +229,14 @@ NAME ## _memattr_smid: NAME ## _ma_smid {			\
 		};
 
 		amba_psm: amba_psm@0 {
+			#address-cells = <2>;
+			#size-cells = <2>;
+			#priority-cells = <1>;
+			compatible = "simple-bus";
+			ranges;
+		};
+
+		amba_xram: amba_xram@0 {
 			#address-cells = <2>;
 			#size-cells = <2>;
 			#priority-cells = <1>;
@@ -422,7 +431,7 @@ NAME ## _memattr_smid: NAME ## _ma_smid {			\
 		interrupts = <XMPU_OCM_IRQ_0>;
 		reg-extended = <
 			&amba 0x0 MM_XRAM_XMPU 0x0 MM_XRAM_XMPU_SIZE 0x0
-			&amba_lpd 0x0 MM_XRAM_MEM 0x0 MM_XRAM_MEM_SIZE 0x2
+			&amba_xram 0x0 MM_XRAM_MEM 0x0 MM_XRAM_MEM_SIZE 0x2
 		>;
 		protected-mr = <&xram_mem>;
 		mr-0 = <&amba_lpd>;

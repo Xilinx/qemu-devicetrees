@@ -345,11 +345,6 @@ zname: zname@zbase {							\
 		reset-gpios = <&crl CRL_RST_OCM>;
 	};
 
-	XRAM_CTRL(0);
-	XRAM_CTRL(1);
-	XRAM_CTRL(2);
-	XRAM_CTRL(3);
-
 #ifdef MM_XRAM_SLCR
 	xram_slcr@MM_XRAM_SLCR {
 		compatible = "xlnx,xram_slcr";
@@ -389,6 +384,13 @@ zname: zname@zbase {							\
 		pclk = <100000000>;
 		reset-gpios = <&crl CRL_RST_SWDT>;
 	};
+};
+
+&amba_xram {
+	XRAM_CTRL(0);
+	XRAM_CTRL(1);
+	XRAM_CTRL(2);
+	XRAM_CTRL(3);
 };
 
 &amba_root {
