@@ -42,6 +42,8 @@
 #define HAS_DDRMC3 1
 #endif
 
+#define VERSAL_NPI_GENERIC
+
 #include "versal.dtsh"
 
 #ifndef MULTI_ARCH

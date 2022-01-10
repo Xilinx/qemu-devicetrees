@@ -27,5 +27,4 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#define VERSAL_NPI_GENERIC
 #include "board-versal-pmc-virt.dts"

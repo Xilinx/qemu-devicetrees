@@ -60,6 +60,8 @@
 #endif
 #endif
 
+#define VERSAL_NPI_GENERIC
+
 #include "versal.dtsh"
 
 #include "versal-pmc.dtsi"
