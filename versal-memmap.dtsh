@@ -110,7 +110,9 @@ name: name@addr64 {														\
 #define MM_IPI_MSGBUF_SIZE	0x1000
 
 /* AIE2 NPI Range.  */
+#ifndef MM_NPI_AIE2_NPI_0
 #define MM_NPI_AIE2_NPI_0       0xf6420000
+#endif
 #define MM_NPI_AIE2_NPI_0_SIZE  0x10000
 
 /* DDRMC as seen from the UBs, not from PMC nor PS.  */
