@@ -159,6 +159,19 @@
 	pcie: dummy_pcie@0x6_0000_0000 {
 		compatible = "PCI";
 	};
+
+#ifndef MM_FPD_PKI_TRSSWRAP /* HACK!! Remove after ksb memmap updated to 0916 */
+#include "memmap/ksb/0916/ksb-pki-memmap.dtsh"
+#endif
+	/* PKI */
+	pki_rng: pki_rng@MM_FPD_PKI_TRSSWRAP {
+		compatible = "xlnx,psx-pki-rng";
+		reg = <MM_FPD_PKI_TRSSWRAP_H MM_FPD_PKI_TRSSWRAP_L
+			0x0
+			(MM_FPD_PKI_TRSSWRAP_SIZE + MM_FPD_PKI_CTRLSTAT_SIZE)
+			0x0>;
+		interrupts = <INTF_FPD_PKI_GENERAL_IRQ_0>;
+	};
 };
 
 &crf {
