@@ -204,4 +204,9 @@
 			  &rpu_ctrl 8 &rpu_ctrl 9	/* RPU powerdown req */
 			>;
 	};
+
+	psm_err_mng: psm_err_mng@MM_PSM_GLOBAL_REG {
+		compatible = "xlnx,psm-err-mng";
+		reg = <0x0 (MM_PSM_GLOBAL_REG + 0x1000) 0x0 0x100 0>;
+	};
 };
