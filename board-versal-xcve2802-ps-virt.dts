@@ -1,0 +1,16 @@
+/*
+ * Versal AI Edge series device xcve2802 virtual board dts
+ *
+ * Copyright (c) 2021, Xilinx Inc
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+/*
+ * Unsupported Devices:
+ *  CPM
+ *  VDU
+ *  PCIE
+ */
+#include "board-versal-xcvc2802-ps-virt.dts"
