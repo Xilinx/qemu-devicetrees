@@ -40,3 +40,5 @@
 //#include "ksb-gic-memmap.dtsh"
 
 #include "ksb-pki-memmap.dtsh"
+#undef MM_RPU_GIC
+#define MM_RPU_GIC 0xF9000000
