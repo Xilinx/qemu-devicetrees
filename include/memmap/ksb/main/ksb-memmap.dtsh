@@ -26,7 +26,8 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
+#ifndef __KSB_MEMMAP__
+#define __KSB_MEMMAP__
 #include "ksb-top-memmap.dtsh"
 #include "ksb-fpd-memmap.dtsh"
 #include "ksb-lpd-memmap.dtsh"
@@ -46,3 +47,4 @@
 #define MM_TOP_PSX_SOCKET_0_TO_1_L MM_TOP_PSX_SOCKET_1_HIGH_L
 #define MM_TOP_PSX_SOCKET_0_TO_1_SIZE_H MM_TOP_PSX_SOCKET_1_HIGH_SIZE_H
 #define MM_TOP_PSX_SOCKET_0_TO_1_SIZE_L MM_TOP_PSX_SOCKET_1_HIGH_SIZE_L
+#endif
