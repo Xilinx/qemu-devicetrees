@@ -29,7 +29,7 @@
 OUTDIR 	?= ./
 GCC		?= gcc
 DTC		?= dtc
-KSB_MM_VERSION	?= main
+KSB_MM_VERSION	?= 0916
 
 ifeq ($V,)
 QUIET=@
