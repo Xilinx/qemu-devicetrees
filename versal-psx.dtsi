@@ -155,9 +155,6 @@
 		compatible = "PCI";
 	};
 
-#ifndef MM_FPD_PKI_TRSSWRAP /* HACK!! Remove after ksb memmap updated to 0916 */
-#include "memmap/ksb/0916/ksb-pki-memmap.dtsh"
-#endif
 	/* PKI */
 	pki_rng: pki_rng@MM_FPD_PKI_TRSSWRAP {
 		compatible = "xlnx,psx-pki-rng";
