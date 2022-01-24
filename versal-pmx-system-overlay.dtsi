@@ -88,7 +88,7 @@
 	 */
 	dummy_cfu_mem: dummy_cfu_mem@MM_PMC_CFU_APB {
 		compatible = "qemu:memory-region";
-		pmx_cfu: cfu@0x0 {
+		cfu: cfu@0x0 {
 			doc-status = "partial";
 			doc-comments = "Stub";
 			doc-limitations = "No way to extract CFRAME data.";
