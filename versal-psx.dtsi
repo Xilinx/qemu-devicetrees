@@ -33,10 +33,10 @@
 #define MM_FPD_CMN			0xa0000000
 #define MM_FPD_CMN_SIZE			0x03000000
 
-#define CRL_RST_RPU_A_0 0
-#define CRL_RST_RPU_A_1 1
-#define CRL_RST_RPU_B_0 2
-#define CRL_RST_RPU_B_1 3
+#define CRL_RST_RPU_A_0 35
+#define CRL_RST_RPU_A_1 36
+#define CRL_RST_RPU_B_0 37
+#define CRL_RST_RPU_B_1 38
 
 #define GEN_APU_CLUSTER(n, a, b, c, d)					\
 	apu_cluster ## n: apu_cluster@MM_FPD_FPD_APU_CLUSTER ## n {	\
