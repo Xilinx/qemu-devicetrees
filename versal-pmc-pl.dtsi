@@ -194,4 +194,24 @@
 		interrupts = <CFRAME_SEU_IRQ_0>;
 		cfu = <&cfu>;
 	};
+	cframe_bcast_reg: cframe_bcast_reg@MM_PMC_CFRAME_BCAST_REG {
+		compatible = "xlnx.cframe-bcast-reg";
+		reg = <0x0 MM_PMC_CFRAME_BCAST_REG 0x0 MM_PMC_CFRAME_BCAST_REG_SIZE 0x0
+		       0x0 MM_PMC_CFRAME_BCAST_FDRI 0x0 MM_PMC_CFRAME_BCAST_FDRI_SIZE 0x0>;
+		cframe0 = <&cframe0_reg>;
+		cframe1 = <&cframe1_reg>;
+		cframe2 = <&cframe2_reg>;
+		cframe3 = <&cframe3_reg>;
+		cframe4 = <&cframe4_reg>;
+		cframe5 = <&cframe5_reg>;
+		cframe6 = <&cframe6_reg>;
+		cframe7 = <&cframe7_reg>;
+		cframe8 = <&cframe8_reg>;
+		cframe9 = <&cframe9_reg>;
+		cframe10 = <&cframe10_reg>;
+		cframe11 = <&cframe11_reg>;
+		cframe12 = <&cframe12_reg>;
+		cframe13 = <&cframe13_reg>;
+		cframe14 = <&cframe14_reg>;
+	};
 };
