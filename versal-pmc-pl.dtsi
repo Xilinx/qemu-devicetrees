@@ -41,8 +41,7 @@
 		compatible = "xlnx,versal-cfu";
 		reg = <0x0 MM_PMC_CFU_APB 0x0 0x1000 0x0
 		       0x0 MM_PMC_CFU_STREAM 0x0 MM_PMC_CFU_STREAM_SIZE 0x0
-		       0x0 MM_PMC_CFU_STREAM_2 0x0 MM_PMC_CFU_STREAM_2_SIZE 0x0
-		       0x0 MM_PMC_CFU_SFR 0x0 MM_PMC_CFU_SFR_SIZE 0x0>;
+		       0x0 MM_PMC_CFU_STREAM_2 0x0 MM_PMC_CFU_STREAM_2_SIZE 0x0>;
 		interrupts = <CFU_IRQ_0>;
 		chardev = "pmc-cfu";
 		dma = <&amba_pmc>;
@@ -65,6 +64,11 @@
 	cfu_fdro: cfu_fdro@MM_PMC_CFU_FDRO {
 		compatible = "xlnx,versal-cfu-fdro";
 		reg = <0x0 MM_PMC_CFU_FDRO 0x0 MM_PMC_CFU_FDRO_SIZE 0x0>;
+	};
+	cfu_sfr: cfu_sfr@MM_PMC_CFU_SFR {
+		compatible = "xlnx,versal-cfu-sfr";
+		reg = <0x0 MM_PMC_CFU_SFR 0x0 MM_PMC_CFU_SFR_SIZE 0x0>;
+		cfu = <&cfu>;
 	};
 	cframe0_reg: cframe0_reg@MM_PMC_CFRAME0_REG {
 		compatible = "xlnx.cframe_reg";
