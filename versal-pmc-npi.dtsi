@@ -198,9 +198,9 @@
 #endif
 
 #ifndef VERSAL_VP1202
-	npi_me: npi_me@MM_NPI_ME_NPI_0 {
+	npi_me: npi_me@MM_NPI_AIE1_NPI_0 {
 		compatible = "xlnx,me-npi";
-		reg = <0x0 MM_NPI_ME_NPI_0 0x0 MM_NPI_ME_NPI_0_SIZE 0x1>;
+		reg = <0x0 MM_NPI_AIE1_NPI_0 0x0 MM_NPI_AIE1_NPI_0_SIZE 0x1>;
 		reset-gpios = <&pmc_clk_rst CRP_RST_NONPS_NPI >;
 	};
 #endif
