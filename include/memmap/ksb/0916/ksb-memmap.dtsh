@@ -37,6 +37,7 @@
 #include "ksb-iou-memmap.dtsh"
 #include "ksb-psm-memmap.dtsh"
 #include "ksb-coresight-memmap.dtsh"
+#include "ksb-npi-memmap.dtsh"
 
 //GIC mapping is not complete untill then use versal gic mapping
 //#include "ksb-gic-memmap.dtsh"
