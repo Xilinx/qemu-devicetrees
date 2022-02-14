@@ -93,11 +93,11 @@
  * On hardware, DDRMC_XMPU is contained inside DDRMC_NOC so
  * give it higher priority
  */
-#define GEN_DDRMC_XMPU(N, addr)						\
+#define GEN_DDRMC_XMPU(N, addr, offset)						\
 	npi_ddrmc_xmpu ## N: npi_ddrmc_xmpu ## N@addr { \
 		compatible = "xlnx,versal-ddrmc-xmpu";		\
 		reg-extended =	<							\
-			&amba_pmc_pl 0x0 addr 0x0 0x10000 0x1	\
+			&amba_pmc_pl 0x0 (addr + offset) 0x0 0x10000 0x1	\
 			&amba 0x0 0x0 0x0 0x80000000 0x0		\
 		>;											\
 		protected-mr = <&ddr>;						\
@@ -194,7 +194,10 @@
 	GEN_DDRMC_MAIN(3);
 	GEN_DDRMC_NOC(3);
 #endif
-	GEN_DDRMC_XMPU(0, 0xf6080000);
+#ifndef MM_DDRMC_XMPU_OFFSET
+#	define MM_DDRMC_XMPU_OFFSET 0x10000
+#endif
+	GEN_DDRMC_XMPU(0, MM_NPI_DDRMC_NOC_0, MM_DDRMC_XMPU_OFFSET);
 #endif
 
 #ifndef VERSAL_VP1202
