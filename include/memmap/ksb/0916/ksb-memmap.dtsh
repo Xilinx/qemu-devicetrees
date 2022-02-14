@@ -38,6 +38,7 @@
 #include "ksb-psm-memmap.dtsh"
 #include "ksb-coresight-memmap.dtsh"
 #include "ksb-npi-memmap.dtsh"
+#define MM_DDRMC_XMPU_OFFSET	0x12000
 
 //GIC mapping is not complete untill then use versal gic mapping
 //#include "ksb-gic-memmap.dtsh"
