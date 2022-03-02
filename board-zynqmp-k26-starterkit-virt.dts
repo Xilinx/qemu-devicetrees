@@ -41,4 +41,32 @@
 		size = <0x2000>;
 		blockdev-node-name = "i2c1.eeprom-51";
 	};
+	slg7xl45106: gpio@11 { /* u19 - reset logic */
+		compatible = "i2c-dev-dummy";
+		reg = <0x11>;
+	};
+	i2c-mux@74 { /* u18 */
+		compatible = "nxp,pca9546";
+		#address-cells = <1>;
+		#size-cells = <0>;
+		reg = <0x74>;
+		usbhub_i2c0: i2c@0 {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			reg = <0>;
+			usb0_usb5744: usb5744@0 { /* u43 - usb-hub */
+				compatible = "i2c-dev-dummy";
+				reg = <0x2d>;
+			};
+		};
+		usbhub_i2c1: i2c@1 {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			reg = <1>;
+			usb1_usb5744: usb5744@1 { /* u84 - usb-hub */
+				compatible = "i2c-dev-dummy";
+				reg = <0x2d>;
+			};
+		};
+	};
 };
