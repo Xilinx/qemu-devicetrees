@@ -1,0 +1,29 @@
+/*
+ * Versal AI Core series device xcvp2802 virtual board dts
+ *
+ * Copyright (c) 2021, Xilinx Inc
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+/*
+ * Unsupported Devices:
+ *  CPM
+ *  PCIE
+ */
+#define MM_NPI_AIE1_NPI_0 0xF6BE0000
+#include "board-versal-ps-virt.dts"
+#include "versal-silicon-freq.dtsi"
+
+/{
+	model = "Versal s200 virt";
+};
+
+&pmc_err_mng {
+	ssit = <1>;
+};
+
+&pmc_tap {
+	idcode = <0x14D20093>;
+};
