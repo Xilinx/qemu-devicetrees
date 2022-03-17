@@ -28,7 +28,7 @@
 #define BBRAM_APB_IRQ_0        IRQ_PMX_PPU1_PMC_ERR
 #define RTC_APB_IRQ_0          IRQ_PMX_PPU1_PMC_ERR
 
-#define IPI_PSM_IRQ_0          IRQ_PSMX_PPU1_IPI
+#define IPI_PSM_IRQ_0          IRQ_PSMX_IPI
 #define IPI_PMC_IRQ_0          IRQ_PPU1_INTC_PMX_IPI
 #define IPI_PMC_NOBUF_IRQ_0    IRQ_PPU1_INTC_PMX_IPI_NOBUF
 #define IPI_APB_IRQ_0          IPI_MISC_IRQ_0

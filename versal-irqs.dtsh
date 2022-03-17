@@ -90,7 +90,7 @@
 #define IRQ_PPU1_INTC_PMX_IPI			28
 #define IRQ_PPU1_INTC_PMX_IPI_NOBUF		29
 
-#define IRQ_PSMX_PPU1_IPI			18
+#define IRQ_PSMX_IPI				18
 
 
 /* PSM IO-Module interrupt controller. These are from spec + 16 */
