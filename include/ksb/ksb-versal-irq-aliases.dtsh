@@ -88,3 +88,17 @@
 #define XPPU_IRQ_0                 INT_LPD_IRQ_0
 #define XMPU_PRAM_IRQ_0            PMC_INT_IRQ_0
 #define XPPU_PMC_IRQ_0             PMC_INT_IRQ_0
+
+/*
+ * Below interrupts are connected through an 'interrupts-extended' property or
+ * through having a correct 'interrupt-parent' property setup (and not through
+ * the 'interrupt-map' property).
+ */
+#define IRQ_PPU1_INTC_PMC_GICP      IRQ_PMX_PPU1_HW_INT
+#define IRQ_PPU1_INTC_PPU1_GPI      IRQ_PMX_PPU1_PL
+#define IRQ_PPU1_INTC_PL            IRQ_PMX_PPU1_PL
+#define IRQ_PPU1_INTC_REQ_PWRDWN    IRQ_PMX_PPU1_SRV_INT
+#define IRQ_PPU1_INTC_REQ_PWRUP     IRQ_PMX_PPU1_SRV_INT
+#define IRQ_PPU1_INTC_REQ_SWRST     IRQ_PMX_PPU1_SRV_INT
+#define IRQ_PPU1_INTC_REQ_ISOLATION IRQ_PMX_PPU1_SRV_INT
+#define IRQ_PPU1_INTC_WAKEUP        IRQ_PMX_PPU1_HW_INT
