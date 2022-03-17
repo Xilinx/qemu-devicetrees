@@ -20,17 +20,25 @@
  * THE SOFTWARE.
  */
 
-#define PMC_APB_IRQ_0          IRQ_PMX_PPU1_PMC_ERR
-#define PMC_IOU_SLCR_IRQ_0     IOU_IRQ_IRQ_0
-#define PMC_IOU_SEC_SLCR_IRQ_0 IRQ_PMX_PPU1_PMC_ERR
-#define CRP_IRQ_0              IRQ_PMX_PPU1_PMC_ERR
-#define SHA_IRQ_0              SHA0_IRQ_0
-#define BBRAM_APB_IRQ_0        IRQ_PMX_PPU1_PMC_ERR
-#define RTC_APB_IRQ_0          IRQ_PMX_PPU1_PMC_ERR
+/*
+ * Below offsets are used when connecting interrupts to the PPU0, PPU1 and PSMX
+ * interrupt controllers via the interrupt-map.
+ */
+#define PMX_PPU0_IRQMAP_OFFSET(irq)	(2000 + irq)
+#define PMX_PPU1_IRQMAP_OFFSET(irq)	(3000 + irq)
+#define PSMX_IRQMAP_OFFSET(irq)		(4000 + irq)
 
-#define IPI_PSM_IRQ_0          IRQ_PSMX_IPI
-#define IPI_PMC_IRQ_0          IRQ_PPU1_INTC_PMX_IPI
-#define IPI_PMC_NOBUF_IRQ_0    IRQ_PPU1_INTC_PMX_IPI_NOBUF
+#define PMC_APB_IRQ_0          PMX_PPU1_IRQMAP_OFFSET(IRQ_PMX_PPU1_PMC_ERR)
+#define PMC_IOU_SLCR_IRQ_0     IOU_IRQ_IRQ_0
+#define PMC_IOU_SEC_SLCR_IRQ_0 PMX_PPU1_IRQMAP_OFFSET(IRQ_PMX_PPU1_PMC_ERR)
+#define CRP_IRQ_0              PMX_PPU1_IRQMAP_OFFSET(IRQ_PMX_PPU1_PMC_ERR)
+#define SHA_IRQ_0              SHA0_IRQ_0
+#define BBRAM_APB_IRQ_0        PMX_PPU1_IRQMAP_OFFSET(IRQ_PMX_PPU1_PMC_ERR)
+#define RTC_APB_IRQ_0          PMX_PPU1_IRQMAP_OFFSET(IRQ_PMX_PPU1_PMC_ERR)
+
+#define IPI_PSM_IRQ_0          PSMX_IRQMAP_OFFSET(IRQ_PSMX_IPI)
+#define IPI_PMC_IRQ_0          PMX_PPU1_IRQMAP_OFFSET(IRQ_PPU1_INTC_PMX_IPI)
+#define IPI_PMC_NOBUF_IRQ_0    PMX_PPU1_IRQMAP_OFFSET(IRQ_PPU1_INTC_PMX_IPI_NOBUF)
 #define IPI_APB_IRQ_0          IPI_MISC_IRQ_0
 
 #define PL_PS_GRP0_IRQ_0       PL_PS_GRPO_IRQ_0
