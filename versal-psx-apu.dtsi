@@ -36,8 +36,12 @@
 #error "NUM APUs must be set to 8 or 16"
 #endif
 
+#define APU_WFI(n)	&psm_global (67 + n)
+
 #define APU_GPIOS(CRF, n)					\
-	reset-gpios = <CRF (n % 16)>
+	reset-gpios = <CRF (n % 16)>;				\
+	gpios = < APU_WFI(n) >;					\
+	gpio-names = "wfi"
 
 #define GEN_APU_BODY(n, MR)					\
 		APU_COMMON_MR(n, NUM_APUS_PER_CLUSTER, MR);	\
