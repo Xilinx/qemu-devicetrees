@@ -110,3 +110,7 @@
 
 /* Missing from auto-generated versal-ps-irqs.dtsh */
 #define VCCINT_PMC_GLITCH_DETECT_IRQ_0		159
+
+/* PSMX */
+#define IRQ_PSMX_INTC_RPU_DBG_REQ		23
+#define IRQ_PSMX_INTC_GPI_STATUS		25

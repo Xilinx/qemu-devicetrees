@@ -10,6 +10,11 @@
 &amba_psm {
 	psm_global: psm_global_reg@MM_PSM_GLOBAL_REG {
 		compatible = "xlnx,psmx_global_reg";
+		interrupt-parent = <&psm0_io_intc>;
+		interrupts = <IRQ_PSM_INTC_PWRDWN_REQ IRQ_PSM_INTC_WAKEUP_REQ
+				IRQ_PSM_INTC_SW_RESET_REQ IRQ_PSM_INTC_PWRUP_REQ
+				IRQ_PSM_INTC_PWR_CONTROL_REQ IRQ_PSM_INTC_ISOLATE_REQ
+				IRQ_PSMX_INTC_GPI_STATUS >;
 
 		#gpio-cells = <1>;
 		gpios = < &psm_local 35   &psm_local 36	/* LOC_PWR_STATE */
