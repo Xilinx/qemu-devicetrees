@@ -46,6 +46,7 @@
 
 #include "board-versal-ps-virt.dts"
 #include "versal-psx.dtsi"
+#include "ksb-psmx.dtsi"
 #include "versal-psx-rpu.dtsi"
 #include "versal-pmx-shared-overlay.dtsi"
 #include "versal-pmx-system-overlay.dtsi"

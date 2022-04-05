@@ -1,0 +1,62 @@
+/*
+ * Versal PSM block
+ *
+ * Copyright (c) 2022, Xilinx Inc
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+&amba_psm {
+	psm_global: psm_global_reg@MM_PSM_GLOBAL_REG {
+		compatible = "xlnx,psmx_global_reg";
+
+		#gpio-cells = <1>;
+		gpios = < &psm_local 35   &psm_local 36	/* LOC_PWR_STATE */
+			&psm_local 37   &psm_local 38
+			&psm_local 39   &psm_local 40
+			&psm_local 41   &psm_local 42
+			&psm_local 43   &psm_local 44
+			&psm_local 45   &psm_local 46
+			&psm_local 47   &psm_local 48
+			&psm_local 49   &psm_local 50
+			&psm_local 51   &psm_local 52
+			&psm_local 53   &psm_local 54
+			&psm_local 55   &psm_local 56
+			&psm_local 57   &psm_local 58
+			&psm_local 59   &psm_local 60
+			&psm_local 61   &psm_local 62
+			&psm_local 63   &psm_local 64
+			&psm_local 65   &psm_local 66
+			&psm_local 67   &psm_local 68
+			&psm_local 69
+
+			&psm_local 70   &psm_local 71	/* LOC_AUX_PWR_STATE */
+			&psm_local 72   &psm_local 73
+			&psm_local 74   &psm_local 75
+			&psm_local 76   &psm_local 77
+			&psm_local 78   &psm_local 79
+			&psm_local 80   &psm_local 81
+			&psm_local 82   &psm_local 83
+			&psm_local 84   &psm_local 85
+			&psm_local 86   &psm_local 87
+			&psm_local 88   &psm_local 89
+			&psm_local 90   &psm_local 91
+			&psm_local 92   &psm_local 93
+			&psm_local 94   &psm_local 95
+			&psm_local 96   &psm_local 97
+			&psm_local 98   &psm_local 99
+			&psm_local 100  &psm_local 101
+		>;
+	};
+
+	psm_err_mng: psm_err_mng@MM_PSM_GLOBAL_REG {
+		compatible = "xlnx.psmx_err_reg";
+	};
+};
+
+&lmb_psm {
+	psm_local: psm_local_reg@MM_PSM_LOCAL_REG {
+		compatible = "xlnx,psmx_local_reg";
+	};
+};
