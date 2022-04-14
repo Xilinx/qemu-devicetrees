@@ -95,14 +95,21 @@ SET_CPU_FREQ(31, 2720000);
 #endif
 
 &rpu_ctrl_a {
-	cpu0 = <&rpu_cpu0>;
-	cpu1 = <&rpu_cpu1>;
 	tcm-mr = <&s_axi_tcm_a>;
+};
+&rpu_ctrl_a0 {
+	core = <&rpu_cpu0>;
+};
+&rpu_ctrl_a1 {
+	core = <&rpu_cpu1>;
 };
 
 &rpu_ctrl_b {
-	cpu0 = <&rpu_cpu2>;
-	cpu1 = <&rpu_cpu3>;
 	tcm-mr = <&s_axi_tcm_b>;
 };
-
+&rpu_ctrl_b0 {
+	core = <&rpu_cpu2>;
+};
+&rpu_ctrl_b1 {
+	core = <&rpu_cpu3>;
+};
