@@ -1,0 +1,42 @@
+/*
+ * Versal CPM5 devices
+ *
+ * Copyright (c) 2021, Xilinx Inc
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+&amba_fpd {
+	cpm5_crx: cpm5_crx@MM_CPM5_CRX {
+		compatible = "xlnx,cpm5_crx";
+		reg = <0x0 (MM_TOP_CPM + MM_CPM5_CRX) 0x0 MM_CPM5_CRX_SIZE 0x0>;
+	};
+
+	/delete-node/ cpm_slcr_secure@MM_CPM_CPM_SLCR_SECURE;
+
+	cpm5_slcr_secure@MM_CPM5_SLCR_SECURE {
+		compatible = "xlnx,cpm5_slcr_secure";
+		reg = <0x0 (MM_TOP_CPM + MM_CPM5_SLCR_SECURE) 0x0 MM_CPM5_SLCR_SECURE_SIZE 0x0>;
+	};
+
+	cpm5_gtyp_cfg@MM_CPM5_GTYP0_CFG {
+		compatible = "xlnx,gtyp_npi_slave";
+		reg = <0x0 (MM_TOP_CPM + MM_CPM5_GTYP0_CFG) 0x0 MM_CPM5_GTYP0_CFG_SIZE 0x0>;
+	};
+
+	cpm5_gtyp_cfg@MM_CPM5_GTYP1_CFG {
+		compatible = "xlnx,gtyp_npi_slave";
+		reg = <0x0 (MM_TOP_CPM + MM_CPM5_GTYP1_CFG) 0x0 MM_CPM5_GTYP1_CFG_SIZE 0x0>;
+	};
+
+	cpm5_gtyp_cfg@MM_CPM5_GTYP2_CFG {
+		compatible = "xlnx,gtyp_npi_slave";
+		reg = <0x0 (MM_TOP_CPM + MM_CPM5_GTYP2_CFG) 0x0 MM_CPM5_GTYP2_CFG_SIZE 0x0>;
+	};
+
+	cpm5_gtyp_cfg@MM_CPM5_GTYP3_CFG {
+		compatible = "xlnx,gtyp_npi_slave";
+		reg = <0x0 (MM_TOP_CPM + MM_CPM5_GTYP3_CFG) 0x0 MM_CPM5_GTYP3_CFG_SIZE 0x0>;
+	};
+};
