@@ -15,8 +15,10 @@
  */
 #define HAS_DDRMC3 0
 #define MM_NPI_AIE2_NPI_0       0xf6d10000
+#include "versal-cpm5-memmap.dtsh"
 #include "board-versal-ps-virt.dts"
 #include "versal-silicon-freq.dtsi"
+#include "versal-cpm5.dtsi"
 
 &pmc_tap {
 	idcode = <0x04CD0093>;
