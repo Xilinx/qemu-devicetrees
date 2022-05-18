@@ -27,9 +27,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#define VERSAL_H10
-#include "board-versal-ps-virt.dts"
-#include "versal-silicon-freq.dtsi"
+#include "board-versal-xcvp1202-ps-virt.dts"
 
 &ospi {
 	/delete-node/ ospi_flash_lcs_lb;
