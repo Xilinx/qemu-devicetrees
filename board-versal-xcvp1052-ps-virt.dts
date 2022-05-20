@@ -1,0 +1,28 @@
+/*
+ * Versal Premium series xcvp1052 virtual board dts
+ *
+ * Copyright (c) 2021, Xilinx Inc
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+/*
+ * Unsupporeted FPGA hard blocks:
+ *  CPM4
+ *  PCIE
+ *  HSC
+ *  GTM
+ *  GTYP
+ *  100G, 400G, 600G Ethernet MAC's
+ *
+ * More details:
+ * https://www.xilinx.com/products/silicon-devices/acap/versal-premium.html#productTable
+ */
+
+#include "board-versal-ps-virt.dts"
+#include "versal-silicon-freq.dtsi"
+
+&pmc_tap {
+	idcode = <0x04C18093>;
+};
