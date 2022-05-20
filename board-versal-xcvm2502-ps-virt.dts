@@ -1,0 +1,19 @@
+/*
+ * Versal Prime series xcvm2502 virtual board dts
+ *
+ * Copyright (c) 2021, Xilinx Inc
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+/*
+ * More Details:
+ * https://www.xilinx.com/products/silicon-devices/acap/versal-prime.html#productTable
+ */
+
+#include "board-versal-xcvp1202-ps-virt.dts"
+
+&pmc_tap {
+	idcode = <0x14D01093>;
+};
