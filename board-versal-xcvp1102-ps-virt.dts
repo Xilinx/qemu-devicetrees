@@ -1,0 +1,14 @@
+/*
+ * Versal Premium series xcvp1102 virtual board dts
+ *
+ * Copyright (c) 2021, Xilinx Inc
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+#include "board-versal-xcvp1402-ps-virt.dts"
+
+&pmc_tap {
+	idcode = <0x04C22093>;
+};
