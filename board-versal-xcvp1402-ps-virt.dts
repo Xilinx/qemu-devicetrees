@@ -40,6 +40,12 @@
 #include "board-versal-ps-virt.dts"
 #include "versal-silicon-freq.dtsi"
 
+&amba_fpd{
+	/delete-node/ cpm_crcpm@MM_CPM_CPM_CRCPM;
+	/delete-node/ cpm_pcsr@MM_CPM_CPM_PCSR;
+	/delete-node/ cpm_slcr_secure@MM_CPM_CPM_SLCR_SECURE;
+};
+
 &pmc_tap {
 	idcode = <0x04C20093>;
 };
