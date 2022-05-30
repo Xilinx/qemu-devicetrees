@@ -1,0 +1,22 @@
+/*
+ * Versal AI Core series device xcvc1702 virtual board dts
+ *
+ * Copyright (c) 2022, Xilinx Inc
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+/*
+ * Unsupported Devices:
+ *  CPM
+ *  PCIE
+ */
+
+#define MM_NPI_AIE1_NPI_0       0xf6d10000
+#include "board-versal-ps-virt.dts"
+#include "versal-silicon-freq.dtsi"
+
+&pmc_tap {
+	idcode = <0x04C98093>;
+};
