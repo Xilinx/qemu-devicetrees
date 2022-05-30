@@ -1,0 +1,14 @@
+/*
+ * Versal AI Edge series device xcvc1702 virtual board dts
+ *
+ * Copyright (c) 2022, Xilinx Inc
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+#include "board-versal-xcvc1702-ps-virt.dts"
+
+&pmc_tap {
+	idcode = <0x04C9A093>;
+};
