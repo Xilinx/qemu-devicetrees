@@ -27,6 +27,5 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#define VERSAL_VP1202
-#include "board-versal-ps-vc-p-a2197-00.dts"
+#include "board-versal-xcvp1202-ps-virt.dts"
 

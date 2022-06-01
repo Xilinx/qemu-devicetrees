@@ -27,6 +27,10 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#define VERSAL_VP1202
-#include "board-versal-ps-cosim-vc-p-a2197-00.dts"
+#include "board-versal-xcvp1202-ps-virt.dts"
+#include "versal-ps-pl-remoteport.dtsi"
+#include "versal-silicon-freq.dtsi"
 
+&pmc_tap {
+	platform = <PLATFORM_QEMU_COSIM>;
+};
