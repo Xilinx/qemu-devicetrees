@@ -30,4 +30,6 @@
 #define HAS_DDRMC1 0
 #define HAS_DDRMC2 0
 #define HAS_DDRMC3 0
-#include "board-versal-ps-vck190.dts"
+
+#include "board-versal-ps-virt.dts"
+#include "versal-silicon-freq.dtsi"
