@@ -27,7 +27,16 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#define VERSAL_NPI_GENERIC
+/*
+ * Unsupported FPGA Hard blocks
+ *  GTM
+ *  GTYP
+ *  PCI Express
+ *  100G, 400G, 600G Ethernet MAC's.
+ */
+
+#define VERSAL_NPI_OVERRIDE
+#include "versal/memmap/versal-xcvp1402-npi-memmap.dtsi"
 #include "board-versal-ps-virt.dts"
 #include "versal-silicon-freq.dtsi"
 
