@@ -40,16 +40,16 @@
 #endif
 
 #define HAVE_APU_GIC
-#ifndef HAS_DDRMC0
+#ifdef MM_NPI_DDRMC_MAIN_0
 #define HAS_DDRMC0 1
 #endif
-#ifndef HAS_DDRMC1
+#ifdef MM_NPI_DDRMC_MAIN_1
 #define HAS_DDRMC1 1
 #endif
-#ifndef HAS_DDRMC2
+#ifdef MM_NPI_DDRMC_MAIN_2
 #define HAS_DDRMC2 1
 #endif
-#ifndef HAS_DDRMC3
+#ifdef MM_NPI_DDRMC_MAIN_3
 #define HAS_DDRMC3 1
 #endif
 
