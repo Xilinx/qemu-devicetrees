@@ -1,5 +1,5 @@
 /*
- * Versal AI Core series device xcvc3502 virtual board dts
+ * Versal AI Core series device xcvp2502 virtual board dts
  *
  * Copyright (c) 2021, Xilinx Inc
  * All rights reserved.
@@ -11,8 +11,11 @@
  * Unsupported Devices:
  *  CPM
  *  PCIE
+ *  AIE (part of slave SLR)
  */
-#define MM_NPI_AIE1_NPI_0 0xF6BE0000
+
+#define VERSAL_NPI_OVERRIDE
+#include "versal/memmap/versal-xcvp2502-npi-memmap.dtsi"
 #include "board-versal-ps-virt.dts"
 #include "versal-silicon-freq.dtsi"
 
