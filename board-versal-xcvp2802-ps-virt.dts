@@ -12,7 +12,9 @@
  *  CPM
  *  PCIE
  */
-#define MM_NPI_AIE1_NPI_0 0xF6BE0000
+
+#define VERSAL_NPI_OVERRIDE
+#include "versal/memmap/versal-xcvp2802-npi-memmap.dtsi"
 #include "board-versal-ps-virt.dts"
 #include "versal-silicon-freq.dtsi"
 
