@@ -32,6 +32,8 @@
  * We are emulating only Master SLR, slave SLR's need support of SBI interface
  * which needs ROM for initial PLM loading.
  */
+#define VERSAL_NPI_OVERRIDE
+#include "versal/memmap/versal-xcvp1802-npi-memmap.dtsi"
 #include "board-versal-ps-virt.dts"
 #include "versal-silicon-freq.dtsi"
 
