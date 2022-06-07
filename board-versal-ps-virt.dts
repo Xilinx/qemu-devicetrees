@@ -30,6 +30,9 @@
 #define __BOARD_VERSAL_PS_VIRT__
 
 /dts-v1/;
+#ifndef VERSAL_NPI_OVERRIDE
+ #include "versal-npi-memmap.dtsh"
+#endif
 
 #ifndef NUM_APUS
 /* Base platform has 2 APUs.  */

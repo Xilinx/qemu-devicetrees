@@ -29,6 +29,10 @@
 
 /dts-v1/;
 
+#ifndef VERSAL_NPI_OVERRIDE
+ #include "versal-npi-memmap.dtsh"
+#endif
+
 #ifndef HAS_DDRMC0
 #define HAS_DDRMC0 1
 #endif
