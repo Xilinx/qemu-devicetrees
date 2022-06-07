@@ -20,6 +20,8 @@
  * https://www.xilinx.com/products/silicon-devices/acap/versal-premium.html#productTable
  */
 
+#define VERSAL_NPI_OVERRIDE
+#include "versal/memmap/versal-xcvp1202-npi-memmap.dtsi"
 #include "versal-cpm5-memmap.dtsh"
 #include "board-versal-ps-virt.dts"
 #include "versal-silicon-freq.dtsi"
