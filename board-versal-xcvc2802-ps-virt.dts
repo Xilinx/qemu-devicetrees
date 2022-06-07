@@ -13,12 +13,9 @@
  *  VDU
  *  PCIE
  */
-#define HAS_DDRMC3 0
-#define MM_NPI_AIE2_NPI_0       0xf6d10000
-#define MM_VDU_NPI_0	0xF6820000
-#define MM_VDU_NPI_1	0xF6870000
-#define MM_VDU_NPI_2	0xF68C0000
-#define MM_VDU_NPI_3	0xF6920000
+#define VERSAL_NPI_OVERRIDE
+#include "versal/memmap/versal-xcvc2802-npi-memmap.dtsi"
+
 #include "versal-cpm5-memmap.dtsh"
 #include "board-versal-ps-virt.dts"
 #include "versal-silicon-freq.dtsi"
