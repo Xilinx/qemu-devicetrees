@@ -8,26 +8,24 @@
  */
 
 
-#define MM_VDU_NPI_X_SIZE	0x20000
-
 #define VDU_NPI(n)	\
-	vdu_npi_ ## n ##@MM_VDU_NPI_## n { \
+	vdu_npi_ ## n ##@MM_NPI_VDU_NPI_## n { \
 		compatible = "xlnx,vdu_npi"; \
-		reg = <0x0 MM_VDU_NPI_## n  0x0 MM_VDU_NPI_X_SIZE 0x0>; \
+		reg = <0x0 MM_NPI_VDU_NPI_## n  0x0 MM_NPI_VDU_NPI_## n ##_SIZE 0x0>; \
 	}
 
 &amba_pmc_pl {
 
-#ifdef MM_VDU_NPI_0
+#ifdef MM_NPI_VDU_NPI_0
 	VDU_NPI(0);
 #endif
-#ifdef MM_VDU_NPI_1
+#ifdef MM_NPI_VDU_NPI_1
 	VDU_NPI(1);
 #endif
-#ifdef MM_VDU_NPI_2
+#ifdef MM_NPI_VDU_NPI_2
 	VDU_NPI(2);
 #endif
-#ifdef MM_VDU_NPI_3
+#ifdef MM_NPI_VDU_NPI_3
 	VDU_NPI(3);
 #endif
 
