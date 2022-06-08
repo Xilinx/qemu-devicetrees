@@ -93,6 +93,7 @@
 		stream-connected-dma1 = <&pmc_dma1_dst>;
 		stream-connected-aes = <&pmc_aes>;
 		stream-connected-sha = <&pmc_sha3>;
+		stream-connected-sbi = <&pmc_sbi>;
 	};
 
 	pmc_sha3: pmc_sha@MM_PMC_SHA3 {
@@ -174,4 +175,14 @@
 		zynqmp-aes-key-sink-bbram = <&pmc_aes>;
 		crc-zpads = <0>;
 	};
+	pmc_sbi: pmc_sbi@MM_PMC_SLAVE_BOOT {
+		doc-status = "complete";
+		compatible = "pmc,slave-boot";
+		reg = <0x0 MM_PMC_SLAVE_BOOT 0x0 MM_PMC_SLAVE_BOOT_SIZE 0x0
+		       0x0 MM_PMC_SLAVE_BOOT_STREAM 0x0 MM_PMC_SLAVE_BOOT_STREAM_SIZE 0x0>;
+		interrupts = <SBI_IRQ_0>;
+		stream-connected-sbi = <&pmc_stream_switch>;
+		reset-gpios = <&pmc_clk_rst CRP_RST_SBI>;
+	};
+
 };
