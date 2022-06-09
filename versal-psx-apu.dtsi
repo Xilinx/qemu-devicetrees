@@ -350,6 +350,14 @@
 			num-irq = <256>;
 			has-security-extensions = <1>;
 			redist-region-count = <NUM_APUS>;
+			has-lpi = < 1 >;
+			sysmem = <&amba>;
+		};
+
+		git_its@MM_APU_GIC_ITS0 {
+			compatible = "arm-gicv3-its";
+			reg = <0x0 MM_APU_GIC_ITS0 0x0 0x20000 0x0>;
+			parent-gicv3 = <&gic>;
 		};
 	};
 };
