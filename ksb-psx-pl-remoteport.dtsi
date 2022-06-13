@@ -217,6 +217,12 @@
 		reg = <0x0 MM_TOP_CPM 0x0 MM_TOP_CPM_SIZE 0x0>;
 	};
 
+	s_cpm: s_cpm@0 {
+		compatible = "remote-port-memory-slave";
+		remote-ports = <&cosim_rp_0 91>;
+		mr = <&smmu_tbu1>;
+	};
+
 	noc_lpd_axi_0: noc_lpd_axi_0@0 {
 		compatible = "remote-port-memory-master";
 		remote-ports = <&cosim_rp_0 58>;
