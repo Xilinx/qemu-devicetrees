@@ -68,9 +68,25 @@
 				       &pmc_ppu1_io_intc IRQ_PPU1_INTC_PL
 				       &pmc_ppu1_io_intc IRQ_PPU1_INTC_PPU1_GPI
 				       &dummy1 0 /* PMC GLOBAL_IMR.  */
-				       &pmc_ppu0_io_intc IRQ_PPU0_INTC_TAMPER_REG>;
+				       &pmc_ppu0_io_intc IRQ_PPU0_INTC_TAMPER_REG
+				       &pmc_ppu0_io_intc IRQ_PPU0_INTC_TAMPER_MIO
+				       &pmc_ppu0_io_intc IRQ_PPU0_INTC_PMC_DEBUG
+				       &pmc_ppu0_io_intc IRQ_PPU0_INTC_SYSMON_TEMP
+				       &pmc_ppu0_io_intc IRQ_PPU0_INTC_SYSMON_VOLT0
+				       &pmc_ppu0_io_intc IRQ_PPU0_INTC_SYSMON_VOLT1
+				       &pmc_ppu0_io_intc IRQ_PPU0_INTC_SYSMON_VOLT2
+				       &pmc_ppu0_io_intc IRQ_PPU0_INTC_SYSMON_VOLT3
+				       &pmc_ppu0_io_intc IRQ_PPU0_INTC_SYSMON_VOLT4
+				       &pmc_ppu0_io_intc IRQ_PPU0_INTC_SYSMON_VOLT5
+				       &pmc_ppu0_io_intc IRQ_PPU0_INTC_SYSMON_VOLT6
+				       &pmc_ppu0_io_intc IRQ_PPU0_INTC_SYSMON_VOLT7
+				       &dummy1 0
+				       &pmc_ppu0_io_intc IRQ_PPU0_INTC_TAMPER_GLITCH>;
 		reg = <0x0 MM_PMC_PMC_GLOBAL 0x0 MM_PMC_PMC_GLOBAL_SYS_SIZE 0x0>;
 		gpios = <&pmc_puf_ctrl PMC_PUF_CTRL_PUF_ERROR>;
+
+		bbram = <&pmc_bbram_ctrl>;
+		efuse = <&xlnx_pmc_efuse_cache>;
 
 		compatible = "xlnx,pmc_global";
 	};
@@ -87,6 +103,10 @@
 	pmc_analog@MM_PMC_PMC_ANALOG {
 		compatible = "xlnx,pmc-analog";
 		reg = <0x0 MM_PMC_PMC_ANALOG 0x0 MM_PMC_PMC_ANALOG_SIZE 0x0>;
+
+		interrupts-extended = <&pmc_gic_proxy
+					0 VCCINT_PMC_GLITCH_DETECT_IRQ_0 0>;
+		tamper-sink = <&pmc_global>;
 	};
 	pmc_sysmon@MM_PMC_PMC_SYSMON {
 		compatible = "xlnx,pmc-sysmon";
@@ -98,7 +118,7 @@
 		efuse = <&xlnx_pmc_efuse_cache>;
 		ams-sat0 = <&pmc_ams_sat0>;
 		ams-sat1 = <&pmc_ams_sat1>;
-
+		tamper-sink = <&pmc_global>;
 	};
 	pmc_ams_sat0: pmc_ams_sat@0 {
 		compatible = "xlnx,ams-sat";
