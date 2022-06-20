@@ -158,11 +158,6 @@ name: name@addr64 {														\
  #include "versal-iou-memmap.dtsh"
  #include "versal-psm-memmap.dtsh"
  #include "versal-gic-memmap.dtsh"
- #ifdef VERSAL_VP1202
- #	include "versal-h10-npi-memmap.dtsh"
- #else
- #	include "versal-npi-memmap.dtsh"
- #endif
  #define MM_RPU_GIC	0xf9000000
  #define MM_RPU_GIC_SIZE	0x3000
 #endif
