@@ -36,6 +36,7 @@
 #define VERSAL_NPI_GENERIC
 #define VERSAL_PSX
 #define VERSAL_KSB
+#define VERSAL_NPI_OVERRIDE
 
 /* TODO: Add GIC interrupt redirection support.  */
 #define APU_GIC_INTERRUPT_TARGET_STEM cpu
@@ -44,6 +45,7 @@
 #define APU_CPU_MODEL "cortex-a78-arm-cpu"
 #define RPU_CPU_MODEL "cortex-r52-arm-cpu"
 
+#include "ksb-npi-memmap.dtsh"
 #include "board-versal-ps-virt.dts"
 #include "versal-psx.dtsi"
 #include "ksb-psmx.dtsi"

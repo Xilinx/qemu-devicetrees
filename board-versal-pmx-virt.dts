@@ -31,7 +31,9 @@
 #define VERSAL_KSB
 #define NUM_APUS 16
 #define NUM_APUS_PER_CLUSTER 4
+#define VERSAL_NPI_OVERRIDE
 
+#include "ksb-npi-memmap.dtsh"
 #include "board-versal-pmc-virt.dts"
 #include "versal-pmx-shared-overlay.dtsi"
 

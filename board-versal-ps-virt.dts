@@ -41,16 +41,16 @@
 
 #define HAS_SMMU
 #define HAVE_APU_GIC
-#ifdef MM_NPI_DDRMC_MAIN_0
+#if defined(MM_NPI_DDRMC_MAIN_0) || defined(MM_NPI_DDRMC5_MAIN_0)
 #define HAS_DDRMC0 1
 #endif
-#ifdef MM_NPI_DDRMC_MAIN_1
+#if defined(MM_NPI_DDRMC_MAIN_1) || defined(MM_NPI_DDRMC5_MAIN_1)
 #define HAS_DDRMC1 1
 #endif
-#ifdef MM_NPI_DDRMC_MAIN_2
+#if defined(MM_NPI_DDRMC_MAIN_2) || defined(MM_NPI_DDRMC5_MAIN_2)
 #define HAS_DDRMC2 1
 #endif
-#ifdef MM_NPI_DDRMC_MAIN_3
+#if defined(MM_NPI_DDRMC_MAIN_3) || defined(MM_NPI_DDRMC5_MAIN_3)
 #define HAS_DDRMC3 1
 #endif
 
