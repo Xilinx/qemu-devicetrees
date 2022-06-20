@@ -170,9 +170,4 @@ name: name@addr64 {														\
 #define MM_XRAM_XMPU MM_OCM2_XMPU
 #define MM_XRAM_XMPU_SIZE MM_OCM2_XMPU_SIZE
 
-#ifdef VERSAL_VP1202
-#include "versal-h10-npi-memmap.dtsh"
-#else
-#include "versal-npi-memmap.dtsh"
-#endif
 #include "versal-cpm-memmap.dtsh"
