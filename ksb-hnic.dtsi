@@ -1,0 +1,27 @@
+/*
+ * Versal HNIC devices
+ *
+ * Copyright (c) 2021, Xilinx Inc
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+
+#define HNICX_NPI(x)	\
+	hnix_npi_ ## x: hnix_npi_## x@MM_NPI_HNICX_NPI_## x  { \
+		compatible = "xlnx,hnicx_npi";			\
+		reg = <0x0 MM_NPI_HNICX_NPI_ ## x 0x0		\
+			MM_NPI_HNICX_NPI_ ## x ## _SIZE 0x1>;	\
+		doc-limitations = "Just a stub";		\
+	}
+
+&amba_pmc_pl {
+#ifdef MM_NPI_HNICX_NPI_0
+	HNICX_NPI(0);
+#endif
+
+#ifdef MM_NPI_HNICX_NPI_1
+	HNICX_NPI(1);
+#endif
+};

@@ -56,6 +56,7 @@
 #include "ksb-psmx.dtsi"
 #include "versal-psx-rpu.dtsi"
 #include "ksb-boot-init.dtsi"
+#include "ksb-hnic.dtsi"
 #include "versal-pmx-shared-overlay.dtsi"
 #include "versal-pmx-system-overlay.dtsi"
 #include "versal-psx-shared-overlay.dtsi"
