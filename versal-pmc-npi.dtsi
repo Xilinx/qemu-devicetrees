@@ -29,6 +29,12 @@
 
 #include "versal.dtsh"
 
+#ifdef VERSAL_PSX
+	#define COMPAT_DDRMC_UB "xlnx,versal-ddrmc5-ub"
+#else
+	#define COMPAT_DDRMC_UB "xlnx,versal-ddrmc-ub"
+#endif
+
 #define GEN_NMU(N)							\
 	npi_noc_nmu_ ## N: npi_noc_nmu_## N@MM_NPI_NOC_NMU_ ## N  {	\
 		doc-ignore = <1>;					\
@@ -62,7 +68,7 @@
 #define GEN_DDRMC_UB(N)							\
 	npi_ddrmc_ub ## N: npi_ddrmc_ub ## N@MM_NPI_DDRMC_UB_ ## N {	\
 		doc-limitations = "Only the uB rst is supported";	\
-		compatible = "xlnx,versal-ddrmc-ub";			\
+		compatible = COMPAT_DDRMC_UB;				\
 		reg = <0x0 MM_NPI_DDRMC_UB_ ## N 0x0			\
 			MM_NPI_DDRMC_UB_ ## N ## _SIZE 0x1>;		\
 		reset-gpios = <&pmc_clk_rst CRP_RST_NONPS_NPI >;	\
