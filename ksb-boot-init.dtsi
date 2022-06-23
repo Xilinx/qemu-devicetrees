@@ -1,0 +1,14 @@
+/*
+ * KSB Init
+ *
+ * Copyright (c) 2021, Xilinx Inc
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+&amba{
+	LOADER_DEBUG_WRITE(CPU_NR_APU0, 0xF1110880, 0x1, 0x4);	// PMC_GLOBAL.PL_STATUS
+	LOADER_DEBUG_WRITE(CPU_NR_APU0, 0xF111010C, 0xFF, 0x4);	// PMC_GLOBAL.PWR_SUPPLY_STATUS
+	LOADER_DEBUG_WRITE(CPU_NR_APU0, 0xF12B0100, 0x80C, 0x4);// CFU_APB.CFU_STATUS
+};

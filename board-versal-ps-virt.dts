@@ -76,6 +76,7 @@
 #else
 #include "versal-ps-apu.dtsi"
 #include "versal-ps-rpu.dtsi"
+#include "versal-boot-init.dtsi"
 #endif
 #include "versal-ps-iou.dtsi"
 #include "versal-virtio-mmio.dtsi"
