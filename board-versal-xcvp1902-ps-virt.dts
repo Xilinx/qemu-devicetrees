@@ -1,0 +1,26 @@
+/*
+ * Versal Premium series device xcvp1902 virtual board dts
+ *
+ * Copyright (c) 2022, Xilinx Inc
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+/*
+ * Unsupported Devices:
+ *  SSIT
+ */
+
+#define VERSAL_NPI_OVERRIDE
+#include "versal/memmap/versal-xcvp1902-npi-memmap.dtsi"
+#include "board-versal-ps-virt.dts"
+#include "versal-silicon-freq.dtsi"
+
+&pmc_tap {
+	idcode = <0x04C40093>;
+};
+
+&pmc_err_mng {
+	ssit = <1>;
+};
