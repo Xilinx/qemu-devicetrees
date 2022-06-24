@@ -1,0 +1,15 @@
+/*
+ * Versal Prime series device xcvm1102 virtual board dts
+ *
+ * Copyright (c) 2022, Xilinx Inc
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+
+#include "board-versal-xcve2302-ps-virt.dts"
+
+&pmc_tap {
+	idcode = <0x04CC9093>;
+};
