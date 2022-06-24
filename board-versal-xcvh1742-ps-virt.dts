@@ -1,0 +1,41 @@
+/*
+ * Versal HBM series device xcvh1742 virtual board dts
+ *
+ * Copyright (c) 2022, Xilinx Inc
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+#define VERSAL_NPI_OVERRIDE
+#include "versal/memmap/versal-xcvh1782-npi-memmap.dtsi"
+#include "board-versal-ps-virt.dts"
+#include "versal-silicon-freq.dtsi"
+
+&pmc_tap {
+	idcode = <0x14D2D093>;
+};
+
+&pmc_err_mng {
+	ssit = <1>;
+};
+
+/{
+	hbmmc_0_mem: memory@MM_TOP_HBM0 {
+		compatible = "qemu:memory-region";
+		device_type = "memory";
+		container = <&amba>;
+	};
+
+	MEM_REGION64(hbmmc_bnk0, MM_TOP_HBM0_H, MM_TOP_HBM0_L, MM_TOP_HBM0,
+                 0x2, 0x0, &hbmmc_0_mem) // 8 GB
+
+	hbmmc_1_mem: memory@MM_TOP_HBM1 {
+		compatible = "qemu:memory-region";
+		device_type = "memory";
+		container = <&amba>;
+	};
+
+	MEM_REGION64(hbmmc_bnk1, MM_TOP_HBM1_H, MM_TOP_HBM1_L, MM_TOP_HBM1,
+                 0x2, 0x0, &hbmmc_0_mem) // 8 GB
+};
