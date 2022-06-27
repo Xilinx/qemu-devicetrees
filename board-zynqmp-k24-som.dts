@@ -1,0 +1,58 @@
+/*
+ * ZynqMP K24 SOM device tree
+ *
+ * Copyright (c) 2022, AMD Inc
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ *
+ * K24 has 64MB QSPI flash, EMMC and I2C EEPROM on address 0x50.
+ * mtd drive index for qspi is 0 and eeproms need to use blockdev
+ * ex:
+ *
+ * -blockdev node-name=i2c1.eeprom-50,filename=eeprom0.bin,driver=file
+ *
+ * For sd drives index is as below
+ * emmc -> 2
+ *
+ * Not Supported:
+ * 	TPM
+ */
+
+#include "board-zynqmp-zcu102.dts"
+
+&ps7_qspi_0 {
+	/delete-node/ qspi_flash_ucs_ub@0;
+};
+
+&ps7_spi_0 {
+	/delete-node/ spi0_flash0@0;
+	/delete-node/ spi0_flash1@0;
+	/delete-node/ spi0_flash2@0;
+	/delete-node/ spi0_flash3@0;
+};
+
+&ps7_spi_1 {
+	/delete-node/ spi1_flash0@0;
+	/delete-node/ spi1_flash1@0;
+	/delete-node/ spi1_flash2@0;
+	/delete-node/ spi1_flash3@0;
+};
+
+&i2c0 {
+	/delete-node/ tca6416@20;
+	/delete-node/ tca6416@21;
+	/delete-node/ i2cswitch@75;
+};
+
+&i2c1 {
+	/delete-node/ i2cswitch@74;
+	/delete-node/ i2cswitch@75;
+	eeprom0: eeprom@50 {
+		compatible = "at,24c08";
+		reg = <0x50>;
+		size = <0x2000>;
+		blockdev-node-name = "i2c1.eeprom-50";
+	};
+};
+
