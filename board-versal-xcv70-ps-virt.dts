@@ -1,0 +1,15 @@
+/*
+ * Versal based Alveo device using xcvc2802
+ *
+ * Copyright (c) 2021, Xilinx Inc
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+
+#include "board-versal-xcvc2802-ps-virt.dts"
+
+&pmc_tap {
+	idcode = <0x04CD7093>;
+};
