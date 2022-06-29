@@ -20,7 +20,7 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-#include "board-versal-ps-xcvh1582-virt.dts"
+#include "board-versal-xcvh1582-ps-virt.dts"
 
 /* QSPI is not preferred boot device */
 &pmc_qspi_0 {
