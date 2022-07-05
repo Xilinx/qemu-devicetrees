@@ -119,6 +119,11 @@
 		mr-0 = <&amba_pmc_pl>;
 		protected-base = <MM_PMC_CFU_APB>;
 	};
+
+	pmx_err_mng: pmx_err_mng@MM_PMC_PMC_GLOBAL {
+		compatible = "xlnx,pmx-err-mng";
+		reg = <0x0 (MM_PMC_PMC_GLOBAL + 0x20000) 0x0 0x10000 0x1>;
+	};
 };
 
 
