@@ -28,7 +28,7 @@
  */
 
 #include "board-versal-ksb-psx-virt.dts"
-#include "ksb-psx-pl-remoteport.dtsi"
+#include "versal-net-pl-remoteport.dtsi"
 
 &pmc_tap {
 	platform = <PLATFORM_QEMU_COSIM>;

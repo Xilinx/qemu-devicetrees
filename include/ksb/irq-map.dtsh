@@ -1,5 +1,5 @@
 /*
- * This file contains the interrupt-map for Keystone B.
+ * This file contains the interrupt-map for Versal Net.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,26 +23,26 @@
 		interrupt-map =
 #ifdef HAVE_APU_GIC
 			#define __intc__ &gic
-			#include "ksb-psx-irq-map.dtsh"
+			#include "versal-psx-irq-map.dtsh"
 			#undef __intc__
 			,
 
 			#define __intc__ &rpu_gic_a
-			#include "ksb-psx-irq-map.dtsh"
+			#include "versal-psx-irq-map.dtsh"
 			#undef __intc__
 			,
 
 			#define __intc__ &rpu_gic_b
-			#include "ksb-psx-irq-map.dtsh"
+			#include "versal-psx-irq-map.dtsh"
 			#undef __intc__
 			,
 #endif
 			#define __intc__ &pmc_gic_proxy
-			#include "ksb-psx-irq-map.dtsh"
+			#include "versal-psx-irq-map.dtsh"
 			#undef __intc__
 			,
 			#define __intc__ &psm_gic_proxy
-			#include "ksb-psx-irq-map.dtsh"
+			#include "versal-psx-irq-map.dtsh"
 			#undef __intc__
 
 			/* Manual entries.  */

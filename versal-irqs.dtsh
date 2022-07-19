@@ -29,7 +29,7 @@
 
 /* Include the auto-generated stuff.  */
 #ifdef VERSAL_KSB
-#include "ksb-psx-irqs.dtsh"
+#include "versal-psx-irqs.dtsh"
 #include "include/ksb/ksb-versal-irq-aliases.dtsh"
 #else
 #include "versal-ps-irqs.dtsh"
