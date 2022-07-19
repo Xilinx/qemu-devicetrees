@@ -91,18 +91,18 @@ $(LQSPI_XIP_OUTDIR)/%.dts:	%.dts $(DTSI_FILES) $(HEADER_FILES)
 # TODO: Add support for auto-generated dependency list
 versal-pmc-npi.dtsi: versal-pmc-npi-nxx.dtsi versal-h10-pmc-npi-nxx.dtsi versal-gty-npi.dtsi
 versal-pmc-npi-nxx.dtsi: Makefile
-	@python -c 'for a in range(0, 54): print("\tGEN_NMU(" + str(a) + ")")' > $@
-	@python -c 'for a in range(0, 50): print("\tGEN_NSU(" + str(a) + ")")' >> $@
-	@python -c 'for a in range(0, 146): print("\tGEN_NPS(" + str(a) + ")")' >> $@
+	@python3 -c 'for a in range(0, 54): print("\tGEN_NMU(" + str(a) + ")")' > $@
+	@python3 -c 'for a in range(0, 50): print("\tGEN_NSU(" + str(a) + ")")' >> $@
+	@python3 -c 'for a in range(0, 146): print("\tGEN_NPS(" + str(a) + ")")' >> $@
 versal-h10-pmc-npi-nxx.dtsi: Makefile
-	@python -c 'for a in range(0, 37): print("\tGEN_NMU(" + str(a) + ")")' > $@
-	@python -c 'for a in range(0, 33): print("\tGEN_NSU(" + str(a) + ")")' >> $@
-	@python -c 'for a in range(0, 135): print("\tGEN_NPS(" + str(a) + ")")' >> $@
+	@python3 -c 'for a in range(0, 37): print("\tGEN_NMU(" + str(a) + ")")' > $@
+	@python3 -c 'for a in range(0, 33): print("\tGEN_NSU(" + str(a) + ")")' >> $@
+	@python3 -c 'for a in range(0, 135): print("\tGEN_NPS(" + str(a) + ")")' >> $@
 versal-gty-npi.dtsi: Makefile
-	@python -c 'for a in range(0, 4): print("#ifdef MM_GTYP_NPI_SLAVE_" + str(a) + "\n" + \
+	@python3 -c 'for a in range(0, 4): print("#ifdef MM_GTYP_NPI_SLAVE_" + str(a) + "\n" + \
 						"\tGEN_GTYP(" + str(a) + ");\n" + \
 						"#endif")' > $@
-	@python -c 'for a in range(0, 24): print("#ifdef MM_GTM_NPI_SLAVE_" + str(a) + "\n" + \
+	@python3 -c 'for a in range(0, 24): print("#ifdef MM_GTM_NPI_SLAVE_" + str(a) + "\n" + \
 						"\tGEN_GTM(" + str(a) + ");\n" + \
 						"#endif")' >> $@
 
