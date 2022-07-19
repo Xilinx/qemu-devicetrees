@@ -27,4 +27,9 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "board-versal-net-psx-cosim-virt.dts"
+#include "board-versal-net-psx-virt.dts"
+#include "versal-net-pl-remoteport.dtsi"
+
+&pmc_tap {
+	platform = <PLATFORM_QEMU_COSIM>;
+};

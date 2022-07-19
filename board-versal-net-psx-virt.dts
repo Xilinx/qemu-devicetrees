@@ -1,0 +1,155 @@
+/*
+ * Versal-Net Virtual PSX board device tree.
+ *
+ * Copyright (c) 2021, Xilinx Inc
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *     * Redistributions of source code must retain the above copyright
+ *       notice, this list of conditions and the following disclaimer.
+ *     * Redistributions in binary form must reproduce the above copyright
+ *       notice, this list of conditions and the following disclaimer in the
+ *       documentation and/or other materials provided with the distribution.
+ *     * Neither the name of the <organization> nor the
+ *       names of its contributors may be used to endorse or promote products
+ *       derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY
+ * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+#ifndef NUM_APUS
+#define NUM_APUS 16
+#endif
+
+#define NUM_APUS_PER_CLUSTER 4
+
+#define VERSAL_NPI_GENERIC
+#define VERSAL_PSX
+#define VERSAL_KSB
+#define VERSAL_NPI_OVERRIDE
+
+#define HAS_DDRMC0 1
+#define HAS_DDRMC1 1
+#define HAS_DDRMC2 1
+#define HAS_DDRMC3 1
+
+/* TODO: Add GIC interrupt redirection support.  */
+#define APU_GIC_INTERRUPT_TARGET_STEM cpu
+#define RPU_GIC_INTERRUPT_TARGET_STEM rpu_cpu
+
+#define APU_CPU_MODEL "cortex-a78-arm-cpu"
+#define RPU_CPU_MODEL "cortex-r52-arm-cpu"
+
+#include "ksb-npi-memmap.dtsh"
+#include "board-versal-ps-virt.dts"
+#include "versal-psx.dtsi"
+#include "versal-net-psmx.dtsi"
+#include "versal-psx-rpu.dtsi"
+#include "versal-net-boot-init.dtsi"
+#include "versal-net-hnic.dtsi"
+#include "versal-pmx-shared-overlay.dtsi"
+#include "versal-pmx-system-overlay.dtsi"
+#include "versal-psx-shared-overlay.dtsi"
+
+#ifndef KSB_APU_CPU_FREQ
+ #define KSB_APU_CPU_FREQ 2720000
+#endif
+
+#define SET_CPU_FREQ(n, f)					\
+&cpu ## n {							\
+	generic-timer-frequency = <f>;				\
+}
+
+SET_CPU_FREQ(0, KSB_APU_CPU_FREQ);
+SET_CPU_FREQ(1, KSB_APU_CPU_FREQ);
+SET_CPU_FREQ(2, KSB_APU_CPU_FREQ);
+SET_CPU_FREQ(3, KSB_APU_CPU_FREQ);
+SET_CPU_FREQ(4, KSB_APU_CPU_FREQ);
+SET_CPU_FREQ(5, KSB_APU_CPU_FREQ);
+SET_CPU_FREQ(6, KSB_APU_CPU_FREQ);
+SET_CPU_FREQ(7, KSB_APU_CPU_FREQ);
+#if (NUM_APUS >= 16)
+SET_CPU_FREQ(8, KSB_APU_CPU_FREQ);
+SET_CPU_FREQ(9, KSB_APU_CPU_FREQ);
+SET_CPU_FREQ(10,KSB_APU_CPU_FREQ);
+SET_CPU_FREQ(11,KSB_APU_CPU_FREQ);
+SET_CPU_FREQ(12,KSB_APU_CPU_FREQ);
+SET_CPU_FREQ(13,KSB_APU_CPU_FREQ);
+SET_CPU_FREQ(14,KSB_APU_CPU_FREQ);
+SET_CPU_FREQ(15,KSB_APU_CPU_FREQ);
+#endif
+#if (NUM_APUS >= 32)
+SET_CPU_FREQ(16, KSB_APU_CPU_FREQ);
+SET_CPU_FREQ(17, KSB_APU_CPU_FREQ);
+SET_CPU_FREQ(18, KSB_APU_CPU_FREQ);
+SET_CPU_FREQ(19, KSB_APU_CPU_FREQ);
+SET_CPU_FREQ(20, KSB_APU_CPU_FREQ);
+SET_CPU_FREQ(21, KSB_APU_CPU_FREQ);
+SET_CPU_FREQ(22, KSB_APU_CPU_FREQ);
+SET_CPU_FREQ(23, KSB_APU_CPU_FREQ);
+SET_CPU_FREQ(24, KSB_APU_CPU_FREQ);
+SET_CPU_FREQ(25, KSB_APU_CPU_FREQ);
+SET_CPU_FREQ(26, KSB_APU_CPU_FREQ);
+SET_CPU_FREQ(27, KSB_APU_CPU_FREQ);
+SET_CPU_FREQ(28, KSB_APU_CPU_FREQ);
+SET_CPU_FREQ(29, KSB_APU_CPU_FREQ);
+SET_CPU_FREQ(30, KSB_APU_CPU_FREQ);
+SET_CPU_FREQ(31, KSB_APU_CPU_FREQ);
+#endif
+
+&rpu_ctrl_a {
+	tcm-mr = <&s_axi_tcm_a>;
+};
+&rpu_ctrl_a0 {
+	core = <&rpu_cpu0>;
+};
+&rpu_ctrl_a1 {
+	core = <&rpu_cpu1>;
+};
+
+&rpu_ctrl_b {
+	tcm-mr = <&s_axi_tcm_b>;
+};
+&rpu_ctrl_b0 {
+	core = <&rpu_cpu2>;
+};
+&rpu_ctrl_b1 {
+	core = <&rpu_cpu3>;
+};
+
+&pmc_tap {
+	platform-ver = <0x5>;
+};
+
+&amba_pmc_pl {
+#ifdef MM_NPI_DDRMC5_MAIN_4
+	GEN_DDRMC_UB(4);
+	GEN_DDRMC_MAIN(4);
+	GEN_DDRMC_NOC(4);
+#endif
+#ifdef MM_NPI_DDRMC5_MAIN_5
+	GEN_DDRMC_UB(5);
+	GEN_DDRMC_MAIN(5);
+	GEN_DDRMC_NOC(5);
+#endif
+#ifdef MM_NPI_DDRMC5_MAIN_6
+	GEN_DDRMC_UB(6);
+	GEN_DDRMC_MAIN(6);
+	GEN_DDRMC_NOC(6);
+#endif
+#ifdef MM_NPI_DDRMC5_MAIN_7
+	GEN_DDRMC_UB(7);
+	GEN_DDRMC_MAIN(7);
+	GEN_DDRMC_NOC(7);
+#endif
+};

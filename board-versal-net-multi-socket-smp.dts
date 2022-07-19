@@ -1,5 +1,5 @@
 /*
- * Keystone-B Virtual Multi-socket SMP board device tree.
+ * Versal-Net Virtual Multi-socket SMP board device tree.
  *
  * Copyright (c) 2021, Xilinx Inc
  * All rights reserved.
@@ -29,7 +29,7 @@
 
 #define VERSAL_NPI_GENERIC
 #define NUM_APUS 32
-#include "board-versal-ksb-psx-virt.dts"
+#include "board-versal-net-psx-virt.dts"
 
 / {
 	kernel-base = <0x8000 0x0>;

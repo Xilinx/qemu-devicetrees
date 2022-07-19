@@ -149,7 +149,7 @@ name: name@addr64 {														\
 #ifdef VERSAL_KSB
  #include "ksb-memmap.dtsh"
  #include "ksb-gic-memmap.dtsh"
- #include "ksb-versal-memmap-aliases.dtsh"
+ #include "versal-psx-memmap-aliases.dtsh"
 #else
  #include "versal-top-memmap.dtsh"
  #include "versal-fpd-memmap.dtsh"

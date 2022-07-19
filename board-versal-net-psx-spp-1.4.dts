@@ -1,7 +1,7 @@
 /*
- * Versal-Net Virtual PSX cosim board device tree.
+ * Versal Keystone-B SPP PSX device tree.
  *
- * Copyright (c) 2021, Xilinx Inc
+ * Copyright (c) 2022, Xilinx Inc
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -27,4 +27,10 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "board-versal-net-psx-cosim-virt.dts"
+#define KSB_APU_CPU_FREQ 100000000
+
+#include "board-versal-net-psx-virt.dts"
+
+&pmc_tap {
+	platform-ver = <0x5>;
+};
