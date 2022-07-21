@@ -30,7 +30,7 @@
 #include "versal.dtsh"
 
 #ifdef VERSAL_PSX
-	#define COMPAT_DDRMC_UB "xlnx,ddrmc5-ub"
+	#define COMPAT_DDRMC_UB "xlnx,ddrmc5_ub"
 #else
 	#define COMPAT_DDRMC_UB "xlnx,versal-ddrmc-ub"
 #endif
