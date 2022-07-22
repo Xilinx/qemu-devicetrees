@@ -181,7 +181,7 @@ zname: zname@zbase {							\
 		compatible = "can-bus";
 	};
 
-	canfd0: can_core@MM_CANFD0 {
+	can0: can@MM_CANFD0 {
 		compatible = "xlnx,versal-canfd";
 		rx-fifo0 = <0x40>;
 		rx-fifo1 = <0x40>;
@@ -191,7 +191,7 @@ zname: zname@zbase {							\
 		reg = <0x0 MM_CANFD0 0x0 MM_CANFD0_SIZE 0x0>;
 		reset-gpios = <&crl CRL_RST_CAN0>;
 	};
-	canfd1: can_core@MM_CANFD1 {
+	can1: can@MM_CANFD1 {
 		compatible = "xlnx,versal-canfd";
 		rx-fifo0 = <0x40>;
 		rx-fifo1 = <0x40>;
