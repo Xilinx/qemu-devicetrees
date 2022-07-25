@@ -251,7 +251,7 @@ zname: dma-controller@zbase {							\
 		reset-gpios = <&crl CRL_RST_IPI>;
 	};
 
-	ps7_spi_0: ps7-spi@MM_SPI0 {
+	spi0: spi@MM_SPI0 {
 		compatible = "cdns,spi-r1p6";
 		interrupts = <SPI0_IRQ_0>;
 		num-ss-bits = <4>;
@@ -262,7 +262,7 @@ zname: dma-controller@zbase {							\
 		#bus-cells = <1>;
 		reset-gpios = <&crl CRL_RST_SPI0>;
 	};
-	ps7_spi_1: ps7-spi@MM_SPI1 {
+	spi1: spi@MM_SPI1 {
 		compatible = "cdns,spi-r1p6";
 		interrupts = <SPI1_IRQ_0>;
 		num-ss-bits = <4>;

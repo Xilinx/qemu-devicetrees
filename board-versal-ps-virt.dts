@@ -326,11 +326,11 @@ _NAME: _NAME@0 {							\
 	};								\
 };
 
-&ps7_spi_0 {
+&spi0 {
 	BDEV_SPI_FLASH(spi0_flash0, "m25p80", 0x00100000, 0x0 0x0)
 };
 
-&ps7_spi_1 {
+&spi1 {
 	BDEV_SPI_FLASH(spi1_flash0, "m25p80", 0x00100000, 0x0 0x0)
 };
 
