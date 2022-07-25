@@ -147,7 +147,7 @@
 		ranges ;
 		container = <&amba>;
 		priority = <0xFFFFFFFF>; /* -1 */
-		gic: interrupt-controller@APU_GIC_DIST {
+		gic: interrupt-controller@ACPU_GIC_DIST {
 			#address-cells = <0>;
 			#size-cells = <0>;
 			#interrupt-cells = <3>;
