@@ -162,14 +162,14 @@ zname: dma-controller@zbase {							\
 	GEM(gem0, MM_GEM0, MM_GEM0_SIZE, &smmu_tbu0, GEM0_IRQ_0, CRL_RST_GEM0, PLR_PWR_GEM0);
 	GEM(gem1, MM_GEM1, MM_GEM1_SIZE, &smmu_tbu0, GEM1_IRQ_0, CRL_RST_GEM1, PLR_PWR_GEM1);
 
-	serial@MM_UART0 {
+	serial0: serial@MM_UART0 {
 		compatible = "pl011";
 		interrupts = <UART0_IRQ_0>;
 		reg = <0x0 MM_UART0 0x0 MM_UART0_SIZE 0x0 >;
 		reset-gpios = < &crl CRL_RST_UART0 >;
 		chardev = "serial2";
 	};
-	serial@MM_UART1 {
+	serial1: serial@MM_UART1 {
 		compatible = "pl011";
 		interrupts = <UART1_IRQ_0>;
 		reg = <0x0 MM_UART1 0x0 MM_UART1_SIZE 0x0 >;
