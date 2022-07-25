@@ -52,7 +52,7 @@ zname ## _mattr: zname ## mattr {					\
 	requester-id = <mid>;						\
 };									\
 									\
-zname: zname@zbase {							\
+zname: dma-controller@zbase {							\
 	compatible = "xlnx,zdma";					\
 	reg = <0x0 zbase 0x0 MM_ADMA_CH0_SIZE 0x0>;			\
 	bus-width = <zbuswidth>;					\
