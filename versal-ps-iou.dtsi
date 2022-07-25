@@ -30,7 +30,7 @@
 #include "versal.dtsh"
 
 #define GEM(g_name, g_base, g_size, g_dma, g_irq, rst_idx, pwr_idx)	\
-g_name: g_name@0 {							\
+g_name: ethernet@g_base {						\
 	#address-cells = <1>;						\
 	#size-cells = <0>;						\
 	#priority-cells = <0>;						\
