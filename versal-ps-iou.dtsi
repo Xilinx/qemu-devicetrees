@@ -275,28 +275,28 @@ zname: zname@zbase {							\
 		slots = <2>;
 	};
 
-	ps7_ttc_0: ps7-ttc@TTC0 {
+	ttc0: timer@MM_TTC0 {
 		compatible = "xlnx,ps7-ttc-1.00.a";
 		interrupts = <TTC0_IRQ_0 TTC0_IRQ_1 TTC0_IRQ_2>;
 		reg = <0x0 MM_TTC0 0x0 MM_TTC0_SIZE 0x0>;
 		width = <32>;
 		reset-gpios = < &crl CRL_RST_TTC0 >;
 	};
-	ps7_ttc_1: ps7-ttc@TTC1 {
+	ttc1: timer@MM_TTC1 {
 		compatible = "xlnx,ps7-ttc-1.00.a";
 		interrupts = <TTC1_IRQ_0 TTC1_IRQ_1 TTC1_IRQ_2>;
 		reg = <0x0 MM_TTC1 0x0 MM_TTC1_SIZE 0x0>;
 		width = <32>;
 		reset-gpios = < &crl CRL_RST_TTC1 >;
 	};
-	ps7_ttc_2: ps7-ttc@TTC2 {
+	ttc2: timer@MM_TTC2 {
 		compatible = "xlnx,ps7-ttc-1.00.a";
 		interrupts = <TTC2_IRQ_0 TTC2_IRQ_1 TTC2_IRQ_2>;
 		reg = <0x0 MM_TTC2 0x0 MM_TTC2_SIZE 0x0>;
 		width = <32>;
 		reset-gpios = < &crl CRL_RST_TTC2 >;
 	};
-	ps7_ttc_3: ps7-ttc@TTC3 {
+	ttc3: timer@MM_TTC3 {
 		compatible = "xlnx,ps7-ttc-1.00.a";
 		interrupts = <TTC3_IRQ_0 TTC3_IRQ_1 TTC3_IRQ_2>;
 		reg = <0x0 MM_TTC3 0x0 MM_TTC3_SIZE 0x0>;
