@@ -288,7 +288,7 @@ glue(rpu_intc_redirect_, NCPU): glue(rpu_intc_redirect, NCPU)@NCPU {	\
 	MEM_REGION(ddr, 0x0, MM_TOP_DDR, 0x00000000, MM_TOP_DDR_SIZE, &ddr_mem)  // 2 GB
 	MEM_SPEC(ddr_2, MM_TOP_DDR_2_H, MM_TOP_DDR_2_L, MM_TOP_DDR_2,
                  MM_TOP_DDR_2_SIZE_H, MM_TOP_DDR_2_SIZE_L, &ddr_2_mem) // 32 GB
-        mdio0: mdio {
+	mdio0: mdio {
 		#address-cells = <1>;
 		#size-cells = <0>;
 		#priority-cells = <0>;
@@ -369,11 +369,11 @@ _NAME: _NAME@0 {							\
 };
 
 &gem0 {
-        mdio = <&mdio0>;
+	mdio = <&mdio0>;
 };
 
 &gem1 {
-        mdio = <&mdio0>;
+	mdio = <&mdio0>;
 };
 
 &cpu0 {
