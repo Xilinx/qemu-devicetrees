@@ -144,7 +144,7 @@ zname: dma-controller@zbase {							\
 	};
 
 #ifdef MM_FPD_FPD_WWDT
-	fpd_wwdt: wwdt@MM_FPD_FPD_WWDT {
+	wwdt0: watchdog@MM_FPD_FPD_WWDT {
 		compatible = "xlnx,versal-wwdt";
 		reg = <0x0 MM_FPD_FPD_WWDT 0x0 MM_FPD_FPD_WWDT_SIZE 0x0>;
 		/* IRQ order must match the QEMU model */
