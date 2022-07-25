@@ -293,15 +293,15 @@ glue(rpu_intc_redirect_, NCPU): glue(rpu_intc_redirect, NCPU)@NCPU {	\
 		#size-cells = <0>;
 		#priority-cells = <0>;
 		compatible="mdio";
-		phy0: phy@0 {
-			compatible = "88e1118r";
-			device_type = "ethernet-phy";
-			reg = <0>;
-		};
-		phy1: phy@1 {
-			compatible = "88e1118r";
+		phy0: phy@1 {
+			compatible = "dp83867";
 			device_type = "ethernet-phy";
 			reg = <1>;
+		};
+		phy1: phy@2 {
+			compatible = "88e1118r";
+			device_type = "ethernet-phy";
+			reg = <2>;
 		};
 	};
 };
