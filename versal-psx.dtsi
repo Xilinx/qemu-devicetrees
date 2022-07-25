@@ -114,7 +114,7 @@
 		reg = <0x0 MM_FPD_CMN 0x0 MM_FPD_CMN_SIZE 0x0>;
 	};
 
-	smmuv3@MM_FPD_SMMU {
+	smmu: smmuv3@MM_FPD_SMMU {
 		compatible = "arm-smmuv3";
 		reg-extended = <&amba_fpd 0x0 MM_FPD_MMU 0x0 MM_FPD_MMU_SIZE 0x0
 					    &smmu_tbu0 0x0 0x0 0xffffffff 0xffffffff 0x0

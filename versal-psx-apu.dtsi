@@ -128,7 +128,7 @@
 			reg = <0x0 0x0 0xffffffff 0xffffffff 0xffffffff >;
 		};
 
-		timer {
+		timer: timer {
 			compatible = "arm,armv8-timer";
 			interrupt-parent = <&gic>;
 			interrupts = <0x01000001 13 0xffffff01>,
