@@ -16,6 +16,7 @@
 				IRQ_PSM_INTC_PWR_CONTROL_REQ IRQ_PSM_INTC_ISOLATE_REQ
 				IRQ_PSMX_INTC_GPI_STATUS >;
 
+		gpio-controller;
 		#gpio-cells = <1>;
 		gpios = < &psm_local 35   &psm_local 36	/* LOC_PWR_STATE */
 			&psm_local 37   &psm_local 38
