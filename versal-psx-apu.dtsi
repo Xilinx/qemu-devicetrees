@@ -42,8 +42,7 @@
 #define APU_GPIOS(CRF, n)					\
 	reset-gpios = <CRF (n % 16)>;				\
 	gpios = < APU_WFI(n) >;					\
-	gpio-names = "wfi";					\
-	power-gpios = < APU_PWR(n) >
+	gpio-names = "wfi"					\
 
 #define GEN_APU_BODY(n, MR)					\
 		APU_COMMON_MR(n, NUM_APUS_PER_CLUSTER, MR);	\
@@ -54,6 +53,7 @@
 		cpu ## n: apu_cpu@ ## n {			\
 			GEN_APU_BODY(n, &amba_apu);		\
 			APU_GPIOS(&crf, n);			\
+			power-gpios = < APU_PWR(n) >;		\
 		}
 
 #define GEN_APU_SECONDARY(n)					\
@@ -61,6 +61,7 @@
 			GEN_APU_BODY(n, &amba_apu);		\
 			APU_SECONDARY(n);			\
 			APU_GPIOS(&crf, n);			\
+			power-gpios = < APU_PWR(n) >;		\
 		}
 
 #define GEN_APU_SECONDARY_SOCKET(n)				\
