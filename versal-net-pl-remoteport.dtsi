@@ -43,7 +43,7 @@
 		reg = <0x0 0xF5F00000 0x0 0x100000 0>;
 	};
 
-	s_afi_fm0: s_afi_fm0@0 {
+	s_pl_axi_fpd0: s_pl_axi_fpd0@0 {
 		compatible = "remote-port-memory-slave";
 		remote-ports = <&cosim_rp_0 10>;
 		mr = <&smmu_tbu7>;
@@ -51,66 +51,66 @@
 
 	/* DevID 11 reserved for s_axi_gp_1.  */
 
-	s_afi_fm1: s_afi_fm1@0 {
+	s_pl_axi_fpd1: s_pl_axi_fpd1@0 {
 		compatible = "remote-port-memory-slave";
 		remote-ports = <&cosim_rp_0 12>;
 		mr = <&smmu_tbu8>;
 	};
 
-	s_afi_fm2: s_afi_fm2@0 {
+	s_pl_axi_fpd2: s_pl_axi_fpd2@0 {
 		compatible = "remote-port-memory-slave";
 		remote-ports = <&cosim_rp_0 14>;
 		mr = <&smmu_tbu9>;
 	};
 
-	s_afi_fm3: s_afi_fm3@0 {
+	s_pl_axi_fpd3: s_pl_axi_fpd3@0 {
 		compatible = "remote-port-memory-slave";
 		remote-ports = <&cosim_rp_0 84>;
 		mr = <&smmu_tbu10>;
 	};
 
 	/* ACP via APU.  */
-	s_acp_fpd: s_acp_fpd@0 {
+	s_pl_acp_apu: s_pl_acp_apu@0 {
 		compatible = "remote-port-memory-slave";
 		remote-ports = <&cosim_rp_0 15>;
 		mr = <&amba>;
 	};
 
-	s_chi_fpd: s_chi_fpd@0 {
+	s_pl_chi_fpd: s_pl_chi_fpd@0 {
 		compatible = "remote-port-memory-slave";
 		remote-ports = <&cosim_rp_0 16>;
 		mr = <&amba>;
 	};
 
-	/* NOC NSU -> TBU5 -> CMN */
-	noc_fpd_cmn_0: noc_fpd_cmn_0@0 {
+	/* NOC NSU -> TBU2 -> CMN */
+	s_noc_axi_fpd0: s_noc_axi_fpd0@0 {
 		compatible = "remote-port-memory-slave";
 		remote-ports = <&cosim_rp_0 17>;
-		mr = <&smmu_tbu5>;
-	};
-
-	/* NOC NSU -> TBU4 -> CMN */
-	noc_fpd_cmn_1: noc_fpd_cmn_1@0 {
-		compatible = "remote-port-memory-slave";
-		remote-ports = <&cosim_rp_0 18>;
-		mr = <&smmu_tbu4>;
-	};
-
-	/* NOC NSU -> TBU3 -> CMN */
-	noc_fpd_cmn_2: noc_fpd_cmn_2@0 {
-		compatible = "remote-port-memory-slave";
-		remote-ports = <&cosim_rp_0 19>;
-		mr = <&smmu_tbu3>;
-	};
-
-	/* NOC NSU -> TBU2 -> CMN */
-	noc_fpd_cmn_3: noc_fpd_cmn_3@0 {
-		compatible = "remote-port-memory-slave";
-		remote-ports = <&cosim_rp_0 20>;
 		mr = <&smmu_tbu2>;
 	};
 
-	noc_cpm_pcie_0: noc_cpm_pcie_0@0 {
+	/* NOC NSU -> TBU3 -> CMN */
+	s_noc_axi_fpd1: s_noc_axi_fpd1@0 {
+		compatible = "remote-port-memory-slave";
+		remote-ports = <&cosim_rp_0 18>;
+		mr = <&smmu_tbu3>;
+	};
+
+	/* NOC NSU -> TBU4 -> CMN */
+	s_noc_axi_fpd2: s_noc_axi_fpd2@0 {
+		compatible = "remote-port-memory-slave";
+		remote-ports = <&cosim_rp_0 19>;
+		mr = <&smmu_tbu4>;
+	};
+
+	/* NOC NSU -> TBU5 -> CMN */
+	s_noc_axi_fpd3: s_noc_axi_fpd3@0 {
+		compatible = "remote-port-memory-slave";
+		remote-ports = <&cosim_rp_0 20>;
+		mr = <&smmu_tbu5>;
+	};
+
+	s_noc_axi_cpm: s_noc_axi_cpm@0 {
 		compatible = "remote-port-memory-slave";
 		remote-ports = <&cosim_rp_0 21>;
 		mr = <&amba>;
@@ -118,20 +118,20 @@
 
 	/* ID 22 is reserved */
 
-	noc_pmx_axi_0: noc_pmc_axi_0@0 {
+	s_noc_axi_pmcx0: s_noc_axi_pmcx0@0 {
 		compatible = "remote-port-memory-slave";
 		remote-ports = <&cosim_rp_0 23>;
 		mr = <&amba_pmc>;
 	};
 
-	s_afi_fm4: s_afi_fm4@0 {
+	s_pl_axi_lpd: s_pl_axi_lpd@0 {
 		compatible = "remote-port-memory-slave";
 		remote-ports = <&cosim_rp_0 24>;
 		mr = <&amba_xram>;
 	};
 
 	/* AXI ports directly from PSX to PL, bypassing NoC.  */
-	m_afi_fs0: m_afi_fs0@MM_TOP_FPD_AFI_0 {
+	m_fpd_axi_pl: m_fpd_axi_pl@MM_TOP_FPD_AFI_0 {
 		compatible = "remote-port-memory-master";
 		remote-ports = <&cosim_rp_0 40>;
 		reg = <0x0 MM_TOP_PS_PL_FPD_LowAddr0 0x0 MM_TOP_PS_PL_FPD_LowAddr0_SIZE 0x0
@@ -146,7 +146,7 @@
 
 	/* Device ID 41 reserved for m_axi_gp1 in Extended PS.  */
 
-	m_afi_fs2: m_afi_fs2@MM_TOP_LPD_AFI_FS {
+	m_lpd_axi_pl: m_lpd_axi_pl@MM_TOP_LPD_AFI_FS {
 		compatible = "remote-port-memory-master";
 		remote-ports = <&cosim_rp_0 42>;
 		reg = <0x0 MM_TOP_PS_PL_LPD_LowAddr 0x0 MM_TOP_PS_PL_LPD_LowAddr_SIZE 0x0>;
@@ -163,7 +163,7 @@
 		 * CMN SBSX -> Split 3: ID 85-86
 		 * CMN SBSX -> ISO: ID 87
 		 */
-		if_psx_noc_cmn_0: if_psx_noc_cmn_0@0 {
+		m_fpd_axi_noc0: m_fpd_axi_noc0@0 {
 			compatible = "remote-port-memory-master";
 			remote-ports = <&cosim_rp_0 50>;
 			/*
@@ -211,19 +211,21 @@
 	/* CPM_PCIE_NOC_0 - 1. ID 56 - 57 */
 	/* CPM_PCIE_NOC_2 - 3. ID 88 - 89 */
 
-	cpm_psx_bridge: cpm_psx_bridge@0 {
+	/* FPD/LPD/PMCX -> CPM */
+	m_cpm: m_cpm@0 {
 		compatible = "remote-port-memory-master";
 		remote-ports = <&cosim_rp_0 90>;
 		reg = <0x0 MM_TOP_CPM 0x0 MM_TOP_CPM_SIZE 0x0>;
 	};
 
+	/* CPM -> FPD */
 	s_cpm: s_cpm@0 {
 		compatible = "remote-port-memory-slave";
 		remote-ports = <&cosim_rp_0 91>;
 		mr = <&smmu_tbu1>;
 	};
 
-	noc_lpd_axi_0: noc_lpd_axi_0@0 {
+	m_lpd_axi_noc0: m_lpd_axi_noc0@0 {
 		compatible = "remote-port-memory-master";
 		remote-ports = <&cosim_rp_0 58>;
 	};
@@ -276,13 +278,12 @@
 
 &amba_pmc_internal {
 
-	/* IF_PMX_NOC_AXI_0.
-	 *
-	 * Traffic originating from the PMX targeting this list
+	/*
+	 * Traffic originating from the PMCX targeting this list
 	 * of address ranges will go out on this dedicated port from
-	 * the PMX to the NoC.
+	 * the PMCX to the NoC.
 	 */
-	pmx_noc_axi_0: pmx_noc_axi_0@0 {
+	m_pmcx_axi_noc0: m_pmcx_axi_noc0@0 {
 		compatible = "remote-port-memory-master";
 		remote-ports = <&cosim_rp_0 59>;
 		reg = <
