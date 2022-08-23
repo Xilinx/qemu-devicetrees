@@ -26,7 +26,8 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
+#ifndef __VERSAL_SIL_FREQ__
+#define __VERSAL_SIL_FREQ__
 
 &cpu0 {
 	generic-timer-frequency = <100000000>;
@@ -63,4 +64,4 @@
 	frequency = <100000000>;
 };
 
-
+#endif

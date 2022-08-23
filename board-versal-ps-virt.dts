@@ -82,6 +82,7 @@
 #include "versal-virtio-mmio.dtsi"
 #include "versal-boot-init.dtsi"
 #include "versal-gty.dtsi"
+#include "versal-silicon-freq.dtsi"
 
 / {
 #ifdef MULTI_ARCH
@@ -374,21 +375,5 @@ _NAME: _NAME@0 {							\
 
 &gem1 {
 	mdio = <&mdio0>;
-};
-
-&cpu0 {
-	generic-timer-frequency = <2720000>;
-};
-
-&cpu1 {
-	generic-timer-frequency = <2720000>;
-};
-
-&cpu2 {
-	generic-timer-frequency = <2720000>;
-};
-
-&cpu3 {
-	generic-timer-frequency = <2720000>;
 };
 #endif
