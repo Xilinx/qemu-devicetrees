@@ -1,0 +1,18 @@
+/*
+ * Board dts for vc-p-a2197-00-prc-02
+ *
+ * Copyright (c) 2022, Xilinx Inc
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+#include "board-versal-ps-vc-p-a2197-00.dts"
+
+&mdio0 {
+
+	phy0: phy@1 {
+		compatible = "88e1510";
+	};
+	/delete-node/ phy@2;
+};
