@@ -225,6 +225,12 @@
 		mr = <&smmu_tbu1>;
 	};
 
+	m_hnic: m_hnic@0 {
+		compatible = "remote-port-memory-master";
+		remote-ports = <&cosim_rp_0 92>;
+		reg = <0x0 MM_TOP_HNIC 0x0 MM_TOP_HNIC_SIZE 0x0>;
+	};
+
 	m_lpd_axi_noc0: m_lpd_axi_noc0@0 {
 		compatible = "remote-port-memory-master";
 		remote-ports = <&cosim_rp_0 58>;
