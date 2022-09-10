@@ -30,12 +30,6 @@
 #include "versal-silicon-freq.dtsi"
 
 /{
-	ddr_3_mem: memory@MM_TOP_DDR_CH1 {
-		compatible = "qemu:memory-region";
-		device_type = "memory";
-		container = <&amba>;
-	};
-
 	MEM_REGION64(ddr_3, MM_TOP_DDR_CH1_H, MM_TOP_DDR_CH1_L, MM_TOP_DDR_CH1,
                  0x2, 0x0, &ddr_3_mem) // 8 GB
 };
