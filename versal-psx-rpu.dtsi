@@ -50,7 +50,7 @@
 			#address-cells = <1>;
 			#size-cells = <0>;
 			rpu_cpu0: rpu_cpu_a@0 {
-				RPU_CPU_COMMON(0, 1, 0);
+				RPU_CPU_COMMON(0, 0, 0);
 				core-count = <2>;
 				gdb-id = "Cortex-R52 #a0";
 				gpios = < &crl CRL_RST_RPU_A_0
@@ -58,7 +58,7 @@
 				gpio-names = "reset", "halt";
 			};
 			rpu_cpu1: rpu_cpu_a@1 {
-				RPU_CPU_COMMON(1, 1, 1);
+				RPU_CPU_COMMON(1, 0, 1);
 				core-count = <2>;
 				gdb-id = "Cortex-R52 #a1";
 				gpios = < &crl CRL_RST_RPU_A_1
@@ -71,7 +71,7 @@
 			#address-cells = <1>;
 			#size-cells = <0>;
 			rpu_cpu2: rpu_cpu_b@0 {
-				RPU_CPU_COMMON(2, 2, 0);
+				RPU_CPU_COMMON(2, 1, 0);
 				core-count = <2>;
 				gdb-id = "Cortex-R52 #b0";
 				gpios = < &crl CRL_RST_RPU_B_0
@@ -79,7 +79,7 @@
 				gpio-names = "reset", "halt";
 			};
 			rpu_cpu3: rpu_cpu_b@1 {
-				RPU_CPU_COMMON(3, 2, 1);
+				RPU_CPU_COMMON(3, 1, 1);
 				core-count = <2>;
 				gdb-id = "Cortex-R52 #b1";
 				gpios = < &crl CRL_RST_RPU_B_1
