@@ -56,6 +56,7 @@
 				gpios = < &crl CRL_RST_RPU_A_0
 				  &rpu_ctrl_a0 0 >;
 				gpio-names = "reset", "halt";
+				reset-cbar = <MM_RPU_GIC>;
 			};
 			rpu_cpu1: rpu_cpu_a@1 {
 				RPU_CPU_COMMON(1, 0, 1);
@@ -64,6 +65,7 @@
 				gpios = < &crl CRL_RST_RPU_A_1
 				  &rpu_ctrl_a1 0 >;
 				gpio-names = "reset", "halt";
+				reset-cbar = <MM_RPU_GIC>;
 			};
 		};
 
@@ -77,6 +79,7 @@
 				gpios = < &crl CRL_RST_RPU_B_0
 				  &rpu_ctrl_b0 0 >;
 				gpio-names = "reset", "halt";
+				reset-cbar = <MM_RPU_GIC>;
 			};
 			rpu_cpu3: rpu_cpu_b@1 {
 				RPU_CPU_COMMON(3, 1, 1);
@@ -85,6 +88,7 @@
 				gpios = < &crl CRL_RST_RPU_B_1
 				  &rpu_ctrl_b1 0 >;
 				gpio-names = "reset", "halt";
+				reset-cbar = <MM_RPU_GIC>;
 			};
 		};
 	};
