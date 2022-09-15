@@ -70,3 +70,19 @@
 		};
 	};
 };
+
+&mdio0 {
+	/delete-node/ phy@7;
+	phy4:	phy@4 {
+		compatible = "dp83867";
+		device_type = "ethernet-phy";
+	};
+	phy8:	phy@8 {
+		compatible = "dp83867";
+		device_type = "ethernet-phy";
+	};
+};
+
+&gem1 {
+	mdio = <&mdio0>;
+};
