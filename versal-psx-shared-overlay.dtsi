@@ -40,6 +40,12 @@
 #define MM_PMX_ADMA_CH6			0xffd60000
 #define MM_PMX_ADMA_CH7			0xffd70000
 
+#define MM_USB_DWC3_1			(MM_USB_XHCI1 + 0xC100)
+#define MM_USB_DWC3_1_SIZE		0x600
+
+#define KSB_CRL_RST_USB0		3
+#define KSB_CRL_RST_USB1		4
+
 &adma0 {
 	reg = <0x0 MM_PMX_ADMA_CH0 0x0 MM_ADMA_CH0_SIZE 0x0>;
 };
@@ -81,4 +87,25 @@
 		      IPI_NOBUF5_IRQ_0
 		      IPI_NOBUF6_IRQ_0>;
 	num-master-ids = <32>;
+};
+
+/ {
+	MEMATTR(usb1, NON_SECURE, SMID_USB1);
+};
+
+&dwc3_0 {
+	reset-gpios = <&crl KSB_CRL_RST_USB0>;
+};
+
+&amba_lpd {
+	dwc3_1: usb2@USB2_0_XHCI1 {
+		compatible = "usb_dwc3";
+		reg = <0x0 MM_USB_DWC3_1 0x0 MM_USB_DWC3_1_SIZE 0x0 0x0 MM_USB_XHCI1 0x0 MM_USB_XHCI1_SIZE 0x0>;
+		interrupts = <USB1_int_IRQ_0 USB1_int_IRQ_1 USB1_int_IRQ_2 USB1_int_IRQ_3>;
+		dma = <&smmu_tbu0>;
+		memattr = <&usb1_memattr>;
+		reset-gpios = <&crl KSB_CRL_RST_USB1>;
+		intrs = <4>;
+		slots = <2>;
+	};
 };
