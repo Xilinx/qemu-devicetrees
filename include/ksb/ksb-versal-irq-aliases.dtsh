@@ -74,10 +74,10 @@
 #define FPD_GWDT_WS0_IRQ_0         FPD_GWDT0_WS0_IRQ_0
 #define FPD_GWDT_WS1_IRQ_0         FPD_GWDT0_WS1_IRQ_0
 
-#define USB2_IRQ_0                 USB1_int_IRQ_0
-#define USB2_IRQ_1                 USB1_int_IRQ_1
-#define USB2_IRQ_2                 USB1_int_IRQ_2
-#define USB2_IRQ_3                 USB1_int_IRQ_3
+#define USB2_IRQ_0                 USB0_int_IRQ_0
+#define USB2_IRQ_1                 USB0_int_IRQ_1
+#define USB2_IRQ_2                 USB0_int_IRQ_2
+#define USB2_IRQ_3                 USB0_int_IRQ_3
 
 #define OCMINTR_IRQ_0              OCM0INTR_IRQ_0
 
