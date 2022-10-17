@@ -215,7 +215,9 @@
 	m_cpm: m_cpm@0 {
 		compatible = "remote-port-memory-master";
 		remote-ports = <&cosim_rp_0 90>;
-		reg = <0x0 MM_TOP_CPM 0x0 MM_TOP_CPM_SIZE 0x0>;
+		reg = <0x0 MM_TOP_CPM 0x0 MM_TOP_CPM_SIZE 0x0
+			0x0 MM_TOP_PCIE_REGION0 0x0 MM_TOP_PCIE_REGION0_SIZE 0x0
+			>;
 	};
 
 	/* CPM -> FPD */
