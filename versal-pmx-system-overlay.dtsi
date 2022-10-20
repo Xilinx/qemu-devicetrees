@@ -130,6 +130,11 @@
 		compatible = "xlnx,pmx-err-mng";
 		reg = <0x0 (MM_PMC_PMC_GLOBAL + 0x20000) 0x0 0x10000 0x1>;
 	};
+
+	pmx_anlg: pmx_anlg@MM_PMX_ANLG {
+		compatible = "xlnx,pmx_anlg";
+		reg = <0x0 MM_PMC_PMC_ANALOG 0 MM_PMC_PMC_ANALOG_SIZE 0x0>;
+	};
 };
 
 
