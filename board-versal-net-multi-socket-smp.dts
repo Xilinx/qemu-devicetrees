@@ -141,3 +141,30 @@
 			MM_TOP_PSX_SOCKET_0_TO_1_SIZE_H MM_TOP_PSX_SOCKET_0_TO_1_SIZE_L 0>;
 	};
 };
+
+&amba_pmc {
+	/delete-node/ xmpu_pmc_cfu@MM_XMPU_PMC_CFU;
+};
+
+&amba_pmc_internal {
+	/delete-node/ downstream_amba_pmc_pl;
+	/delete-node/ xppu_pmc_npi@MM_PMC_PMC_XPPU_NPI;
+};
+
+&lmb_ddrmc0 {
+	/delete-node/ alias_npi_ddrmc_main;
+};
+
+&amba_root{
+	/delete-node/ amba_pmc_pl@0;
+};
+
+/{
+	npi_ddrmc_ub0: npi_ddrmc_ub0@0 {
+		#interrupt-cells = <1>;
+	};
+
+	npi_ddrmc_ub1: npi_ddrmc_ub0@1 {
+		#interrupt-cells = <1>;
+	};
+};
