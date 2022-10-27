@@ -29,6 +29,9 @@
 
 #include "versal.dtsh"
 
+#define MM_SAM_CPM_VIRTUAL_BAR_LOW 0xfc700000
+#define MM_SAM_CPM_VIRTUAL_BAR_LOW_SIZE 0x100000
+
 &amba {
 	cosim_rp_0: cosim@0 {
 		compatible = "remote-port";
@@ -217,6 +220,7 @@
 		remote-ports = <&cosim_rp_0 90>;
 		reg = <0x0 MM_TOP_CPM 0x0 MM_TOP_CPM_SIZE 0x0
 			0x0 MM_TOP_PCIE_REGION0 0x0 MM_TOP_PCIE_REGION0_SIZE 0x0
+			0x0 MM_SAM_CPM_VIRTUAL_BAR_LOW 0x0 MM_SAM_CPM_VIRTUAL_BAR_LOW_SIZE 0x0
 			>;
 	};
 
