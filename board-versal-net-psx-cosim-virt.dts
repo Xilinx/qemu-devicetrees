@@ -27,7 +27,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "board-versal-net-psx-virt.dts"
+#include "board-versal-net-psx-spp-1.4.dts"
 #include "versal-net-pl-remoteport.dtsi"
 
 &pmc_tap {
