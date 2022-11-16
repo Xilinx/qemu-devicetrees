@@ -80,9 +80,9 @@
 		compatible = "remote-port-memory-master";
 		reg = <
 #if defined(MM_NPI_ME_NPI_0)
-			0x0 MM_NPI_ME_NPI_0 0x0 MM_NPI_ME_NPI_0_SIZE 0x1
+			0x0 MM_NPI_ME_NPI_0 0x0 MM_NPI_ME_NPI_0_SIZE 0x2
 #elif defined(MM_NPI_AIE2_NPI_0)
-			0x0 MM_NPI_AIE2_NPI_0 0x0 MM_NPI_AIE2_NPI_0_SIZE 0x1
+			0x0 MM_NPI_AIE2_NPI_0 0x0 MM_NPI_AIE2_NPI_0_SIZE 0x2
 #endif
 			>;
 		remote-ports = <&cosim_rp_0 60>;
