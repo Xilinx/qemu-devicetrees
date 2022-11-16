@@ -213,6 +213,14 @@
 		reset-gpios = <&pmc_clk_rst CRP_RST_NONPS_NPI >;
 	};
 #endif
+#ifdef MM_NPI_AIE2_NPI_0
+	npi_me: npi_me@MM_NPI_ME_NPI_0 {
+		compatible = "xlnx,me-npi";
+		reg = <0x0 MM_NPI_AIE2_NPI_0 0x0 MM_NPI_AIE2_NPI_0_SIZE 0x1>;
+		reset-gpios = <&pmc_clk_rst CRP_RST_NONPS_NPI >;
+	};
+#endif
+
 
 #ifdef VERSAL_NPI_GENERIC
 	noc_npi_devs: noc_npi_devs@0 {
