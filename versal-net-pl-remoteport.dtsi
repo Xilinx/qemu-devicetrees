@@ -233,6 +233,18 @@
 		mr = <&smmu_tbu1>;
 	};
 
+	/* CPM interrupts. */
+	rp_cpm_irq: rp_cpm_irq@0 {
+		compatible = "remote-port-gpio";
+		remote-ports = <&cosim_rp_0 93>;
+		num-gpios = <16>;
+		interrupts = <CPM_COMB_IRQ_0
+			      CPM_MISC_IRQ_0
+			      CPM_CORR_IRQ_0
+			      CPM_UNCORR_IRQ_0
+			      >;
+	};
+
 	m_hnic: m_hnic@0 {
 		compatible = "remote-port-memory-master";
 		remote-ports = <&cosim_rp_0 92>;
