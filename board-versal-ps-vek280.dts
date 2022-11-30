@@ -41,3 +41,10 @@
 		blockdev-node-name = "ps_i2c1.eeprom-54";
 	};
 };
+
+&mdio0 {
+
+	phy0: phy@1 {
+		compatible = "ADIN1300";
+	};
+};
