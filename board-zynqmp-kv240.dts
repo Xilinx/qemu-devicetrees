@@ -1,0 +1,13 @@
+/*
+ * ZynqMP KV240  device tree
+ *
+ * Copyright (c) 2022, AMD Inc
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ *
+ * K24 SOM + KV Carrier
+ */
+
+#include "board-zynqmp-k24-som.dts"
+#include "board-zynqmp-sck-kv.dtsi"
