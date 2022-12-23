@@ -1,0 +1,53 @@
+/*
+ * ZynqMP KV Carrier card device tree
+ *
+ * Copyright (c) 2022, AMD Inc
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ *
+ * QEMU KV Supports
+ * 	DP
+ * 	SD
+ * 	Ethernet
+ * 	USB
+ * 	EEPROM
+ * 	WDT
+ * 	SATA
+ *
+ * eproms need to use blockdev
+ * ex:
+ * -blockdev node-name=i2c1.eeprom-51,filename=eeprom1.bin,driver=file
+ *
+ * Not Supported:
+ * PMOD
+ * Image sensor and Camera connectors
+ */
+
+&i2c1 {
+	eeprom1: eeprom@51 {
+		compatible = "at,24c08";
+		reg = <0x51>;
+		size = <0x2000>;
+		blockdev-node-name = "i2c1.eeprom-51";
+	};
+	ina260 {
+		compatible = "i2c-dev-dummy";
+		reg = <0x40>;
+	};
+	usb5744@1 {
+		compatible = "i2c-dev-dummy";
+		reg = <0x2d>;
+	};
+};
+
+&mdio0 {
+	phy1: phy@1 {
+		compatible = "dp83867";
+		device_type = "ethernet-phy";
+	};
+};
+
+&gem3 {
+	mdio = <&mdio0>;
+};
