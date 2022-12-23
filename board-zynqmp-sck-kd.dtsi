@@ -1,0 +1,74 @@
+/*
+ * ZynqMP KD Carrier card device tree
+ *
+ * Copyright (c) 2022, AMD Inc
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ *
+ * KD CC has GEM1, CAN0, USB.
+ *
+ * GEM0/1/2/3 are connected with DP83867 Eth Phy.
+ * eproms need to use blockdev
+ * ex:
+ *
+ * -blockdev node-name=i2c1.eeprom-51,filename=eeprom1.bin,driver=file
+ *
+ * Not Supported:
+ * 	Motor Drive control
+ * 	PL Enet
+ * 	PMOD
+ */
+
+&i2c1 {
+	eeprom1: eeprom@51 {
+		compatible = "at,24c08";
+		reg = <0x51>;
+		size = <0x2000>;
+		blockdev-node-name = "i2c1.eeprom-51";
+	};
+	ina260 {
+		compatible = "i2c-dev-dummy";
+		reg = <0x40>;
+	};
+	usb5744@0 {
+		compatible = "i2c-dev-dummy";
+		reg = <0x2c>;
+	};
+	usb5744@1 {
+		compatible = "i2c-dev-dummy";
+		reg = <0x2d>;
+	};
+};
+
+&mdio0 {
+	/delete-node/ phy@7;
+	phy0: phy@0 {
+		compatible = "dp83867";
+		device_type = "ethernet-phy";
+	};
+	phy2: phy@2 {
+		compatible = "dp83867";
+		device_type = "ethernet-phy";
+	};
+	phy3: phy@3 {
+		compatible = "dp83867";
+		device_type = "ethernet-phy";
+	};
+};
+
+&gem0 {
+	mdio = <&mdio0>;
+};
+
+&gem1 {
+	mdio = <&mdio0>;
+};
+
+&gem2 {
+	mdio = <&mdio0>;
+};
+
+&gem3 {
+	mdio = <&mdio0>;
+};
