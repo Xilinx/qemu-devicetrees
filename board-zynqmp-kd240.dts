@@ -1,0 +1,9 @@
+/*
+ * ZynqMP KD240 starter kit device tree
+ *
+ * Copyright (c) 2022, AMD Inc
+ * All rights reserved.
+ */
+
+#include "board-zynqmp-k24-som.dts"
+#include "board-zynqmp-sck-kd.dtsi"
