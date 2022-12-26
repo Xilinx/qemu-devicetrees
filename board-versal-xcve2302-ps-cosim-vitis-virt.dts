@@ -28,7 +28,3 @@
  */
 #include "board-versal-xcve2302-ps-cosim-virt.dts"
 #include "versal-vitis.dtsi"
-
-/{
-	/delete-node/ ddr_3@MM_TOP_DDR_CH1;
-};

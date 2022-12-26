@@ -30,7 +30,3 @@
 #include "board-versal-xcvc2802-ps-virt.dts"
 #include "versal-ps-pl-remoteport.dtsi"
 #include "versal-vitis.dtsi"
-
-/{
-	/delete-node/ ddr_3@MM_TOP_DDR_CH1;
-};

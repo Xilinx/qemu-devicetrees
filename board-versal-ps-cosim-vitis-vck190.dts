@@ -29,7 +29,3 @@
 
 #include "board-versal-ps-cosim-vck190.dts"
 #include "versal-vitis.dtsi"
-
-/{
-	/delete-node/ ddr_3@MM_TOP_DDR_CH1;
-};

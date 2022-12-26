@@ -8,9 +8,4 @@
  */
 
 #include "board-versal-ps-cosim-virt.dts"
-
-/{
-	/delete-node/ ddr_3@MM_TOP_DDR_CH1;
-};
-
 #include "versal-vitis.dtsi"
