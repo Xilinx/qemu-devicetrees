@@ -29,7 +29,3 @@
 
 #include "board-versal-ps-virt.dts"
 #include "versal-ps-pl-remoteport.dtsi"
-
-&pmc_tap {
-	platform = <PLATFORM_QEMU_COSIM>;
-};

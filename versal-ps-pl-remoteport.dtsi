@@ -29,6 +29,10 @@
 
 #include "versal.dtsh"
 
+&pmc_tap {
+	platform = <PLATFORM_QEMU_COSIM>;
+};
+
 &amba {
 	cosim_rp_0: cosim@0 {
 		compatible = "remote-port";
