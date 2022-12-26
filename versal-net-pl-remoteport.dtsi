@@ -32,6 +32,10 @@
 #define MM_SAM_CPM_VIRTUAL_BAR_LOW 0xfc700000
 #define MM_SAM_CPM_VIRTUAL_BAR_LOW_SIZE 0x100000
 
+&pmc_tap {
+	platform = <PLATFORM_QEMU_COSIM>;
+};
+
 &amba {
 	cosim_rp_0: cosim@0 {
 		compatible = "remote-port";
