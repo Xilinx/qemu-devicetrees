@@ -38,11 +38,18 @@ else
 QUIET=
 endif
 
+SKIP_AUTO_GEN= board-versal-xcvc2802-ps-cosim-vitis-virt.dts	\
+		board-versal-xcve2302-ps-cosim-vitis-virt.dts
+
+# Picks all versal varients except boards which are mentioned in SKIP_AUTO_GEN
+AUTO_GEN_DTS	:= $(filter-out $(SKIP_AUTO_GEN),	\
+				$(patsubst %ps-virt.dts, %ps-cosim-vitis-virt.dts, $(wildcard board-versal-*-ps-virt.dts)))
+
 SINGLE_ARCH_OUTDIR		:= $(OUTDIR)/LATEST/SINGLE_ARCH
 MULTI_ARCH_OUTDIR 		:= $(OUTDIR)/LATEST/MULTI_ARCH
 LQSPI_XIP_OUTDIR		:= $(OUTDIR)/LATEST/LQSPI_XIP
 
-DTS_FILES			:= $(wildcard *.dts)
+DTS_FILES			:= $(wildcard *.dts) $(AUTO_GEN_DTS)
 DTSI_FILES			:= $(wildcard *.dtsi)
 HEADER_FILES			:= $(wildcard *.dtsh)
 HEADER_FILES			+= $(wildcard include/*.dtsh)
@@ -62,7 +69,7 @@ COMPILE = \
 	$(GCC) -E -nostdinc ${CPPFLAGS} -x assembler-with-cpp $(3) -MD -MF $@.cd -o $(@:.dtb=.dts.i) $<; \
 	$(DTC) -q -O $(2) -@ -I dts -o $@ $(@:.dtb=.dts.i) -b 0;
 
-all:	$(call TARGETS,dtb)
+all:	$(AUTO_GEN_DTS) $(call TARGETS,dtb)
 
 -include $(call TARGETS, cd)
 
@@ -90,6 +97,26 @@ $(LQSPI_XIP_OUTDIR)/%.dts:	%.dts $(DTSI_FILES) $(HEADER_FILES)
 
 # Auto-generated Versal fragments
 # TODO: Add support for auto-generated dependency list
+define AUTO_GEN_HEAD
+/* Auto-Generated via Makefile
+ *
+ * Copyright (c) 2022, AMD Inc
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+endef
+
+define AUTO_GEN_VERSAL_DEV
+
+#include "board-versal-$*-ps-virt.dts"
+#include "versal-ps-pl-remoteport.dtsi"
+#include "versal-vitis.dtsi"
+endef
+
+export AUTO_GEN_HEAD
+export AUTO_GEN_VERSAL_DEV
+
 versal-pmc-npi.dtsi: versal-pmc-npi-nxx.dtsi versal-h10-pmc-npi-nxx.dtsi versal-gty-npi.dtsi
 versal-pmc-npi-nxx.dtsi: Makefile
 	@python3 -c 'for a in range(0, 54): print("\tGEN_NMU(" + str(a) + ")")' > $@
@@ -106,8 +133,14 @@ versal-gty-npi.dtsi: Makefile
 	@python3 -c 'for a in range(0, 24): print("#ifdef MM_NPI_GTM_NPI_SLAVE_" + str(a) + "\n" + \
 						"\tGEN_GTM(" + str(a) + ");\n" + \
 						"#endif")' >> $@
+board-versal-%-ps-cosim-vitis-virt.dts: Makefile
+	$(if $(or $(findstring LATEST, $@), $(filter $(SKIP_AUTO_GEN), $@)), \
+			  @exit 0, \
+			  @echo "$$AUTO_GEN_HEAD""$$AUTO_GEN_VERSAL_DEV" > $@)
 
 clean:
 	$(RM) versal-pmc-npi-nxx.dtsi
 	$(RM) versal-h10-pmc-npi-nxx.dtsi
+	$(RM) versal-gty-npi.dtsi
+	$(RM) $(AUTO_GEN_DTS)
 	@rm -rf LATEST;
