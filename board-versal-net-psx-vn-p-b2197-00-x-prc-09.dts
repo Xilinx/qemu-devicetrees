@@ -1,0 +1,61 @@
+/* X-PRC-09 Daughter Card for vn-p-b2197-00 Board.
+ *
+ * Copyright (c) 2023, AMD Inc
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+/*
+ * Features
+ * 	-QSPI - MT25QU01GBBB8E12-0SIT - Dual Parellel
+ * 	-USB
+ * 	-SD
+ * 	-GEM0
+ * 		GEM_PHY: DP83867CRRGZ
+ * 	-UART0/1
+ * 	-BOOT MODE Supported: QSPI, SD
+ */
+
+#include "board-versal-net-psx-vn-p-b2197-00.dts"
+
+&ospi {
+	/delete-node/ ospi_flash_lcs_lb@0;
+	/delete-node/ ospi_flash_lcs_ub@0;
+	/delete-node/ ospi_flash_ucs_lb@0;
+	/delete-node/ ospi_flash_ucs_ub@0;
+};
+
+&pmc_qspi_0 {
+	/delete-node/ qspi_flash_lcs_ub@0;
+	/delete-node/ qspi_flash_ucs_lb@0;
+};
+
+&mdio0 {
+	/delete-node/ phy@2;
+	phy0: phy@1 {
+		compatible = "dp83867";
+		device_type = "ethernet-phy";
+		reg = <1>;
+	};
+};
+
+&ps_i2c1 {
+	eeprom1: eeprom@51 {
+		compatible = "at,24c08";
+		reg = <0x51>;
+		size = <0x2000>;
+		blockdev-node-name = "i2c1.eeprom-51";
+	};
+	i2c1_bridge: i2c1_bridge@0 {
+		compatible = "i2c-wire";
+		i2cWire-peer = <&i2c0_bridge>;
+	};
+};
+
+&ps_i2c0 {
+	i2c0_bridge: i2c0_bridge@0 {
+		compatible = "i2c-wire";
+		i2cWire-peer = <&i2c1_bridge>;
+	};
+};
