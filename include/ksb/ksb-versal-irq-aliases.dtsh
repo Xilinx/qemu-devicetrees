@@ -89,6 +89,8 @@
 #define XMPU_PRAM_IRQ_0            PMC_INT_IRQ_0
 #define XPPU_PMC_IRQ_0             PMC_INT_IRQ_0
 
+#define I2C0_IRQ_0                 I3C_I2C0_IRQ_0
+#define I2C1_IRQ_0                 I3C_I2C1_IRQ_0
 /*
  * Below interrupts are connected through an 'interrupts-extended' property or
  * through having a correct 'interrupt-parent' property setup (and not through
