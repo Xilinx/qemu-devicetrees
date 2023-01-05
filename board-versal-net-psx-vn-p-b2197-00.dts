@@ -1,0 +1,28 @@
+/* Versal Net vn-p-b2197-00 Board
+ *
+ * Copyright (c) 2022, AMD Inc
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+/*
+ * (4 + 4 + 4) LPDDR + 2 DDR
+ *
+ */
+#include "board-versal-net-xcvn3176-psx-virt.dts"
+
+/*
+ * DDR Memory Map
+ * 0 ... 0x80000000  -> 2GB
+ * TODO: Update the remaining address map
+ */
+
+&ps_i2c1 {
+	eeprom0: eeprom@54 {
+		compatible = "at,24c08";
+		reg = <0x54>;
+		size = <0x2000>;
+		blockdev-node-name = "i2c1.eeprom-54";
+	};
+};
