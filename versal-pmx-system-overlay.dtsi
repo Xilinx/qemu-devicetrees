@@ -73,6 +73,8 @@
 
 	pmc_analog@MM_PMC_PMC_ANALOG {
 		compatible = "xlnx,pmx_anlg";
+		interrupts-extended = <&pmc_gic_proxy
+					0 GLITCH_DET_IRQ_IRQ_0 0>;
 	};
 };
 
