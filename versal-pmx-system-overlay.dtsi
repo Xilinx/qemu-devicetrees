@@ -140,3 +140,11 @@
 &pmc_global {
        compatible = "xlnx,pmx_global";
 };
+
+&pmc_gic_proxy {
+       max-ints = <256>;
+};
+
+&psm_gic_proxy {
+       max-ints = <256>;
+};
