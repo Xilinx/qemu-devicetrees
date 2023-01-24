@@ -89,6 +89,45 @@
 			};
 		};
 	};
+
+	/* This models the SW4 button attached to MIO23_GPIO_PB.  */
+	sw4: sw4 {
+		compatible = "xlnx,gpio-key";
+		gpio-controller;
+		#gpio-cells = <1>;
+		num-gpios = <1>;
+		inverted = <1>;
+	};
+};
+
+&psu_gpio {
+	num-gpios = <24>;
+	gpios = <
+		&dummy_gpio 0
+		&dummy_gpio 1
+		&dummy_gpio 2
+		&dummy_gpio 3
+		&dummy_gpio 4
+		&dummy_gpio 5
+		&dummy_gpio 6
+		&dummy_gpio 7
+		&dummy_gpio 8
+		&dummy_gpio 9
+		&dummy_gpio 10
+		&dummy_gpio 11
+		&dummy_gpio 12
+		&dummy_gpio 13
+		&dummy_gpio 14
+		&dummy_gpio 15
+		&dummy_gpio 16
+		&dummy_gpio 17
+		&dummy_gpio 18
+		&dummy_gpio 19
+		&dummy_gpio 20
+		&dummy_gpio 21
+		&dummy_gpio 22
+		&sw4 0
+	>;
 };
 
 &iou_slcr_0 {
