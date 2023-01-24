@@ -1,0 +1,28 @@
+/*
+ * ZynqMP based zcu104 board
+ *
+ * Copyright (c) 2023, AMD Inc
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+#include "board-zynqmp-zcu102.dts"
+
+&mdio0 {
+	phy0: phy@7 {
+		compatible = "dp83867";
+	};
+};
+
+&i2c0 {
+	/delete-node/ tca6416@20;
+	/delete-node/ tca6416@21;
+};
+
+&i2c1 {
+		tca6416_u97: tca6416@20 {
+			compatible = "ti,tca6416";
+			reg = <0x20>;
+		};
+};
