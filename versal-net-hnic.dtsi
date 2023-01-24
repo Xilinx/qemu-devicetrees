@@ -9,11 +9,20 @@
 
 
 #define HNICX_NPI(x)	\
-	hnix_npi_ ## x: hnix_npi_## x@MM_NPI_HNICX_NPI_## x  { \
+	hnicx_npi_ ## x: hnicx_npi_## x@MM_NPI_HNICX_NPI_## x  { \
 		compatible = "xlnx,hnicx_npi";			\
 		reg = <0x0 MM_NPI_HNICX_NPI_ ## x 0x0		\
 			MM_NPI_HNICX_NPI_ ## x ## _SIZE 0x1>;	\
 		doc-limitations = "Just a stub";		\
+	}
+
+#define HNICX_PLLPOR(x)	\
+	hnicx_pllpor_ ## x: hnicx_pllpor_## x@MM_NPI_HNICX_PLLPOR_NPI_## x {	\
+		compatible = "xlnx,noc-npi-dev";				\
+		reg = <0x0 MM_NPI_HNICX_PLLPOR_NPI_## x 0x0			\
+			MM_NPI_HNICX_PLLPOR_NPI_## x ## _SIZE 0x1>;		\
+		custom = <1>;							\
+		pcsr-status = <0x8011>;						\
 	}
 
 &amba_pmc_pl {
@@ -21,7 +30,15 @@
 	HNICX_NPI(0);
 #endif
 
+#ifdef MM_NPI_HNICX_PLLPOR_NPI_0
+	HNICX_PLLPOR(0);
+#endif
+
 #ifdef MM_NPI_HNICX_NPI_1
 	HNICX_NPI(1);
+#endif
+
+#ifdef MM_NPI_HNICX_PLLPOR_NPI_1
+	HNICX_PLLPOR(1);
 #endif
 };
