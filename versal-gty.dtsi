@@ -7,19 +7,19 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-#define MM_GTYP_NPI_X_SIZE	0x20000
-#define MM_GTM_NPI_X_SIZE	0x20000
+#define MM_NPI_GTYP_NPI_X_SIZE	0x20000
+#define MM_NPI_GTM_NPI_X_SIZE	0x20000
 
 #define GEN_GTYP(n)	\
-	gtyp_npi_slave_ ## n ##@MM_GTYP_NPI_SLAVE_## n { \
+	gtyp_npi_slave_ ## n ##@MM_NPI_GTYP_NPI_SLAVE_## n { \
 		compatible = "xlnx,xlnx,gtyp_npi_slave"; \
-		reg = <0x0 MM_GTYP_NPI_SLAVE_## n  0x0 MM_GTYP_NPI_X_SIZE 0x0>; \
+		reg = <0x0 MM_NPI_GTYP_NPI_SLAVE_## n  0x0 MM_NPI_GTYP_NPI_X_SIZE 0x0>; \
 	}
 
 #define GEN_GTM(n)	\
-	gtm_npi_slave_ ## n ##@MM_GTM_NPI_SLAVE_## n { \
+	gtm_npi_slave_ ## n ##@MM_NPI_GTM_NPI_SLAVE_## n { \
 		compatible = "xlnx,xlnx,gtyp_npi_slave"; \
-		reg = <0x0 MM_GTM_NPI_SLAVE_## n  0x0 MM_GTM_NPI_X_SIZE 0x0>; \
+		reg = <0x0 MM_NPI_GTM_NPI_SLAVE_## n  0x0 MM_NPI_GTM_NPI_X_SIZE 0x0>; \
 	}
 
 &amba_pmc_pl {

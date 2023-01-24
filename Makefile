@@ -100,10 +100,10 @@ versal-h10-pmc-npi-nxx.dtsi: Makefile
 	@python3 -c 'for a in range(0, 33): print("\tGEN_NSU(" + str(a) + ")")' >> $@
 	@python3 -c 'for a in range(0, 135): print("\tGEN_NPS(" + str(a) + ")")' >> $@
 versal-gty-npi.dtsi: Makefile
-	@python3 -c 'for a in range(0, 4): print("#ifdef MM_GTYP_NPI_SLAVE_" + str(a) + "\n" + \
+	@python3 -c 'for a in range(0, 4): print("#ifdef MM_NPI_GTYP_NPI_SLAVE_" + str(a) + "\n" + \
 						"\tGEN_GTYP(" + str(a) + ");\n" + \
 						"#endif")' > $@
-	@python3 -c 'for a in range(0, 24): print("#ifdef MM_GTM_NPI_SLAVE_" + str(a) + "\n" + \
+	@python3 -c 'for a in range(0, 24): print("#ifdef MM_NPI_GTM_NPI_SLAVE_" + str(a) + "\n" + \
 						"\tGEN_GTM(" + str(a) + ");\n" + \
 						"#endif")' >> $@
 
