@@ -147,6 +147,8 @@
        max-ints = <256>;
 };
 
+#ifdef MM_PSM_GLOBAL_REG
 &psm_gic_proxy {
        max-ints = <256>;
 };
+#endif

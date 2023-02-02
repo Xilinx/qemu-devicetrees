@@ -96,8 +96,10 @@ name: name@addr64 {														\
 #define MM_PMC_GIC_PROXY (MM_PMC_PMC_GLOBAL + 0x30000)
 #define MM_PMC_GIC_PROXY_SIZE 0x100
 
+#ifdef MM_PSM_GLOBAL_REG
 #define MM_PSM_GIC_PROXY (MM_PSM_GLOBAL_REG + 0x2000)
 #define MM_PSM_GIC_PROXY_SIZE 0x100
+#endif
 
 /* IPI Message buffers.  */
 #define MM_IPI_MSGBUF		(MM_IPI + 0xF0000)

@@ -129,7 +129,7 @@
 		doc-name = "LMB PPU0";
 		doc-status = "in-progress";
 		CREATE_PSM_IOMOD(0);
-
+#ifdef MM_PSM_LOCAL_REG
 		psm_local: psm_local_reg@MM_PSM_LOCAL_REG {
 			gpio-controller;
 			#gpio-cells = <1>;
@@ -145,10 +145,12 @@
 			>;
 #endif
 		};
+#endif
 	};
 };
 
 &amba_psm {
+#ifdef MM_PSM_GIC_PROXY
 	psm_gic_proxy: psm_gic_proxy@0 {
 		doc-status = "complete";
 		#interrupt-cells = <3>;
@@ -159,7 +161,9 @@
 		interrupt-parent = <&psm0_io_intc>;
 		interrupts = <IRQ_PSM_INTC_GIC_PROXY>;
 	};
+#endif
 
+#ifdef MM_PSM_GLOBAL_REG
 	psm_global: psm_global_reg@MM_PSM_GLOBAL_REG {
 		compatible = "xlnx,psm-global-reg";
 		reg = <0x0 MM_PSM_GLOBAL_REG 0x0 MM_PSM_GLOBAL_REG_SIZE 0x0>;
@@ -211,4 +215,5 @@
 		compatible = "xlnx,psm-err-mng";
 		reg = <0x0 (MM_PSM_GLOBAL_REG + 0x1000) 0x0 0x100 0>;
 	};
+#endif
 };

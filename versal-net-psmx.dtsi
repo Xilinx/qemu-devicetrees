@@ -8,6 +8,7 @@
  */
 
 &amba_psm {
+#ifdef MM_PSM_GLOBAL_REG
 	psm_global: psm_global_reg@MM_PSM_GLOBAL_REG {
 		compatible = "xlnx,psmx_global_reg";
 		interrupt-parent = <&psm0_io_intc>;
@@ -59,10 +60,13 @@
 	psm_err_mng: psm_err_mng@MM_PSM_GLOBAL_REG {
 		compatible = "xlnx.psmx_err_reg";
 	};
+#endif
 };
 
 &lmb_psm {
+#ifdef MM_PSM_LOCAL_REG
 	psm_local: psm_local_reg@MM_PSM_LOCAL_REG {
 		compatible = "xlnx,psmx_local_reg";
 	};
+#endif
 };
