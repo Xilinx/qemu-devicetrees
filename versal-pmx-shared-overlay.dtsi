@@ -33,7 +33,7 @@
 
 /* PMX has increased the ROM size from 128K -> 256K.  */
 #define MM_PMX_PMX_ROM			MM_PMC_PMC_ROM
-#define MM_PMX_PMX_ROM_SIZE		0x40000
+#define MM_PMX_PMX_ROM_SIZE		MM_PMC_PMC_ROM_SIZE
 
 /*
  * PMX has increased the PPU1 INSTR RAM size from 128K -> 384K.
