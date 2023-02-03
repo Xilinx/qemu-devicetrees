@@ -184,6 +184,29 @@
 	compatible = "xlnx,psx_crl";
 };
 
+#define GEN_RPU_CTRL(clow, cup)										      \
+	rpu_ctrl_ ## clow: rpu_cluster@MM_PSX_RPU_CLUSTER_ ## cup {					      \
+		compatible = "xlnx,psx_rpu_cluster_2.0";						      \
+		reg = <0x0 MM_PSX_RPU_CLUSTER_ ## cup 0x0 MM_PSX_RPU_CLUSTER_ ## cup ## _SIZE 0x0>;	      \
+		#gpio-cells = <1>;									      \
+		gpio-controller;									      \
+	};												      \
+	rpu_ctrl_ ## clow ## 0: rpu_ctrl_ ## clow ## 0@MM_PSX_RPU_CLUSTER_ ## cup ## 0 {		      \
+		compatible = "xlnx,psx_rpu_cluster_core0";						      \
+		reg = <0x0 MM_PSX_RPU_CLUSTER_ ## cup ## 0 0x0 MM_PSX_RPU_CLUSTER_ ## cup ## 0 ## _SIZE 0x0>; \
+		#gpio-cells = <1>;									      \
+		gpio-controller;									      \
+		gpios = <&crl CRL_RST_RPU_ ## cup ## _0>;						      \
+	};												      \
+	rpu_ctrl_ ## clow ## 1: rpu_ctrl_ ## clow ## 1@MM_PSX_RPU_CLUSTER_ ## cup ## 1 {		      \
+		compatible = "xlnx,psx_rpu_cluster_core1";						      \
+		reg = <0x0 MM_PSX_RPU_CLUSTER_ ## cup ## 1 0x0 MM_PSX_RPU_CLUSTER_ ## cup ## 1 ## _SIZE 0x0>; \
+		#gpio-cells = <1>;									      \
+		gpio-controller;									      \
+		gpios = <&crl CRL_RST_RPU_ ## cup ## _1							      \
+			&rpu_ctrl_ ## clow 0>;								      \
+	}
+
 &amba_lpd {
 	rpu_ctrl: rpu_ctrl@0 {
 		/*TODO: Delete this node after we connect
@@ -193,49 +216,8 @@
 		gpio-controller;
 	};
 
-	rpu_ctrl_a: rpu_cluster@MM_PSX_RPU_CLUSTER_A {
-		compatible = "xlnx,psx_rpu_cluster_2.0";
-		reg = <0x0 MM_PSX_RPU_CLUSTER_A 0x0 MM_PSX_RPU_CLUSTER_A_SIZE 0x0>;
-		#gpio-cells = <1>;
-		gpio-controller;
-	};
-	rpu_ctrl_a0: rpu_ctrl_a0@MM_PSX_RPU_CLUSTER_A0 {
-		compatible = "xlnx,psx_rpu_cluster_core0";
-		reg = <0x0 MM_PSX_RPU_CLUSTER_A0 0x0 MM_PSX_RPU_CLUSTER_A0_SIZE 0x0>;
-		#gpio-cells = <1>;
-		gpio-controller;
-		gpios = <&crl CRL_RST_RPU_A_0>;
-	};
-	rpu_ctrl_a1: rpu_ctrl_a1@MM_PSX_RPU_CLUSTER_A1 {
-		compatible = "xlnx,psx_rpu_cluster_core1";
-		reg = <0x0 MM_PSX_RPU_CLUSTER_A1 0x0 MM_PSX_RPU_CLUSTER_A1_SIZE 0x0>;
-		#gpio-cells = <1>;
-		gpio-controller;
-		gpios = <&crl CRL_RST_RPU_A_1
-			 &rpu_ctrl_a 0>;
-	};
-
-	rpu_ctrl_b: rpu_cluster@MM_PSX_RPU_CLUSTER_B {
-		compatible = "xlnx,psx_rpu_cluster_2.0";
-		reg = <0x0 MM_PSX_RPU_CLUSTER_B 0x0 MM_PSX_RPU_CLUSTER_B_SIZE 0x0>;
-		#gpio-cells = <1>;
-		gpio-controller;
-	};
-	rpu_ctrl_b0: rpu_ctrl_b0@MM_PSX_RPU_CLUSTER_B0 {
-		compatible = "xlnx,psx_rpu_cluster_core0";
-		reg = <0x0 MM_PSX_RPU_CLUSTER_B0 0x0 MM_PSX_RPU_CLUSTER_B0_SIZE 0x0>;
-		#gpio-cells = <1>;
-		gpio-controller;
-		gpios = <&crl CRL_RST_RPU_B_0>;
-	};
-	rpu_ctrl_b1: rpu_ctrl_b1@MM_PSX_RPU_CLUSTER_B1 {
-		compatible = "xlnx,psx_rpu_cluster_core1";
-		reg = <0x0 MM_PSX_RPU_CLUSTER_B1 0x0 MM_PSX_RPU_CLUSTER_B1_SIZE 0x0>;
-		#gpio-cells = <1>;
-		gpio-controller;
-		gpios = <&crl CRL_RST_RPU_B_1
-			 &rpu_ctrl_b 0>;
-	};
+	GEN_RPU_CTRL(a, A);
+	GEN_RPU_CTRL(b, B);
 
 	rpu_pcil: rpu_pcil@0xEB420000 {
 		compatible = "xlnx,rpu_pcil";
