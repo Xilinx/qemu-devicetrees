@@ -3,9 +3,9 @@
 
 #define RPU_GIC_DIST 0x0
 #define RPU_GIC_REDIST 0x100000
-#define NUM_CLUSTER_RPUS 2
+#define NUM_RPUS_PER_CLUSTER 2
 #define FIRST_CPU_GIC_A (NUM_APUS)
-#define FIRST_CPU_GIC_B (FIRST_CPU_GIC_A + NUM_CLUSTER_RPUS)
+#define FIRST_CPU_GIC_B (FIRST_CPU_GIC_A + NUM_RPUS_PER_CLUSTER)
 
 #define TCM_CLUSTER(c, cpu0, cpu1)				\
 	tcm_cluster_## c: tcm_cluster_## c@0 {			\
@@ -128,7 +128,7 @@
 				<&rpu_gic_a 0x1 0x9 0x104>,
 				<&rpu_gic_a 0x1 0x9 0x204>;
 			first-cpu-idx = <FIRST_CPU_GIC_A>;
-			num-cpu = <NUM_CLUSTER_RPUS>;
+			num-cpu = <NUM_RPUS_PER_CLUSTER>;
 			num-irq = <256>;
 			redist-region-count = <2>;
 		};
@@ -169,7 +169,7 @@
 				<&rpu_gic_b 0x1 0x9 0x104>,
 				<&rpu_gic_b 0x1 0x9 0x204> ;
 			first-cpu-idx = <FIRST_CPU_GIC_B>;
-			num-cpu = <NUM_CLUSTER_RPUS>;
+			num-cpu = <NUM_RPUS_PER_CLUSTER>;
 			num-irq = <256>;
 			redist-region-count = <2>;
 		};
