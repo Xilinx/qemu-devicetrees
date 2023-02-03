@@ -135,6 +135,46 @@
 			clock-frequency = <100000000>;			     \
 		}
 
+#define GEN_AMBA_DOWNSTREAMS_PRI(c, n, gic)			  \
+	amba_r5_ ## n: amba_r5@n {				  \
+		downstream_tcm {				  \
+			compatible = "qemu:memory-region";	  \
+			alias = <&glue(tcm_core, n)>;		  \
+			reg = <0x0 0x0 0x0 0x400000 0x1>;	  \
+		};						  \
+		glue(downstream_gic, gic) {			  \
+			compatible = "qemu:memory-region";	  \
+			alias = <&glue(mr_rpu_gic_, c)>;	  \
+			reg = <0x0 R5_GIC_DIST 0x0 0x140000 0x1>; \
+		};						  \
+	}
+
+#define GEN_AMBA_DOWNSTREAMS_SEC(c, n, gic)			  \
+	amba_r5_ ## n: amba_r5@n {				  \
+		#address-cells = <2>;				  \
+		#size-cells = <2>;				  \
+		#priority-cells = <1>;				  \
+		compatible = "simple-bus";			  \
+		ranges;						  \
+								  \
+		downstream_tcm {				  \
+			compatible = "qemu:memory-region";	  \
+			alias = <&glue(tcm_core, n)>;		  \
+			reg = <0x0 0x0 0x0 0x400000 0x1>;	  \
+		};						  \
+		glue(downstream_gic, gic) {			  \
+			compatible = "qemu:memory-region";	  \
+			alias = <&glue(mr_rpu_gic_, c)>;	  \
+			reg = <0x0 R5_GIC_DIST 0x0 0x140000 0x1>; \
+		};						  \
+		downstream_amba {				  \
+			compatible = "qemu:memory-region";	  \
+			alias = <&amba_rpu>;			  \
+			/* Full address range with 0 priority */  \
+			reg = <0x0 0x0 0xffffffff 0xffffffff 0>;  \
+		};						  \
+	}
+
 #define S_AXI_TCM_CONNECT(c, a)				\
 	s_axi_tcm_## c: s_axi_tcm_## c@0 {		\
 		compatible = "qemu:memory-region";	\
@@ -164,81 +204,10 @@
 	TCM_CLUSTER(a, 0, 1)
 	TCM_CLUSTER(b, 2, 3)
 
-	amba_r5_0: amba_r5@0 {
-		downstream_tcm {
-			compatible = "qemu:memory-region";
-			alias = <&tcm_core0>;
-			reg = <0x0 0x0 0x0 0x400000 0x1>;
-		};
-		downstream_gic0 {
-			compatible = "qemu:memory-region";
-			alias = <&mr_rpu_gic_a>;
-			reg = <0x0 R5_GIC_DIST 0x0 0x140000 0x1>;
-		};
-	};
-
-	amba_r5_1: amba_r5@1 {
-		downstream_tcm {
-			compatible = "qemu:memory-region";
-			alias = <&tcm_core1>;
-			reg = <0x0 0x0 0x0 0x400000 0x1>;
-		};
-		downstream_gic0 {
-			compatible = "qemu:memory-region";
-			alias = <&mr_rpu_gic_a>;
-			reg = <0x0 R5_GIC_DIST 0x0 0x140000 0x1>;
-		};
-	};
-
-	amba_r5_2: amba_r5@2 {
-		#address-cells = <2>;
-		#size-cells = <2>;
-		#priority-cells = <1>;
-		compatible = "simple-bus";
-		ranges;
-
-		downstream_tcm {
-			compatible = "qemu:memory-region";
-			alias = <&tcm_core2>;
-			reg = <0x0 0x0 0x0 0x400000 0x1>;
-		};
-		downstream_gic1 {
-			compatible = "qemu:memory-region";
-			alias = <&mr_rpu_gic_b>;
-			reg = <0x0 R5_GIC_DIST 0x0 0x140000 0x1>;
-		};
-		downstream_amba {
-			compatible = "qemu:memory-region";
-			alias = <&amba_rpu>;
-			/* Full address range with 0 priority */
-			reg = <0x0 0x0 0xffffffff 0xffffffff 0>;
-		};
-	};
-
-	amba_r5_3: amba_r5@3 {
-		#address-cells = <2>;
-		#size-cells = <2>;
-		#priority-cells = <1>;
-		compatible = "simple-bus";
-		ranges;
-
-		downstream_tcm {
-			compatible = "qemu:memory-region";
-			alias = <&tcm_core3>;
-			reg = <0x0 0x0 0x0 0x400000 0x1>;
-		};
-		downstream_gic1 {
-			compatible = "qemu:memory-region";
-			alias = <&mr_rpu_gic_b>;
-			reg = <0x0 R5_GIC_DIST 0x0 0x140000 0x1>;
-		};
-		downstream_amba {
-			compatible = "qemu:memory-region";
-			alias = <&amba_rpu>;
-			/* Full address range with 0 priority */
-			reg = <0x0 0x0 0xffffffff 0xffffffff 0>;
-		};
-	};
+	GEN_AMBA_DOWNSTREAMS_PRI(a, 0, 0);
+	GEN_AMBA_DOWNSTREAMS_PRI(a, 1, 0);
+	GEN_AMBA_DOWNSTREAMS_SEC(b, 2, 1);
+	GEN_AMBA_DOWNSTREAMS_SEC(b, 3, 1);
 
 	MEMATTR(rpu2_s, SECURE, SMID_RPU2);
 	MEMATTR(rpu3_s, SECURE, SMID_RPU3);
