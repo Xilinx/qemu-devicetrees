@@ -150,6 +150,7 @@ name: name@addr64 {														\
 
 #if defined(VERSAL2_DEV)
  #include "versal2-memmap.dtsh"
+ #include "versal2-gic-memmap.dtsh"
  #include "versal-psx-memmap-aliases.dtsh"
  #include "versal2-memmap-aliases.dtsh"
 #elif defined(VERSAL_NET)
