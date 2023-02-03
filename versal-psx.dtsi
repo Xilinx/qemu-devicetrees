@@ -39,6 +39,13 @@
 #define CRL_RST_RPU_B_0 37
 #define CRL_RST_RPU_B_1 38
 
+#if (NUM_RPUS >= 8)
+#define CRL_RST_RPU_C_0 39
+#define CRL_RST_RPU_C_1 40
+#define CRL_RST_RPU_D_0 41
+#define CRL_RST_RPU_D_1 42
+#endif
+
 #define GEN_APU_CLUSTER(n, a, b, c, d)					\
 	apu_cluster ## n: apu_cluster@MM_FPD_FPD_APU_CLUSTER ## n {	\
 		#gpio-cells = <1>;					\
@@ -218,6 +225,10 @@
 
 	GEN_RPU_CTRL(a, A);
 	GEN_RPU_CTRL(b, B);
+#if (NUM_RPUS >= 8)
+	GEN_RPU_CTRL(c, C);
+	GEN_RPU_CTRL(d, D);
+#endif
 
 	rpu_pcil: rpu_pcil@0xEB420000 {
 		compatible = "xlnx,rpu_pcil";

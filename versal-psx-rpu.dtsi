@@ -1,6 +1,12 @@
 #include "versal.dtsh"
 #include "versal/rpu.dtsh"
 
+#ifndef NUM_RPUS
+#error "NUM RPUs is not set!"
+#elif NUM_RPUS != 4 && NUM_RPUS != 8
+#error "NUM RPUs must be set to 4 or 8"
+#endif
+
 #define RPU_GIC_DIST 0x0
 #define RPU_GIC_REDIST 0x100000
 #define NUM_RPUS_PER_CLUSTER 2
@@ -10,6 +16,12 @@
 #define RPU_PCIL_WFI_A1 &rpu_pcil 5
 #define RPU_PCIL_WFI_B0 &rpu_pcil 6
 #define RPU_PCIL_WFI_B1 &rpu_pcil 7
+#define RPU_PCIL_WFI_C0 &rpu_pcil 8
+#define RPU_PCIL_WFI_C1 &rpu_pcil 9
+#define RPU_PCIL_WFI_D0 &rpu_pcil 10
+#define RPU_PCIL_WFI_D1 &rpu_pcil 11
+#define RPU_PCIL_WFI_E0 &rpu_pcil 12
+#define RPU_PCIL_WFI_E1 &rpu_pcil 13
 
 #define TCM_CLUSTER(c, cpu0, cpu1)				\
 	tcm_cluster_## c: tcm_cluster_## c@0 {			\
@@ -195,36 +207,73 @@
 	cpus {
 		GEN_RPU_CLUSTER(A, a, 0, 0, 1);
 		GEN_RPU_CLUSTER(B, b, 1, 2, 3);
+#if (NUM_RPUS >= 8)
+		GEN_RPU_CLUSTER(C, c, 2, 4, 5);
+		GEN_RPU_CLUSTER(D, d, 3, 6, 7);
+#endif
 	};
 
 	RPU_GIC(a, 0, 0, 1);
 	RPU_GIC(b, 1, 2, 3);
+#if (NUM_RPUS >= 8)
+	RPU_GIC(c, 2, 4, 5);
+	RPU_GIC(d, 3, 6, 7);
+#endif
 
 	amba_rpu: amba_rpu@0 {
 		GEN_TIMER(a);
 		GEN_TIMER(b);
+#if (NUM_RPUS >= 8)
+		GEN_TIMER(c);
+		GEN_TIMER(d);
+#endif
 	};
 
 	TCM_CREATE(0)
 	TCM_CREATE(1)
 	TCM_CREATE(2)
 	TCM_CREATE(3)
+#if (NUM_RPUS >= 8)
+	TCM_CREATE(4)
+	TCM_CREATE(5)
+	TCM_CREATE(6)
+	TCM_CREATE(7)
+#endif
 
 	TCM_CLUSTER(a, 0, 1)
 	TCM_CLUSTER(b, 2, 3)
+#if (NUM_RPUS >= 8)
+	TCM_CLUSTER(c, 4, 5)
+	TCM_CLUSTER(d, 6, 7)
+#endif
 
 	GEN_AMBA_DOWNSTREAMS_PRI(a, 0, 0);
 	GEN_AMBA_DOWNSTREAMS_PRI(a, 1, 0);
 	GEN_AMBA_DOWNSTREAMS_SEC(b, 2, 1);
 	GEN_AMBA_DOWNSTREAMS_SEC(b, 3, 1);
+#if (NUM_RPUS >= 8)
+	GEN_AMBA_DOWNSTREAMS_SEC(c, 4, 2);
+	GEN_AMBA_DOWNSTREAMS_SEC(c, 5, 2);
+	GEN_AMBA_DOWNSTREAMS_SEC(d, 6, 3);
+	GEN_AMBA_DOWNSTREAMS_SEC(d, 7, 3);
+#endif
 
 	MEMATTR(rpu2_s, SECURE, SMID_RPU2);
 	MEMATTR(rpu3_s, SECURE, SMID_RPU3);
-
+#if (NUM_RPUS >= 8)
+/* TODO: find the right value for the SMID.  */
+	MEMATTR(rpu4_s, SECURE, SMID_RPU2);
+	MEMATTR(rpu5_s, SECURE, SMID_RPU3);
+	MEMATTR(rpu6_s, SECURE, SMID_RPU2);
+	MEMATTR(rpu7_s, SECURE, SMID_RPU3);
+#endif
 };
 
 &amba {
 		S_AXI_TCM_CONNECT(a, MM_R52_0A_ATCM)
 		S_AXI_TCM_CONNECT(b, MM_R52_0B_ATCM)
+#if (NUM_RPUS >= 8)
+		S_AXI_TCM_CONNECT(c, MM_R52_0C_ATCM)
+		S_AXI_TCM_CONNECT(d, MM_R52_0D_ATCM)
+#endif
 };
-
