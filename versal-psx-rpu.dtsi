@@ -110,6 +110,31 @@
 		};							     \
 	}
 
+#define GEN_TIMER(c)							     \
+		glue(timer_, c) {					     \
+			compatible = "arm,armv8-timer";			     \
+			interrupt-parent = <&glue(rpu_gic_, c)>;	     \
+									     \
+			/*						     \
+			 * Cell[0]: 1 for connecting a PPI		     \
+			 *						     \
+			 * Cell[1]: PPI					     \
+			 *						     \
+			 * PPI	INTID					     \
+			 * 14	30    Non-secure physical timer interrupt    \
+			 * 11	27    Virtual timer interrupt		     \
+			 * 10	26    Hypervisor timer interrupt	     \
+			 *						     \
+			 * Cell[2] bits[x:8]: mask with the CPUs to connect, \
+			 * '3' connects GIC CPU0 and CPU1.		     \
+			 *						     \
+			 */						     \
+			interrupts = <1 14 0x301>,			     \
+				     <1 11 0x301>,			     \
+				     <1 10 0x301>;			     \
+			clock-frequency = <100000000>;			     \
+		}
+
 #define S_AXI_TCM_CONNECT(c, a)				\
 	s_axi_tcm_## c: s_axi_tcm_## c@0 {		\
 		compatible = "qemu:memory-region";	\
@@ -127,52 +152,8 @@
 	RPU_GIC(b, 1, 2, 3);
 
 	amba_rpu: amba_rpu@0 {
-		timer_a {
-			compatible = "arm,armv8-timer";
-			interrupt-parent = <&rpu_gic_a>;
-
-			/*
-			 * Cell[0]: 1 for connecting a PPI
-			 *
-			 * Cell[1]: PPI
-			 *
-			 * PPI  INTID
-			 * 14   30    Non-secure physical timer interrupt
-			 * 11   27    Virtual timer interrupt
-			 * 10   26    Hypervisor timer interrupt
-			 *
-			 * Cell[2] bits[x:8]: mask with the CPUs to connect,
-			 * '3' connects GIC CPU0 and CPU1.
-			 *
-			 */
-			interrupts = <1 14 0x301>,
-					<1 11 0x301>,
-					<1 10 0x301>;
-			clock-frequency = <100000000>;
-		};
-		timer_b {
-			compatible = "arm,armv8-timer";
-			interrupt-parent = <&rpu_gic_b>;
-
-			/*
-			 * Cell[0]: 1 for connecting a PPI
-			 *
-			 * Cell[1]: PPI
-			 *
-			 * PPI  INTID
-			 * 14   30    Non-secure physical timer interrupt
-			 * 11   27    Virtual timer interrupt
-			 * 10   26    Hypervisor timer interrupt
-			 *
-			 * Cell[2] bits[x:8]: mask with the CPUs to connect,
-			 * '3' connects GIC CPU0 and CPU1.
-			 *
-			 */
-			interrupts = <1 14 0x301>,
-					<1 11 0x301>,
-					<1 10 0x301>;
-			clock-frequency = <100000000>;
-		};
+		GEN_TIMER(a);
+		GEN_TIMER(b);
 	};
 
 	TCM_CREATE(0)
