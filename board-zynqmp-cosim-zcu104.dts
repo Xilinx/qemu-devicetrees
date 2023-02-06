@@ -1,0 +1,11 @@
+/*
+ * ZCU104 Cosim Board.
+ *
+ * Copyright (c) 2021, Xilinx Inc
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+#include "board-zynqmp-zcu104.dts"
+#include "zynqmp-pl-remoteport.dtsi"
