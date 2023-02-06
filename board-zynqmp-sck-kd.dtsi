@@ -31,11 +31,11 @@
 		compatible = "i2c-dev-dummy";
 		reg = <0x40>;
 	};
-	usb5744@0 {
+	slg7xl45106@0 {
 		compatible = "i2c-dev-dummy";
-		reg = <0x2c>;
+		reg = <0x11>;
 	};
-	usb5744@1 {
+	usb5744@0 {
 		compatible = "i2c-dev-dummy";
 		reg = <0x2d>;
 	};
@@ -44,15 +44,15 @@
 &mdio0 {
 	/delete-node/ phy@7;
 	phy0: phy@0 {
-		compatible = "dp83867";
+		compatible = "ADIN1300";
 		device_type = "ethernet-phy";
 	};
 	phy2: phy@2 {
-		compatible = "dp83867";
+		compatible = "ADIN1300";
 		device_type = "ethernet-phy";
 	};
 	phy3: phy@3 {
-		compatible = "dp83867";
+		compatible = "ADIN1300";
 		device_type = "ethernet-phy";
 	};
 };
