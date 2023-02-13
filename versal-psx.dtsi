@@ -190,9 +190,15 @@
 	compatible = "xlnx,versal-pmx-iou-slcr";
 };
 
+#ifdef VERSAL2_DEV
+&crl {
+	compatible = "xlnx,psxc_crl";
+};
+#else
 &crl {
 	compatible = "xlnx,psx_crl";
 };
+#endif
 
 #define GEN_RPU_CTRL(clow, cup)										      \
 	rpu_ctrl_ ## clow: rpu_cluster@MM_PSX_RPU_CLUSTER_ ## cup {					      \
