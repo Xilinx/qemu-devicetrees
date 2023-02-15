@@ -31,6 +31,41 @@
 
 #include "versal.dtsh"
 
+#define GEN_MEMATTR(x)                                    \
+MEMATTR(apu ## x ## _s, SECURE, SMID_APU ## x);      \
+MEMATTR(apu ## x ## _ns, NON_SECURE, SMID_APU ## x)
+
+#define SMID_APU2	SMID_APU_CORE2
+#define SMID_APU3	SMID_APU_CORE3
+#define SMID_APU4	0x268
+#define SMID_APU5	0x269
+#define SMID_APU6	0x26a
+#define SMID_APU7	0x26b
+#define SMID_APU8	0x270
+#define SMID_APU9	0x271
+#define SMID_APU10	0x272
+#define SMID_APU11	0x273
+#define SMID_APU12	0x278
+#define SMID_APU13	0x279
+#define SMID_APU14	0x27a
+#define SMID_APU15	0x27b
+#define SMID_APU16	0x280
+#define SMID_APU17	0x281
+#define SMID_APU18	0x282
+#define SMID_APU19	0x283
+#define SMID_APU20	0x288
+#define SMID_APU21	0x289
+#define SMID_APU22	0x28a
+#define SMID_APU23	0x28b
+#define SMID_APU24	0x290
+#define SMID_APU25	0x291
+#define SMID_APU26	0x292
+#define SMID_APU27	0x293
+#define SMID_APU28	0x298
+#define SMID_APU29	0x299
+#define SMID_APU30	0x29a
+#define SMID_APU31	0x29b
+
 #define MM_USB_DWC3_1			(MM_USB_XHCI1 + 0xC100)
 #define MM_USB_DWC3_1_SIZE		0x600
 
@@ -57,6 +92,38 @@
 
 / {
 	MEMATTR(usb1, NON_SECURE, SMID_USB1);
+
+	/* APU */
+        GEN_MEMATTR(2);
+        GEN_MEMATTR(3);
+        GEN_MEMATTR(4);
+        GEN_MEMATTR(5);
+        GEN_MEMATTR(6);
+        GEN_MEMATTR(7);
+        GEN_MEMATTR(8);
+        GEN_MEMATTR(9);
+        GEN_MEMATTR(10);
+        GEN_MEMATTR(11);
+        GEN_MEMATTR(12);
+        GEN_MEMATTR(13);
+        GEN_MEMATTR(14);
+        GEN_MEMATTR(15);
+        GEN_MEMATTR(16);
+        GEN_MEMATTR(17);
+        GEN_MEMATTR(18);
+        GEN_MEMATTR(19);
+        GEN_MEMATTR(20);
+        GEN_MEMATTR(21);
+        GEN_MEMATTR(22);
+        GEN_MEMATTR(23);
+        GEN_MEMATTR(24);
+        GEN_MEMATTR(25);
+        GEN_MEMATTR(26);
+        GEN_MEMATTR(27);
+        GEN_MEMATTR(28);
+        GEN_MEMATTR(29);
+        GEN_MEMATTR(30);
+        GEN_MEMATTR(31);
 };
 
 &dwc3_0 {

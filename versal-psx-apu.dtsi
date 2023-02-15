@@ -41,6 +41,8 @@
 #define APU_PWR(n)	&psm_local n
 
 #define APU_GPIOS(CRF, n)					\
+	memattr_s = <&apu ## n ## _s_memattr>;			\
+	memattr_ns = <&apu ## n ## _ns_memattr>;		\
 	reset-gpios = <CRF (n % 16)>;				\
 	gpios = < APU_WFI(n) >;					\
 	gpio-names = "wfi"					\
