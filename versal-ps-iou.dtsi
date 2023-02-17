@@ -83,6 +83,21 @@ zname: dma-controller@zbase {							\
 }
 
 /*
+ * Versal, Versal-Net, Versal Gen 2 TTC device creation macro.
+ */
+#define CREATE_TTC(n, addr_nm, size_nm)			   \
+	glue(ttc, n): timer@addr_nm {			   \
+		compatible = "xlnx,ps7-ttc-1.00.a";	   \
+		interrupts = <glue(glue(TTC, n), _IRQ_0)   \
+			      glue(glue(TTC, n), _IRQ_1)   \
+			      glue(glue(TTC, n), _IRQ_2)   \
+			     >;				   \
+		reg = <0x0 addr_nm 0x0 size_nm 0x0>;	   \
+		width = <32>;				   \
+		reset-gpios = <&crl glue(CRL_RST_TTC, n)>; \
+	}
+
+/*
  * Versal, Versal-Net, Versal Gen 2 i2c_i3c device creation macro.
  */
 #define CREATE_I2C_I3C(n, addr_nm, size_nm)				       \
@@ -312,34 +327,10 @@ zname: dma-controller@zbase {							\
 		slots = <2>;
 	};
 
-	ttc0: timer@MM_TTC0 {
-		compatible = "xlnx,ps7-ttc-1.00.a";
-		interrupts = <TTC0_IRQ_0 TTC0_IRQ_1 TTC0_IRQ_2>;
-		reg = <0x0 MM_TTC0 0x0 MM_TTC0_SIZE 0x0>;
-		width = <32>;
-		reset-gpios = < &crl CRL_RST_TTC0 >;
-	};
-	ttc1: timer@MM_TTC1 {
-		compatible = "xlnx,ps7-ttc-1.00.a";
-		interrupts = <TTC1_IRQ_0 TTC1_IRQ_1 TTC1_IRQ_2>;
-		reg = <0x0 MM_TTC1 0x0 MM_TTC1_SIZE 0x0>;
-		width = <32>;
-		reset-gpios = < &crl CRL_RST_TTC1 >;
-	};
-	ttc2: timer@MM_TTC2 {
-		compatible = "xlnx,ps7-ttc-1.00.a";
-		interrupts = <TTC2_IRQ_0 TTC2_IRQ_1 TTC2_IRQ_2>;
-		reg = <0x0 MM_TTC2 0x0 MM_TTC2_SIZE 0x0>;
-		width = <32>;
-		reset-gpios = < &crl CRL_RST_TTC2 >;
-	};
-	ttc3: timer@MM_TTC3 {
-		compatible = "xlnx,ps7-ttc-1.00.a";
-		interrupts = <TTC3_IRQ_0 TTC3_IRQ_1 TTC3_IRQ_2>;
-		reg = <0x0 MM_TTC3 0x0 MM_TTC3_SIZE 0x0>;
-		width = <32>;
-		reset-gpios = < &crl CRL_RST_TTC3 >;
-	};
+	CREATE_TTC(0, MM_TTC0, MM_TTC0_SIZE);
+	CREATE_TTC(1, MM_TTC1, MM_TTC1_SIZE);
+	CREATE_TTC(2, MM_TTC2, MM_TTC2_SIZE);
+	CREATE_TTC(3, MM_TTC3, MM_TTC3_SIZE);
 
 	ZDMA_CHANNEL(adma0, adma, MM_ADMA_CH0, ADMA_IRQ_0, 128, &smmu_tbu0, SMID_DMA0_CH0, 0x0);
 	ZDMA_CHANNEL(adma1, adma, MM_ADMA_CH1, ADMA_IRQ_1, 128, &smmu_tbu0, SMID_DMA0_CH1, 0x1);
