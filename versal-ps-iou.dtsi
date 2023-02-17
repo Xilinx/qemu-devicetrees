@@ -125,6 +125,23 @@ zname: dma-controller@zbase {							\
 			reset-gpios = <&crl glue(CRL_RST_I2C, n)>;	       \
 		}
 
+/*
+ * Versal, Versal-Net, Versal Gen 2 lpd watchdogs device creation macro.
+ */
+#define CREATE_LPD_WWDT(n, addr_nm, size_nm)			      \
+	glue(lpd_wwdt, n): wwdt@addr_nm {			      \
+		compatible = "xlnx,versal-wwdt";		      \
+		reg = <0x0 addr_nm 0x0 size_nm 0x0>;		      \
+		/* IRQ order must match the QEMU model */	      \
+		interrupts = <glue(glue(WWDT, n), _LPX_IRQ_0)	      \
+			      glue(glue(WWDT, n), _RST_PENDING_IRQ_0) \
+			      glue(glue(GWDT, n), _WS0_IRQ_0)	      \
+			      glue(glue(GWDT, n), _WS1_IRQ_0)	      \
+			      >;				      \
+		pclk = <100000000>;				      \
+		reset-gpios = <&crl glue(CRL_RST_SWDT, n)>;	      \
+	}
+
 &amba_fpd {
 #ifdef MM_FPD_FPD_APU
 	apu_ctrl: apu_ctrl@MM_FPD_FPD_APU {
@@ -386,18 +403,17 @@ zname: dma-controller@zbase {							\
 		memattr-write-gem1 = <&gem1_w_memattr_smid>;
 	};
 
+#ifndef WWDT0_LPX_IRQ_0
+/* Alias those name for Versal since Versal-Net and Versal Gen 2 has a different
+ * name for those IRQs lines.  */
+#define WWDT0_LPX_IRQ_0 WWDT_IRQ_0
+#define WWDT0_RST_PENDING_IRQ_0 WWDT_RST_PENDING_IRQ_0
+#define GWDT0_WS0_IRQ_0 GWDT_WS0_IRQ_0
+#define GWDT0_WS1_IRQ_0 GWDT_WS1_IRQ_0
+#endif
+
 #ifdef MM_WWDT
-	lpd_wwdt: wwdt@MM_WWDT {
-		compatible = "xlnx,versal-wwdt";
-		reg = <0x0 MM_WWDT 0x0 MM_WWDT_SIZE 0x0>;
-		/* IRQ order must match the QEMU model */
-		interrupts = <WWDT_IRQ_0
-					WWDT_RST_PENDING_IRQ_0
-					GWDT_WS0_IRQ_0
-					GWDT_WS1_IRQ_0>;
-		pclk = <100000000>;
-		reset-gpios = <&crl CRL_RST_SWDT>;
-	};
+	CREATE_LPD_WWDT(0, MM_WWDT, MM_WWDT_SIZE);
 #endif
 
 	lpd_gpio: lpd_gpio@MM_PS_GPIO {

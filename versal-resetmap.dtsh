@@ -44,7 +44,7 @@
 #define CRL_RST_TTC2		20
 #define CRL_RST_TTC3		21
 #define CRL_RST_TIMESTAMP	22
-#define CRL_RST_SWDT		23
+#define CRL_RST_SWDT0		23
 #define CRL_RST_OCM		24
 #define CRL_RST_IPI		25
 #define CRL_RST_SYSMON_CFG	26
