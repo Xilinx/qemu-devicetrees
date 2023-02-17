@@ -412,9 +412,7 @@ zname: dma-controller@zbase {							\
 #define GWDT0_WS1_IRQ_0 GWDT_WS1_IRQ_0
 #endif
 
-#ifdef MM_WWDT
 	CREATE_LPD_WWDT(0, MM_WWDT, MM_WWDT_SIZE);
-#endif
 
 	lpd_gpio: lpd_gpio@MM_PS_GPIO {
 		#gpio-cells = <1>;
