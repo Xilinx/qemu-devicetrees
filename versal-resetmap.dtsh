@@ -91,3 +91,23 @@
 /* PMC Global.  */
 #define PMC_GLOBAL_PPU1_RST	1
 #define PMC_GLOBAL_PPU1_WAKEUP	2
+
+#ifdef VERSAL2_DEV
+#define CRL_RST_USB1		45
+#define CRL_RST_CAN2		46
+#define CRL_RST_CAN3		47
+#define CRL_RST_I2C2		48
+#define CRL_RST_I2C3		49
+#define CRL_RST_I2C4		50
+#define CRL_RST_I2C5		51
+#define CRL_RST_I2C6		52
+#define CRL_RST_I2C7		53
+#define CRL_RST_TTC4		54
+#define CRL_RST_TTC5		55
+#define CRL_RST_TTC6		56
+#define CRL_RST_TTC7		57
+#define CRL_RST_SWDT1		58
+#define CRL_RST_OCM1		59
+#define CRL_RST_OCM2		60
+#define CRL_RST_OCM3		61
+#endif
