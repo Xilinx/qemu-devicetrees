@@ -83,6 +83,21 @@ zname: dma-controller@zbase {							\
 }
 
 /*
+ * Versal, Versal-Net, Versal Gen 2 CAN device creation macro.
+ */
+#define CREATE_CAN(n, addr_nm, size_nm)			   \
+	glue(can, n): can@addr_nm {			   \
+		compatible = "xlnx,versal-canfd";	   \
+		rx-fifo0 = <0x40>;			   \
+		rx-fifo1 = <0x40>;			   \
+		enable-rx-fifo1 = <0x1>;		   \
+		canfdbus = <&canfdbus0>;		   \
+		interrupts = <glue(glue(CAN, n), _IRQ_0)>; \
+		reg = <0x0 addr_nm 0x0 size_nm 0x0>;	   \
+		reset-gpios = <&crl glue(CRL_RST_CAN, n)>; \
+	}
+
+/*
  * Versal, Versal-Net, Versal Gen 2 TTC device creation macro.
  */
 #define CREATE_TTC(n, addr_nm, size_nm)			   \
@@ -223,26 +238,8 @@ zname: dma-controller@zbase {							\
 		compatible = "can-bus";
 	};
 
-	can0: can@MM_CANFD0 {
-		compatible = "xlnx,versal-canfd";
-		rx-fifo0 = <0x40>;
-		rx-fifo1 = <0x40>;
-		enable-rx-fifo1 = <0x1>;
-		canfdbus = <&canfdbus0>;
-		interrupts = <CAN0_IRQ_0>;
-		reg = <0x0 MM_CANFD0 0x0 MM_CANFD0_SIZE 0x0>;
-		reset-gpios = <&crl CRL_RST_CAN0>;
-	};
-	can1: can@MM_CANFD1 {
-		compatible = "xlnx,versal-canfd";
-		rx-fifo0 = <0x40>;
-		rx-fifo1 = <0x40>;
-		enable-rx-fifo1 = <0x1>;
-		canfdbus = <&canfdbus0>;
-		interrupts = <CAN1_IRQ_0>;
-		reg = <0x0 MM_CANFD1 0x0 MM_CANFD1_SIZE 0x0>;
-		reset-gpios = <&crl CRL_RST_CAN1>;
-	};
+	CREATE_CAN(0, MM_CANFD0, MM_CANFD0_SIZE);
+	CREATE_CAN(1, MM_CANFD1, MM_CANFD1_SIZE);
 
 	crl: crl@MM_CRL {
 		compatible = "xlnx,versal-crl";
