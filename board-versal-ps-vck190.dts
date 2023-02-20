@@ -33,3 +33,22 @@
 	MEM_REGION64(ddr_3, MM_TOP_DDR_CH1_H, MM_TOP_DDR_CH1_L, MM_TOP_DDR_CH1,
                  0x2, 0x0, &ddr_3_mem) // 8 GB
 };
+
+&ps_i2c1 {
+	i2cswitch@74 {
+		#address-cells = <1>;
+		#size-cells = <0>;
+		compatible = "nxp,pca9548";
+		reg = <0x74>;
+		chip-enable = <0x1>;
+		i2c@0 {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			reg = <0>;
+			eeprom@54 {
+				compatible = "at,24c08";
+				reg = <0x54>;
+			};
+		};
+	};
+};
