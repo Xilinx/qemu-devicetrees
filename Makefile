@@ -74,6 +74,7 @@ all:	$(AUTO_GEN_DTS) $(call TARGETS,dtb)
 -include $(call TARGETS, cd)
 
 source:	all $(call TARGETS,dts)
+auto-gen-dts:	$(AUTO_GEN_DTS)
 
 $(SINGLE_ARCH_OUTDIR)/%.dtb:	%.dts $(DTSI_FILES) $(HEADER_FILES)
 	$(call COMPILE,$(SINGLE_ARCH_OUTDIR),dtb)
