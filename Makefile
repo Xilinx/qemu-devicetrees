@@ -119,9 +119,31 @@ export AUTO_GEN_VERSAL_DEV
 
 versal-pmc-npi.dtsi: versal-pmc-npi-nxx.dtsi versal-vp1202-pmc-npi-nxx.dtsi versal-gty-npi.dtsi
 versal-pmc-npi-nxx.dtsi: Makefile
-	@python3 -c 'for a in range(0, 54): print("\tGEN_NMU(" + str(a) + ")")' > $@
-	@python3 -c 'for a in range(0, 50): print("\tGEN_NSU(" + str(a) + ")")' >> $@
-	@python3 -c 'for a in range(0, 146): print("\tGEN_NPS(" + str(a) + ")")' >> $@
+	@python3 -c 'for a in range(0, 54): print("#ifdef MM_NPI_NOC_NMU_" + str(a) + "\n" + \
+						"\tGEN_NMU(" + str(a) + ")\n" + \
+						"#endif")' > $@
+	@python3 -c 'for a in range(0, 50): print("#ifdef MM_NPI_NOC_NSU_" + str(a) + "\n" + \
+						"\tGEN_NSU(" + str(a) + ")\n" + \
+						"#endif")' >> $@
+	@python3 -c 'for a in range(0, 146): print("#ifdef MM_NPI_NOC_NPS_" + str(a) + "\n" + \
+						"\tGEN_NPS(" + str(a) + ")\n" + \
+						"#endif")' >> $@
+	@python3 -c 'for a in range(0, 12): print("#ifdef MM_NPI_XPIO_DCI_COMPONENT_" + str(a) + "\n" + \
+						"\tGEN_XPIO_DCI(" + str(a) + ")\n" + \
+						"#endif")' >> $@
+	@python3 -c 'for a in range(0, 25): print("#ifdef MM_NPI_CMT_XPLL_" + str(a) + "\n" + \
+						"\tGEN_CMT_XPLL(" + str(a) + ");\n" + \
+						"#endif")' >> $@
+	@python3 -c 'for a in range(0, 20): print("#ifdef MM_NPI_CMT_DPLL_" + str(a) + "\n" + \
+						"\tGEN_CMT_DPLL(" + str(a) + ");\n" + \
+						"#endif")' >> $@
+	@python3 -c 'for a in range(0, 12): print("#ifdef MM_NPI_CMT_MMCM_" + str(a) + "\n" + \
+						"\tGEN_CMT_MMCM(" + str(a) + ");\n" + \
+						"#endif")' >> $@
+	@python3 -c 'for a in range(0, 7): print("#ifdef MM_NPI_NOC_NCRB_" + str(a) + "\n" + \
+						"\tGEN_NOC_NCRB(" + str(a) + ");\n" + \
+						"#endif")' >> $@
+
 versal-vp1202-pmc-npi-nxx.dtsi: Makefile
 	@python3 -c 'for a in range(0, 37): print("\tGEN_NMU(" + str(a) + ")")' > $@
 	@python3 -c 'for a in range(0, 33): print("\tGEN_NSU(" + str(a) + ")")' >> $@
@@ -133,6 +155,10 @@ versal-gty-npi.dtsi: Makefile
 	@python3 -c 'for a in range(0, 24): print("#ifdef MM_NPI_GTM_NPI_SLAVE_" + str(a) + "\n" + \
 						"\tGEN_GTM(" + str(a) + ");\n" + \
 						"#endif")' >> $@
+	@python3 -c 'for a in range(0, 10): print("#ifdef MM_NPI_GTY_NPI_SLAVE_" + str(a) + "\n" + \
+						"\tGEN_GTY_NPI(" + str(a) + ");\n" + \
+						"#endif")' >> $@
+
 board-versal-%-ps-cosim-vitis-virt.dts: Makefile
 	$(if $(or $(findstring LATEST, $@), $(filter $(SKIP_AUTO_GEN), $@)), \
 			  @exit 0, \
