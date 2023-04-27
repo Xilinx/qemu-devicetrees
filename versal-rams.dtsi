@@ -153,6 +153,8 @@
 	GEN_DDRMC_RAM(ddrmc1_ram_exchange, EXCHANGE);
 };
 
+
+#ifdef MM_RAM_INSTR
 &amba_psm {
 	psm_ram_instr: psm_ram_instr@MM_RAM_INSTR {
 		device_type = "memory";
@@ -168,3 +170,4 @@
 		reg = <0x0 MM_RAM_DATA 0x0 MM_RAM_DATA_SIZE 0x1>;
 	};
 };
+#endif
