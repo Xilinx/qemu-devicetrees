@@ -1,0 +1,16 @@
+/*
+ * Versal AI Core series device xcvc1502 virtual board dts
+ *
+ * Copyright (c) 2023, Advanced Micro Devices Inc. All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+#define VERSAL_NPI_OVERRIDE
+#include "versal/memmap/versal-xcvc1502-npi-memmap.dtsi"
+#include "board-versal-ps-virt.dts"
+#include "versal-silicon-freq.dtsi"
+
+&pmc_tap {
+	idcode = <0x04C98093>;
+};
