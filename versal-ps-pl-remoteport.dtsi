@@ -1,7 +1,8 @@
 /*
  * Versal PS PL interfaces.
  *
- * Copyright (c) 2016, Xilinx Inc
+ * Copyright (C) 2016-2022, Xilinx, Inc.
+ * Copyright (C) 2023, Advanced Micro Devices, Inc.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -255,7 +256,242 @@
 			  &pmc_clk_rst CRP_RST_PL2
 			  &pmc_clk_rst CRP_RST_PL3
 			>;
-       };
+	};
+
+	/*
+	 * GPIO to EMIO:
+	 *
+	 * GPIO controllers has 3x 26-channels and 3x 32-channels banks.
+	 *   - For PMC GPIO Bank3 and Bank4 goes to the PL (EMIO).
+	 *	 * GPIO #78 is the first one to be mapped for EMIO0.
+	 *	 * GPIO #252 is the first OE signal to be mapped for EMIO0.
+	 *	 * GPIO #110 is the first one to be mapped for EMIO1.
+	 *	 * GPIO #284 is the first OE signal to be mapped for EMIO1.
+	 *   - For LPD GPIO Bank3 goes to the PL (EMIO).
+	 *	 * GPIO #78 is the first one to be mapped for EMIO2.
+	 *	 * GPIO #252 is the first OE signal to be mapped for EMIO2.
+	 */
+	rp_cosim_emio_bank0: rp_cosim_emio_bank0 {
+		#gpio-cells = <1>;
+		compatible = "remote-port-gpio";
+		remote-ports = <&cosim_rp_0 95>;
+		/* OE signals are taken in account here.  */
+		num-gpios = <64>;
+		gpios = < &pmc_gpio 78
+			  &pmc_gpio 79
+			  &pmc_gpio 80
+			  &pmc_gpio 81
+			  &pmc_gpio 82
+			  &pmc_gpio 83
+			  &pmc_gpio 84
+			  &pmc_gpio 85
+			  &pmc_gpio 86
+			  &pmc_gpio 87
+			  &pmc_gpio 88
+			  &pmc_gpio 89
+			  &pmc_gpio 90
+			  &pmc_gpio 91
+			  &pmc_gpio 92
+			  &pmc_gpio 93
+			  &pmc_gpio 94
+			  &pmc_gpio 95
+			  &pmc_gpio 96
+			  &pmc_gpio 97
+			  &pmc_gpio 98
+			  &pmc_gpio 99
+			  &pmc_gpio 100
+			  &pmc_gpio 101
+			  &pmc_gpio 102
+			  &pmc_gpio 103
+			  &pmc_gpio 104
+			  &pmc_gpio 105
+			  &pmc_gpio 106
+			  &pmc_gpio 107
+			  &pmc_gpio 108
+			  &pmc_gpio 109
+			  /* OE signals.  */
+			  &pmc_gpio 252
+			  &pmc_gpio 253
+			  &pmc_gpio 254
+			  &pmc_gpio 255
+			  &pmc_gpio 256
+			  &pmc_gpio 257
+			  &pmc_gpio 258
+			  &pmc_gpio 259
+			  &pmc_gpio 260
+			  &pmc_gpio 261
+			  &pmc_gpio 262
+			  &pmc_gpio 263
+			  &pmc_gpio 264
+			  &pmc_gpio 265
+			  &pmc_gpio 266
+			  &pmc_gpio 267
+			  &pmc_gpio 268
+			  &pmc_gpio 269
+			  &pmc_gpio 270
+			  &pmc_gpio 271
+			  &pmc_gpio 272
+			  &pmc_gpio 273
+			  &pmc_gpio 274
+			  &pmc_gpio 275
+			  &pmc_gpio 276
+			  &pmc_gpio 277
+			  &pmc_gpio 278
+			  &pmc_gpio 279
+			  &pmc_gpio 280
+			  &pmc_gpio 281
+			  &pmc_gpio 282
+			  &pmc_gpio 283
+			  >;
+		};
+
+	rp_cosim_emio_bank1: rp_cosim_emio_bank1 {
+		#gpio-cells = <1>;
+		compatible = "remote-port-gpio";
+		remote-ports = <&cosim_rp_0 96>;
+		/* OE signals are taken in account here.  */
+		num-gpios = <64>;
+		gpios = < &pmc_gpio 110
+			  &pmc_gpio 111
+			  &pmc_gpio 112
+			  &pmc_gpio 113
+			  &pmc_gpio 114
+			  &pmc_gpio 115
+			  &pmc_gpio 116
+			  &pmc_gpio 117
+			  &pmc_gpio 118
+			  &pmc_gpio 119
+			  &pmc_gpio 120
+			  &pmc_gpio 121
+			  &pmc_gpio 122
+			  &pmc_gpio 123
+			  &pmc_gpio 124
+			  &pmc_gpio 125
+			  &pmc_gpio 126
+			  &pmc_gpio 127
+			  &pmc_gpio 128
+			  &pmc_gpio 129
+			  &pmc_gpio 130
+			  &pmc_gpio 131
+			  &pmc_gpio 132
+			  &pmc_gpio 133
+			  &pmc_gpio 134
+			  &pmc_gpio 135
+			  &pmc_gpio 136
+			  &pmc_gpio 137
+			  &pmc_gpio 138
+			  &pmc_gpio 139
+			  &pmc_gpio 140
+			  &pmc_gpio 141
+			  /* OE signals.  */
+			  &pmc_gpio 284
+			  &pmc_gpio 285
+			  &pmc_gpio 286
+			  &pmc_gpio 287
+			  &pmc_gpio 288
+			  &pmc_gpio 289
+			  &pmc_gpio 290
+			  &pmc_gpio 291
+			  &pmc_gpio 292
+			  &pmc_gpio 293
+			  &pmc_gpio 294
+			  &pmc_gpio 295
+			  &pmc_gpio 296
+			  &pmc_gpio 297
+			  &pmc_gpio 298
+			  &pmc_gpio 299
+			  &pmc_gpio 300
+			  &pmc_gpio 301
+			  &pmc_gpio 302
+			  &pmc_gpio 303
+			  &pmc_gpio 304
+			  &pmc_gpio 305
+			  &pmc_gpio 306
+			  &pmc_gpio 307
+			  &pmc_gpio 308
+			  &pmc_gpio 309
+			  &pmc_gpio 310
+			  &pmc_gpio 311
+			  &pmc_gpio 312
+			  &pmc_gpio 313
+			  &pmc_gpio 314
+			  &pmc_gpio 315
+			  >;
+		};
+
+	rp_cosim_emio_bank2: rp_cosim_emio_bank2 {
+		#gpio-cells = <1>;
+		compatible = "remote-port-gpio";
+		remote-ports = <&cosim_rp_0 97>;
+		/* OE signals are taken in account here.  */
+		num-gpios = <64>;
+		gpios = < &lpd_gpio 78
+			  &lpd_gpio 79
+			  &lpd_gpio 80
+			  &lpd_gpio 81
+			  &lpd_gpio 82
+			  &lpd_gpio 83
+			  &lpd_gpio 84
+			  &lpd_gpio 85
+			  &lpd_gpio 86
+			  &lpd_gpio 87
+			  &lpd_gpio 88
+			  &lpd_gpio 89
+			  &lpd_gpio 90
+			  &lpd_gpio 91
+			  &lpd_gpio 92
+			  &lpd_gpio 93
+			  &lpd_gpio 94
+			  &lpd_gpio 95
+			  &lpd_gpio 96
+			  &lpd_gpio 97
+			  &lpd_gpio 98
+			  &lpd_gpio 99
+			  &lpd_gpio 100
+			  &lpd_gpio 101
+			  &lpd_gpio 102
+			  &lpd_gpio 103
+			  &lpd_gpio 104
+			  &lpd_gpio 105
+			  &lpd_gpio 106
+			  &lpd_gpio 107
+			  &lpd_gpio 108
+			  &lpd_gpio 109
+			  /* OE signals.  */
+			  &lpd_gpio 252
+			  &lpd_gpio 253
+			  &lpd_gpio 254
+			  &lpd_gpio 255
+			  &lpd_gpio 256
+			  &lpd_gpio 257
+			  &lpd_gpio 258
+			  &lpd_gpio 259
+			  &lpd_gpio 260
+			  &lpd_gpio 261
+			  &lpd_gpio 262
+			  &lpd_gpio 263
+			  &lpd_gpio 264
+			  &lpd_gpio 265
+			  &lpd_gpio 266
+			  &lpd_gpio 267
+			  &lpd_gpio 268
+			  &lpd_gpio 269
+			  &lpd_gpio 270
+			  &lpd_gpio 271
+			  &lpd_gpio 272
+			  &lpd_gpio 273
+			  &lpd_gpio 274
+			  &lpd_gpio 275
+			  &lpd_gpio 276
+			  &lpd_gpio 277
+			  &lpd_gpio 278
+			  &lpd_gpio 279
+			  &lpd_gpio 280
+			  &lpd_gpio 281
+			  &lpd_gpio 282
+			  &lpd_gpio 283
+			  >;
+		};
 };
 
 &amba {
