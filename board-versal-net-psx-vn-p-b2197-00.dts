@@ -10,7 +10,7 @@
  * (4 + 4 + 4) LPDDR + 2 DDR
  *
  */
-#include "board-versal-net-xcvn3176-psx-virt.dts"
+#include "board-versal-net-xcvn3716-psx-virt.dts"
 
 /*
  * DDR Memory Map
