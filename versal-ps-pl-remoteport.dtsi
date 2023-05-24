@@ -492,7 +492,104 @@
 			  &lpd_gpio 283
 			  >;
 		};
+
+		dummy_mio_map: dummy_mio_map {
+			gpio-controller;
+			#gpio-cells = <1>;
+		};
 };
+
+#define MIO(dev)				\
+			  dev  0 		\
+			  dev  1 		\
+			  dev  2 		\
+			  dev  3 		\
+			  dev  4 		\
+			  dev  5 		\
+			  dev  6 		\
+			  dev  7 		\
+			  dev  8 		\
+			  dev  9 		\
+			  dev  10		\
+			  dev  11		\
+			  dev  12		\
+			  dev  13		\
+			  dev  14		\
+			  dev  15		\
+			  dev  16		\
+			  dev  17		\
+			  dev  18		\
+			  dev  19		\
+			  dev  20		\
+			  dev  21		\
+			  dev  22		\
+			  dev  23		\
+			  dev  24		\
+			  dev  25
+
+#define RP_EMIO(dev)				\
+			  dev  0 		\
+			  dev  1 		\
+			  dev  2 		\
+			  dev  3 		\
+			  dev  4 		\
+			  dev  5 		\
+			  dev  6 		\
+			  dev  7 		\
+			  dev  8 		\
+			  dev  9 		\
+			  dev  10		\
+			  dev  11		\
+			  dev  12		\
+			  dev  13		\
+			  dev  14		\
+			  dev  15		\
+			  dev  16		\
+			  dev  17		\
+			  dev  18		\
+			  dev  19		\
+			  dev  20		\
+			  dev  21		\
+			  dev  22		\
+			  dev  23		\
+			  dev  24		\
+			  dev  25		\
+			  dev  26		\
+			  dev  27		\
+			  dev  28		\
+			  dev  29		\
+			  dev  30		\
+			  dev  31
+
+/* EMIO0, EMIO1 inputs.  */
+&pmc_gpio {
+	gpios = <
+		/* Connect gpio in's for MIO mapped banks, tie them with dummy
+		 * model until we model MIO.  */
+		MIO(&dummy_mio_map)
+		MIO(&dummy_mio_map)
+		MIO(&dummy_mio_map)
+		/* Connect gpio in's from EMIO bank 0,1.  */
+		RP_EMIO(&rp_cosim_emio_bank0)
+		RP_EMIO(&rp_cosim_emio_bank1)
+	>;
+};
+
+/* EMIO2 inputs.  */
+&lpd_gpio {
+	gpios = <
+		/* Connect gpio in's for MIO mapped banks, tie them with dummy
+		 * model until we model MIO.  */
+		MIO(&dummy_mio_map)
+		MIO(&dummy_mio_map)
+		MIO(&dummy_mio_map)
+		/* Connect gpio in's from EMIO bank 2.  */
+		RP_EMIO(&rp_cosim_emio_bank2)
+	>;
+};
+
+#undef MIO
+#undef RP_EMIO
 
 &amba {
 	MR_BACKGROUND(cci_mr);
