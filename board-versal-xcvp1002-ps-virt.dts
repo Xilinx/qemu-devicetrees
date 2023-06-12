@@ -1,0 +1,14 @@
+/*
+ * Versal Prime series device xcvp1002 virtual board dts
+ *
+ * Copyright (c) 2023 Advanced Micro Devices, Inc.
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+#include "board-versal-xcvp1052-ps-virt.dts"
+
+&pmc_tap {
+	idcode = <0x04C1B093>;
+};
