@@ -1,0 +1,14 @@
+/*
+ * Versal Virtual xcvh1542 board device tree
+ *
+ * Copyright (c) 2023 Advanced Micro Devices, Inc.
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+#include "board-versal-xcvh1582-ps-virt.dts"
+
+&pmc_tap {
+	idcode = <0x04D29093>;
+};
