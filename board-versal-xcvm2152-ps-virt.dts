@@ -1,0 +1,43 @@
+/*
+ * Versal Prime Series device xcvm2152 virtual board dts
+ *
+ * Copyright (c) 2023, Advanced Micro Devices, Inc.
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+#define VERSAL_NPI_OVERRIDE
+#include "versal/memmap/versal-xcvm2152-npi-memmap.dtsi"
+
+/* Aliases */
+#define  MM_NPI_DDRMC_MAIN_0          MM_NPI_DDRMC5C_MAIN_0
+#define  MM_NPI_DDRMC_MAIN_0_SIZE     MM_NPI_DDRMC5C_MAIN_0_SIZE
+#define  MM_NPI_DDRMC_NOC_0           MM_NPI_DDRMC5C_NOC_0
+#define  MM_NPI_DDRMC_NOC_0_SIZE      MM_NPI_DDRMC5C_NOC_0_SIZE
+#define  MM_NPI_DDRMC_UB_0            MM_NPI_DDRMC5C_UB_0
+#define  MM_NPI_DDRMC_UB_0_SIZE       MM_NPI_DDRMC5C_UB_0_SIZE
+
+#define  MM_NPI_DDRMC_MAIN_1          MM_NPI_DDRMC5C_MAIN_1
+#define  MM_NPI_DDRMC_MAIN_1_SIZE     MM_NPI_DDRMC5C_MAIN_1_SIZE
+#define  MM_NPI_DDRMC_NOC_1           MM_NPI_DDRMC5C_NOC_1
+#define  MM_NPI_DDRMC_NOC_1_SIZE      MM_NPI_DDRMC5C_NOC_1_SIZE
+#define  MM_NPI_DDRMC_UB_1            MM_NPI_DDRMC5C_UB_1
+#define  MM_NPI_DDRMC_UB_1_SIZE       MM_NPI_DDRMC5C_UB_1_SIZE
+
+#define  MM_NPI_DDRMC_MAIN_2          MM_NPI_DDRMC5C_MAIN_2
+#define  MM_NPI_DDRMC_MAIN_2_SIZE     MM_NPI_DDRMC5C_MAIN_2_SIZE
+#define  MM_NPI_DDRMC_NOC_2           MM_NPI_DDRMC5C_NOC_2
+#define  MM_NPI_DDRMC_NOC_2_SIZE      MM_NPI_DDRMC5C_NOC_2_SIZE
+#define  MM_NPI_DDRMC_UB_2            MM_NPI_DDRMC5C_UB_2
+#define  MM_NPI_DDRMC_UB_2_SIZE       MM_NPI_DDRMC5C_UB_2_SIZE
+
+#define  MM_NPI_DDRMC_MAIN_3          MM_NPI_DDRMC5C_MAIN_3
+#define  MM_NPI_DDRMC_MAIN_3_SIZE     MM_NPI_DDRMC5C_MAIN_3_SIZE
+#define  MM_NPI_DDRMC_NOC_3           MM_NPI_DDRMC5C_NOC_3
+#define  MM_NPI_DDRMC_NOC_3_SIZE      MM_NPI_DDRMC5C_NOC_3_SIZE
+#define  MM_NPI_DDRMC_UB_3            MM_NPI_DDRMC5C_UB_3
+#define  MM_NPI_DDRMC_UB_3_SIZE       MM_NPI_DDRMC5C_UB_3_SIZE
+
+#include "board-versal-ps-virt.dts"
+#include "versal-silicon-freq.dtsi"
