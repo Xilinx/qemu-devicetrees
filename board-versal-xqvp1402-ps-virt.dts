@@ -1,0 +1,9 @@
+/*
+ * Versal xqvp1402 virtual board dts.
+ *
+ * Copyright (c) 2023, Advanced Micro Devices, Inc.
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+#include "board-versal-xcvp1402-ps-virt.dts"
