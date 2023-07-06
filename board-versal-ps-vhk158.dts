@@ -58,14 +58,5 @@
 	};
 
 	MEM_REGION64(hbmmc_bnk0, MM_TOP_HBM0_H, MM_TOP_HBM0_L, MM_TOP_HBM0,
-                 0x4, 0x0, &hbmmc_0_mem) // 16 GB
-
-	hbmmc_1_mem: memory@MM_TOP_HBM1 {
-		compatible = "qemu:memory-region";
-		device_type = "memory";
-		container = <&amba>;
-	};
-
-	MEM_REGION64(hbmmc_bnk1, MM_TOP_HBM1_H, MM_TOP_HBM1_L, MM_TOP_HBM1,
-                 0x4, 0x0, &hbmmc_0_mem) // 16 GB
+                 0x8, 0x0, &hbmmc_0_mem) // 32 GB
 };
