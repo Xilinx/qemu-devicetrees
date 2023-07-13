@@ -1,0 +1,11 @@
+/*
+ * Vitis Versal VEK280 cosim board
+ *
+ * Copyright (c) 2023, Advanced Micro Devices, Inc.
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+#include "board-versal-ps-vek280.dts"
+#include "versal-ps-pl-remoteport.dtsi"
+#include "versal-vitis.dtsi"
