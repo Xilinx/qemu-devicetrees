@@ -33,6 +33,10 @@
 	/delete-node/ ospi_flash_ucs_ub@0;
 };
 
+&ospi_flash_lcs_lb {
+	compatible = "mt35xu02gbba";
+};
+
 &ps_i2c1 {
 	eeprom_versal: eeprom@51 {
 		compatible = "at,24c08";
