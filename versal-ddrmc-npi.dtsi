@@ -1,0 +1,40 @@
+#if defined(MM_NPI_DDRMC_MAIN_0)
+	GEN_DDRMC_UB(0);
+	GEN_DDRMC_MAIN(0);
+	GEN_DDRMC_NOC(0);
+#endif
+#if defined(MM_NPI_DDRMC_MAIN_1)
+	GEN_DDRMC_UB(1);
+	GEN_DDRMC_MAIN(1);
+	GEN_DDRMC_NOC(1);
+#endif
+#if defined(MM_NPI_DDRMC_MAIN_2)
+	GEN_DDRMC_UB(2);
+	GEN_DDRMC_MAIN(2);
+	GEN_DDRMC_NOC(2);
+#endif
+#if defined(MM_NPI_DDRMC_MAIN_3)
+	GEN_DDRMC_UB(3);
+	GEN_DDRMC_MAIN(3);
+	GEN_DDRMC_NOC(3);
+#endif
+#if defined(MM_NPI_DDRMC_MAIN_4)
+	GEN_DDRMC_UB(4);
+	GEN_DDRMC_MAIN(4);
+	GEN_DDRMC_NOC(4);
+#endif
+#if defined(MM_NPI_DDRMC_MAIN_5)
+	GEN_DDRMC_UB(5);
+	GEN_DDRMC_MAIN(5);
+	GEN_DDRMC_NOC(5);
+#endif
+#if defined(MM_NPI_DDRMC_MAIN_6)
+	GEN_DDRMC_UB(6);
+	GEN_DDRMC_MAIN(6);
+	GEN_DDRMC_NOC(6);
+#endif
+#if defined(MM_NPI_DDRMC_MAIN_7)
+	GEN_DDRMC_UB(7);
+	GEN_DDRMC_MAIN(7);
+	GEN_DDRMC_NOC(7);
+#endif
