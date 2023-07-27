@@ -38,11 +38,6 @@
 #define VERSAL_KSB
 #define VERSAL_NPI_OVERRIDE
 
-#define HAS_DDRMC0 1
-#define HAS_DDRMC1 1
-#define HAS_DDRMC2 1
-#define HAS_DDRMC3 1
-
 /* TODO: Add GIC interrupt redirection support.  */
 #define APU_GIC_INTERRUPT_TARGET_STEM cpu
 #define RPU_GIC_INTERRUPT_TARGET_STEM rpu_cpu

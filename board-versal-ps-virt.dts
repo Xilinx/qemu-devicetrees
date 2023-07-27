@@ -41,18 +41,6 @@
 
 #define HAS_SMMU
 #define HAVE_APU_GIC
-#if defined(MM_NPI_DDRMC_MAIN_0) || defined(MM_NPI_DDRMC5_MAIN_0)
-#define HAS_DDRMC0 1
-#endif
-#if defined(MM_NPI_DDRMC_MAIN_1) || defined(MM_NPI_DDRMC5_MAIN_1)
-#define HAS_DDRMC1 1
-#endif
-#if defined(MM_NPI_DDRMC_MAIN_2) || defined(MM_NPI_DDRMC5_MAIN_2)
-#define HAS_DDRMC2 1
-#endif
-#if defined(MM_NPI_DDRMC_MAIN_3) || defined(MM_NPI_DDRMC5_MAIN_3)
-#define HAS_DDRMC3 1
-#endif
 
 #ifndef APU_GIC_INTERRUPT_TARGET_STEM
 #ifdef MULTI_ARCH
@@ -201,7 +189,7 @@
 		#interrupt-cells = <1>;
 		interrupt-controller;
 	};
-#if HAS_DDRMC0
+#ifdef MM_NPI_DDRMC_MAIN_0
 	ddrmc_ub0: rp_ddrmc@0 {
 		compatible = "remote-port-gpio";
 		remote-ports = <&ps_pmc_rp 9>;
@@ -214,7 +202,7 @@
 		gpios = < &npi_ddrmc_ub0 0 >;
 	};
 #endif
-#if HAS_DDRMC1
+#ifdef MM_NPI_DDRMC_MAIN_1
 	ddrmc_ub1: rp_ddrmc@1 {
 		compatible = "remote-port-gpio";
 		remote-ports = <&ps_pmc_rp 10>;

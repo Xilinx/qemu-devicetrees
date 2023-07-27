@@ -75,10 +75,10 @@
 	}
 / {
 	cpus {
-#if HAS_DDRMC0
+#ifdef MM_NPI_DDRMC_MAIN_0
 		CREATE_UB(0, MM_DDRMC_RAM_INSTR, "DDRMC-UB0", 0x0);
 #endif
-#if HAS_DDRMC1
+#ifdef MM_NPI_DDRMC_MAIN_1
 		CREATE_UB(1, MM_DDRMC_RAM_INSTR, "DDRMC-UB1", 0x0);
 #endif
 	};

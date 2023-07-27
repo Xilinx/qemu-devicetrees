@@ -33,19 +33,6 @@
  #include "versal-npi-memmap.dtsh"
 #endif
 
-#if defined(MM_NPI_DDRMC_MAIN_0) || defined(MM_NPI_DDRMC5_MAIN_0)
-#define HAS_DDRMC0 1
-#endif
-#if defined(MM_NPI_DDRMC_MAIN_1) || defined(MM_NPI_DDRMC5_MAIN_1)
-#define HAS_DDRMC1 1
-#endif
-#if defined(MM_NPI_DDRMC_MAIN_2) || defined(MM_NPI_DDRMC5_MAIN_2)
-#define HAS_DDRMC2 1
-#endif
-#if defined(MM_NPI_DDRMC_MAIN_3) || defined(MM_NPI_DDRMC5_MAIN_3)
-#define HAS_DDRMC3 1
-#endif
-
 #define VERSAL_NPI_GENERIC
 
 #include "versal.dtsh"
@@ -166,7 +153,7 @@
 		remote-ports = <&ps_pmc_rp 8>;
 		interrupts-extended = < &psm0 0 >;
 	};
-#if HAS_DDRMC0
+#ifdef MM_NPI_DDRMC_MAIN_0
 	rp_ddrmc_ub0: rp_ddrmc_ub@0 {
 		compatible = "remote-port-gpio";
 		remote-ports = <&ps_pmc_rp 9>;
@@ -181,7 +168,7 @@
 		#gpio-cells = <1>;
 	};
 #endif
-#if HAS_DDRMC1
+#ifdef MM_NPI_DDRMC_MAIN_1
 	rp_ddrmc_ub1: rp_ddrmc_ub@1 {
 		compatible = "remote-port-gpio";
 		remote-ports = <&ps_pmc_rp 10>;
