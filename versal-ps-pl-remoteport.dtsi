@@ -147,6 +147,7 @@
 		       MM_TOP_PS_PL_HighAddr0_H MM_TOP_PS_PL_HighAddr0_L MM_TOP_PS_PL_HighAddr0_SIZE_H MM_TOP_PS_PL_HighAddr0_SIZE_L 0x0
 #endif
 		       MM_TOP_PS_PL_HighAddr1_H MM_TOP_PS_PL_HighAddr1_L MM_TOP_PS_PL_HighAddr1_SIZE_H MM_TOP_PS_PL_HighAddr1_SIZE_L 0x0>;
+		serbs-if = <&intfpd>;
 	};
 
 	/* Device ID 41 reserved for m_axi_gp1 in Extended PS.  */
@@ -155,6 +156,7 @@
 		compatible = "remote-port-memory-master";
 		remote-ports = <&cosim_rp_0 42>;
 		reg = <0x0 MM_TOP_PS_PL_LPD_LowAddr 0x0 MM_TOP_PS_PL_LPD_LowAddr_SIZE 0x0>;
+		serbs-if = <&intlpd>;
 	};
 
 	cci_mr: cci_mr@0 {
@@ -651,5 +653,16 @@
 			 MM_TOP_PL_via_NoC_H MM_TOP_PL_via_NoC_L MM_TOP_PL_via_NoC_SIZE_H MM_TOP_PL_via_NoC_SIZE_L 0x1
 #endif
 			>;
+	};
+};
+
+&amba_fpd {
+	intfpd: intfpd@MM_FPD_INTFPD_CONFIG {
+		afifs-serbs = <&m_axi_fpd>;
+	};
+};
+&amba_lpd {
+	intlpd: intlpd@MM_INTLPD_CONFIG {
+		afifs-serbs = <&m_axi_lpd>;
 	};
 };
