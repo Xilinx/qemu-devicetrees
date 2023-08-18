@@ -157,6 +157,19 @@ zname: dma-controller@zbase {							\
 		reset-gpios = <&crf 27>;
 	};
 #endif
+#ifdef MM_FPD_INTFPD_CONFIG
+	intfpd: intfpd@MM_FPD_INTFPD_CONFIG {
+		compatible = "xlnx-intfpd-config";
+		reg = <0x0 MM_FPD_INTFPD_CONFIG 0x0 MM_FPD_INTFPD_CONFIG_SIZE 0x0>;
+		interrupts = <
+		#if FPD_APB_INT_IRQ_0
+				FPD_APB_INT_IRQ_0
+		#elif  INT_FPD_IRQ_0
+				INT_FPD_IRQ_0
+		#endif
+		>;
+	};
+#endif
 };
 
 &amba_lpd {
@@ -408,6 +421,13 @@ zname: dma-controller@zbase {							\
 		reg = <0x0 MM_PS_GPIO 0x0 MM_PS_GPIO_SIZE 0x0>;
 		reset-gpios = < &crl CRL_RST_GPIO >;
 	};
+#ifdef MM_INTLPD_CONFIG
+	intlpd: intlpd@MM_INTLPD_CONFIG {
+		compatible = "xlnx-intlpd-config";
+		reg = <0x0 MM_INTLPD_CONFIG 0x0 MM_INTLPD_CONFIG_SIZE 0x0>;
+		interrupts = <INT_LPD_IRQ_0>;
+	};
+#endif
 };
 
 &amba_xram {
