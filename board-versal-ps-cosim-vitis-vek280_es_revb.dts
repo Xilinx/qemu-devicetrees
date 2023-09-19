@@ -6,5 +6,6 @@
  *
  * SPDX-License-Identifier: BSD-3-Clause
  */
-
-#include "board-versal-ps-cosim-vitis-vek280_es_revb.dts"
+#include "board-versal-ps-vek280.dts"
+#include "versal-ps-pl-remoteport.dtsi"
+#include "versal-vitis.dtsi"
