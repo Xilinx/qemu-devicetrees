@@ -40,10 +40,15 @@
 #define APU_WFI(n)	&psm_global (67 + n)
 #define APU_PWR(n)	&psm_local n
 
+#define MAX_APUS_PER_CLUSTER 4
+#define APU_CLUSTER_ID(n) (n / NUM_APUS_PER_CLUSTER)
+#define APU_RESET_GPIO(n) (n % NUM_APUS_PER_CLUSTER + \
+                           APU_CLUSTER_ID(n) * MAX_APUS_PER_CLUSTER)
+
 #define APU_GPIOS(CRF, n)					\
 	memattr_s = <&apu ## n ## _s_memattr>;			\
 	memattr_ns = <&apu ## n ## _ns_memattr>;		\
-	reset-gpios = <CRF (n % 16)>;				\
+	reset-gpios = <CRF (APU_RESET_GPIO(n) % 16)>;		\
 	gpios = < APU_WFI(n) >;					\
 	gpio-names = "wfi"					\
 
