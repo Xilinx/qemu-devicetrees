@@ -37,16 +37,20 @@
 		reg = <0x0 0x0 0xffffffff 0xffffffff 0xffffffff /* -1 */ >; \
 	}
 
+#define MEMATTR_NAME(name_) name_ ## _memattr
+
 #define MEMATTR(NAME, SEC, MASTERID)				\
-NAME ## _memattr: NAME ## _ma {					\
+MEMATTR_NAME(NAME): NAME ## _ma {					\
 	doc-ignore = <1>;					\
 	compatible = "qemu:memory-transaction-attr";		\
 	secure = <SEC>;						\
 	requester-id = <MASTERID>;				\
 }
 
+#define MEMATTR_SMID_NAME(name_) name_ ## _memattr_smid
+
 #define MEMATTR_SMID(NAME, MASTERID)				\
-NAME ## _memattr_smid: NAME ## _ma_smid {			\
+MEMATTR_SMID_NAME(NAME): NAME ## _ma_smid {			\
 	doc-ignore = <1>;					\
 	compatible = "qemu:memory-transaction-attr";		\
 	requester-id = <MASTERID>;				\
