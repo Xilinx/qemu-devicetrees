@@ -21,5 +21,5 @@
 };
 
 &pmc_tap {
-	idcode = <0x04D34093>;
+	idcode = <0x14D34093>;
 };

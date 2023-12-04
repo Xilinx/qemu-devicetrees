@@ -23,5 +23,5 @@
 #include "versal-vdu.dtsi"
 
 &pmc_tap {
-	idcode = <0x04CD0093>;
+	idcode = <0x14CD0093>;
 };

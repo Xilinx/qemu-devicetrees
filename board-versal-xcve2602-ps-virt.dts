@@ -9,5 +9,5 @@
 #include "board-versal-xcvc2802-ps-virt.dts"
 
 &pmc_tap {
-	idcode = <0x04CD1093>;
+	idcode = <0x14CD2093>;
 };

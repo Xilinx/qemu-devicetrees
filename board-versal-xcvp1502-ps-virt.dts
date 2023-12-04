@@ -9,7 +9,7 @@
 #include "board-versal-xcvp1202-ps-virt.dts"
 
 &pmc_tap {
-	idcode = <0x04D08093>;
+	idcode = <0x14D08093>;
 };
 
 &pmc_err_mng {

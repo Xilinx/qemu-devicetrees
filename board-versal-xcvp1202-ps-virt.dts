@@ -28,5 +28,5 @@
 #include "versal-cpm5.dtsi"
 
 &pmc_tap {
-	idcode = <0x04D00093>;
+	idcode = <0x14D00093>;
 };

@@ -31,3 +31,7 @@
 #include "versal/memmap/versal-xcve2302-npi-memmap.dtsi"
 #include "board-versal-ps-virt.dts"
 #include "versal-silicon-freq.dtsi"
+
+&pmc_tap {
+	idcode = <0x04CC8093>;
+};

@@ -14,3 +14,7 @@
  *  PCIE
  */
 #include "board-versal-xcvc2802-ps-virt.dts"
+
+&pmc_tap {
+	idcode = <0x14CD3093>;
+};

@@ -10,5 +10,5 @@
 #include "board-versal-xcvh1582-ps-virt.dts"
 
 &pmc_tap {
-	idcode = <0x04D2A093>;
+	idcode = <0x14D34093>;
 };

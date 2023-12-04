@@ -8,3 +8,7 @@
  */
 
 #include "board-versal-xcvh1782-ps-virt.dts"
+
+&pmc_tap {
+	idcode = <0x14D2F093>;
+};

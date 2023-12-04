@@ -376,4 +376,11 @@ _NAME: _NAME@0 {							\
 &gem1 {
 	mdio = <&mdio0>;
 };
+
+&pmc_tap {
+	/*
+	 * Default device: xcvc1902
+	 */
+	idcode = <0x14CA8093>;
+};
 #endif
