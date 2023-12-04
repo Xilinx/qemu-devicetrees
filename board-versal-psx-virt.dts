@@ -36,3 +36,7 @@
 #define APU_CPU_MODEL "cortex-a78-arm-cpu"
 
 #include "board-versal-ps-virt.dts"
+
+&pmc_tap {
+	idcode = <0x14D80093>;
+};
