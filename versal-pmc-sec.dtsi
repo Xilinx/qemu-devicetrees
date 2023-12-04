@@ -171,6 +171,7 @@
 			compatible = "xlnx,efuse";
 			efuse-nr = <3>;
 			efuse-size = <8192>;
+			init-factory-extidcode = <0x1>;
 		};
 	};
 
