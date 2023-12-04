@@ -128,6 +128,7 @@ SET_CPU_FREQ(31, KSB_APU_CPU_FREQ);
 };
 
 &pmc_tap {
+	idcode = <0x14D80093>;
 	platform-ver = <0x5>;
 };
 
