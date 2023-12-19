@@ -1,7 +1,7 @@
 /*
- * Versal header file
+ * SMID header file
  *
- * Copyright (c) 2016, Xilinx Inc
+ * Copyright (c) 2023, AMD Inc
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -27,36 +27,13 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "utils.dtsh"
-#include "loader.dtsh"
-#include "versal-irqs.dtsh"
-#include "versal-memmap.dtsh"
-#include "versal-resetmap.dtsh"
-#include "versal-powermap.dtsh"
-#include "versal-wiremap.dtsh"
-#include "smid.dtsh"
+#ifndef _SMID_DTSH
+#define _SMID_DTSH
 
+#include "versal/smid.dtsh"
 
-/* CPU CORE ID's */
-#define CPU_NR_APU0 0
-#define CPU_NR_APU1 1
-#define CPU_NR_RPU0 2
-#define CPU_NR_RPU1 3
-
-#define PLATFORM_SILICON     0x0
-#define PLATFORM_QEMU        0x3
-#define PLATFORM_QEMU_COSIM  0x7
-
-/* QEMU RAM Settings */
-#if defined(MULTI_ARCH)
-	#define IS_MULTI_ARCH(a) a
-	#define QEMU_RAM_PROPERTY 2
-#else
-	#define IS_MULTI_ARCH(a)
-	#define QEMU_RAM_PROPERTY 1
+#ifdef VERSAL2_DEV
+# include "versal2/smid.dtsh"
 #endif
 
-#define VERSAL_MARK_SE			\
-&xlnx_efuse {				\
-	init-factory-extidcode = <0x3>;	\
-};
+#endif
