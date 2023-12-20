@@ -1,0 +1,13 @@
+/*
+ * ZynqMP KV260 device tree
+ *
+ * Copyright (c) 2023 Advanced Micro Devices Inc.
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ *
+ * K26 SOM + KV Carrier
+ */
+
+#include "board-zynqmp-k26-som.dts"
+#include "board-zynqmp-sck-kv.dtsi"
