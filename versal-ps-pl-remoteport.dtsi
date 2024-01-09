@@ -492,7 +492,25 @@
 			  &lpd_gpio 283
 			  >;
 		};
-
+		rp_npi_irq: rp_npi_irq {
+			#gpio-cell = <1>;
+			compatible = "remote-port-gpio";
+			remote-ports = <&cosim_rp_0 98>;
+			num-gpios = <12>;
+			interrupts = <  NPI_IRQ_IRQ_0
+					NPI_IRQ_IRQ_1
+					NPI_IRQ_IRQ_2
+					NPI_IRQ_IRQ_3
+					NPI_IRQ_IRQ_4
+					NPI_IRQ_IRQ_5
+					NPI_IRQ_IRQ_6
+					NPI_IRQ_IRQ_7
+					NPI_IRQ_IRQ_8
+					NPI_IRQ_IRQ_9
+					NPI_IRQ_IRQ_10
+					NPI_IRQ_IRQ_11
+			>;
+		};
 		dummy_mio_map: dummy_mio_map {
 			gpio-controller;
 			#gpio-cells = <1>;
