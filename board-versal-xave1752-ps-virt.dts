@@ -1,0 +1,10 @@
+/*
+ * Versal AI Edge series device xave1752 virtual board dts
+ *
+ * Copyright (c) 2024, Advanced Micro Devices Inc
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+#include "board-versal-xcve1752-ps-virt.dts"
