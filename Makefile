@@ -101,7 +101,7 @@ $(LQSPI_XIP_OUTDIR)/%.dts:	%.dts $(DTSI_FILES) $(HEADER_FILES)
 define AUTO_GEN_HEAD
 /* Auto-Generated via Makefile
  *
- * Copyright (c) 2022, AMD Inc
+ * Copyright (c) 2024, Advanced Micro Devices, Inc
  * All rights reserved.
  *
  * SPDX-License-Identifier: BSD-3-Clause
