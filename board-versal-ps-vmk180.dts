@@ -1,0 +1,29 @@
+/*
+ * Versal VMK180 board device tree
+ *
+ * Boot Devices Supported: QSPI & SD
+ *
+ * Copyright (c) 2024, Advanced Micro Devices, Inc.
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+
+#include "board-versal-xcvm1802-ps-virt.dts"
+
+&ospi {
+	/delete-node/ ospi_flash_lcs_lb;
+	/delete-node/ ospi_flash_lcs_ub;
+	/delete-node/ ospi_flash_ucs_lb;
+	/delete-node/ ospi_flash_ucs_ub;
+};
+
+&mdio0 {
+		/delete-node/ phy@2;
+		phy1: phy@2 {
+			compatible = "dp83867";
+			device_type = "ethernet-phy";
+			reg = <2>;
+		};
+};
