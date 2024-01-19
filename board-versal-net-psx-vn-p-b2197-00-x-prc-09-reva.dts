@@ -1,0 +1,13 @@
+/* vn-p-b2197-00-x-prc-09-reva Board dts
+ *
+ * Copyright (c) 2024, Advanced Micro Devices, Inc
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+#include "board-versal-net-psx-vn-p-b2197-00-x-prc-09.dts"
+
+&pmc_tap {
+	silicon-rev=<0>;
+};
