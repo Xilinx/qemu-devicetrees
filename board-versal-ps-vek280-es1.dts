@@ -1,0 +1,14 @@
+/*
+ * Versal VEK280 ES1 board device tree
+ *
+ * Copyright (c) 2024, Advanced Micro Devices, Inc.
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+#include "board-versal-ps-vek280.dts"
+
+&pmc_tap {
+	silicon-rev=<0>;
+};
