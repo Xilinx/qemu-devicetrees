@@ -31,45 +31,11 @@
 
 #include "versal.dtsh"
 
-#define MM_PMX_ADMA_CH0			0xffd00000
-#define MM_PMX_ADMA_CH1			0xffd10000
-#define MM_PMX_ADMA_CH2			0xffd20000
-#define MM_PMX_ADMA_CH3			0xffd30000
-#define MM_PMX_ADMA_CH4			0xffd40000
-#define MM_PMX_ADMA_CH5			0xffd50000
-#define MM_PMX_ADMA_CH6			0xffd60000
-#define MM_PMX_ADMA_CH7			0xffd70000
-
 #define MM_USB_DWC3_1			(MM_USB_XHCI1 + 0xC100)
 #define MM_USB_DWC3_1_SIZE		0x600
 
 #define KSB_CRL_RST_USB0		3
 #define KSB_CRL_RST_USB1		4
-
-&adma0 {
-	reg = <0x0 MM_PMX_ADMA_CH0 0x0 MM_ADMA_CH0_SIZE 0x0>;
-};
-&adma1 {
-	reg = <0x0 MM_PMX_ADMA_CH1 0x0 MM_ADMA_CH0_SIZE 0x0>;
-};
-&adma2 {
-	reg = <0x0 MM_PMX_ADMA_CH2 0x0 MM_ADMA_CH0_SIZE 0x0>;
-};
-&adma3{
-	reg = <0x0 MM_PMX_ADMA_CH3 0x0 MM_ADMA_CH0_SIZE 0x0>;
-};
-&adma4{
-	reg = <0x0 MM_PMX_ADMA_CH4 0x0 MM_ADMA_CH0_SIZE 0x0>;
-};
-&adma5{
-	reg = <0x0 MM_PMX_ADMA_CH5 0x0 MM_ADMA_CH0_SIZE 0x0>;
-};
-&adma6{
-	reg = <0x0 MM_PMX_ADMA_CH6 0x0 MM_ADMA_CH0_SIZE 0x0>;
-};
-&adma7{
-	reg = <0x0 MM_PMX_ADMA_CH7 0x0 MM_ADMA_CH0_SIZE 0x0>;
-};
 
 &ipi {
 	interrupts = <PSMX_IRQMAP_OFFSET(IRQ_PSMX_IPI)
