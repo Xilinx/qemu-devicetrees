@@ -67,5 +67,15 @@
 	cpu14: apu@14 { };
 	cpu15: apu@15 { };
 #endif
+	/* Dummy GICs.  */
+	rpu_gic_a: rpu_gic_a@0 {
+		gpio_controller ;
+		#gpio-cells = <1>;
+	};
+
+	rpu_gic_b: rpu_gic_b@0 {
+		gpio_controller ;
+		#gpio-cells = <1>;
+	};
 };
 #endif

@@ -107,6 +107,8 @@
 			num-cpu = <NUM_RPUS_PER_CLUSTER>;		     \
 			num-irq = <288>;				     \
 			redist-region-count = <NUM_RPUS_PER_CLUSTER>;	     \
+			gpio-controller;                                     \
+			#gpio-cells = <1>;                                   \
 		};							     \
 	}
 

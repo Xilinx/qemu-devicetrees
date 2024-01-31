@@ -16,6 +16,11 @@
 #define RPU_PCIL_PWRDWN_B0 &rpu_pcil 2
 #define RPU_PCIL_PWRDWN_B1 &rpu_pcil 3
 
+#define RPU_GIC_WAKEUP0 &rpu_gic_a 0
+#define RPU_GIC_WAKEUP1 &rpu_gic_a 1
+#define RPU_GIC_WAKEUP2 &rpu_gic_b 0
+#define RPU_GIC_WAKEUP3 &rpu_gic_b 1
+
 	psm_global: psm_global_reg@MM_PSM_GLOBAL_REG {
 		compatible = "xlnx,psmx_global_reg";
 		interrupt-parent = <&psm0_io_intc>;
@@ -66,6 +71,11 @@
 			RPU_PCIL_PWRDWN_A1
 			RPU_PCIL_PWRDWN_B0
 			RPU_PCIL_PWRDWN_B1
+
+			RPU_GIC_WAKEUP0
+			RPU_GIC_WAKEUP1
+			RPU_GIC_WAKEUP2
+			RPU_GIC_WAKEUP3
 		>;
 	};
 
