@@ -222,5 +222,7 @@
 	rpu_pcil: rpu_pcil@0xEB420000 {
 		compatible = "xlnx,rpu_pcil";
 		reg = <0x0 (MM_LPD_SLCR + 0x10000) 0x0 0x10000 0x0>;
+		gpio-controller;
+		#gpio-cells = <1>;
 	};
 };

@@ -1,7 +1,8 @@
 /*
  * Versal PSM block
  *
- * Copyright (c) 2022, Xilinx Inc
+ * Copyright (C) 2022, Xilinx Inc
+ * Copyright (C) 2022-2024, Advanced Micro Devices, Inc.
  * All rights reserved.
  *
  * SPDX-License-Identifier: BSD-3-Clause
@@ -9,6 +10,12 @@
 
 &amba_psm {
 #ifdef MM_PSM_GLOBAL_REG
+
+#define RPU_PCIL_PWRDWN_A0 &rpu_pcil 0
+#define RPU_PCIL_PWRDWN_A1 &rpu_pcil 1
+#define RPU_PCIL_PWRDWN_B0 &rpu_pcil 2
+#define RPU_PCIL_PWRDWN_B1 &rpu_pcil 3
+
 	psm_global: psm_global_reg@MM_PSM_GLOBAL_REG {
 		compatible = "xlnx,psmx_global_reg";
 		interrupt-parent = <&psm0_io_intc>;
@@ -54,6 +61,11 @@
 			&psm_local 96   &psm_local 97
 			&psm_local 98   &psm_local 99
 			&psm_local 100  &psm_local 101
+
+			RPU_PCIL_PWRDWN_A0
+			RPU_PCIL_PWRDWN_A1
+			RPU_PCIL_PWRDWN_B0
+			RPU_PCIL_PWRDWN_B1
 		>;
 	};
 
