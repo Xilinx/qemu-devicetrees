@@ -37,6 +37,7 @@
 	i-cache-line-size = <0x20>;									\
 	i-cache-size = <0x8000>;									\
 	arm,midr = <0x410fd034>;									\
+	arm,revidr = <0x180>;										\
 	arm,ctr = <0x83338003>;										\
 	arm,clidr = <0x09200003>;									\
 	arm,id_pfr0 = <0x1231>;										\
