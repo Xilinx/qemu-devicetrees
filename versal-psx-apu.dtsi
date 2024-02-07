@@ -146,7 +146,7 @@
 		#priority-cells = <1>;
 		compatible = "simple-bus";
 		ranges ;
-		container = <&amba>;
+		container = <&amba_fpd>;
 		priority = <0xFFFFFFFF>; /* -1 */
 		gic: interrupt-controller@ACPU_GIC_DIST {
 			#address-cells = <0>;
