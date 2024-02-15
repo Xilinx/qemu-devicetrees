@@ -1,5 +1,5 @@
 /*
- * Versal Keystone-B SPP PSX device tree.
+ * Versal Net PSX device tree.
  *
  * Copyright (c) 2022, Xilinx Inc
  * All rights reserved.
@@ -27,7 +27,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#define KSB_APU_CPU_FREQ 100000000
+#define VERSAL_NET_APU_CPU_FREQ 100000000
 
 #include "board-versal-net-psx-virt.dts"
 

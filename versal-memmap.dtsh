@@ -117,7 +117,7 @@ name: name@addr64 {														\
 #define MM_DDRMC_NPI_MAIN		0x0
 #define MM_DDRMC_NPI_MAIN_SIZE		MM_DDRMC_RAM_EXCHANGE
 
-#ifdef VERSAL_KSB
+#ifdef VERSAL_NET
 /* Placed below remote port reserved region */
 #define MM_TOP_VIRTIO_MMIO_0  0xf5e00000
 #define MM_TOP_VIRTIO_MMIO_SIZE 0x1000
@@ -148,9 +148,9 @@ name: name@addr64 {														\
 
 /* Include auto-generated files.  */
 
-#ifdef VERSAL_KSB
- #include "ksb-memmap.dtsh"
- #include "ksb-gic-memmap.dtsh"
+#ifdef VERSAL_NET
+ #include "include/versal-net/memmap.dtsh"
+ #include "include/versal-net/gic-memmap.dtsh"
  #include "versal-psx-memmap-aliases.dtsh"
 #else
  #include "versal-top-memmap.dtsh"
@@ -164,7 +164,7 @@ name: name@addr64 {														\
  #define MM_RPU_GIC_SIZE	0x3000
 #endif
 
-#ifndef VERSAL_KSB
+#ifndef VERSAL_NET
 #define MM_XRAM MM_OCM2
 #define MM_XRAM_SIZE MM_OCM2_SIZE
 #define MM_XRAM_MEM MM_OCM2_MEM

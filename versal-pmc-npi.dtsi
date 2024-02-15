@@ -214,7 +214,7 @@
 #if !defined(VERSAL_NPI_GENERIC)
 &amba_pmc_pl {
 #ifdef VERSAL_VP1202
-#include "versal-h10-pmc-npi-nxx.dtsi"
+#include "versal-vp1202-pmc-npi-nxx.dtsi"
 #else
 #include "versal-pmc-npi-nxx.dtsi"
 #endif

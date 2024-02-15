@@ -76,11 +76,11 @@
 		#interrupt-cells = <1>;
 		interrupt-map-mask = <0x0 0x0 0xffff>;
 
-#ifdef VERSAL_KSB
+#ifdef VERSAL_NET
 /*
- * Keystone B irq map
+ * Versal Net irq map
  */
-#include "ksb/irq-map.dtsh"
+#include "versal-net/irq-map.dtsh"
 
 #else
 		interrupt-map =

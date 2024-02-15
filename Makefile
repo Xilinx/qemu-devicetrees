@@ -29,7 +29,6 @@
 OUTDIR 	?= ./
 GCC		?= gcc
 DTC		?= dtc
-KSB_MM_VERSION	?= SSV_FC
 
 ifeq ($V,)
 QUIET=@
@@ -55,7 +54,7 @@ HEADER_FILES			:= $(wildcard *.dtsh)
 HEADER_FILES			+= $(wildcard include/*.dtsh)
 
 
-CPPFLAGS = -I. -Iinclude/ -Iinclude/memmap/ksb/$(KSB_MM_VERSION)
+CPPFLAGS = -I. -Iinclude/ -Iinclude/versal-net
 
 .PHONY:	all source
 
@@ -118,12 +117,12 @@ endef
 export AUTO_GEN_HEAD
 export AUTO_GEN_VERSAL_DEV
 
-versal-pmc-npi.dtsi: versal-pmc-npi-nxx.dtsi versal-h10-pmc-npi-nxx.dtsi versal-gty-npi.dtsi
+versal-pmc-npi.dtsi: versal-pmc-npi-nxx.dtsi versal-vp1202-pmc-npi-nxx.dtsi versal-gty-npi.dtsi
 versal-pmc-npi-nxx.dtsi: Makefile
 	@python3 -c 'for a in range(0, 54): print("\tGEN_NMU(" + str(a) + ")")' > $@
 	@python3 -c 'for a in range(0, 50): print("\tGEN_NSU(" + str(a) + ")")' >> $@
 	@python3 -c 'for a in range(0, 146): print("\tGEN_NPS(" + str(a) + ")")' >> $@
-versal-h10-pmc-npi-nxx.dtsi: Makefile
+versal-vp1202-pmc-npi-nxx.dtsi: Makefile
 	@python3 -c 'for a in range(0, 37): print("\tGEN_NMU(" + str(a) + ")")' > $@
 	@python3 -c 'for a in range(0, 33): print("\tGEN_NSU(" + str(a) + ")")' >> $@
 	@python3 -c 'for a in range(0, 135): print("\tGEN_NPS(" + str(a) + ")")' >> $@
@@ -141,7 +140,7 @@ board-versal-%-ps-cosim-vitis-virt.dts: Makefile
 
 clean:
 	$(RM) versal-pmc-npi-nxx.dtsi
-	$(RM) versal-h10-pmc-npi-nxx.dtsi
+	$(RM) versal-vp1202-pmc-npi-nxx.dtsi
 	$(RM) versal-gty-npi.dtsi
 	$(RM) $(AUTO_GEN_DTS)
 	@rm -rf LATEST;

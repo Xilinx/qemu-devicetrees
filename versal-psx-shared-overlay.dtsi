@@ -34,8 +34,8 @@
 #define MM_USB_DWC3_1			(MM_USB_XHCI1 + 0xC100)
 #define MM_USB_DWC3_1_SIZE		0x600
 
-#define KSB_CRL_RST_USB0		3
-#define KSB_CRL_RST_USB1		4
+#define VERSAL_NET_CRL_RST_USB0		3
+#define VERSAL_NET_CRL_RST_USB1		4
 
 &ipi {
 	interrupts = <PSMX_IRQMAP_OFFSET(IRQ_PSMX_IPI)
@@ -60,7 +60,7 @@
 };
 
 &dwc3_0 {
-	reset-gpios = <&crl KSB_CRL_RST_USB0>;
+	reset-gpios = <&crl VERSAL_NET_CRL_RST_USB0>;
 };
 
 &amba_lpd {
@@ -70,7 +70,7 @@
 		interrupts = <USB1_int_IRQ_0 USB1_int_IRQ_1 USB1_int_IRQ_2 USB1_int_IRQ_3>;
 		dma = <&smmu_tbu0>;
 		memattr = <&usb1_memattr>;
-		reset-gpios = <&crl KSB_CRL_RST_USB1>;
+		reset-gpios = <&crl VERSAL_NET_CRL_RST_USB1>;
 		intrs = <4>;
 		slots = <2>;
 	};

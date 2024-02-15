@@ -1,5 +1,5 @@
 /*
- * KSB memory map definitions
+ * Versal Net memory map definitions
  *
  * Copyright (c) 2021, Xilinx Inc
  * All rights reserved.
@@ -26,24 +26,18 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#ifndef __KSB_MEMMAP__
-#define __KSB_MEMMAP__
+#ifndef __VERSAL_NET_MEMMAP__
+#define __VERSAL_NET_MEMMAP__
 
-#include "ksb-top-memmap.dtsh"
-#include "ksb-fpd-memmap.dtsh"
-#include "ksb-lpd-memmap.dtsh"
-#include "ksb-pmx-memmap.dtsh"
-#include "ksb-ocm-memmap.dtsh"
-#include "ksb-iou-memmap.dtsh"
-#include "ksb-psm-memmap.dtsh"
-#include "ksb-coresight-memmap.dtsh"
-#include "ksb-npi-memmap.dtsh"
-#define MM_DDRMC_XMPU_OFFSET	0x12000
+#include "top-memmap.dtsh"
+#include "fpd-memmap.dtsh"
+#include "lpd-memmap.dtsh"
+#include "pmx-memmap.dtsh"
+#include "ocm-memmap.dtsh"
+#include "iou-memmap.dtsh"
+#include "psm-memmap.dtsh"
+#include "coresight-memmap.dtsh"
+#include "pki-memmap.dtsh"
+#include "npi-memmap.dtsh"
 
-//GIC mapping is not complete untill then use versal gic mapping
-//#include "ksb-gic-memmap.dtsh"
-
-#include "ksb-pki-memmap.dtsh"
-#undef MM_RPU_GIC
-#define MM_RPU_GIC 0xF9000000
 #endif

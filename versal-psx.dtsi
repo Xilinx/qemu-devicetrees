@@ -105,7 +105,7 @@
 
 &amba_fpd {
 	/*
-	 * Keystone-B PSX replaces the CCI-500 with a CMN-600AE.
+	 * Versal Net PSX replaces the CCI-500 with a CMN-600AE.
 	 * Delete the old nodes and add the CMN.
 	 */
 	/delete-node/ cci_reg@MM_FPD_FPD_GPCCI;

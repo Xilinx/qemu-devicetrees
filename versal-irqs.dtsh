@@ -28,9 +28,9 @@
  */
 
 /* Include the auto-generated stuff.  */
-#ifdef VERSAL_KSB
+#ifdef VERSAL_NET
 #include "versal-psx-irqs.dtsh"
-#include "include/ksb/ksb-versal-irq-aliases.dtsh"
+#include "include/versal-net/irq-aliases.dtsh"
 #else
 #include "versal-ps-irqs.dtsh"
 #endif
@@ -63,7 +63,7 @@
 #define IRQ_PMX_PPU0_HW_INT			18
 #define IRQ_PMX_PPU0_SVR_INT			27
 
-#ifndef VERSAL_KSB
+#ifndef VERSAL_NET
 /* PMC PPU1.  */
 #define IRQ_PPU1_INTC_PMC_GICP			16
 #define IRQ_PPU1_INTC_PPU1_RAM_ECC		17
