@@ -55,3 +55,8 @@
 	#define IS_MULTI_ARCH(a)
 	#define QEMU_RAM_PROPERTY 1
 #endif
+
+#define VERSAL_MARK_SE			\
+&xlnx_efuse {				\
+	init-factory-extidcode = <0x3>;	\
+};
