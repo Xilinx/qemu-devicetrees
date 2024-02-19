@@ -1,0 +1,12 @@
+/*
+ * Versal Premium series xcvp1052-se virtual board dts
+ *
+ * Copyright (c) 2024, Advanced Micro Devices, Inc
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+#include "board-versal-xcvp1052-ps-virt.dts"
+
+VERSAL_MARK_SE
