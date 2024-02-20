@@ -266,6 +266,15 @@ glue(ocm_mem_ctrl_, n): glue(ocm_mem_ctrl_, n)@n {						\
 			};
 		};
 
+		gpu: mali_400@GPU {
+			compatible = "arm-mali-400";
+			reg = <BASE_ADDR(GPU) 0xC000>;
+			interrupts = <GPU_IRQ_0>;
+			l2c-version = <((0xcac2 << 16) | (0x0101))>;
+			l2c-size = <((7 << 24) | (16 << 16) | (2 << 8) | 6)>;
+			num-pp = <2>;
+		};
+
 		ddrphy_0: ddr-phy@DDR_PHY {
 			compatible = "xlnx,zynqmp-ddr-phy";
 			reg = <BASE_ADDR(DDR_PHY) 0x2000>;
