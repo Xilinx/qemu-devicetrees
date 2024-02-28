@@ -1,7 +1,8 @@
 /*
  * Versal PSM block
  *
- * Copyright (c) 2016, Xilinx Inc.
+ * Copyright (c) 2016-2022, Xilinx Inc.
+ * Copyright (C) 2022-2024, Advanced Micro Devices, Inc.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,106 +30,118 @@
 
 #include "versal.dtsh"
 
-#define CREATE_PSM_IOMOD(X)						\
-	psm_ ## X ## _io_module: io-module@00 {				\
-		doc-status = "complete";				\
-		#address-cells = <2>;					\
-		#size-cells = <1>;					\
-		#priority-cells = <0>;					\
-		compatible = "simple-bus";				\
-		container = <&lmb_psm>;					\
-		priority = <0xffffffff>;				\
-									\
-		psm ## X ## _io_intc: psm ## X ## _intc@0C {		\
-			#interrupt-cells = <1>;				\
-			compatible = "xlnx,io-intc-1.02.a", "xlnx,io_intc"; \
-			interrupt-controller ;				\
-			interrupts-extended = <&psm ## X 0>;		\
-			reg = <0x0 MM_PSM_IOM(0C) 0x4 0x0 MM_PSM_IOM(30) 0x10 0x0 MM_PSM_IOM(80) 0x7C>; \
-			xlnx,intc-addr-width = <0x20>;			\
-			xlnx,intc-base-vectors = <0x0>;			\
-			xlnx,intc-has-fast = <0x0>;			\
-			xlnx,intc-intr-size = <0x10>;			\
-			xlnx,intc-level-edge = <0x0>;			\
-			xlnx,intc-positive = <0xffff>;			\
-			xlnx,intc-use-ext-intr = <0x1>;			\
-		};							\
-		psm ## X ## _io_gpo1: psm ## X ## _gpo@10 {		\
-			#gpio-cells = <1>;				\
-			gpio-controller;				\
-			compatible = "xlnx,io-gpo-1.02.a", "xlnx,io_gpo"; \
-			reg = <0x0 MM_PSM_IOM(10) 0x4>;			\
-			xlnx,gpo-init = <0x0>;				\
-			xlnx,gpo-size = <0x3>;				\
-			xlnx,use-gpo = <0x1>;				\
-		};							\
-		psm ## X ## _io_pit1: psm ## X ## _pit@40 {		\
-			compatible = "xlnx,io-pit-1.02.a", "xlnx,io_pit"; \
-			interrupt-parent = <&psm ## X ## _io_intc>;	\
-			interrupts = <3>;				\
-			reg = <0x0 MM_PSM_IOM(40) 0xc>;			\
-			xlnx,pit-interrupt = <0x1>;			\
-			xlnx,pit-prescaler = <0x9>;			\
-			xlnx,pit-readable = <0x1>;			\
-			xlnx,pit-size = <0x20>;				\
-			xlnx,use-pit = <0x1>;				\
-			frequency = <460000000>;			\
-			gpios = <&psm ## X ## _io_gpo1 1 &psm ## X ## _io_pit2 0>; \
-			gpio-names = "ps_config","ps_hit_in";		\
-			gpio-controller;				\
-			#gpio-cells = <1>;				\
-		};							\
-		psm ## X ## _io_pit2: psm ## X ## _pit@50 {		\
-			compatible = "xlnx,io-pit-1.02.a", "xlnx,io_pit"; \
-			interrupt-parent = <&psm ## X ## _io_intc>;	\
-			interrupts = <4>;				\
-			reg = <0x0 MM_PSM_IOM(50) 0xc>;			\
-			xlnx,pit-interrupt = <0x1>;			\
-			xlnx,pit-prescaler = <0x9>;			\
-			xlnx,pit-readable = <0x1>;			\
-			xlnx,pit-size = <0x20>;				\
-			xlnx,use-pit = <0x1>;				\
-			frequency = <460000000>;			\
-			gpio-controller;				\
-			#gpio-cells = <1>;				\
-		};							\
-		psm ## X ## _io_pit3: psm ## X ## _pit@60 {		\
-			compatible = "xlnx,io-pit-1.02.a", "xlnx,io_pit"; \
-			interrupt-parent = <&psm ## X ## _io_intc>;	\
-			interrupts = <5>;				\
-			reg = <0x0 MM_PSM_IOM(60) 0xc>;			\
-			xlnx,pit-interrupt = <0x1>;			\
-			xlnx,pit-prescaler = <0x9>;			\
-			xlnx,pit-readable = <0x1>;			\
-			xlnx,pit-size = <0x20>;				\
-			xlnx,use-pit = <0x1>;				\
-			frequency = <460000000>;			\
-			gpios = <&psm ## X ## _io_gpo1 6 &psm ## X ## _io_pit4 0>; \
-			gpio-names = "ps_config","ps_hit_in";		\
-			gpio-controller;				\
-			#gpio-cells = <1>;				\
-		};							\
-		psm ## X ## _io_pit4: psm ## X ## _pit@70 {		\
-			compatible = "xlnx,io-pit-1.02.a", "xlnx,io_pit"; \
-			interrupt-parent = <&psm ## X ## _io_intc>;	\
-			interrupts = <6>;				\
-			reg = <0x0 MM_PSM_IOM(70) 0xc>;			\
-			xlnx,pit-interrupt = <0x1>;			\
-			xlnx,pit-prescaler = <0x9>;			\
-			xlnx,pit-readable = <0x1>;			\
-			xlnx,pit-size = <0x20>;				\
-			xlnx,use-pit = <0x1>;				\
-			frequency = <460000000>;			\
-			gpio-controller;				\
-			#gpio-cells = <1>;				\
-		};							\
-	}
-
 / {
 	lmb_psm: lmb_psm@0 {
 		doc-name = "LMB PPU0";
 		doc-status = "in-progress";
-		CREATE_PSM_IOMOD(0);
+
+		psm_0_io_module: io-module@00 {
+			doc-status = "complete";
+			#address-cells = <2>;
+			#size-cells = <1>;
+			#priority-cells = <0>;
+			compatible = "simple-bus";
+			priority = <0xffffffff>;
+			container = <&lmb_psm>;
+
+			psm0_io_intc: psm0_intc@0C {
+				#interrupt-cells = <1>;
+				compatible = "xlnx,io-intc-1.02.a",
+					     "xlnx,io_intc";
+				interrupt-controller;
+				interrupts-extended = <&psm0 0>;
+				reg = <0x0 MM_PSM_IOM(0C) 0x4
+				       0x0 MM_PSM_IOM(30) 0x10
+				       0x0 MM_PSM_IOM(80) 0x7C>;
+				xlnx,intc-addr-width = <0x20>;
+				xlnx,intc-base-vectors = <0x0>;
+				xlnx,intc-has-fast = <0x0>;
+				xlnx,intc-intr-size = <0x10>;
+				xlnx,intc-level-edge = <0x0>;
+				xlnx,intc-positive = <0xffff>;
+				xlnx,intc-use-ext-intr = <0x1>;
+			};
+
+			psm0_io_gpo1: psm0_gpo@10 {
+				#gpio-cells = <1>;
+				gpio-controller;
+				compatible = "xlnx,io-gpo-1.02.a",
+					     "xlnx,io_gpo";
+				reg = <0x0 MM_PSM_IOM(10) 0x4>;
+				xlnx,gpo-init = <0x0>;
+				xlnx,gpo-size = <0x3>;
+				xlnx,use-gpo = <0x1>;
+			};
+
+			psm0_io_pit1: psm0_pit@40 {
+				compatible = "xlnx,io-pit-1.02.a",
+					     "xlnx,io_pit";
+				interrupt-parent = <&psm0_io_intc>;
+				interrupts = <3>;
+				reg = <0x0 MM_PSM_IOM(40) 0xc>;
+				xlnx,pit-interrupt = <0x1>;
+				xlnx,pit-prescaler = <0x9>;
+				xlnx,pit-readable = <0x1>;
+				xlnx,pit-size = <0x20>;
+				xlnx,use-pit = <0x1>;
+				frequency = <460000000>;
+				gpios = <&psm0_io_gpo1 1 &psm0_io_pit2 0>;
+				gpio-names = "ps_config", "ps_hit_in";
+				gpio-controller;
+				#gpio-cells = <1>;
+			};
+
+			psm0_io_pit2: psm0_pit@50 {
+				compatible = "xlnx,io-pit-1.02.a",
+					     "xlnx,io_pit";
+				interrupt-parent = <&psm0_io_intc>;
+				interrupts = <4>;
+				reg = <0x0 MM_PSM_IOM(50) 0xc>;
+				xlnx,pit-interrupt = <0x1>;
+				xlnx,pit-prescaler = <0x9>;
+				xlnx,pit-readable = <0x1>;
+				xlnx,pit-size = <0x20>;
+				xlnx,use-pit = <0x1>;
+				frequency = <460000000>;
+				gpio-controller;
+				#gpio-cells = <1>;
+			};
+
+			psm0_io_pit3: psm0_pit@60 {
+				compatible = "xlnx,io-pit-1.02.a",
+					     "xlnx,io_pit";
+				interrupt-parent = <&psm0_io_intc>;
+				interrupts = <5>;
+				reg = <0x0 MM_PSM_IOM(60) 0xc>;
+				xlnx,pit-interrupt = <0x1>;
+				xlnx,pit-prescaler = <0x9>;
+				xlnx,pit-readable = <0x1>;
+				xlnx,pit-size = <0x20>;
+				xlnx,use-pit = <0x1>;
+				frequency = <460000000>;
+				gpios = <&psm0_io_gpo1 6 &psm0_io_pit4 0>;
+				gpio-names = "ps_config","ps_hit_in";
+				gpio-controller;
+				#gpio-cells = <1>;
+			};
+
+			psm0_io_pit4: psm0_pit@70 {
+				compatible = "xlnx,io-pit-1.02.a",
+					     "xlnx,io_pit";
+				interrupt-parent = <&psm0_io_intc>;
+				interrupts = <6>;
+				reg = <0x0 MM_PSM_IOM(70) 0xc>;
+				xlnx,pit-interrupt = <0x1>;
+				xlnx,pit-prescaler = <0x9>;
+				xlnx,pit-readable = <0x1>;
+				xlnx,pit-size = <0x20>;
+				xlnx,use-pit = <0x1>;
+				frequency = <460000000>;
+				gpio-controller;
+				#gpio-cells = <1>;
+			};
+		};
+
 #ifdef MM_PSM_LOCAL_REG
 		psm_local: psm_local_reg@MM_PSM_LOCAL_REG {
 			gpio-controller;
