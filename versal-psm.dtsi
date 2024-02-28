@@ -229,4 +229,12 @@
 		reg = <0x0 (MM_PSM_GLOBAL_REG + 0x1000) 0x0 0x100 0>;
 	};
 #endif
+
+	/* PSM CPU is reset directly wired to the CRP signal.  */
+	psm_reset_domain@0 {
+	        compatible = "qemu,reset-domain";
+		mr0 = <&lmb_psm>;
+		mr1 = <&amba_psm>;
+		reset-gpios = < &pmc_clk_rst 7 >;
+	};
 };
