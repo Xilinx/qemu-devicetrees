@@ -166,6 +166,8 @@
 			has-security-extensions = <1>;
 			has-lpi = <1>;
 			sysmem = <&amba>;
+			gpio-controller;
+			#gpio-cells = <1>;
 		};
 
 		git_its@MM_APU_GIC_ITS_CTL {

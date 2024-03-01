@@ -221,6 +221,7 @@
 			  &psm_local 96 &psm_local 97	/* APU powerdown req */
 			  &psm_local 98 &psm_local 99
 			  &rpu_ctrl 8 &rpu_ctrl 9	/* RPU powerdown req */
+			  &gic 0 &gic 1                 /* APU-GIC wakeup req */
 			>;
 	};
 
