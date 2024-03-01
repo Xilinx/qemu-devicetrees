@@ -1,7 +1,8 @@
 /*
  * Versal Virtual PS board device tree
  *
- * Copyright (c) 2016, Xilinx Inc
+ * Copyright (c) 2016-2022, Xilinx Inc.
+ * Copyright (C) 2022-2024, Advanced Micro Devices, Inc.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -42,12 +43,10 @@
 #define HAS_SMMU
 #define HAVE_APU_GIC
 
-#ifndef APU_GIC_INTERRUPT_TARGET_STEM
+#ifndef RPU_GIC_INTERRUPT_TARGET_STEM
 #ifdef MULTI_ARCH
-	#define APU_GIC_INTERRUPT_TARGET_STEM apu_intc_redirect_
 	#define RPU_GIC_INTERRUPT_TARGET_STEM rpu_intc_redirect_
 #else
-	#define APU_GIC_INTERRUPT_TARGET_STEM cpu
 	#define RPU_GIC_INTERRUPT_TARGET_STEM rpu_cpu
 #endif
 #endif
@@ -219,25 +218,6 @@
 		compatible = "remote-port-memory-slave";
 		remote-ports = <&ps_pmc_rp 13>;
 		mr = <&lmb_psm>;
-	};
-
-#define APU_INTC_REDIRECT(n,a,p)					\
-	glue(apu_intc_redirect_, n): glue(apu_intc_redirect, n)@n {	\
-		#interrupt-cells = <1>;					\
-		compatible = "xlnx,zynqmp-intc-redirect";		\
-		interrupt-controller;					\
-		interrupts-extended = <glue(&cpu,n) 0>,			\
-				<glue(&cpu,n) 1>,			\
-				<glue(&cpu,n) 2>,			\
-				<glue(&cpu,n) 3>;			\
-		gpios = <&psm_global p &psm_local a>;			\
-}
-
-	amba_apu: amba_apu@0 {
-		APU_INTC_REDIRECT(0, 100, 0);
-		APU_INTC_REDIRECT(1, 101, 1);
-		APU_INTC_REDIRECT(2, 102, 2);
-		APU_INTC_REDIRECT(3, 103, 3);
 	};
 
 #define RPU_INTC_REDIRECT(NCPU, PSMOUT, RPUN)							\
