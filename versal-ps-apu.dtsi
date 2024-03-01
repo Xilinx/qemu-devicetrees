@@ -33,8 +33,8 @@
 
 #ifndef NUM_APUS
 #error "NUM APUs is not set!"
-#elif NUM_APUS != 2 && NUM_APUS != 4
-#error "NUM APUs must be set to 2 or 4"
+#elif NUM_APUS != 2
+#error "NUM APUs must be set to 2"
 #endif
 
 #define APU_GPIOS(n)						\
@@ -56,6 +56,7 @@
 			gdb-id = "Cortex-A72 #0";
 			#interrupt-cells = <1>;
 		};
+
 		cpu1: apu_cpu@1 {
 			APU_COMMON(1, NUM_APUS);
 			APU_GPIOS(1);
@@ -63,22 +64,13 @@
 			gdb-id = "Cortex-A72 #1";
 			#interrupt-cells = <1>;
 		};
+
+		/* Doesn't exist in hardware.  */
 		cpu2: apu_cpu@2 {
-#if NUM_APUS == 4
-			APU_COMMON(2, NUM_APUS);
-			APU_GPIOS(2);
-			APU_SECONDARY(2);
-			gdb-id = "Cortex-A72 #2";
-#endif
 			#interrupt-cells = <1>;
 		};
+
 		cpu3: apu_cpu@3 {
-#if NUM_APUS == 4
-			APU_COMMON(3, NUM_APUS);
-			APU_GPIOS(3);
-			APU_SECONDARY(3);
-			gdb-id = "Cortex-A72 #3";
-#endif
 			#interrupt-cells = <1>;
 		};
 	};
@@ -129,34 +121,18 @@
 				/* IRQs.  */
 				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 0) 0>,
 				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 1) 0>,
-#if NUM_APUS == 4
-				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 2) 0>,
-				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 3) 0>,
-#endif
 
 				/* FIQs.  */
 				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 0) 1>,
 				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 1) 1>,
-#if NUM_APUS == 4
-				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 2) 1>,
-				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 3) 1>,
-#endif
 
 				/* Virtual IRQs.  */
 				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 0) 2>,
 				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 1) 2>,
-#if NUM_APUS == 4
-				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 2) 2>,
-				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 3) 2>,
-#endif
 
 				/* Virtual FIQs.  */
 				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 0) 3>,
 				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 1) 3>,
-#if NUM_APUS == 4
-				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 2) 3>,
-				<&glue(APU_GIC_INTERRUPT_TARGET_STEM, 3) 3>,
-#endif
 				<&gic 0x1 0x9 0x104>,
 				<&gic 0x1 0x9 0x204>,
 				<&gic 0x1 0x9 0x404>,
