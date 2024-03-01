@@ -1,0 +1,60 @@
+/* Xilinx ZynqMP Generic System Controller revB
+ *
+ * Copyright (c) 2024, Advanced Micro Devices, Inc
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+/*
+ * Attach EEPROM block device on the command line:
+ *    -blockdev node-name=i2c1.eeprom-54,filename=<file>,driver=file
+ *
+ */
+
+#define HAS_SMMU
+#include "zynqmp.dtsh"
+
+/dts-v1/;
+
+#include "zynqmp-arm.dtsi"
+#include "zynqmp-memory-regions.dtsi"
+#include "zynqmp-boot-init.dtsi"
+
+/ {
+	model = "ZynqMP Generic System Controller";
+	compatible = "xlnx,zynqmp-sc-revB", "xlnx,zynqmp-sc", "xlnx,zynqmp";
+
+	mdio0: mdio {
+		#address-cells = <1>;
+		#size-cells = <0>;
+		compatible="mdio";
+
+		phy0: phy@1 {
+			compatible = "dp83867";
+			device_type = "ethernet-phy";
+            reg = <1>;
+		};
+	};
+};
+
+&gem1 {
+    mdio = <&mdio0>;
+};
+
+&i2c1 {
+    eeprom@54 {
+        compatible = "at,24c08";
+        reg = <0x54>;
+        size = <16384>;
+        blockdev-node-name = "i2c1.eeprom-54";
+    };
+};
+
+&ps7_qspi_0 {
+	SPI_FLASH(qspi_flash_ucs_ub, "mt25qu512a", 0x02000000, 0x0 0x0)
+};
+
+&ps7_uart_1 {
+    status = "okay";
+};

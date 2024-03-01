@@ -1,0 +1,24 @@
+/* Xilinx ZynqMP Generic System Controller revC
+ *
+ * Copyright (c) 2024, Advanced Micro Devices, Inc
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+/*
+ * Attach EEPROM block device on the command line:
+ *    -blockdev node-name=i2c1.eeprom-54,filename=<file>,driver=file
+ *
+ */
+
+#include "board-zynqmp-sc-revb.dts"
+
+/ {
+	model = "ZynqMP Generic System Controller";
+	compatible = "xlnx,zynqmp-sc-revC", "xlnx,zynqmp-sc", "xlnx,zynqmp";
+};
+
+&phy0 {
+    compatible = "ADIN1300";
+};
