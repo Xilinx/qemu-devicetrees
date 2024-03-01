@@ -82,8 +82,7 @@
         #address-cells = <1>;
         #size-cells = <0>;
         compatible = "nxp,pca9544";
-        reg = <0x74>;
-        chip-enable = <0x1>;
+        reg = <0x75>;
         i2c@0 { /* i2c mw 75 0 1 */
             #address-cells = <1>;
             #size-cells = <0>;
@@ -335,8 +334,7 @@
         compatible = "nxp,pca9548"; /* u135 */
         #address-cells = <1>;
         #size-cells = <0>;
-        reg = <0x74>;
-        chip-enable = <0x1>;
+        reg = <0x75>;
 
         i2c@0 {
             #address-cells = <1>;
