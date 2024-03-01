@@ -1,0 +1,40 @@
+/* Xilinx Versal a2197 RevB System Controller.
+ *
+ * Copyright (c) 2024, Advanced Micro Devices, Inc
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+/*
+ * Attach EEPROM block devices on the command line:
+ *    -blockdev node-name=<eeprom-name>,filename=<file>,driver=file
+ *
+ * With eeprom-name one of:
+ *    - i2c1.mux-0.eeprom-52
+ *    - i2c1.mux-0.eeprom-54
+ *    - i2c1.mux-1.eeprom-50
+ *    - i2c1.mux-2.eeprom-50
+ *
+ */
+
+#include "board-zynqmp-e-a2197-00-reva.dts"
+
+/ {
+	model = "Versal System Controller on a2197 Eval board RevB";
+    compatible = "xlnx,zynqmp-e-a2197-00-revB", "xlnx,zynqmp-a2197-revB", "xlnx,zynqmp-a2197", "xlnx,zynqmp";
+};
+
+&i2c0 {
+    i2c-mux@74 {
+        i2c@2 {
+            /delete-node/ clock-generator@6c;
+        };
+
+        i2c@3 {
+			/delete-node/ ina226@42;
+			/delete-node/ ina226@43;
+			/delete-node/ ina226@44;
+		};
+    };
+};

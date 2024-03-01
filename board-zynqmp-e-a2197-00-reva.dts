@@ -1,0 +1,383 @@
+/* Xilinx Versal a2197 RevA System Controller.
+ *
+ * Copyright (c) 2024, Advanced Micro Devices, Inc
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+/*
+ * Attach EEPROM block devices on the command line:
+ *    -blockdev node-name=<eeprom-name>,filename=<file>,driver=file
+ *
+ * With eeprom-name one of:
+ *    - i2c1.mux-0.eeprom-52
+ *    - i2c1.mux-0.eeprom-54
+ *    - i2c1.mux-1.eeprom-50
+ *    - i2c1.mux-2.eeprom-50
+ *
+ */
+
+#define HAS_SMMU
+#include "zynqmp.dtsh"
+
+/dts-v1/;
+
+#include "zynqmp-arm.dtsi"
+#include "zynqmp-memory-regions.dtsi"
+#include "zynqmp-boot-init.dtsi"
+
+/ {
+	model = "Versal System Controller on a2197 Eval board RevA";
+	compatible = "xlnx,zynqmp-e-a2197-00-revA", "xlnx,zynqmp-a2197-revA", "xlnx,zynqmp-a2197", "xlnx,zynqmp";
+
+	mdio0: mdio {
+		#address-cells = <1>;
+		#size-cells = <0>;
+		compatible="mdio";
+
+		phy0: phy@0 {
+			compatible = "dp83867";
+			device_type = "ethernet-phy";
+		};
+	};
+};
+
+&gem0 {
+    mdio = <&mdio0>;
+};
+
+&i2c0 {
+    tca6416@20 {
+        compatible = "ti,tca6416";
+        reg = <0x20>;
+    };
+
+    i2c-mux@74 {
+        compatible = "nxp,pca9548";
+        #address-cells = <1>;
+        #size-cells = <0>;
+        reg = <0x74>;
+
+        i2c@0 {
+            #address-cells = <1>;
+            #size-cells = <0>;
+            reg = <0>;
+
+            irps5401@47 {
+                compatible = "i2c-dev-dummy";
+                reg = <0x47>;
+            };
+
+            irps5401@4c {
+                compatible = "i2c-dev-dummy";
+                reg = <0x4c>;
+            };
+
+            irps5401@4d {
+                compatible = "i2c-dev-dummy";
+                reg = <0x4d>;
+            };
+        };
+
+        i2c@1 {
+            #address-cells = <1>;
+            #size-cells = <0>;
+            reg = <1>;
+
+            ina226@40 {
+                compatible = "i2c-dev-dummy";
+                reg = <0x40>;
+            };
+
+            ina226@41 {
+                compatible = "i2c-dev-dummy";
+                reg = <0x41>;
+            };
+
+            ina226@42 {
+                compatible = "i2c-dev-dummy";
+                reg = <0x42>;
+            };
+
+            ina226@43 {
+                compatible = "i2c-dev-dummy";
+                reg = <0x43>;
+            };
+
+            ina226@44 {
+                compatible = "i2c-dev-dummy";
+                reg = <0x44>;
+            };
+
+            ina226@45 {
+                compatible = "i2c-dev-dummy";
+                reg = <0x45>;
+            };
+        };
+
+        i2c@2 {
+            #address-cells = <0x01>;
+            #size-cells = <0x00>;
+            reg = <0x02>;
+
+            clock-generator@6c {
+				#clock-cells = <1>;
+				compatible = "i2c-dev-dummy";
+				reg = <0x6c>;
+            };
+        };
+
+        i2c@3 {
+            #address-cells = <0x01>;
+            #size-cells = <0x00>;
+            reg = <0x03>;
+
+            ina226@40 {
+                compatible = "i2c-dev-dummy";
+                reg = <0x40>;
+            };
+
+            ina226@41 {
+                compatible = "i2c-dev-dummy";
+                reg = <0x41>;
+            };
+
+            ina226@42 {
+                compatible = "i2c-dev-dummy";
+                reg = <0x42>;
+            };
+
+            ina226@43 {
+                compatible = "i2c-dev-dummy";
+                reg = <0x43>;
+            };
+
+            ina226@44 {
+                compatible = "i2c-dev-dummy";
+                reg = <0x44>;
+            };
+
+            ina226@45 {
+                compatible = "i2c-dev-dummy";
+                reg = <0x45>;
+            };
+
+            ina226@46 {
+                compatible = "i2c-dev-dummy";
+                reg = <0x46>;
+            };
+
+            ina226@47 {
+                compatible = "i2c-dev-dummy";
+                reg = <0x47>;
+            };
+
+            ina226@48 {
+                compatible = "i2c-dev-dummy";
+                reg = <0x48>;
+            };
+
+            ina226@49 {
+                compatible = "i2c-dev-dummy";
+                reg = <0x49>;
+            };
+
+            ina226@4a {
+                compatible = "i2c-dev-dummy";
+                reg = <0x4a>;
+            };
+
+            ina226@4b {
+                compatible = "i2c-dev-dummy";
+                reg = <0x4b>;
+            };
+
+            ina226@4c {
+                compatible = "i2c-dev-dummy";
+                reg = <0x4c>;
+            };
+
+            ina226@4d {
+                compatible = "i2c-dev-dummy";
+                reg = <0x4d>;
+            };
+        };
+
+        i2c@4 {
+            #address-cells = <0x01>;
+            #size-cells = <0x00>;
+            reg = <0x04>;
+        };
+
+        i2c@5 {
+            #address-cells = <0x01>;
+            #size-cells = <0x00>;
+            reg = <0x05>;
+
+            clock-generator@5d {
+                compatible = "silabs,si57x";
+                reg = <0x5d>;
+                temperature-stability = <50>;
+            };
+        };
+
+        i2c@6 {
+            #address-cells = <0x01>;
+            #size-cells = <0x00>;
+            reg = <0x06>;
+
+            clock-generator@5f {
+                compatible = "silabs,si57x";
+                reg = <0x5f>;
+                temperature-stability = <50>;
+            };
+        };
+
+        i2c@7 {
+            #address-cells = <0x01>;
+            #size-cells = <0x00>;
+            reg = <0x07>;
+        };
+    };
+};
+
+&i2c1 {
+    i2c-mux@74 {
+        compatible = "nxp,pca9548";
+        #address-cells = <0x01>;
+        #size-cells = <0x00>;
+        reg = <0x74>;
+
+        i2c@0 {
+            #address-cells = <0x01>;
+            #size-cells = <0x00>;
+            reg = <0x00>;
+
+            eeprom@54 {
+                compatible = "at,24c08";
+                reg = <0x54>;
+                size = <16384>;
+                blockdev-node-name = "i2c1.mux-0.eeprom-54";
+            };
+
+            clock-generator@5d {
+                compatible = "silabs,si57x";
+                reg = <0x5d>;
+                temperature-stability = <50>;
+            };
+
+            eeprom@52 {
+                compatible = "at,24c08";
+                reg = <0x52>;
+                size = <16384>;
+                blockdev-node-name = "i2c1.mux-0.eeprom-52";
+            };
+        };
+
+        i2c@1 {
+            #address-cells = <0x01>;
+            #size-cells = <0x00>;
+            reg = <0x01>;
+
+            eeprom@50 {
+                compatible = "at,24c08";
+                reg = <0x50>;
+                size = <16384>;
+                blockdev-node-name = "i2c1.mux-1.eeprom-50";
+            };
+        };
+
+        i2c@2 {
+            #address-cells = <0x01>;
+            #size-cells = <0x00>;
+            reg = <0x02>;
+
+            eeprom@50 {
+                compatible = "at,24c08";
+                reg = <0x50>;
+                size = <16384>;
+                blockdev-node-name = "i2c1.mux-2.eeprom-50";
+            };
+        };
+
+        i2c@3 {
+            #address-cells = <0x01>;
+            #size-cells = <0x00>;
+            reg = <0x03>;
+
+            clock-generator@60 {
+                compatible = "silabs,si57x";
+                reg = <0x60>;
+                temperature-stability = <50>;
+            };
+        };
+
+        i2c@4 {
+            #address-cells = <0x01>;
+            #size-cells = <0x00>;
+            reg = <0x04>;
+
+            clock-generator@60 {
+                compatible = "silabs,si57x";
+                reg = <0x60>;
+                temperature-stability = <50>;
+            };
+        };
+
+        i2c@5 {
+            #address-cells = <0x01>;
+            #size-cells = <0x00>;
+            reg = <0x05>;
+
+            clock-generator@60 {
+                compatible = "silabs,si57x";
+                reg = <0x60>;
+                temperature-stability = <50>;
+            };
+        };
+
+        i2c@6 {
+            #address-cells = <0x01>;
+            #size-cells = <0x00>;
+            reg = <0x06>;
+
+            clock-generator@5d {
+                compatible = "silabs,si57x";
+                reg = <0x5d>;
+                temperature-stability = <50>;
+            };
+        };
+
+        i2c@7 {
+            #address-cells = <0x01>;
+            #size-cells = <0x00>;
+            reg = <0x07>;
+        };
+    };
+
+    i2c-mux@75 {
+        compatible = "nxp,pca9548";
+        #address-cells = <0x01>;
+        #size-cells = <0x00>;
+        reg = <0x75>;
+
+        i2c@0 {
+            #address-cells = <0x01>;
+            #size-cells = <0x00>;
+            reg = <0x00>;
+        };
+
+        i2c@1 {
+            #address-cells = <0x01>;
+            #size-cells = <0x00>;
+            reg = <0x01>;
+        };
+
+        i2c@2 {
+            #address-cells = <0x01>;
+            #size-cells = <0x00>;
+            reg = <0x02>;
+        };
+    };
+};
