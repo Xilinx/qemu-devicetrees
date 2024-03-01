@@ -53,9 +53,20 @@
 	};
 };
 
-&amba {
-	I2C_NODES(ps7_i2c_0, I2C0, I2C0_IRQ_0, 0x54)
-	I2C_NODES(ps7_i2c_1, I2C1, I2C1_IRQ_0, 0x55)
+&i2c0 {
+	eeprom@54 {
+		compatible = "at,24c64";
+		reg = <0x54>;
+		size = <0x2000>;
+	};
+};
+
+&i2c1 {
+	eeprom@55 {
+		compatible = "at,24c64";
+		reg = <0x55>;
+		size = <0x2000>;
+	};
 };
 
 &ps7_qspi_0 {

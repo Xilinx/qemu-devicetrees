@@ -90,21 +90,6 @@ zname: zname@zbase {							\
 
 #define I2C_CLOCKS &misc_clk
 
-#define I2C_NODES(name, addressbase, irq, eeprom_addr)			\
-name: name@addressbase {												\
-	clocks = <I2C_CLOCKS>;												\
-	compatible = "xlnx,ps7-i2c-1.00.a", "cdns,i2c-r1p10";				\
-	interrupts = <irq>;													\
-	reg = <BASE_ADDR(addressbase) 0x1000>;								\
-	#address-cells = <1>;												\
-	#size-cells = <0>;													\
-	eeprom@54 {															\
-		compatible = "at,24c64";										\
-		reg = <eeprom_addr>;											\
-		size = <0x2000>;												\
-	};																	\
-};
-
 #define OCM_MEM_CTRL(n, hlt_line, pwr_line)								\
 glue(ocm_mem_ctrl_, n): glue(ocm_mem_ctrl_, n)@n {						\
 	compatible = "qemu,memory-controller";								\
@@ -716,6 +701,24 @@ glue(ocm_mem_ctrl_, n): glue(ocm_mem_ctrl_, n)@n {						\
 		mio_in: rp_cosim_mio_in {
 				gpio-controller;
 				#gpio-cells = <2>;
+		};
+
+		i2c0: i2c0@I2C0 {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			clocks = <I2C_CLOCKS>;
+			compatible = "xlnx,ps7-i2c-1.00.a", "cdns,i2c-r1p10";
+			interrupts = <I2C0_IRQ_0>;
+			reg = <BASE_ADDR(I2C0) 0x1000>;
+		};
+
+		i2c1: i2c1@0xFF030000 {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			clocks = <I2C_CLOCKS>;
+			compatible = "xlnx,ps7-i2c-1.00.a", "cdns,i2c-r1p10";
+			interrupts = <I2C1_IRQ_0>;
+			reg = <BASE_ADDR(I2C1) 0x1000>;
 		};
 	};
 

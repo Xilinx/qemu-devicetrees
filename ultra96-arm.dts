@@ -64,32 +64,26 @@
  * This is not actually on the board
  */
 
-&amba {
-	i2c1: i2c1@0xFF030000 {
-		#address-cells = <1>;
-		#size-cells = <0>;
-		clocks = <I2C_CLOCKS>;
-		compatible = "xlnx,ps7-i2c-1.00.a", "cdns,i2c-r1p10";
-		interrupts = <I2C1_IRQ_0>;
-		reg = <BASE_ADDR(I2C1) 0x1000>;
-		i2cswitch@74 {
-			#address-cells = <1>;
-			#size-cells = <0>;
-			compatible = "nxp,pca9548";
-			reg = <0x74>;
-			i2c@2 {
-				#address-cells = <1>;
-				#size-cells = <0>;
-				reg = <2>;
-				si570_1: clock-generator@5d {
-					compatible = "silabs,si57x";
-					reg = <0x5d>;
-					temperature-stability=<50>;
-				};
-			};
-		};
-	};
+&i2c1 {
+    i2cswitch@74 {
+        #address-cells = <1>;
+        #size-cells = <0>;
+        compatible = "nxp,pca9548";
+        reg = <0x74>;
+        i2c@2 {
+            #address-cells = <1>;
+            #size-cells = <0>;
+            reg = <2>;
+            si570_1: clock-generator@5d {
+                compatible = "silabs,si57x";
+                reg = <0x5d>;
+                temperature-stability=<50>;
+            };
+        };
+    };
+};
 
+&amba {
 	/* This models the SW4 button attached to MIO23_GPIO_PB.  */
 	sw4: sw4 {
 		compatible = "xlnx,gpio-key";
