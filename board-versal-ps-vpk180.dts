@@ -65,3 +65,8 @@
 	/delete-node/ qspi_flash_lcs_ub@0;
 	/delete-node/ qspi_flash_ucs_ub@0;
 };
+
+/{
+	MEM_REGION64(ddr2_def, MM_TOP_DDR_2_H, MM_TOP_DDR_2_L, MM_TOP_DDR_2,
+                     0x2, 0x0, &ddr_2_mem)
+};
