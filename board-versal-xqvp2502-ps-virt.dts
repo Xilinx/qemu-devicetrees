@@ -1,0 +1,10 @@
+/*
+ * Versal Premium series xqvp2502 virtual board device tree
+ *
+ * Copyright (c) 2024, Advanced Micro Devices, Inc
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+#include "board-versal-xcvp2502-ps-virt.dts"
