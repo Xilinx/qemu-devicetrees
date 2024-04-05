@@ -1,0 +1,10 @@
+/*
+ * Versal AI Edge series xave2602 virtual board device tree
+ *
+ * Copyright (c) 2024, Advanced Micro Devices, Inc
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+#include "board-versal-xcve2602-ps-virt.dts"
