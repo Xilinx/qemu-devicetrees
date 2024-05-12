@@ -6,7 +6,7 @@ architecture. These device trees are used by the QEMU provided by Xilinx to
 internally generate machine models.
 
 For more instructions on running QEMU see the Xilinx wiki:
-http://www.wiki.xilinx.com/QEMU+-+Zynq+UltraScalePlus
+https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/821395464/QEMU+User+Documentation
 
 To build the device trees:
    1. You must have dtc on your PATH, or specify DTC= env to a dtc executable.
