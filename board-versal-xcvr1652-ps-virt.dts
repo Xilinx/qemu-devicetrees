@@ -1,0 +1,14 @@
+/*
+ * Versal AI RF series xcvr1652 virtual board device tree
+ *
+ * Copyright (c) 2024, Advanced Micro Devices, Inc
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+#include "board-versal-xcvr1702-ps-virt.dts"
+
+&pmc_tap {
+    idcode = <0x04CA6093>;
+};
