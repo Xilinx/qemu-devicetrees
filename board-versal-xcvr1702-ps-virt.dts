@@ -1,0 +1,63 @@
+/*
+ * Versal AI RF series device xcvr1702 virtual board dts
+ *
+ * Copyright (c) 2023, Advanced Micro Devices Inc. All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+#define VERSAL_NPI_OVERRIDE
+#include "versal/memmap/versal-xcvr1702-npi-memmap.dtsi"
+
+/* Aliases */
+#define  MM_NPI_DDRMC_MAIN_0               MM_NPI_DDRMC5E_MAIN_0
+#define  MM_NPI_DDRMC_MAIN_0_SIZE          MM_NPI_DDRMC5E_MAIN_0_SIZE
+#define  MM_NPI_DDRMC_NOC_0                MM_NPI_DDRMC5E_NOC_0
+#define  MM_NPI_DDRMC_NOC_0_SIZE           MM_NPI_DDRMC5E_NOC_0_SIZE
+#define  MM_NPI_DDRMC_UB_0                 MM_NPI_DDRMC5E_UB_0
+#define  MM_NPI_DDRMC_UB_0_SIZE            MM_NPI_DDRMC5E_UB_0_SIZE
+#define  MM_NPI_DDRMC_CRYPTO_MAIN_0        MM_NPI_DDRMC5E_CRYPTO_MAIN_0
+#define  MM_NPI_DDRMC_CRYPTO_MAIN_0_SIZE   MM_NPI_DDRMC5E_CRYPTO_MAIN_0_SIZE
+
+#define MM_NPI_DDRMC_MAIN_1               MM_NPI_DDRMC5E_MAIN_1
+#define MM_NPI_DDRMC_MAIN_1_SIZE          MM_NPI_DDRMC5E_MAIN_1_SIZE
+#define MM_NPI_DDRMC_NOC_1                MM_NPI_DDRMC5E_NOC_1
+#define MM_NPI_DDRMC_NOC_1_SIZE           MM_NPI_DDRMC5E_NOC_1_SIZE
+#define MM_NPI_DDRMC_UB_1                 MM_NPI_DDRMC5E_UB_1
+#define MM_NPI_DDRMC_UB_1_SIZE            MM_NPI_DDRMC5E_UB_1_SIZE
+#define MM_NPI_DDRMC_CRYPTO_MAIN_1        MM_NPI_DDRMC5E_CRYPTO_MAIN_1
+#define MM_NPI_DDRMC_CRYPTO_MAIN_1_SIZE   MM_NPI_DDRMC5E_CRYPTO_MAIN_1_SIZE
+
+#define MM_NPI_DDRMC_MAIN_3               MM_NPI_DDRMC5E_MAIN_3
+#define MM_NPI_DDRMC_MAIN_3_SIZE          MM_NPI_DDRMC5E_MAIN_3_SIZE
+#define MM_NPI_DDRMC_NOC_3                MM_NPI_DDRMC5E_NOC_3
+#define MM_NPI_DDRMC_NOC_3_SIZE           MM_NPI_DDRMC5E_NOC_3_SIZE
+#define MM_NPI_DDRMC_UB_3                 MM_NPI_DDRMC5E_UB_3
+#define MM_NPI_DDRMC_UB_3_SIZE            MM_NPI_DDRMC5E_UB_3_SIZE
+#define MM_NPI_DDRMC_CRYPTO_MAIN_3        MM_NPI_DDRMC5E_CRYPTO_MAIN_3
+#define MM_NPI_DDRMC_CRYPTO_MAIN_3_SIZE   MM_NPI_DDRMC5E_CRYPTO_MAIN_3_SIZE
+
+#define MM_NPI_DDRMC_MAIN_4               MM_NPI_DDRMC5E_MAIN_4
+#define MM_NPI_DDRMC_MAIN_4_SIZE          MM_NPI_DDRMC5E_MAIN_4_SIZE
+#define MM_NPI_DDRMC_NOC_4                MM_NPI_DDRMC5E_NOC_4
+#define MM_NPI_DDRMC_NOC_4_SIZE           MM_NPI_DDRMC5E_NOC_4_SIZE
+#define MM_NPI_DDRMC_UB_4                 MM_NPI_DDRMC5E_UB_4
+#define MM_NPI_DDRMC_UB_4_SIZE            MM_NPI_DDRMC5E_UB_4_SIZE
+#define MM_NPI_DDRMC_CRYPTO_MAIN_4        MM_NPI_DDRMC5E_CRYPTO_MAIN_4
+#define MM_NPI_DDRMC_CRYPTO_MAIN_4_SIZE   MM_NPI_DDRMC5E_CRYPTO_MAIN_4_SIZE
+
+#define MM_NPI_DDRMC_MAIN_5               MM_NPI_DDRMC5E_MAIN_5
+#define MM_NPI_DDRMC_MAIN_5_SIZE          MM_NPI_DDRMC5E_MAIN_5_SIZE
+#define MM_NPI_DDRMC_NOC_5                MM_NPI_DDRMC5E_NOC_5
+#define MM_NPI_DDRMC_NOC_5_SIZE           MM_NPI_DDRMC5E_NOC_5_SIZE
+#define MM_NPI_DDRMC_UB_5                 MM_NPI_DDRMC5E_UB_5
+#define MM_NPI_DDRMC_UB_5_SIZE            MM_NPI_DDRMC5E_UB_5_SIZE
+#define MM_NPI_DDRMC_CRYPTO_MAIN_5        MM_NPI_DDRMC5E_CRYPTO_MAIN_5
+#define MM_NPI_DDRMC_CRYPTO_MAIN_5_SIZE   MM_NPI_DDRMC5E_CRYPTO_MAIN_5_SIZE
+
+#include "board-versal-ps-virt.dts"
+#include "versal-silicon-freq.dtsi"
+
+&pmc_tap {
+  idcode = <0x04CA0093>;
+};
