@@ -1,0 +1,10 @@
+/*
+ * Versal AI Edge series xqrve2302 virtual board device tree
+ *
+ * Copyright (c) 2024, Advanced Micro Devices, Inc
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+#include "board-versal-xqve2302-ps-virt.dts"
