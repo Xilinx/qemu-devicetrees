@@ -1,0 +1,117 @@
+/*
+ * Versal Prime Series board VM-P-M1369-00 device tree.
+ *
+ * Copyright (c) 2024, Advanced Micro Devices, Inc.
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+#include "board-versal-xcvm2152-ps-virt.dts"
+#include <i2c-dummy.dtsh>
+
+/* Memory node hack.  */
+/ {
+	/delete-node/ ddr@MM_TOP_DDR;
+	/delete-node/ ddr_2@MM_TOP_DDR_2;
+	/delete-node/ ddr_3@MM_TOP_DDR_CH1;
+
+	/* 2GB mapped at 0.  */
+	MEM_REGION(ddr, 0x0, MM_TOP_DDR, 0x00000000, 0x80000000,
+	           &ddr_mem)
+};
+
+/* Neither SPI nor OSPI have any memories mapped.  */
+&spi0 {
+        /delete-node/ spi0_flash0@0;
+};
+
+&spi1 {
+        /delete-node/ spi1_flash0@0;
+};
+
+&ospi {
+	/delete-node/ ospi_flash_lcs_lb@0;
+	/delete-node/ ospi_flash_lcs_ub@0;
+	/delete-node/ ospi_flash_ucs_lb@0;
+	/delete-node/ ospi_flash_ucs_ub@0;
+};
+
+/* QSPI has a different memory mapping added below.  */
+&pmc_qspi_0 {
+	/delete-node/ qspi_flash_lcs_lb@0;
+	/delete-node/ qspi_flash_lcs_ub@0;
+	/delete-node/ qspi_flash_ucs_lb@0;
+	/delete-node/ qspi_flash_ucs_ub@0;
+};
+
+/* QSPI memories: U1760, U1761 are MT25QU01 (256Mx4bits) and respectively
+ * mapped on QSPI0 and QSPI1, replace the regular ps-virt flashes by the
+ * correct chips.  */
+&pmc_qspi_0 {
+	DI_SPI_FLASH(0, qspi_flash_lcs_lb, "mt25qu01g", 0x20000, 0x0 0x0)
+	DI_SPI_FLASH(1, qspi_flash_lcs_ub, "mt25qu01g", 0x20000, 0x0 0x1)
+};
+
+/* The I2C buses are highly configurable through jumpers on the board:
+ *  - Assume that the i2c1 has access to the eeprom, and DDR regulators.  */
+
+/* I2C_MAIN_BUS.  */
+&ps_i2c0 {
+	/* U97.	 */
+	eeprom@54 {
+		/* 128Kbit EEPROM.  */
+		compatible = "m24cxx";
+		size = <0x4000>;
+		reg = <0x54>;
+		blockdev-node-name = "ps_i2c1.eeprom-54";
+	};
+
+	/* U1774.  */
+	switch@75 {
+		/* TCA9548 mux.	 */
+		#address-cells = <1>;
+		#size-cells = <0>;
+		reg = <0x75>;
+		compatible = "pca9548";
+
+		i2c@0 {
+			/* LPDDR5_REFCLK_CH0.  */
+			reg = <0>;
+			I2C_DUMMY(XPL736320_000000I, 0x50);
+		};
+
+		i2c@1 {
+			/* LPDDR5_REFCLK_CH1.  */
+			reg = <1>;
+			I2C_DUMMY(XPL736320_000000I, 0x50);
+		};
+
+		i2c@4 {
+			/* DDR5_REFCLK_CH0.  */
+			reg = <4>;
+			I2C_DUMMY(XPL736320_000000I, 0x50);
+		};
+
+		i2c@5 {
+			/* DDR5_REFCLK_CH1.  */
+			reg = <5>;
+			I2C_DUMMY(XPL736320_000000I, 0x50);
+		};
+
+		i2c@6 {
+			/* UCD_PMBUS, can be disabled through jumper.  */
+			reg = <6>;
+			/* U1706.  */
+			I2C_DUMMY(UCD90320, 0x77);
+		};
+
+		i2c@7 {
+			/* I2C_VERSAL_REF_CLK.	*/
+			reg = <7>;
+			/* U39.	 */
+			I2C_DUMMY(XPL716050_000000I, 0x55);
+		};
+
+	};
+};
