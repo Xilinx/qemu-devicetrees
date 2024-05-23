@@ -1,0 +1,20 @@
+/*
+ * I2C dummy model.
+ *
+ * Copyright (c) 2024, Advanced Micro Devices, Inc.
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+#ifndef I2C_DUMMY_DTSH
+#define I2C_DUMMY_DTSH
+
+/* Dummy model for un-modelled i2c devices.  */
+#define I2C_DUMMY(name, addr)			\
+	name@addr {				\
+		compatible = "i2c-dev-dummy";	\
+		reg = <addr>;			\
+	}
+
+#endif /* I2C_DUMMY_DTSH */

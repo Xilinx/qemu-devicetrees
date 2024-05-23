@@ -1,7 +1,8 @@
 /*
  * Versal vc-p-a2197 PS board device tree
  *
- * Copyright (c) 2019, Xilinx Inc
+ * Copyright (c) 2019-2022, Xilinx Inc.
+ * Copyright (C) 2022-2024, Advanced Micro Devices, Inc.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,12 +30,7 @@
 
 #include "board-versal-ps-virt.dts"
 #include "versal-silicon-freq.dtsi"
-
-#define I2C_DUMMY(name, addr)			\
-	name@addr {				\
-		compatible = "i2c-dev-dummy";	\
-		reg = <addr>;			\
-	}
+#include <i2c-dummy.dtsh>
 
 &ps_i2c0 {
 	i2cswitch@74 {
