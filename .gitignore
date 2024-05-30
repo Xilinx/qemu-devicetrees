@@ -6,3 +6,4 @@ versal-vp1202-pmc-npi-nxx.dtsi
 *-ps-cosim-vitis-virt.dts
 !board-versal-xcvc2802-ps-cosim-vitis-virt.dts
 !board-versal-xcve2302-ps-cosim-vitis-virt.dts
+*-psxc-cosim-vitis-virt.dts

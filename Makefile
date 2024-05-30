@@ -40,9 +40,15 @@ endif
 SKIP_AUTO_GEN= board-versal-xcvc2802-ps-cosim-vitis-virt.dts	\
 		board-versal-xcve2302-ps-cosim-vitis-virt.dts
 
-# Picks all versal varients except boards which are mentioned in SKIP_AUTO_GEN
-AUTO_GEN_DTS	:= $(filter-out $(SKIP_AUTO_GEN),	\
-				$(patsubst %ps-virt.dts, %ps-cosim-vitis-virt.dts, $(wildcard board-versal-*-ps-virt.dts)))
+# Picks all versal variants except boards which are mentioned in SKIP_AUTO_GEN
+AUTO_GEN_DTS	:= $(filter-out $(SKIP_AUTO_GEN),			     \
+				$(patsubst %ps-virt.dts,		     \
+				  %ps-cosim-vitis-virt.dts,		     \
+				  $(wildcard board-versal-*-ps-virt.dts)))   \
+		   $(filter-out $(SKIP_AUTO_GEN),			     \
+				$(patsubst %psxc-virt.dts,		     \
+				  %psxc-cosim-vitis-virt.dts,		     \
+				  $(wildcard board-versal2-*-psxc-virt.dts)))
 
 SINGLE_ARCH_OUTDIR		:= $(OUTDIR)/LATEST/SINGLE_ARCH
 MULTI_ARCH_OUTDIR 		:= $(OUTDIR)/LATEST/MULTI_ARCH
@@ -95,28 +101,6 @@ $(LQSPI_XIP_OUTDIR)/%.dtb:	%.dts $(DTSI_FILES) $(HEADER_FILES)
 $(LQSPI_XIP_OUTDIR)/%.dts:	%.dts $(DTSI_FILES) $(HEADER_FILES)
 	$(call COMPILE,$(LQSPI_XIP_OUTDIR),dts,-DLQSPI_XIP)
 
-# Auto-generated Versal fragments
-# TODO: Add support for auto-generated dependency list
-define AUTO_GEN_HEAD
-/* Auto-Generated via Makefile
- *
- * Copyright (c) 2024, Advanced Micro Devices, Inc
- * All rights reserved.
- *
- * SPDX-License-Identifier: BSD-3-Clause
- */
-endef
-
-define AUTO_GEN_VERSAL_DEV
-
-#include "board-versal-$*-ps-virt.dts"
-#include "versal-ps-pl-remoteport.dtsi"
-#include "versal-vitis.dtsi"
-endef
-
-export AUTO_GEN_HEAD
-export AUTO_GEN_VERSAL_DEV
-
 versal-pmc-npi.dtsi: versal-pmc-npi-nxx.dtsi versal-vp1202-pmc-npi-nxx.dtsi versal-gty-npi.dtsi
 versal-pmc-npi-nxx.dtsi: Makefile
 	@python3 -c 'for a in range(0, 54): print("#ifdef MM_NPI_NOC_NMU_" + str(a) + "\n" + \
@@ -159,10 +143,49 @@ versal-gty-npi.dtsi: Makefile
 						"\tGEN_GTY_NPI(" + str(a) + ");\n" + \
 						"#endif")' >> $@
 
+# Auto-generated Versal fragments
+# TODO: Add support for auto-generated dependency list
+define AUTO_GEN_HEAD
+/* Auto-Generated via Makefile
+ *
+ * Copyright (c) 2024, Advanced Micro Devices, Inc
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+endef
+
+# Versal device autogeneration
+
+define AUTO_GEN_VERSAL_DEV
+
+#include "board-versal-$*-ps-virt.dts"
+#include "versal-ps-pl-remoteport.dtsi"
+#include "versal-vitis.dtsi"
+endef
+
+# Versal Gen2 device autogeneration.
+
+define AUTO_GEN_VERSAL2_DEV
+
+#include "board-versal2-$*-psxc-virt.dts"
+#include "versal2-pl-remoteport.dtsi"
+#include "versal-vitis.dtsi"
+endef
+
+export AUTO_GEN_HEAD
+export AUTO_GEN_VERSAL_DEV
+export AUTO_GEN_VERSAL2_DEV
+
 board-versal-%-ps-cosim-vitis-virt.dts: Makefile
-	$(if $(or $(findstring LATEST, $@), $(filter $(SKIP_AUTO_GEN), $@)), \
-			  @exit 0, \
+	$(if $(or $(findstring LATEST, $@), $(filter $(SKIP_AUTO_GEN), $@)),   \
+			  @exit 0,					       \
 			  @echo "$$AUTO_GEN_HEAD""$$AUTO_GEN_VERSAL_DEV" > $@)
+
+board-versal2-%-psxc-cosim-vitis-virt.dts: Makefile
+	$(if $(or $(findstring LATEST, $@), $(filter $(SKIP_AUTO_GEN), $@)),   \
+			  @exit 0,					       \
+			  @echo "$$AUTO_GEN_HEAD""$$AUTO_GEN_VERSAL2_DEV" > $@)
 
 clean:
 	$(RM) versal-pmc-npi-nxx.dtsi
