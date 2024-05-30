@@ -2,7 +2,7 @@
  * Versal PSX Overlay
  *
  * Copyright (C) 2021-2022 Xilinx Inc.
- * Copyright (C) 2022-2023 Advanced Micro Devices Inc.
+ * Copyright (C) 2022-2024 Advanced Micro Devices Inc.
  * All rights Reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -70,8 +70,10 @@
 &amba_fpd {
 	GEN_APU_CLUSTER(0, 0, 1, none, none);
 	GEN_APU_CLUSTER(1, 2, 3, none, none);
+#if NUM_APUS == 8
 	GEN_APU_CLUSTER(2, 4, 5, none, none);
 	GEN_APU_CLUSTER(3, 6, 7, none, none);
+#endif /* NUM_APUS == 8 */
 };
 #else
 &amba_fpd {

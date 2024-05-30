@@ -33,8 +33,8 @@
 
 #ifndef NUM_APUS
 #error "NUM APUs is not set!"
-#elif NUM_APUS != 8 && NUM_APUS != 16 && NUM_APUS != 32
-#error "NUM APUs must be set to 8 or 16"
+#elif NUM_APUS != 4 && NUM_APUS != 8 && NUM_APUS != 16 && NUM_APUS != 32
+#error "NUM APUs must be either 4, 8, 16 or 32"
 #endif
 
 #define APU_WFI(n)	&psm_global (67 + n)
@@ -88,10 +88,12 @@
 		GEN_APU_SECONDARY(1);
 		GEN_APU_SECONDARY(2);
 		GEN_APU_SECONDARY(3);
+#if (NUM_APUS >= 8)
 		GEN_APU_SECONDARY(4);
 		GEN_APU_SECONDARY(5);
 		GEN_APU_SECONDARY(6);
 		GEN_APU_SECONDARY(7);
+#endif
 #if (NUM_APUS >= 16)
 		GEN_APU_SECONDARY(8);
 		GEN_APU_SECONDARY(9);
@@ -170,10 +172,12 @@
 				<&cpu1 0>,
 				<&cpu2 0>,
 				<&cpu3 0>,
+#if (NUM_APUS >= 8)
 				<&cpu4 0>,
 				<&cpu5 0>,
 				<&cpu6 0>,
 				<&cpu7 0>,
+#endif /* NUM_APUS >= 8 */
 #if (NUM_APUS >= 16)
 				<&cpu8 0>,
 				<&cpu9 0>,
@@ -208,10 +212,12 @@
 				<&cpu1 1>,
 				<&cpu2 1>,
 				<&cpu3 1>,
+#if (NUM_APUS >= 8)
 				<&cpu4 1>,
 				<&cpu5 1>,
 				<&cpu6 1>,
 				<&cpu7 1>,
+#endif /* NUM_APUS >= 8 */
 #if (NUM_APUS >= 16)
 				<&cpu8 1>,
 				<&cpu9 1>,
@@ -246,10 +252,12 @@
 				<&cpu1 2>,
 				<&cpu2 2>,
 				<&cpu3 2>,
+#if (NUM_APUS >= 8)
 				<&cpu4 2>,
 				<&cpu5 2>,
 				<&cpu6 2>,
 				<&cpu7 2>,
+#endif /* NUM_APUS >= 8 */
 #if (NUM_APUS >= 16)
 				<&cpu8 2>,
 				<&cpu9 2>,
@@ -284,10 +292,12 @@
 				<&cpu1 3>,
 				<&cpu2 3>,
 				<&cpu3 3>,
+#if (NUM_APUS >= 8)
 				<&cpu4 3>,
 				<&cpu5 3>,
 				<&cpu6 3>,
 				<&cpu7 3>,
+#endif /* NUM_APUS >= 8 */
 #if (NUM_APUS >= 16)
 				<&cpu8 3>,
 				<&cpu9 3>,
@@ -377,16 +387,28 @@
 		mp-affinity = <a>;		\
 }
 
+/* This doesn't support all the NUM_APUS / NUM_APUS_PER_CLUSTER configurations:
+ * It is assumed that 4 / 8 APUs configuration is used in a cluster of 2, while
+ * 16 / 32 APUs is a cluster of 4.  */
+
 CPU_AFFINITY(0, 0x1000000);
 CPU_AFFINITY(1, 0x1000100);
-#if NUM_APUS == 8
+#if (NUM_APUS <= 8)
+#if NUM_APUS_PER_CLUSTER != 2
+#error "Unimplemented NUM_APUS / NUM_APUS_PER_CLUSTER configuration"
+#endif /* NUM_APUS_PER_CLUSTER != 2 */
 CPU_AFFINITY(2, 0x1010000);
 CPU_AFFINITY(3, 0x1010100);
+#if NUM_APUS == 8
 CPU_AFFINITY(4, 0x1020000);
 CPU_AFFINITY(5, 0x1020100);
 CPU_AFFINITY(6, 0x1030000);
 CPU_AFFINITY(7, 0x1030100);
+#endif /* NUM_APUS == 8 */
 #else
+#if NUM_APUS_PER_CLUSTER != 4
+#error "Unimplemented NUM_APUS / NUM_APUS_PER_CLUSTER configuration"
+#endif /* NUM_APUS_PER_CLUSTER != 4 */
 CPU_AFFINITY(2, 0x1000200);
 CPU_AFFINITY(3, 0x1000300);
 CPU_AFFINITY(4, 0x1010000);
