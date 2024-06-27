@@ -108,7 +108,7 @@
 					0 VCCINT_PMC_GLITCH_DETECT_IRQ_0 0>;
 		tamper-sink = <&pmc_global>;
 	};
-	pmc_sysmon@MM_PMC_PMC_SYSMON {
+	pmc_sysmon: pmc_sysmon@MM_PMC_PMC_SYSMON {
 		compatible = "xlnx,pmc-sysmon";
 		reg = <0x0 MM_PMC_PMC_SYSMON 0x0 MM_PMC_PMC_SYSMON_SIZE 0x0>;
 		interrupts = <SYSMON_IRQ_0
@@ -116,8 +116,7 @@
 		reset-gpios = <&pmc_clk_rst CRP_RST_SYSMON_CFG>;
 
 		efuse = <&xlnx_pmc_efuse_cache>;
-		ams-sat0 = <&pmc_ams_sat0>;
-		ams-sat1 = <&pmc_ams_sat1>;
+		ams-sats = <&pmc_ams_sat0 &pmc_ams_sat1>;
 		tamper-sink = <&pmc_global>;
 	};
 	pmc_ams_sat0: pmc_ams_sat@0 {
