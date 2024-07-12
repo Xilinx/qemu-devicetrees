@@ -21,6 +21,7 @@
 #endif
 
 #define RPU_WFI(n) RPU_WFI_SRC (RPU_WFI_BASE + n)
+#define RPU_PWR(n) PWR_GPIO_SRC (PLR_PWR_RPU_0 + n)
 
 #define TCM_CLUSTER(c, cpu0, cpu1)				\
 	tcm_cluster_## c: tcm_cluster_## c@0 {			\
@@ -69,6 +70,7 @@
 					  RPU_WFI(f) >;				     \
 				gpio-names = "reset", "halt", "wfi";		     \
 				reset-cbar = <MM_RPU_GIC>;			     \
+				power-gpios = <RPU_PWR(f)>;			     \
 			};							     \
 			glue(rpu_cpu, s): rpu_cpu_##c@1 {			     \
 				RPU_CPU_COMMON(s, n, 1);			     \
@@ -79,6 +81,7 @@
 					  RPU_WFI(s) >;				     \
 				gpio-names = "reset", "halt", "wfi";		     \
 				reset-cbar = <MM_RPU_GIC>;			     \
+				power-gpios = <RPU_PWR(s)>;			     \
 			};							     \
 		}
 
