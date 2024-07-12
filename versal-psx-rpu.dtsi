@@ -12,16 +12,15 @@
 #define NUM_RPUS_PER_CLUSTER 2
 #define FIRST_CPU_GIC(n) (NUM_APUS + n * NUM_RPUS_PER_CLUSTER)
 
-#define RPU_PCIL_WFI_A0 &rpu_pcil 4
-#define RPU_PCIL_WFI_A1 &rpu_pcil 5
-#define RPU_PCIL_WFI_B0 &rpu_pcil 6
-#define RPU_PCIL_WFI_B1 &rpu_pcil 7
-#define RPU_PCIL_WFI_C0 &rpu_pcil 8
-#define RPU_PCIL_WFI_C1 &rpu_pcil 9
-#define RPU_PCIL_WFI_D0 &rpu_pcil 10
-#define RPU_PCIL_WFI_D1 &rpu_pcil 11
-#define RPU_PCIL_WFI_E0 &rpu_pcil 12
-#define RPU_PCIL_WFI_E1 &rpu_pcil 13
+#ifdef VERSAL2_DEV
+# define RPU_WFI_SRC &lpd_slcr
+# define RPU_WFI_BASE 72
+#else
+# define RPU_WFI_SRC &rpu_pcil
+# define RPU_WFI_BASE 4
+#endif
+
+#define RPU_WFI(n) RPU_WFI_SRC (RPU_WFI_BASE + n)
 
 #define TCM_CLUSTER(c, cpu0, cpu1)				\
 	tcm_cluster_## c: tcm_cluster_## c@0 {			\
@@ -67,7 +66,7 @@
 				gdb-id = STRINGIFY_EXPANDED(Cortex-R52 #glue(c, 0)); \
 				gpios = < &crl glue(glue(CRL_RST_RPU_, u), _0)	     \
 					  &glue(glue(rpu_ctrl_, c), 0) 0	     \
-					  glue(glue(RPU_PCIL_WFI_, u), 0) >;	     \
+					  RPU_WFI(f) >;				     \
 				gpio-names = "reset", "halt", "wfi";		     \
 				reset-cbar = <MM_RPU_GIC>;			     \
 			};							     \
@@ -77,7 +76,7 @@
 				gdb-id = STRINGIFY_EXPANDED(Cortex-R52 #glue(c, 1)); \
 				gpios = < &crl glue(glue(CRL_RST_RPU_, u), _1)	     \
 					  &glue(glue(rpu_ctrl_, c), 1) 0	     \
-					  glue(glue(RPU_PCIL_WFI_, u), 1) >;	     \
+					  RPU_WFI(s) >;				     \
 				gpio-names = "reset", "halt", "wfi";		     \
 				reset-cbar = <MM_RPU_GIC>;			     \
 			};							     \

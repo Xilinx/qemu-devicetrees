@@ -21,8 +21,33 @@
  */
 
 /* PSM Local regs macros.  */
-#ifdef VERSAL_PSX
+#ifdef VERSAL2_DEV
 
+#define PWR_GPIO_SRC        &lpd_slcr
+#define PLR_PWR_ACPU0_0		0
+#define PLR_PWR_ACPU0_1		1
+#define PLR_PWR_ACPU1_0		2
+#define PLR_PWR_ACPU1_1		3
+#define PLR_PWR_ACPU2_0		4
+#define PLR_PWR_ACPU2_1		5
+#define PLR_PWR_ACPU3_0		6
+#define PLR_PWR_ACPU3_1		7
+#define PLR_PWR_RPU_0  		8
+#define PLR_PWR_RPU_1  		9
+#define PLR_PWR_RPU_2  		10
+#define PLR_PWR_RPU_3  		11
+#define PLR_PWR_RPU_4  		12
+#define PLR_PWR_RPU_5  		13
+#define PLR_PWR_RPU_6  		14
+#define PLR_PWR_RPU_7  		15
+#define PLR_PWR_RPU_8  		16
+#define PLR_PWR_RPU_9  		17
+#define PLR_PWR_GEM0		44
+#define PLR_PWR_GEM1		45
+
+#elif defined(VERSAL_PSX)
+
+#define PWR_GPIO_SRC        &psm_local
 #define PLR_PWR_ACPU0_0		0
 #define PLR_PWR_ACPU0_1		1
 #define PLR_PWR_ACPU0_2		2
@@ -62,6 +87,7 @@
 
 #else
 
+#define PWR_GPIO_SRC        &psm_local
 #define PLR_PWR_ACPU0_0		0
 #define PLR_PWR_ACPU0_1		1
 #define PLR_PWR_ACPU0_2		2

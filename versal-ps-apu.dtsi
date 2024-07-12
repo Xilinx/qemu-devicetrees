@@ -38,10 +38,10 @@
 #endif
 
 #define APU_GPIOS(n)						\
-	gpios = <&psm_local PLR_APU_WFI_ACPU ## n>;		\
+	gpios = <PWR_GPIO_SRC PLR_APU_WFI_ACPU ## n>;		\
 	gpio-names = "wfi";					\
 	reset-gpios = <&crf n>;					\
-	power-gpios = < &psm_local PLR_PWR_ACPU ## n ##_0 >;	\
+	power-gpios = < PWR_GPIO_SRC PLR_PWR_ACPU ## n ##_0 >;	\
 	memattr_s = <&apu ## n ## _s_memattr>;			\
 	memattr_ns = <&apu ## n ## _ns_memattr>
 

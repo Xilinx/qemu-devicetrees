@@ -43,7 +43,7 @@ g_name: ethernet@g_base {						\
 	reg = <0x0 g_base 0x0 g_size 0x0>;				\
 	num-priority-queues = <2>;					\
 	reset-gpios = <&crl rst_idx>;					\
-	power-gpios = <&psm_local pwr_idx>;				\
+	power-gpios = <PWR_GPIO_SRC pwr_idx>;				\
 }
 
 // FIXME: Add support for SMIDs

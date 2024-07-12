@@ -37,8 +37,12 @@
 #error "NUM APUs must be either 4, 8, 16 or 32"
 #endif
 
-#define APU_WFI(n)	&psm_global (67 + n)
-#define APU_PWR(n)	&psm_local n
+#ifdef VERSAL2_DEV
+# define APU_WFI(n)	&lpd_slcr (64 + n)
+#else
+# define APU_WFI(n)	&psm_global (67 + n)
+#endif
+#define APU_PWR(n)	PWR_GPIO_SRC (PLR_PWR_ACPU0_0 + n)
 
 #define MAX_APUS_PER_CLUSTER 4
 #define APU_CLUSTER_ID(n) (n / NUM_APUS_PER_CLUSTER)
