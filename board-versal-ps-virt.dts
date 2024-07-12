@@ -222,6 +222,8 @@
 		mr = <&lmb_psm>;
 	};
 
+#ifndef VERSAL2_DEV
+
 #define RPU_INTC_REDIRECT(NCPU, PSMOUT, RPUN)							\
 glue(rpu_intc_redirect_, NCPU): glue(rpu_intc_redirect, NCPU)@NCPU {	\
 	#interrupt-cells = <1>;									\
@@ -235,6 +237,7 @@ glue(rpu_intc_redirect_, NCPU): glue(rpu_intc_redirect, NCPU)@NCPU {	\
 		RPU_INTC_REDIRECT(0, 4, 6)
 		RPU_INTC_REDIRECT(1, 5, 7)
 	};
+#endif
 
 #else
 	/* Single ARCH PS board has no PPU MicroBlazes.  */
