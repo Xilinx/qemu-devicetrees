@@ -1,0 +1,24 @@
+/*
+ * Versal Alveo V80.
+ *
+ * Copyright (c) 2024, Advanced Micro Devices Inc. All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+#include "board-versal-xcv80-ps-virt.dts"
+
+/*
+ * 2GB OSPI
+ * 32GB HBM
+ */
+
+&ospi {
+	/delete-node/ ospi_flash_lcs_ub@0;
+	/delete-node/ ospi_flash_ucs_lb@0;
+	/delete-node/ ospi_flash_ucs_ub@0;
+};
+
+&ospi_flash_lcs_lb {
+	compatible = "mt35xu02gbba";
+};
