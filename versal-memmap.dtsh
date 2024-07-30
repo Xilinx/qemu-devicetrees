@@ -151,7 +151,9 @@ name: name@addr64 {														\
 #if defined(VERSAL2_DEV)
  #include "versal2-memmap.dtsh"
  #include "versal2-gic-memmap.dtsh"
- #include "versal2-npi-memmap.dtsh"
+ #ifndef VERSAL2_NPI_OVERRIDE
+  #include "versal2-npi-memmap.dtsh"
+ #endif
  #include "versal-psx-memmap-aliases.dtsh"
  #include "versal2-memmap-aliases.dtsh"
  #include "versal2-mmi-memmap.dtsh"
