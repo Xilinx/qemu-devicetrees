@@ -1,0 +1,12 @@
+/*
+ * Versal AI Edge Series xc2ve3558 virtual board dts
+ *
+ * Copyright (c) 2024, Advanced Micro Devices Inc. All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+#include "board-versal2-psxc-virt.dts"
+
+&pmc_tap {
+    idcode = <0x04DA9093>;
+};
