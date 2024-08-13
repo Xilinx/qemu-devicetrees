@@ -73,7 +73,7 @@
 	};
 };
 
-#if defined(MM_NPI_ME_NPI_0) || defined(MM_NPI_AIE2_NPI_0)
+#if defined(MM_NPI_ME_NPI_0) || defined(MM_NPI_AIE2_NPI_0) || defined(MM_NPI_AIE2P_S_NPI_0)
 &amba_pmc_pl {
 	rp_pmc_npi@0 {
 		compatible = "remote-port-memory-master";
