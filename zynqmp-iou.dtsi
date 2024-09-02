@@ -357,7 +357,7 @@ glue(ocm_mem_ctrl_, n): glue(ocm_mem_ctrl_, n)@n {						\
 			interrupts = <USB3_0_Endpoint_IRQ_0 USB3_0_Endpoint_IRQ_1
 							USB3_0_Endpoint_IRQ_2 USB3_0_Endpoint_IRQ_3>;
 			intrs = <4>;
-			slots = <2>;
+			slots = <64>;
 			dma = <&amba>;
 		};
 		usb3_1: usb3@USB3_1_XHCI {
@@ -366,7 +366,7 @@ glue(ocm_mem_ctrl_, n): glue(ocm_mem_ctrl_, n)@n {						\
 			interrupts = <USB3_1_Endpoint_IRQ_0 USB3_1_Endpoint_IRQ_1
 							USB3_1_Endpoint_IRQ_2 USB3_1_Endpoint_IRQ_3>;
 			intrs = <4>;
-			slots = <2>;
+			slots = <64>;
 			dma = <&amba>;
 		};
 
