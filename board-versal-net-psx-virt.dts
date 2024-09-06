@@ -31,6 +31,7 @@
 #ifndef NUM_APUS
 #define NUM_APUS 16
 #endif
+#define VERSAL_NET_APU_CPU_FREQ 100000000
 
 #define NUM_APUS_PER_CLUSTER 4
 
