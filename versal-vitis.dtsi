@@ -31,8 +31,6 @@
 #define MEM_SPEC	MEM_REGION64
 
 / {
-	/delete-node/ ddr_2@MM_TOP_DDR_2;
-	/delete-node/ ddr_3@MM_TOP_DDR_CH1;
 	ddr_4_mem: memory@MM_TOP_DDR_4 {
 		compatible = "qemu:memory-region";
 		device_type = "memory";
@@ -93,6 +91,10 @@
 
 #ifdef __has_include
 # if __has_include("ddr_memspec.dtsi")
+/ {
+	/delete-node/ ddr_2@MM_TOP_DDR_2;
+	/delete-node/ ddr_3@MM_TOP_DDR_CH1;
+};
 #  include "ddr_memspec.dtsi"
 # endif
 #else
