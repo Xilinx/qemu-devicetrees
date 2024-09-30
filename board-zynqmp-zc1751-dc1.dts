@@ -1,0 +1,66 @@
+/*
+ * zc1751-dc1 Board
+ *
+ * Copyright (c) 2024, Advanced Micro Devices, Inc.
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: GPL-2.0-or-later
+ */
+
+#include "zynqmp.dtsh"
+
+/dts-v1/;
+
+#include "zynqmp-arm.dtsi"
+#include "zynqmp-memory-regions.dtsi"
+
+/ {
+	model = "ZynqMP zc1751-xm015-dc1 RevA";
+	compatible = "xlnx,zynqmp-zc1751", "xlnx,zynqmp";
+
+	aliases {
+		ethernet0 = &gem3;
+	};
+
+	mdio0: mdio {
+		#address-cells = <1>;
+		#size-cells = <0>;
+		compatible="mdio";
+		phy0: phy@0 {
+			compatible = "88e1118r";
+			device_type = "ethernet-phy";
+			reg = <0>;
+		};
+	};
+};
+
+&i2c0 {
+	eeprom@54 {
+		compatible = "at,24c64";
+		reg = <0x54>;
+		size = <0x2000>;
+	};
+};
+
+&i2c1 {
+	eeprom@55 {
+		compatible = "at,24c64";
+		reg = <0x55>;
+		size = <0x2000>;
+	};
+};
+
+&ps7_qspi_0 {
+	SPI_FLASH(qspi_flash_lcs_lb, "n25q512a11", 0x02000000, 0x0 0x0)
+	SPI_FLASH(qspi_flash_ucs_ub, "n25q512a11", 0x02000000, 0x1 0x1)
+};
+
+&gem3 {
+	mdio = <&mdio0>;
+};
+
+&iou_slcr_0 {
+	mio-bank0-1.8v = <1>;
+	mio-bank1-1.8v = <1>;
+	mio-bank2-1.8v = <1>;
+};
