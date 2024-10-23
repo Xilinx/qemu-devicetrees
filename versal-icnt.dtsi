@@ -437,16 +437,17 @@
 		reg-extended = <
 			&amba_lpd 0x0 MM_LPD_XPPU 0x0 MM_LPD_XPPU_SIZE 0x0
 			/* 64KB * 256. Reduce it to not cover the OCM and TCM region. */
-			&amba_pmc_iou 0x0 0xff000000 0x0 0xE00000 0x2
+			&amba_pmc_iou 0x0 XPPU_LPD_64K_APERTURE_BASE 0x0 XPPU_LPD_64K_APERTURE_SIZE 0x2
 			/* 1MB * 16 */
-			&amba_pmc_iou 0x0 0xfe000000 0x0 0x1000000 0x2
+			&amba_pmc_iou 0x0 XPPU_LPD_1M_APERTURE_BASE 0x0 XPPU_LPD_1M_APERTURE_SIZE 0x2
+#ifdef XPPU_LPD_512M_APERTURE_BASE
 			/* 512MB * 1 */
 			/* Coverage is shortened to avoid overlapping with other areas */
-			&amba 0x0 0xe0000000 0x0 0x10000000 0x2
+			&amba 0x0 XPPU_LPD_512M_APERTURE_BASE 0x0 XPPU_LPD_512M_APERTURE_SIZE 0x2
+#endif
 		>;
 		mr = <&amba_lpd>;
 		interrupts = <XPPU_IRQ_0>;
-		region = <0>;
 	};
 };
 
@@ -467,27 +468,25 @@
 		reg-extended = <
 			&amba_pmc_internal 0x0 MM_PMC_PMC_XPPU_NPI 0x0 MM_PMC_PMC_XPPU_NPI_SIZE 0x0
 			/* 64KB * 256 */
-			&amba_pmc_internal 0x0 0xf6000000 0x0 0x1000000 0x2
+			&amba_pmc_internal 0x0 XPPU_PMC_NPI_64K_APERTURE_BASE 0x0 XPPU_PMC_NPI_64K_APERTURE_SIZE 0x2
 			/* 1MB * 16 */
-			&amba_pmc_internal 0x0 0xf7000000 0x0 0x1000000 0x2
+			&amba_pmc_internal 0x0 XPPU_PMC_NPI_1M_APERTURE_BASE 0x0 XPPU_PMC_NPI_1M_APERTURE_SIZE 0x2
 		>;
 		mr = <&amba_pmc_pl>;
 		interrupts = <XPPU_PMC_IRQ_0>;
-		region = <2>;
 	};
 	xppu_pmc: xppu_pmc@MM_PMC_PMC_XPPU {
 		compatible = "xlnx,versal-xppu";
 		reg-extended = <
 			&amba_pmc_internal 0x0 MM_PMC_PMC_XPPU 0x0 MM_PMC_PMC_XPPU_SIZE 0x0
 			/* 64KB * 256 */
-			&amba 0x0 0xf1000000 0x0 0x1000000 0x2
+			&amba 0x0 XPPU_PMC_64K_APERTURE_BASE 0x0 XPPU_PMC_64K_APERTURE_SIZE 0x2
 			/* 1MB * 16 */
-			&amba 0x0 0xf0000000 0x0 0x1000000 0x2
+			&amba 0x0 XPPU_PMC_1M_APERTURE_BASE 0x0 XPPU_PMC_1M_APERTURE_SIZE 0x2
 			/* 512MB * 1 */
-			&amba 0x0 MM_TOP_QSPI 0x0 MM_TOP_QSPI_SIZE 0x2
+			&amba 0x0 XPPU_PMC_512M_APERTURE_BASE 0x0 XPPU_PMC_512M_APERTURE_SIZE 0x2
 		>;
 		mr = <&amba_pmc_internal>;
 		interrupts = <XPPU_PMC_IRQ_0>;
-		region = <1>;
 	};
 };

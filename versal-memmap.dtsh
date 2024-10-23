@@ -146,6 +146,50 @@ name: name@addr64 {														\
 #define MM_USB_DWC3_0 (MM_USB_XHCI + 0xC100)
 #define MM_USB_DWC3_0_SIZE 0x600
 
+/* XPPUs apertures */
+#ifndef XPPU_LPD_64K_APERTURE_BASE
+# define XPPU_LPD_64K_APERTURE_BASE      0xff000000
+  /* 64KB * 256. Reduce it to not cover the OCM and TCM region. */
+# define XPPU_LPD_64K_APERTURE_SIZE      0x00e00000
+#endif
+
+#ifndef XPPU_LPD_1M_APERTURE_BASE
+# define XPPU_LPD_1M_APERTURE_BASE       0xfe000000
+# define XPPU_LPD_1M_APERTURE_SIZE       0x01000000
+#endif
+
+#ifndef XPPU_LPD_512M_APERTURE_BASE
+# define XPPU_LPD_512M_APERTURE_BASE     0xe0000000
+# define XPPU_LPD_512M_APERTURE_SIZE     0x10000000
+#endif
+
+#ifndef XPPU_PMC_64K_APERTURE_BASE
+# define XPPU_PMC_64K_APERTURE_BASE      0xf1000000
+# define XPPU_PMC_64K_APERTURE_SIZE      0x01000000
+#endif
+
+#ifndef XPPU_PMC_1M_APERTURE_BASE
+# define XPPU_PMC_1M_APERTURE_BASE       0xf0000000
+# define XPPU_PMC_1M_APERTURE_SIZE       0x01000000
+#endif
+
+#ifndef XPPU_PMC_512M_APERTURE_BASE
+# define XPPU_PMC_512M_APERTURE_BASE     MM_TOP_QSPI
+# define XPPU_PMC_512M_APERTURE_SIZE     MM_TOP_QSPI_SIZE
+#endif
+
+#ifndef XPPU_PMC_NPI_64K_APERTURE_BASE
+# define XPPU_PMC_NPI_64K_APERTURE_BASE  0xf6000000
+# define XPPU_PMC_NPI_64K_APERTURE_SIZE  0x01000000
+#endif
+
+#ifndef XPPU_PMC_NPI_1M_APERTURE_BASE
+# define XPPU_PMC_NPI_1M_APERTURE_BASE   0xf7000000
+# define XPPU_PMC_NPI_1M_APERTURE_SIZE   0x01000000
+#endif
+
+/* no PMC NPI 512M aperture */
+
 /* Include auto-generated files.  */
 
 #if defined(VERSAL2_DEV)
