@@ -59,3 +59,31 @@
 		i2cWire-peer = <&i2c1_bridge>;
 	};
 };
+
+#if 1
+/*
+ * I3C0 is connected to an lsm6dso sensor and remote_i3c device.
+ */
+&psx_i3c0 {
+	lsm6dso: lsm6dso@0 {
+		compatible = "lsm6dso";
+	};
+	remote_i3c: remote_i3c {
+		compatible = "remote-i3c";
+		chardev = "rp-i3c";
+		device-name = "remote-i3c";
+	};
+};
+#else
+/* Uncomment this block to connect i3c0/1 in loopback as master and slave. */
+&psx_i3c0 {
+	i3c1_slave: i3c1_slave {
+		compatible = "dwc.i3c-target";
+		dwc-i3c-device = <&psx_i3c1>;
+	};
+};
+
+&psx_i3c1 {
+	i3c-target = <&i3c1_slave>;
+};
+#endif
