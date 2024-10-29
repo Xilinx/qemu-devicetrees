@@ -1,0 +1,19 @@
+/*
+ * Versal premium series device xc2vp3402 virtual board dts
+ *
+ * Copyright (c) 2024, Advanced Micro Devices Inc.
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+#define VERSAL_NPI_OVERRIDE
+#include "versal/memmap/versal2-xc2vp3402-npi-memmap.dtsi"
+#include "versal-ddrmc5e-aliases.dtsh"
+
+#include "board-versal-ps-virt.dts"
+#include "versal-silicon-freq.dtsi"
+
+&pmc_tap {
+  idcode = <0x04C74093>;
+};
