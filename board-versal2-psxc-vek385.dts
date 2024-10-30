@@ -1,0 +1,68 @@
+/*
+ * Versal VEK385 board device tree
+ *
+ * Copyright (c) 2024, Advanced Micro Devices Inc.
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+#include "board-versal2-xc2ve3858-psxc-virt.dts"
+
+/* That board has 10GByte of DDR5, this will create them independently of what
+ * is given by -m xG.  */
+/ {
+	/delete-node/ ddr@MM_TOP_DDR;
+	/delete-node/ ddr_2@MM_TOP_DDR_2;
+	/delete-node/ ddr_3@MM_TOP_DDR_CH1;
+
+	MEM_REGION(ddr, 0x0, MM_TOP_DDR_CH0_LEGACY, 0x00000000, 0x80000000,
+		   &ddr_mem)
+	MEM_REGION64(ddr_2, MM_TOP_DDR_CH0_MED_H, MM_TOP_DDR_CH0_MED_L,
+                     MM_TOP_DDR_CH0_MED, 0x0, 0x80000000, &ddr_2_mem)
+	MEM_REGION64(ddr_3, MM_TOP_DDR_CH1_H, MM_TOP_DDR_CH1_L, MM_TOP_DDR_CH1,
+                      0x0, 0x80000000, &ddr_3_mem)
+	MEM_REGION64(ddr_4, MM_TOP_DDR_CH2_H, MM_TOP_DDR_CH2_L, MM_TOP_DDR_CH2,
+                     0x0, 0x80000000, &ddr_3_mem)
+	MEM_REGION64(ddr_5, MM_TOP_DDR_CH3_H, MM_TOP_DDR_CH3_L, MM_TOP_DDR_CH3,
+                     0x0, 0x80000000, &ddr_3_mem)
+};
+
+&ps_i2c1 {
+        /* Board ID eeprom.  */
+	eeprom@54 {
+		compatible = "m24cxx";
+		size = <0x4000>;
+		reg = <0x54>;
+		blockdev-node-name = "ps_i2c1.eeprom-54";
+	};
+};
+
+/* No SPI nor QSPI have any memories mapped.  */
+&spi0 {
+        /delete-node/ spi0_flash0@0;
+};
+
+&spi1 {
+        /delete-node/ spi1_flash0@0;
+};
+
+&pmc_qspi_0 {
+	/delete-node/ qspi_flash_lcs_lb@0;
+	/delete-node/ qspi_flash_lcs_ub@0;
+	/delete-node/ qspi_flash_ucs_lb@0;
+	/delete-node/ qspi_flash_ucs_ub@0;
+};
+
+/* OSPI has a different memory mapping added below.  */
+&ospi {
+	/delete-node/ ospi_flash_lcs_lb@0;
+	/delete-node/ ospi_flash_lcs_ub@0;
+	/delete-node/ ospi_flash_ucs_lb@0;
+	/delete-node/ ospi_flash_ucs_ub@0;
+};
+
+/* OSPI memories: one 2Gbit Octal SPI Flash Memory should be used.  */
+&ospi {
+        DI_SPI_FLASH(0, ospi_flash, "mt35xu02gbba", 0x10000000, 0x0 0x0)
+};
