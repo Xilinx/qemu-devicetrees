@@ -1,0 +1,116 @@
+/*
+ * Versal DDRMC5E aliases.
+ *
+ * Copyright (c) 2024, Advanced Micro Devices, Inc
+ * All rights reserved.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+#ifndef VERSAL_DDRMC5E_NPI_OVERRIDE_H
+
+#ifdef MM_NPI_DDRMC5E_MAIN_0
+#define	MM_NPI_DDRMC_MAIN_0               MM_NPI_DDRMC5E_MAIN_0
+#define	MM_NPI_DDRMC_MAIN_0_SIZE          MM_NPI_DDRMC5E_MAIN_0_SIZE
+#define	MM_NPI_DDRMC_NOC_0                MM_NPI_DDRMC5E_NOC_0
+#define	MM_NPI_DDRMC_NOC_0_SIZE           MM_NPI_DDRMC5E_NOC_0_SIZE
+#define	MM_NPI_DDRMC_UB_0                 MM_NPI_DDRMC5E_UB_0
+#define	MM_NPI_DDRMC_UB_0_SIZE            MM_NPI_DDRMC5E_UB_0_SIZE
+#define	MM_NPI_DDRMC_CRYPTO_MAIN_0        MM_NPI_DDRMC5E_CRYPTO_MAIN_0
+#define	MM_NPI_DDRMC_CRYPTO_MAIN_0_SIZE   MM_NPI_DDRMC5E_CRYPTO_MAIN_0_SIZE
+#endif
+
+#ifdef MM_NPI_DDRMC5E_MAIN_1
+#define MM_NPI_DDRMC_MAIN_1               MM_NPI_DDRMC5E_MAIN_1
+#define MM_NPI_DDRMC_MAIN_1_SIZE          MM_NPI_DDRMC5E_MAIN_1_SIZE
+#define MM_NPI_DDRMC_NOC_1                MM_NPI_DDRMC5E_NOC_1
+#define MM_NPI_DDRMC_NOC_1_SIZE           MM_NPI_DDRMC5E_NOC_1_SIZE
+#define MM_NPI_DDRMC_UB_1                 MM_NPI_DDRMC5E_UB_1
+#define MM_NPI_DDRMC_UB_1_SIZE            MM_NPI_DDRMC5E_UB_1_SIZE
+#define MM_NPI_DDRMC_CRYPTO_MAIN_1        MM_NPI_DDRMC5E_CRYPTO_MAIN_1
+#define MM_NPI_DDRMC_CRYPTO_MAIN_1_SIZE   MM_NPI_DDRMC5E_CRYPTO_MAIN_1_SIZE
+#endif
+
+#ifdef MM_NPI_DDRMC5E_MAIN_2
+#define MM_NPI_DDRMC_MAIN_2               MM_NPI_DDRMC5E_MAIN_2
+#define MM_NPI_DDRMC_MAIN_2_SIZE          MM_NPI_DDRMC5E_MAIN_2_SIZE
+#define MM_NPI_DDRMC_NOC_2                MM_NPI_DDRMC5E_NOC_2
+#define MM_NPI_DDRMC_NOC_2_SIZE           MM_NPI_DDRMC5E_NOC_2_SIZE
+#define MM_NPI_DDRMC_UB_2                 MM_NPI_DDRMC5E_UB_2
+#define MM_NPI_DDRMC_UB_2_SIZE            MM_NPI_DDRMC5E_UB_2_SIZE
+#define MM_NPI_DDRMC_CRYPTO_MAIN_2        MM_NPI_DDRMC5E_CRYPTO_MAIN_2
+#define MM_NPI_DDRMC_CRYPTO_MAIN_2_SIZE   MM_NPI_DDRMC5E_CRYPTO_MAIN_2_SIZE
+#endif
+
+#ifdef MM_NPI_DDRMC5E_MAIN_3
+#define MM_NPI_DDRMC_MAIN_3               MM_NPI_DDRMC5E_MAIN_3
+#define MM_NPI_DDRMC_MAIN_3_SIZE          MM_NPI_DDRMC5E_MAIN_3_SIZE
+#define MM_NPI_DDRMC_NOC_3                MM_NPI_DDRMC5E_NOC_3
+#define MM_NPI_DDRMC_NOC_3_SIZE           MM_NPI_DDRMC5E_NOC_3_SIZE
+#define MM_NPI_DDRMC_UB_3                 MM_NPI_DDRMC5E_UB_3
+#define MM_NPI_DDRMC_UB_3_SIZE            MM_NPI_DDRMC5E_UB_3_SIZE
+#define MM_NPI_DDRMC_CRYPTO_MAIN_3        MM_NPI_DDRMC5E_CRYPTO_MAIN_3
+#define MM_NPI_DDRMC_CRYPTO_MAIN_3_SIZE   MM_NPI_DDRMC5E_CRYPTO_MAIN_3_SIZE
+#endif
+
+#ifdef MM_NPI_DDRMC5E_MAIN_4
+#define MM_NPI_DDRMC_MAIN_4               MM_NPI_DDRMC5E_MAIN_4
+#define MM_NPI_DDRMC_MAIN_4_SIZE          MM_NPI_DDRMC5E_MAIN_4_SIZE
+#define MM_NPI_DDRMC_NOC_4                MM_NPI_DDRMC5E_NOC_4
+#define MM_NPI_DDRMC_NOC_4_SIZE           MM_NPI_DDRMC5E_NOC_4_SIZE
+#define MM_NPI_DDRMC_UB_4                 MM_NPI_DDRMC5E_UB_4
+#define MM_NPI_DDRMC_UB_4_SIZE            MM_NPI_DDRMC5E_UB_4_SIZE
+#define MM_NPI_DDRMC_CRYPTO_MAIN_4        MM_NPI_DDRMC5E_CRYPTO_MAIN_4
+#define MM_NPI_DDRMC_CRYPTO_MAIN_4_SIZE   MM_NPI_DDRMC5E_CRYPTO_MAIN_4_SIZE
+#endif
+
+#ifdef MM_NPI_DDRMC5E_MAIN_5
+#define MM_NPI_DDRMC_MAIN_5               MM_NPI_DDRMC5E_MAIN_5
+#define MM_NPI_DDRMC_MAIN_5_SIZE          MM_NPI_DDRMC5E_MAIN_5_SIZE
+#define MM_NPI_DDRMC_NOC_5                MM_NPI_DDRMC5E_NOC_5
+#define MM_NPI_DDRMC_NOC_5_SIZE           MM_NPI_DDRMC5E_NOC_5_SIZE
+#define MM_NPI_DDRMC_UB_5                 MM_NPI_DDRMC5E_UB_5
+#define MM_NPI_DDRMC_UB_5_SIZE            MM_NPI_DDRMC5E_UB_5_SIZE
+#define MM_NPI_DDRMC_CRYPTO_MAIN_5        MM_NPI_DDRMC5E_CRYPTO_MAIN_5
+#define MM_NPI_DDRMC_CRYPTO_MAIN_5_SIZE   MM_NPI_DDRMC5E_CRYPTO_MAIN_5_SIZE
+#endif
+
+#ifdef MM_NPI_DDRMC5E_MAIN_6
+#define MM_NPI_DDRMC_MAIN_6               MM_NPI_DDRMC5E_MAIN_6
+#define MM_NPI_DDRMC_MAIN_6_SIZE          MM_NPI_DDRMC5E_MAIN_6_SIZE
+#define MM_NPI_DDRMC_NOC_6                MM_NPI_DDRMC5E_NOC_6
+#define MM_NPI_DDRMC_NOC_6_SIZE           MM_NPI_DDRMC5E_NOC_6_SIZE
+#define MM_NPI_DDRMC_UB_6                 MM_NPI_DDRMC5E_UB_6
+#define MM_NPI_DDRMC_UB_6_SIZE            MM_NPI_DDRMC5E_UB_6_SIZE
+#define MM_NPI_DDRMC_CRYPTO_MAIN_6        MM_NPI_DDRMC5E_CRYPTO_MAIN_6
+#define MM_NPI_DDRMC_CRYPTO_MAIN_6_SIZE   MM_NPI_DDRMC5E_CRYPTO_MAIN_6_SIZE
+#endif
+
+#ifdef MM_NPI_DDRMC5E_MAIN_7
+#define MM_NPI_DDRMC_MAIN_7               MM_NPI_DDRMC5E_MAIN_7
+#define MM_NPI_DDRMC_MAIN_7_SIZE          MM_NPI_DDRMC5E_MAIN_7_SIZE
+#define MM_NPI_DDRMC_NOC_7                MM_NPI_DDRMC5E_NOC_7
+#define MM_NPI_DDRMC_NOC_7_SIZE           MM_NPI_DDRMC5E_NOC_7_SIZE
+#define MM_NPI_DDRMC_UB_7                 MM_NPI_DDRMC5E_UB_7
+#define MM_NPI_DDRMC_UB_7_SIZE            MM_NPI_DDRMC5E_UB_7_SIZE
+#define MM_NPI_DDRMC_CRYPTO_MAIN_7        MM_NPI_DDRMC5E_CRYPTO_MAIN_7
+#define MM_NPI_DDRMC_CRYPTO_MAIN_7_SIZE   MM_NPI_DDRMC5E_CRYPTO_MAIN_7_SIZE
+#endif
+
+#endif // VERSAL_DDRMC5E_NPI_OVERRIDE_H
