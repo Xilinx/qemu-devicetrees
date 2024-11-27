@@ -1,0 +1,92 @@
+/*
+ * VE-P-A2112-00 board device tree
+ *
+ * Copyright (c) 2024, Advanced Micro Devices Inc.
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+#include "board-versal2-xc2ve3858-psxc-virt.dts"
+#include "i2c-dummy.dtsh"
+
+/* That board has 8GByte on chip DDR5, this will create them independently of
+ * what is given by -m xG.  Also it has a UDIMM socket, this will be
+ * populated given the -m xG property.  */
+/ {
+        /delete-node/ ddr@MM_TOP_DDR;
+        /delete-node/ ddr_2@MM_TOP_DDR_2;
+        /delete-node/ ddr_3@MM_TOP_DDR_CH1;
+
+        /* 2GB mapped at 0.  */
+        MEM_REGION(ddr, 0x0, MM_TOP_DDR, 0x00000000, 0x80000000,
+                   &ddr_mem)
+        /* 6GB mapped at 0x8_0000_0000.  */
+        MEM_REGION64(ddr_2, 0x8, 0x00000000, 0x800000000, 0x1, 0x80000000,
+                     &ddr_2_mem)
+        /* 16GB more can be mapped.  */
+        MEM_REGION64(ddr_udimm_0, 0x9, 0x00000000, 0x900000000,
+                 0x1, 0x00000000, &ddr_2_mem)
+        MEM_REGION64(ddr_udimm_1, 0xC, 0x0, 0xC00000000, 0x4, 0x0, &ddr_2_mem)
+};
+
+/* I2C_MAIN_BUS.  */
+&ps_i2c1 {
+        /* Board ID eeprom.  */
+       eeprom@54 {
+               compatible = "m24cxx";
+               size = <0x4000>;
+               reg = <0x54>;
+               blockdev-node-name = "ps_i2c1.eeprom-54";
+       };
+
+       /*
+        * XXX: The following i2c model might not be correct at the moment since,
+        * they are not described in the doc.  This is not a problem since dummy
+        * devices are used.
+        */
+       /* PS_REF clock.  XXX: Not sure of the model.  */
+       I2C_DUMMY(XPL736320_000000I, 0x55);
+       /* UDIMM Clock.  XXX: Not sure of the model.  */
+       I2C_DUMMY(XPL736320_000000I, 0x56);
+       /* UFS Clock.  XXX: Not sure of the model.  */
+       I2C_DUMMY(XPL736320_000000I, 0x57);
+       /* LPDDR5 Clock.  */
+       I2C_DUMMY(XPL736320_000000I, 0x58);
+       /* LPDDR5 Clock.  */
+       I2C_DUMMY(XPL736320_000000I, 0x59);
+};
+
+/*
+ * FIXME: There is no information about SPI, QSPI, OSPI in the board manual
+ * yet, so use the same layout as VEK385 for now.
+ */
+
+/* No SPI nor QSPI have any memories mapped.  */
+&spi0 {
+        /delete-node/ spi0_flash0@0;
+};
+
+&spi1 {
+        /delete-node/ spi1_flash0@0;
+};
+
+&pmc_qspi_0 {
+       /delete-node/ qspi_flash_lcs_lb@0;
+       /delete-node/ qspi_flash_lcs_ub@0;
+       /delete-node/ qspi_flash_ucs_lb@0;
+       /delete-node/ qspi_flash_ucs_ub@0;
+};
+
+/* OSPI has a different memory mapping added below.  */
+&ospi {
+       /delete-node/ ospi_flash_lcs_lb@0;
+       /delete-node/ ospi_flash_lcs_ub@0;
+       /delete-node/ ospi_flash_ucs_lb@0;
+       /delete-node/ ospi_flash_ucs_ub@0;
+};
+
+/* OSPI memories: one 2Gbit Octal SPI Flash Memory should be used.  */
+&ospi {
+        DI_SPI_FLASH(0, ospi_flash, "mt35xu02gbba", 0x10000000, 0x0 0x0)
+};
