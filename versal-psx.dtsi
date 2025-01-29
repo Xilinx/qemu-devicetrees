@@ -155,7 +155,7 @@
 	pcie: dummy_pcie@0x6_0000_0000 {
 		compatible = "PCI";
 	};
-
+#ifdef MM_FPD_PKI_TRSSWRAP_H
 	/* PKI */
 	pki_rng: pki_rng@MM_FPD_PKI_TRSSWRAP {
 		compatible = "xlnx,psx-pki-rng";
@@ -165,7 +165,7 @@
 			0x0>;
 		interrupts = <INTF_FPD_PKI_GENERAL_IRQ_0>;
 	};
-
+#endif
 	apu_pcil: apu_pcil@MM_FPD_APU_PCLI {
 		compatible = "xlnx.apu_pcil";
 		reg = <0x0 MM_FPD_APU_PCLI 0x0 MM_FPD_APU_PCLI_SIZE 0x0>;
