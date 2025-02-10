@@ -175,14 +175,4 @@
 		is-dst = <1>;
 		byte-align = <1>;
 	};
-	asu_sha3: asu_sha3@MM_ASU_SHA3 {
-		doc-status = "complete";
-		compatible = "xlnx,asu_sha3";
-		reg = <0x0 MM_ASU_SHA3 0x0 MM_ASU_SHA3_SIZE 0x0>;
-	};
-	asu_sha2: asu_sha2@MM_ASU_SHA2 {
-		doc-status = "complete";
-		compatible = "xlnx,asu_sha2";
-		reg = <0x0 MM_ASU_SHA2 0x0 MM_ASU_SHA2_SIZE 0x0>;
-	};
 };
