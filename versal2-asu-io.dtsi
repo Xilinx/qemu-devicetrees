@@ -156,6 +156,7 @@
 		stream-connected-dma0 = <&asu_dma_dst>;
 		stream-connected-sha2 = <&asu_sha2>;
 		stream-connected-sha3 = <&asu_sha3>;
+		stream-connected-dma1 = <&asu_dma1_dst>;
 	};
 	asu_dma_src: asu_dma_src@MM_ASU_DMA {
 		compatible = "zynqmp,csu-dma";
@@ -173,6 +174,26 @@
 		interrupts = <IRQ_ASU_DMA>;
 		dma = <&amba_asu>;
 		memattr = <&pmc_dma0_memattr>;
+		dma-width = <16>;
+		is-dst = <1>;
+		byte-align = <1>;
+	};
+	asu_dma1_src: asu_dma1_src@MM_ASU_DMA1 {
+		compatible = "zynqmp,csu-dma";
+		reg = <0x0 MM_ASU_DMA1 0x0 0x800 0x0>;
+		interrupts = <IRQ_ASU_DMA_DONE>;
+		stream-connected-dma1 = <&asu_sss>;
+		dma = <&amba_asu_cpu>;
+		memattr = <&pmc_dma1_memattr>;
+		dma-width = <16>;
+		byte-align = <1>;
+	};
+	asu_dma1_dst: asu_dma1_dst@MM_ASU_DMA1 {
+		compatible = "zynqmp,csu-dma";
+		reg = <0x0 (MM_ASU_DMA1 + 0x800) 0x0 0x800 0x0>;
+		interrupts = <IRQ_ASU_DMA1_DONE>;
+		dma = <&amba_asu_cpu>;
+		memattr = <&pmc_dma1_memattr>;
 		dma-width = <16>;
 		is-dst = <1>;
 		byte-align = <1>;
