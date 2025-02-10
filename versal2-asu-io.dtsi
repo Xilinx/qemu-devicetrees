@@ -150,5 +150,39 @@
 		compatible = "xlnx,asu_local_reg";
 		reg = <0x0 MM_ASU_LOCAL_REG 0x0 MM_ASU_LOCAL_REG_SIZE 0x0>;
 	};
+	asu_sss: asu_sss@MM_ASU_LOCAL_REG {
+		compatible = "asu-sss";
+		reg = <0x0 MM_ASU_LOCAL_REG 0x0 0x8 0x1>;
+		stream-connected-dma0 = <&asu_dma_dst>;
+		stream-connected-sha2 = <&asu_sha2>;
+		stream-connected-sha3 = <&asu_sha3>;
+	};
+	asu_dma_src: asu_dma_src@MM_ASU_DMA {
+		compatible = "zynqmp,csu-dma";
+		reg = <0x0 MM_ASU_DMA 0x0 0x800 0x0>;
+		stream-connected-dma0 = <&asu_sss>;
+		dma = <&amba_asu>;
+		memattr = <&pmc_dma0_memattr>;
+		dma-width = <16>;
+		byte-align = <1>;
+	};
+	asu_dma_dst: asu_dma_dst@MM_ASU_DMA {
+		compatible = "zynqmp,csu-dma";
+		reg = <0x0 (MM_ASU_DMA + 0x800) 0x0 0x800 0x0>;
+		dma = <&amba_asu>;
+		memattr = <&pmc_dma0_memattr>;
+		dma-width = <16>;
+		is-dst = <1>;
+		byte-align = <1>;
+	};
+	asu_sha3: asu_sha3@MM_ASU_SHA3 {
+		doc-status = "complete";
+		compatible = "xlnx,asu_sha3";
+		reg = <0x0 MM_ASU_SHA3 0x0 MM_ASU_SHA3_SIZE 0x0>;
+	};
+	asu_sha2: asu_sha2@MM_ASU_SHA2 {
+		doc-status = "complete";
+		compatible = "xlnx,asu_sha2";
+		reg = <0x0 MM_ASU_SHA2 0x0 MM_ASU_SHA2_SIZE 0x0>;
+	};
 };
-
