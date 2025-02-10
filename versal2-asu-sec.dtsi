@@ -1,0 +1,17 @@
+/* Versal Gen 2 ASU Emulation
+ *
+ * Copyright (c) 2023, AMD Inc
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+/*
+ * Security-subsystem
+ * 	Key Vault
+ * 	AES
+ * 	SHA2/3
+ * 	ECDSA/RSA
+ * 	TRNG
+ * 	DMA
+ */

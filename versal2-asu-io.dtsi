@@ -1,0 +1,142 @@
+/* Versal Gen 2 ASU Emulation
+ *
+ * Copyright (c) 2023, AMD Inc
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+/*
+ * MDM
+ * Microblaze IO Module
+ * ASU Local/Global Regs
+ * Error Management
+ */
+
+#define ASU_IO_MOD(a)	(MM_ASU_IO_BUS | 0x ## a)
+&amba_asu {
+	asu_io_module: io-module@MM_ASU_IO_BUS {
+		#address-cells = <2>;
+		#size-cells = <1>;
+		#priority-cells = <0>;
+		compatible = "xlnx,iomodule-1.02.a", "syscon", "simple-bus";
+		container = <&amba_asu>;
+		priority = <0xffffffff>;
+		xlnx,freq = <0x47868c0>;
+		xlnx,instance = "iomodule_0";
+		xlnx,io-mask = <0xfffe0000>;
+		xlnx,lmb-awidth = <0x20>;
+		xlnx,lmb-dwidth = <0x20>;
+		xlnx,mask = <0xffffff80>;
+		xlnx,use-io-bus = <0x1>;
+			asu_io_intc: asu_io_intc@0C {
+				#interrupt-cells = <1>;
+				compatible = "xlnx,io-intc-1.02.a", "xlnx,io_intc";
+				interrupt-controller;
+				interrupts-extended = <&asu_cpu 0>;
+				reg = <0x0 ASU_IO_MOD(C) 0x4 0x0 ASU_IO_MOD(30) 0x10 0x0 (MM_ASU_IO_BUS + 0x80) 0x7c>;
+				xlnx,intc-addr-width = <0x20>;
+				xlnx,intc-base-vectors = <0x0>;
+				xlnx,intc-has-fast = <0x0>;
+				xlnx,intc-intr-size = <0x10>;
+				xlnx,intc-level-edge = <0x0>;
+				xlnx,intc-positive = <0xffff>;
+				xlnx,intc-use-ext-intr = <0x1>;
+			};
+			asu_io_gpi1: asu_gpi@20 {
+				#gpio-cells = <1>;
+				gpio-controller;
+				compatible = "xlnx,io-gpi-1.02.a", "xlnx,io_gpi";
+				interrupt-parent = <&asu_io_intc>;
+				interrupts = <11>;
+				reg = <0x0 (MM_ASU_IO_BUS + 0x20) 0x4>;
+				xlnx,gpi-interrupt = <0x1>;
+				xlnx,gpi-size = <0x20>;
+				xlnx,use-gpi = <0x1>;
+			};
+			asu_io_gpo1: asu_gpo@10 {
+				#gpio-cells = <1>;
+				gpio-controller;
+				compatible = "xlnx,io-gpo-1.02.a", "xlnx,io_gpo";
+				reg = <0x0 (MM_ASU_IO_BUS + 0x10) 0x4>;
+				xlnx,gpo-init = <0x0>;
+				xlnx,gpo-size = <0x3>;
+				xlnx,use-gpo = <0x1>;
+			};
+			asu_io_gpo2: asu_gpo@14 {
+				#gpio-cells = <1>;
+				gpio-controller;
+				compatible = "xlnx,io-gpo-1.02.a", "xlnx,io_gpo";
+				reg = <0x0 (MM_ASU_IO_BUS + 0x14) 0x4>;
+				xlnx,gpo-init = <0x0>;
+				xlnx,gpo-size = <32>;
+				xlnx,use-gpo = <0x1>;
+			};
+			asu_io_pit1: asu_pit@40 {
+				compatible = "xlnx,io-pit-1.02.a", "xlnx,io_pit";
+				interrupt-parent = <&asu_io_intc>;
+				interrupts = <3>;
+				reg = <0x0 (MM_ASU_IO_BUS + 0x40) 0xc>;
+				xlnx,pit-interrupt = <0x1>;
+				xlnx,pit-prescaler = <0x9>;
+				xlnx,pit-readable = <0x1>;
+				xlnx,pit-size = <0x20>;
+				xlnx,use-pit = <0x1>;
+				frequency = <460000000>;
+				gpios = <&asu_io_gpo1 1 &asu_io_pit2 0>;
+				gpio-names = "ps_config","ps_hit_in";
+				gpio-controller;
+				#gpio-cells = <1>;
+			};
+			asu_io_pit2: asu_pit@50 {
+				compatible = "xlnx,io-pit-1.02.a", "xlnx,io_pit";
+				interrupt-parent = <&asu_io_intc>;
+				interrupts = <3>;
+				reg = <0x0 (MM_ASU_IO_BUS + 0x50) 0xc>;
+				xlnx,pit-interrupt = <0x1>;
+				xlnx,pit-prescaler = <0x9>;
+				xlnx,pit-readable = <0x1>;
+				xlnx,pit-size = <0x20>;
+				xlnx,use-pit = <0x1>;
+				frequency = <460000000>;
+				gpio-controller;
+				#gpio-cells = <1>;
+			};
+			asu_io_pit3: asu_pit@60 {
+				compatible = "xlnx,io-pit-1.02.a", "xlnx,io_pit";
+				interrupt-parent = <&asu_io_intc>;
+				interrupts = <3>;
+				reg = <0x0 (MM_ASU_IO_BUS + 0x60) 0xc>;
+				xlnx,pit-interrupt = <0x1>;
+				xlnx,pit-prescaler = <0x9>;
+				xlnx,pit-readable = <0x1>;
+				xlnx,pit-size = <0x20>;
+				xlnx,use-pit = <0x1>;
+				frequency = <460000000>;
+				gpios = <&asu_io_gpo1 2 &asu_io_pit4 0>;
+				gpio-names = "ps_config","ps_hit_in";
+				gpio-controller;
+				#gpio-cells = <1>;
+			};
+			asu_io_pit4: asu_pit@70 {
+				compatible = "xlnx,io-pit-1.02.a", "xlnx,io_pit";
+				interrupt-parent = <&asu_io_intc>;
+				interrupts = <3>;
+				reg = <0x0 (MM_ASU_IO_BUS + 0x70) 0xc>;
+				xlnx,pit-interrupt = <0x1>;
+				xlnx,pit-prescaler = <0x9>;
+				xlnx,pit-readable = <0x1>;
+				xlnx,pit-size = <0x20>;
+				xlnx,use-pit = <0x1>;
+				frequency = <460000000>;
+				gpio-controller;
+				#gpio-cells = <1>;
+			};
+	};
+	asu_mdm_uart: asu_mdm_uart@MM_ASU_MDM_HSD {
+		compatible = "xlnx,xps-uartlite";
+		reg = <0x0 MM_ASU_MDM_HSD 0x0 0x10 0x1>;
+		chardev = "serial4";
+	};
+};
+

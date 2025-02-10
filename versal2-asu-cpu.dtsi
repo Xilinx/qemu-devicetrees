@@ -1,0 +1,28 @@
+/* Versal Gen 2 ASU Emulation
+ *
+ * Copyright (c) 2023, AMD Inc
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+/*
+ * Lockstep Microblaze RISCV
+ * RAM interfaces
+ */
+
+/ {
+	cpus {
+		#address-cells = <1>;
+		#size-cells = <0>;
+		asu_cpu: cpu@0 {
+			device_type = "cpu";
+			reg = <0>;
+			status = "okay";
+			compatible = "rv32-riscv-cpu";
+			riscv,isa = "rv32imac";
+			memory = <&amba_asu>;
+			memattr = <&asu_cpu_memattr>;
+		};
+	};
+};
