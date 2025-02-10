@@ -161,7 +161,7 @@
 	asu_dma_src: asu_dma_src@MM_ASU_DMA {
 		compatible = "zynqmp,csu-dma";
 		reg = <0x0 MM_ASU_DMA 0x0 0x800 0x0>;
-		interrupts = <IRQ_ASU_DMA>;
+		interrupts = <IRQ_ASU_DMA_DONE>;
 		stream-connected-dma0 = <&asu_sss>;
 		dma = <&amba_asu>;
 		memattr = <&pmc_dma0_memattr>;
@@ -171,7 +171,7 @@
 	asu_dma_dst: asu_dma_dst@MM_ASU_DMA {
 		compatible = "zynqmp,csu-dma";
 		reg = <0x0 (MM_ASU_DMA + 0x800) 0x0 0x800 0x0>;
-		interrupts = <IRQ_ASU_DMA>;
+		interrupts = <IRQ_ASU_DMA_DONE>;
 		dma = <&amba_asu>;
 		memattr = <&pmc_dma0_memattr>;
 		dma-width = <16>;
