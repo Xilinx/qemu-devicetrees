@@ -44,7 +44,7 @@
 	};
 	asu_rsa: pmc_rsa@MM_ASU_RSA {
 		doc-status = "complete";
-		compatible = "xlnx,versal-ecdsa-rsa";
+		compatible = "xlnx,asu-ecdsa-rsa";
 		reg = < 0x0 MM_ASU_RSA 0x0 MM_ASU_RSA_SIZE 0x0>;
 		interrupts = <IRQ_ASU_RSA>;
 	};
