@@ -54,6 +54,12 @@
 		reg = <0x0 MM_ASU_TRNG 0x0 0x1000 0x0>;
 		interrupts = <IRQ_ASU_TRNG>;
 	};
+	asu_ecc: asu_ecc@MM_ASU_ECC {
+		doc-status = "complete";
+		compatible = "xlnx,asu_ecc";
+		reg = <0x0 MM_ASU_ECC 0x0 MM_ASU_ECC_SIZE 0x0>;
+		interrupts = <IRQ_ASU_ECC>;
+	};
 };
 
 /* ASU-AES connectivity to other devices */
