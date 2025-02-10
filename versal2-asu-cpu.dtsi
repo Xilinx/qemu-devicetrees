@@ -26,6 +26,8 @@
 			memattr = <&asu_cpu_memattr>;
 			gpios = < &crl 30 &crl 34>;
 			gpio-names = "halt", "reset";
+			qemu,halt = <0x1>;
+			resetvec = <MM_ASU_RAM_INSTR>;
 		};
 	};
 };
