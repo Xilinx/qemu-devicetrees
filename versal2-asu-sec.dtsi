@@ -50,7 +50,7 @@
 	};
 	asu_trng: trng@MM_ASU_TRNG {
 		doc-status = "complete";
-		compatible = "xlnx,versal-trng";
+		compatible = "xlnx-asu-trng";
 		reg = <0x0 MM_ASU_TRNG 0x0 0x1000 0x0>;
 		interrupts = <IRQ_ASU_TRNG>;
 	};
