@@ -5,6 +5,7 @@
  *
  * SPDX-License-Identifier: BSD-3-Clause
  */
+#include "versal2-wiremap.dtsh"
 
 /*
  * Security-subsystem
@@ -15,3 +16,31 @@
  * 	TRNG
  * 	DMA
  */
+&amba_asu {
+	asu_aes: asu_aes@MM_ASU_AES {
+		doc-status = "complete";
+		compatible = "xlnx,asu_aes";
+		reg = <0x0 MM_ASU_AES 0x0 (MM_ASU_AES_SIZE + MM_ASU_KEY_SIZE) 0x0>;
+		#gpio-cells = <1>;
+		gpio-controller;
+		/*
+		 * TODO: These are <AES_DONE_IRQ KT_DONE_IRQ> going directly
+		 * into ASU RISC-V. Constants shall be changed to names when
+		 * autogen irq map becomes available.
+		 */
+		interrupts = <2 10>;
+	};
+};
+
+/* ASU-AES connectivity to other devices */
+&asu_aes {
+	stream-connected-aes = <&asu_sss>; /* ASU-AES output */
+};
+
+&asu_sss {
+	stream-connected-aes = <&asu_aes>; /* ASU-AES input */
+};
+
+&asu_global {
+	gpios = <&asu_aes ASU_AES_KEY_TRANSFER_DONE>;
+};

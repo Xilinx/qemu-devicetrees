@@ -1,0 +1,15 @@
+/*
+ * Versal Gen 2 GPIO wire-map friendly names.
+ *
+ * Copyright (c) 2023, AMD Inc
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+#ifndef VERSAL2_WIREMAP_DTSH
+#define VERSAL2_WIREMAP_DTSH
+
+/* Output from ASU-AES */
+#define ASU_AES_KEY_TRANSFER_DONE 0
+
+#endif
