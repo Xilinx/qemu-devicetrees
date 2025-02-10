@@ -20,7 +20,7 @@
 			reg = <0>;
 			status = "okay";
 			#interrupt-cells = <1>;
-			compatible = "rv32-riscv-cpu";
+			compatible = "microblaze-v-riscv-cpu";
 			riscv,isa = "rv32imac";
 			i = <1>;
 			m = <1>;
