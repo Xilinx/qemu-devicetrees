@@ -40,6 +40,11 @@
 		compatible = "xlnx,asu_sha2";
 		reg = <0x0 MM_ASU_SHA2 0x0 MM_ASU_SHA2_SIZE 0x0>;
 	};
+	asu_rsa: pmc_rsa@MM_ASU_RSA {
+		doc-status = "complete";
+		compatible = "xlnx,versal-ecdsa-rsa";
+		reg = < 0x0 MM_ASU_RSA 0x0 MM_ASU_RSA_SIZE 0x0>;
+	};
 };
 
 /* ASU-AES connectivity to other devices */
