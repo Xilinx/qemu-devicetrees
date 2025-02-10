@@ -22,6 +22,10 @@
 			#interrupt-cells = <1>;
 			compatible = "rv32-riscv-cpu";
 			riscv,isa = "rv32imac";
+			i = <1>;
+			m = <1>;
+			a = <1>;
+			c = <1>;
 			memory = <&lmb_amba_asu>;
 			memattr = <&asu_cpu_memattr>;
 			gpios = < &crl 30 &crl 34>;
