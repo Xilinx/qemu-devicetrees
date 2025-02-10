@@ -19,6 +19,7 @@
 			device_type = "cpu";
 			reg = <0>;
 			status = "okay";
+			#interrupt-cells = <1>;
 			compatible = "rv32-riscv-cpu";
 			riscv,isa = "rv32imac";
 			memory = <&amba_asu>;
