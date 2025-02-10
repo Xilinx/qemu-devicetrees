@@ -138,5 +138,17 @@
 		reg = <0x0 MM_ASU_MDM_HSD 0x0 0x10 0x1>;
 		chardev = "serial4";
 	};
+	asu_global: asu_global@MM_ASU_GLOBAL {
+		compatible = "xlnx,asu_global";
+		reg = <0x0 MM_ASU_GLOBAL 0x0 MM_ASU_GLOBAL_SIZE 0x0>;
+	};
+	asu_global_pmc: asu_global_pmc@MM_ASU_GLOBAL {
+		compatible = "xlnx,asu_global_pmc";
+		reg = <0x0 (MM_ASU_GLOBAL + 0x10000) 0x0 MM_ASU_GLOBAL_SIZE 0x0>;
+	};
+	asu_local: asu_local@MM_ASU_LOCAL_REG {
+		compatible = "xlnx,asu_local_reg";
+		reg = <0x0 MM_ASU_LOCAL_REG 0x0 MM_ASU_LOCAL_REG_SIZE 0x0>;
+	};
 };
 
