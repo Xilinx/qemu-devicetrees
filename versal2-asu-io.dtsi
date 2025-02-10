@@ -33,7 +33,7 @@
 				#interrupt-cells = <1>;
 				compatible = "xlnx,io-intc-1.02.a", "xlnx,io_intc";
 				interrupt-controller;
-				interrupts-extended = <&asu_cpu 0>;
+				interrupts-extended = <&asu_cpu 11>;
 				reg = <0x0 ASU_IO_MOD(C) 0x4 0x0 ASU_IO_MOD(30) 0x10 0x0 (MM_ASU_IO_BUS + 0x80) 0x7c>;
 				xlnx,intc-addr-width = <0x20>;
 				xlnx,intc-base-vectors = <0x0>;
@@ -91,7 +91,7 @@
 			asu_io_pit2: asu_pit@50 {
 				compatible = "xlnx,io-pit-1.02.a", "xlnx,io_pit";
 				interrupt-parent = <&asu_io_intc>;
-				interrupts = <3>;
+				interrupts = <4>;
 				reg = <0x0 (MM_ASU_IO_BUS + 0x50) 0xc>;
 				xlnx,pit-interrupt = <0x1>;
 				xlnx,pit-prescaler = <0x9>;
@@ -105,7 +105,7 @@
 			asu_io_pit3: asu_pit@60 {
 				compatible = "xlnx,io-pit-1.02.a", "xlnx,io_pit";
 				interrupt-parent = <&asu_io_intc>;
-				interrupts = <3>;
+				interrupts = <5>;
 				reg = <0x0 (MM_ASU_IO_BUS + 0x60) 0xc>;
 				xlnx,pit-interrupt = <0x1>;
 				xlnx,pit-prescaler = <0x9>;
@@ -121,7 +121,7 @@
 			asu_io_pit4: asu_pit@70 {
 				compatible = "xlnx,io-pit-1.02.a", "xlnx,io_pit";
 				interrupt-parent = <&asu_io_intc>;
-				interrupts = <3>;
+				interrupts = <6>;
 				reg = <0x0 (MM_ASU_IO_BUS + 0x70) 0xc>;
 				xlnx,pit-interrupt = <0x1>;
 				xlnx,pit-prescaler = <0x9>;
