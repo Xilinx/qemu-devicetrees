@@ -45,6 +45,11 @@
 		compatible = "xlnx,versal-ecdsa-rsa";
 		reg = < 0x0 MM_ASU_RSA 0x0 MM_ASU_RSA_SIZE 0x0>;
 	};
+	asu_trng: trng@MM_ASU_TRNG {
+		doc-status = "complete";
+		compatible = "xlnx,versal-trng";
+		reg = <0x0 MM_ASU_TRNG 0x0 0x1000 0x0>;
+	};
 };
 
 /* ASU-AES connectivity to other devices */
