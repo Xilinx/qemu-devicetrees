@@ -28,12 +28,13 @@
 		 * into ASU RISC-V. Constants shall be changed to names when
 		 * autogen irq map becomes available.
 		 */
-		interrupts = <2 10>;
+		interrupts = <IRQ_ASU_AES_DONE IRQ_ASU_KT_DONE>;
 	};
 	asu_sha3: asu_sha3@MM_ASU_SHA3 {
 		doc-status = "complete";
 		compatible = "xlnx,asu_sha3";
 		reg = <0x0 MM_ASU_SHA3 0x0 MM_ASU_SHA3_SIZE 0x0>;
+		interrupts = <IRQ_ASU_SHA_DONE>;
 	};
 	asu_sha2: asu_sha2@MM_ASU_SHA2 {
 		doc-status = "complete";
@@ -44,11 +45,13 @@
 		doc-status = "complete";
 		compatible = "xlnx,versal-ecdsa-rsa";
 		reg = < 0x0 MM_ASU_RSA 0x0 MM_ASU_RSA_SIZE 0x0>;
+		interrupts = <IRQ_ASU_RSA>;
 	};
 	asu_trng: trng@MM_ASU_TRNG {
 		doc-status = "complete";
 		compatible = "xlnx,versal-trng";
 		reg = <0x0 MM_ASU_TRNG 0x0 0x1000 0x0>;
+		interrupts = <IRQ_ASU_TRNG>;
 	};
 };
 

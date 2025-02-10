@@ -1,0 +1,25 @@
+/*
+ * Versal Gen 2 ASU interrupts
+ *
+ * Copyright (c) 2023 Advanced Micro Devices Inc.
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+#define IRQ_ASU_EAM		31
+#define IRQ_ASU_IPI		30
+#define IRQ_ASU_PL_IRQ3		29
+#define IRQ_ASU_PL_IRQ2		28
+#define IRQ_ASU_PL_IRQ1		27
+#define IRQ_ASU_PL_IRQ0		26
+#define IRQ_ASU_KT_DONE		25
+#define IRQ_ASU_GPI_STATUS	24
+#define IRQ_ASU_TRNG		23
+#define IRQ_ASU_RSA		22
+#define IRQ_ASU_ECC		21
+#define IRQ_ASU_SHA_DONE	20
+#define IRQ_ASU_DMA		19
+#define IRQ_ASU_AES_DONE	18
+#define IRQ_ASU_RAM_INSTR	17
+#define IRQ_ASU_RAM_DATA	16
