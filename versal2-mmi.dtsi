@@ -55,10 +55,10 @@
 			#priority-cells = <0>;
 			compatible = "cdns,gem";
 			reg = <0x0 MM_MMI_PCIEGEM_10GBE 0x0 MM_MMI_PCIEGEM_10GBE_SIZE 0x0>;
-			interrupts = <mmi_gem_misc_event_IRQ_0
-				mmi_gem_misc_event_IRQ_0
-				mmi_gem_misc_event_IRQ_0
-				mmi_gem_misc_event_IRQ_0>;
+			interrupts = <MMI_GEM_MISC_EVENT_IRQ_0
+				MMI_GEM_MISC_EVENT_IRQ_0
+				MMI_GEM_MISC_EVENT_IRQ_0
+				MMI_GEM_MISC_EVENT_IRQ_0>;
 			dma = <&smmu_tbu2>;
 			memattr = <&MEMATTR_NAME(mmi_gem)>;
 			num-priority-queues = <4>;
@@ -69,8 +69,8 @@
 		mmi_usb_drd: usb_drd@MM_MMI_USB_CFG {
 			compatible = "usb_dwc3";
 			reg = <0x0 MM_MMI_USB_CFG 0x0 MM_MMI_USB_CFG_SIZE 0x0>;
-			interrupts = <mmi_usbdrd_misc_event_IRQ_0
-				mmi_usbdrd_misc_event_IRQ_1>;
+			interrupts = <MMI_USBDRD_MISC_EVENT_IRQ_0
+				MMI_USBPHY_MISC_EVENT_IRQ_0>;
 			dma = <&smmu_tbu2>;
 			memattr = <&MEMATTR_NAME(mmi_usb)>;
 			intrs = <2>;
