@@ -1,0 +1,26 @@
+/* Versal Gen 2 ASU Emulation
+ *
+ * Copyright (c) 2023, AMD Inc
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+
+/{
+	#address-cells = <2>;
+	#size-cells = <2>;
+	#priority-cells = <1>;
+
+	MEMATTR(asu_cpu, NON_SECURE, 0x0);
+
+	amba_asu: amba_asu@0 {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		#priority-cells = <1>;
+		compatible = "simple-bus";
+		ranges;
+		MR_BACKGROUND(amba);
+	};
+};
+
