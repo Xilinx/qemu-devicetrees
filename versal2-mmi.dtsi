@@ -58,6 +58,7 @@
 				mmi_gem_misc_event_IRQ_0>;
 			num-priority-queues = <4>;
 			mdio = <&mdio_10gbe>;
+			has-usxgmii = <1>;
 		};
 	};
 
