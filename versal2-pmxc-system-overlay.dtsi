@@ -51,6 +51,7 @@
 
 &pmx_err_mng {
 	compatible = "xlnx,pmxc-err-mng";
+	interrupts = <PMX_PPU1_IRQMAP_OFFSET(IRQ_PMX_PPU1_PMC_ERR)>;
 };
 
 &pmc_aes {

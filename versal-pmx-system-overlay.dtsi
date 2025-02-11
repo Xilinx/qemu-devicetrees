@@ -71,7 +71,7 @@
 		compatible = "xlnx,pmx_crp";
 	};
 
-	pmc_analog@MM_PMC_PMC_ANALOG {
+	pmx_analog: pmc_analog@MM_PMC_PMC_ANALOG {
 		compatible = "xlnx,pmx_anlg";
 		interrupts-extended = <&pmc_gic_proxy
 					0 GLITCH_DET_IRQ_IRQ_0 0>;
@@ -140,6 +140,7 @@
 	pmx_err_mng: pmx_err_mng@MM_PMC_PMC_GLOBAL {
 		compatible = "xlnx,pmx-err-mng";
 		reg = <0x0 (MM_PMC_PMC_GLOBAL + 0x20000) 0x0 0x10000 0x1>;
+		gpios = <&pmc_global 3>;
 	};
 };
 
