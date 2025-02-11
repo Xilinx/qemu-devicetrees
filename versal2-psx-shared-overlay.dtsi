@@ -92,3 +92,39 @@
 &lpd_slcr_secure {
 	compatible = "xlnx.versal2-psxc-lpx-slcr-secure";
 };
+
+&amba {
+	xmpu_ocm1: xmpu_ocm1@0 {
+		compatible = "xlnx,versal-xmpu";
+		interrupts = <XMPU_OCM_IRQ_0>;
+		reg-extended = <
+			&amba 0x0 MM_OCM1_XMPU 0x0 MM_OCM1_XMPU_SIZE 0x0
+			&amba 0x0 MM_OCM1_MEM 0x0 MM_OCM1_MEM_SIZE 0x0
+		>;
+		protected-mr = <&ocm_mem>;
+		mr-0 = <&amba>;
+		protected-base = <MM_OCM1_MEM>;
+	};
+	xmpu_ocm2: xmpu_ocm2@0 {
+		compatible = "xlnx,versal-xmpu";
+		interrupts = <XMPU_OCM_IRQ_0>;
+		reg-extended = <
+			&amba 0x0 MM_OCM2_XMPU 0x0 MM_OCM2_XMPU_SIZE 0x0
+			&amba 0x0 MM_OCM2_MEM 0x0 MM_OCM2_MEM_SIZE 0x0
+		>;
+		protected-mr = <&ocm_mem>;
+		mr-0 = <&amba>;
+		protected-base = <MM_OCM2_MEM>;
+	};
+	xmpu_ocm3: xmpu_ocm3@0 {
+		compatible = "xlnx,versal-xmpu";
+		interrupts = <XMPU_OCM_IRQ_0>;
+		reg-extended = <
+			&amba 0x0 MM_OCM3_XMPU 0x0 MM_OCM3_XMPU_SIZE 0x0
+			&amba 0x0 MM_OCM3_MEM 0x0 MM_OCM3_MEM_SIZE 0x0
+		>;
+		protected-mr = <&ocm_mem>;
+		mr-0 = <&amba>;
+		protected-base = <MM_OCM3_MEM>;
+	};
+};
