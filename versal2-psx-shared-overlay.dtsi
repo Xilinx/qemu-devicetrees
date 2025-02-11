@@ -89,6 +89,32 @@
 	compatible = "xlnx,psxc_crl";
 };
 
+&lpd_slcr {
+    compatible = "xlnx.psxc-lpx-slcr";
+    interrupt-parent = <&pmc_ppu1_io_intc>;
+    interrupts = <(16 + 14)>;
+    #gpio-cells = <1>;
+    gpio-controller;
+
+#ifdef NUM_RPUS
+    num-rpu = <NUM_RPUS>;
+
+    /* P-Channel interface */
+    core-0 = <&rpu_cpu0>;
+    core-1 = <&rpu_cpu1>;
+    core-2 = <&rpu_cpu2>;
+    core-3 = <&rpu_cpu3>;
+#if NUM_RPUS == 10
+    core-4 = <&rpu_cpu4>;
+    core-5 = <&rpu_cpu5>;
+    core-6 = <&rpu_cpu6>;
+    core-7 = <&rpu_cpu7>;
+    core-8 = <&rpu_cpu8>;
+    core-9 = <&rpu_cpu9>;
+#endif
+#endif
+};
+
 &lpd_slcr_secure {
 	compatible = "xlnx.versal2-psxc-lpx-slcr-secure";
 };

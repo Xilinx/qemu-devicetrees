@@ -382,7 +382,7 @@ zname: dma-controller@zbase {							\
 	};
 #endif
 
-	lpd_slcr@MM_LPD_SLCR {
+	lpd_slcr: lpd_slcr@MM_LPD_SLCR {
 		compatible = "xlnx,versal-lpd-slcr";
 		reg = <0x0 MM_LPD_SLCR 0x0 MM_LPD_SLCR_SIZE 0x0>;
 	};
