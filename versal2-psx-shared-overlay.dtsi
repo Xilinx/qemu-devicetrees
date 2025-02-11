@@ -146,43 +146,43 @@
 
     gpios = <
         /* cluster 0-3 pchan power down */
-        &lpd_slcr 80
-        &lpd_slcr 81
-#if APU_PCIL_NUM_CLUSTERS == 4
         &lpd_slcr 82
         &lpd_slcr 83
+#if APU_PCIL_NUM_CLUSTERS == 4
+        &lpd_slcr 84
+        &lpd_slcr 85
 #endif
 
         /* cluster 0-3 pchan wakeup */
-        &lpd_slcr 84
-        &lpd_slcr 85
-#if APU_PCIL_NUM_CLUSTERS == 4
         &lpd_slcr 86
         &lpd_slcr 87
+#if APU_PCIL_NUM_CLUSTERS == 4
+        &lpd_slcr 88
+        &lpd_slcr 89
 #endif
 
         /* core 0-7 pchan power down */
-        &lpd_slcr 88
-        &lpd_slcr 89
         &lpd_slcr 90
         &lpd_slcr 91
-#if NUM_APUS == 8
         &lpd_slcr 92
         &lpd_slcr 93
+#if NUM_APUS == 8
         &lpd_slcr 94
         &lpd_slcr 95
+        &lpd_slcr 96
+        &lpd_slcr 97
 #endif
 
         /* core 0-7 pchan wakeup */
-        &lpd_slcr 96
-        &lpd_slcr 97
         &lpd_slcr 98
         &lpd_slcr 99
-#if NUM_APUS == 8
         &lpd_slcr 100
         &lpd_slcr 101
+#if NUM_APUS == 8
         &lpd_slcr 102
         &lpd_slcr 103
+        &lpd_slcr 104
+        &lpd_slcr 105
 #endif
     >;
 
