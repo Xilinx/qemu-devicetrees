@@ -50,7 +50,7 @@
 #endif
 
 #define GEN_APU_CLUSTER(n, a, b, c, d)					\
-	apu_cluster ## n: apu_cluster@MM_FPD_FPD_APU_CLUSTER ## n {	\
+	apu_cluster ## n: apu_cluster@MM_FPD_APU_CLUSTER ## n {	\
 		#gpio-cells = <1>;					\
 		gpio-controller;					\
 		compatible = "xlnx,versal-apu-ctrl";			\

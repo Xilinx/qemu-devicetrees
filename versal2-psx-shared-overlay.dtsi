@@ -31,7 +31,7 @@
 
 #define CREATE_OCM_CTRL(n, addr_nm, size_nm, memsize_nm)       \
 	glue(ocm_ctrl, n): ocm_ctrl@addr_nm {		       \
-		compatible = "xlnx, zynqmp-ocmc";	       \
+		compatible = "xlnx,zynqmp-ocmc";	       \
 		interrupts = <glue(glue(OCM, n), INTR_IRQ_0)>; \
 		memsize = <memsize_nm>;			       \
 		reg = <0x0 addr_nm 0x0 size_nm 0x0>;	       \
