@@ -77,6 +77,11 @@
 			slots = <2>;
 		};
 
+		mmi_crx: mmi_crs@MM_MMI_CRX {
+			compatible = "xlnx.mmi_crx";
+			reg = <0x0 MM_MMI_CRX 0x0 MM_MMI_CRX_SIZE 0x0>;
+		};
+
 		mmi_pcsr: mmi_pcsr@MM_MMI_PCSR {
 			compatible = "xlnx,noc-npi-dev";
 			reg = <0x0 MM_MMI_PCSR 0x0 MM_MMI_PCSR_SIZE 0x1>;
