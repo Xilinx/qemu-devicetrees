@@ -24,7 +24,7 @@
 			ranges;
 			MR_BACKGROUND(amba);
 		};
-		amba: amba@0 {
+		amba_lpd: amba_lpd@0 {
 			MR_BACKGROUND(amba_asu);
 		};
 		amba_asu: amba_asu@0 {
