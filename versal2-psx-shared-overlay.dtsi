@@ -71,4 +71,14 @@
 		CREATE_I2C_I3C(6, MM_PS_I2C_I3C6, MM_PS_I2C_I3C6_SIZE);
 		CREATE_I2C_I3C(7, MM_PS_I2C_I3C7, MM_PS_I2C_I3C7_SIZE);
 	};
+
+	CREATE_LPD_WWDT(1, MM_LPD_WWDT1, MM_LPD_WWDT1_SIZE);
+	/* FIXME: Four WWDT should be instantiated in LPD, but no reset line are
+	 *        present at the moment.  Add them later.
+	 * CREATE_LPD_WWDT(2, MM_LPD_WWDT2, MM_LPD_WWDT2_SIZE);
+	 * CREATE_LPD_WWDT(3, MM_LPD_WWDT3, MM_LPD_WWDT3_SIZE);
+	 */
+        #ifdef CRL_RST_SWDT2
+        #error "FIXME: WWDT device can now be instantiated."
+        #endif
 };
