@@ -76,6 +76,46 @@
 			intrs = <2>;
 			slots = <2>;
 		};
+
+		mmi_pcsr: mmi_pcsr@MM_MMI_PCSR {
+			compatible = "xlnx,noc-npi-dev";
+			reg = <0x0 MM_MMI_PCSR 0x0 MM_MMI_PCSR_SIZE 0x1>;
+			map-size = <MM_MMI_PCSR_SIZE>;
+			custom = <1>;
+			pcsr-status = <0x7FFE>;
+		};
+
+		mmi_gtyp: mmi_gtyp@MM_MMI_GTYP_CFG {
+			compatible = "xlnx,noc-npi-dev";
+			reg = <0x0 MM_MMI_GTYP_CFG 0x0 MM_MMI_GTYP_CFG_SIZE 0x1>;
+			map-size = <MM_MMI_GTYP_CFG>;
+			custom = <1>;
+			pcsr-status = <0x3A00d0>;
+		};
+
+		mmi_slcr_secure: mmi_slcr_sec@0 {
+			compatible = "qemu:memory-region";
+			qemu,ram = <QEMU_RAM_PROPERTY>;
+			reg = <0x0 MM_MMI_SLCR_SECURE 0x0 MM_MMI_SLCR_SECURE_SIZE 0x0>;
+			read-only;
+		};
+
+		mmi_gpu_a: mmi_gpu_a@0 {
+			compatible = "qemu:memory-region";
+			qemu,ram = <QEMU_RAM_PROPERTY>;
+			reg = <0x0 (MM_MMI_GPU_A + 0xA0098) 0x0 0x10 0x0>;
+			read-only;
+		};
+
+		LOADER_DEBUG_WRITE(0, 0xEDC30440, 0x1, 4);
+		LOADER_DEBUG_WRITE(0, 0xEDC30444, 0x7F, 4);
+		LOADER_DEBUG_WRITE(0, 0xEDC3044c, 0x1, 4);
+		LOADER_DEBUG_WRITE(0, 0xEDC30450, 0x1, 4);
+		LOADER_DEBUG_WRITE(0, 0xEDC30460, 0x1, 4);
+		LOADER_DEBUG_WRITE(0, 0xEDC30464, 0x7f, 4);
+		LOADER_DEBUG_WRITE(0, 0xEDC3046c, 0x1, 4);
+		LOADER_DEBUG_WRITE(0, 0xEDC30470, 0x1, 4);
+		LOADER_DEBUG_WRITE(0, 0xED0A0098, 0x3, 4);
 	};
 
 	MR_BACKGROUND(amba_mmi);
