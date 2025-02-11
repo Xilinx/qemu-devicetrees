@@ -76,7 +76,11 @@
 		#interrupt-cells = <1>;
 		interrupt-map-mask = <0x0 0x0 0xffff>;
 
-#ifdef VERSAL_NET
+#if defined(VERSAL2_ASU_DEV)
+
+#include "versal2/irq-map.dtsh"
+
+#elif defined(VERSAL_NET)
 /*
  * Versal Net irq map
  */

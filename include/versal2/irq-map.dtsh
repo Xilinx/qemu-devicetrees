@@ -1,0 +1,54 @@
+/*
+ * This file contains the interrupt-map for Versal Net.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+		interrupt-map =
+#ifdef HAVE_APU_GIC
+			#define __intc__ &gic
+			#include "versal-psx-irq-map.dtsh"
+			#undef __intc__
+			,
+
+			#define __intc__ &rpu_gic_a
+			#include "versal-psx-irq-map.dtsh"
+			#undef __intc__
+			,
+
+			#define __intc__ &rpu_gic_b
+			#include "versal-psx-irq-map.dtsh"
+			#undef __intc__
+			,
+#endif
+			#define __intc__ &pmc_gic_proxy
+			#include "versal-psx-irq-map.dtsh"
+			#undef __intc__
+			,
+			#define __intc__ &asu_gic_proxy
+			#include "versal-psx-irq-map.dtsh"
+			#undef __intc__
+
+			/* Manual entries.  */
+			,
+			<0 0 PMX_PPU1_IRQMAP_OFFSET(IRQ_PMX_PPU1_PMC_ERR) &pmc_ppu1_io_intc IRQ_PMX_PPU1_PMC_ERR>,
+			<0 0 PMX_PPU1_IRQMAP_OFFSET(IRQ_PPU1_INTC_PMX_IPI) &pmc_ppu1_io_intc IRQ_PPU1_INTC_PMX_IPI>,
+			<0 0 PMX_PPU1_IRQMAP_OFFSET(IRQ_PPU1_INTC_PMX_IPI_NOBUF) &pmc_ppu1_io_intc IRQ_PPU1_INTC_PMX_IPI_NOBUF>,
+			<0 0 PSMX_IRQMAP_OFFSET(IRQ_PSMX_IPI) &asu_io_intc IRQ_PSMX_IPI>
+			;
