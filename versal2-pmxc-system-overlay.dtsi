@@ -49,7 +49,17 @@
 	compatible = "xlnx,pmxc_global";
 };
 
+&pmx_err_mng {
+	compatible = "xlnx,pmxc-err-mng";
+};
+
 &pmc_aes {
 	compatible = "xlnx-pmxc-aes";
 	asu-aes = <&asu_aes>;
+};
+
+&amba_pmc_sys {
+	pmc_analog@MM_PMC_PMC_ANALOG {
+		compatible = "xlnx,pmxc_anlg";
+	};
 };

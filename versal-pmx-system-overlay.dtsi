@@ -152,6 +152,10 @@
        max-ints = <256>;
 };
 
+&amba_pmc_sys {
+    /delete-node/ pmc_err_mng@0xF1130000;
+};
+
 #ifdef MM_PSM_GLOBAL_REG
 &psm_gic_proxy {
        max-ints = <256>;
