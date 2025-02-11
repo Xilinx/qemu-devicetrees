@@ -53,6 +53,68 @@
 #define TTC7_IRQ_2 239
 #define CAN2_IRQ_0 240
 #define CAN3_IRQ_0 241
+#define OCM2INTR_IRQ_0 242
+#define OCM3INTR_IRQ_0 243
+
+/*
+ * The OCM memories layout changed a bit.  Bank0-1 are mapped at the same place
+ * than Versal, while Bank2-3 are mapped just below.
+ *
+ * 0xBBE00000 |-------|
+ *	      | BANK2 |
+ * 0xBBE80000 |-------|
+ *	      | BANK3 |
+ * 0xBBF00000 |-------|
+ *	      | BANK0 |
+ * 0xBBF80000 |-------|
+ *	      | BANK1 |
+ *	      |-------|
+ */
+#define OCM0_OFFSET (MM_OCM0_MEM - MM_OCM2_MEM)
+#define OCM1_OFFSET (MM_OCM1_MEM - MM_OCM2_MEM)
+#define OCM2_OFFSET (MM_OCM2_MEM - MM_OCM2_MEM)
+#define OCM3_OFFSET (MM_OCM3_MEM - MM_OCM2_MEM)
+/ {
+	/delete-node/ ocm_mem@MM_OCM_MEM;
+	ocm_mem: ocm_mem@MM_OCM2_MEM {
+		compatible = "qemu:memory-region";
+	};
+
+};
+
+&ocm_mem_bank_0 {
+	reg = <0x00 OCM0_OFFSET 0x00 MM_OCM0_MEM_SIZE 0x00>;
+};
+
+&ocm_mem_bank_1 {
+	reg = <0x00 OCM1_OFFSET 0x00 MM_OCM1_MEM_SIZE 0x00>;
+};
+
+&ocm_mem_bank_2 {
+	reg = <0x00 OCM2_OFFSET 0x00 MM_OCM2_MEM_SIZE 0x00>;
+};
+
+&ocm_mem_bank_3 {
+	reg = <0x00 OCM3_OFFSET 0x00 MM_OCM3_MEM_SIZE 0x00>;
+};
+
+#define CREATE_OCM_CTRL(n, addr_nm, size_nm, memsize_nm)       \
+	glue(ocm_ctrl, n): ocm_ctrl@addr_nm {		       \
+		compatible = "xlnx, zynqmp-ocmc";	       \
+		interrupts = <glue(glue(OCM, n), INTR_IRQ_0)>; \
+		memsize = <memsize_nm>;			       \
+		reg = <0x0 addr_nm 0x0 size_nm 0x0>;	       \
+		reset-gpios = <&crl glue(CRL_RST_OCM, n)>;     \
+	}
+
+&amba_lpd {
+	CREATE_OCM_CTRL(1, MM_PSX_OCM1_REGS, MM_PSX_OCM1_REGS_SIZE,
+			MM_OCM1_MEM_SIZE);
+	CREATE_OCM_CTRL(2, MM_PSX_OCM2_REGS, MM_PSX_OCM2_REGS_SIZE,
+			MM_OCM2_MEM_SIZE);
+	CREATE_OCM_CTRL(3, MM_PSX_OCM3_REGS, MM_PSX_OCM3_REGS_SIZE,
+			MM_OCM3_MEM_SIZE);
+};
 
 &amba_lpd {
 	CREATE_CAN(2, MM_CANFD2, MM_CANFD2_SIZE);
