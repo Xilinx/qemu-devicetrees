@@ -124,6 +124,81 @@
 	compatible = "xlnx.versal2-psxc-lpx-slcr-secure";
 };
 
+#if NUM_APUS == 8
+/*
+ * 4 clusters, 2 cores per cluster. Core registers are sparse in the APU_PCIL
+ * address space.
+ */
+# define APU_PCIL_NUM_CLUSTERS 4
+# define APU_PCIL_CORE_MASK 0x3333
+
+#elif NUM_APUS == 4
+# define APU_PCIL_NUM_CLUSTERS 2
+# define APU_PCIL_CORE_MASK 0x0033
+
+#else
+# error APU_PCIL: Please add support for this NUM_APUS
+#endif
+
+&apu_pcil {
+    core-mask = <APU_PCIL_CORE_MASK>;
+    cluster-mask = <((1 << APU_PCIL_NUM_CLUSTERS) - 1)>;
+
+    gpios = <
+        /* cluster 0-3 pchan power down */
+        &lpd_slcr 80
+        &lpd_slcr 81
+#if APU_PCIL_NUM_CLUSTERS == 4
+        &lpd_slcr 82
+        &lpd_slcr 83
+#endif
+
+        /* cluster 0-3 pchan wakeup */
+        &lpd_slcr 84
+        &lpd_slcr 85
+#if APU_PCIL_NUM_CLUSTERS == 4
+        &lpd_slcr 86
+        &lpd_slcr 87
+#endif
+
+        /* core 0-7 pchan power down */
+        &lpd_slcr 88
+        &lpd_slcr 89
+        &lpd_slcr 90
+        &lpd_slcr 91
+#if NUM_APUS == 8
+        &lpd_slcr 92
+        &lpd_slcr 93
+        &lpd_slcr 94
+        &lpd_slcr 95
+#endif
+
+        /* core 0-7 pchan wakeup */
+        &lpd_slcr 96
+        &lpd_slcr 97
+        &lpd_slcr 98
+        &lpd_slcr 99
+#if NUM_APUS == 8
+        &lpd_slcr 100
+        &lpd_slcr 101
+        &lpd_slcr 102
+        &lpd_slcr 103
+#endif
+    >;
+
+    /* P-Channel interface */
+    core-0 = <&cpu0>;
+    core-1 = <&cpu1>;
+    core-4 = <&cpu2>;
+    core-5 = <&cpu3>;
+#if NUM_APUS == 8
+    core-8 = <&cpu4>;
+    core-9 = <&cpu5>;
+    core-12 = <&cpu6>;
+    core-13 = <&cpu7>;
+#endif
+};
+
 &amba {
 	xmpu_ocm1: xmpu_ocm1@0 {
 		compatible = "xlnx,versal-xmpu";
