@@ -61,7 +61,7 @@
 
 &pmc_aes {
 	compatible = "xlnx-pmxc-aes";
-	asu-aes = <&asu_aes>;
+	asu-aes = <&asu_kv>;
 };
 
 &amba_pmc_sys {

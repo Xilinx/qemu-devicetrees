@@ -19,8 +19,8 @@
 &amba_asu {
 	asu_aes: asu_aes@MM_ASU_AES {
 		doc-status = "complete";
-		compatible = "xlnx,asu_aes";
-		reg = <0x0 MM_ASU_AES 0x0 (MM_ASU_AES_SIZE + MM_ASU_KEY_SIZE) 0x0>;
+		compatible = "xlnx,asu-aes";
+		reg = <0x0 MM_ASU_AES 0x0 MM_ASU_AES_SIZE 0x0>;
 		#gpio-cells = <1>;
 		gpio-controller;
 		/*
@@ -29,7 +29,13 @@
 		 * autogen irq map becomes available.
 		 */
 		interrupts = <IRQ_ASU_AES_DONE IRQ_ASU_KT_DONE>;
+		keyvault = <&asu_kv>;
+	};
+	asu_kv: asu_kv@MM_ASU_KEY {
+		compatible = "xlnx,asu-kv";
+		reg = <0x0 MM_ASU_KEY 0x0 MM_ASU_KEY_SIZE 0x0>;
 		pmxc-aes = <&pmc_aes>;
+		aes-engine = <&asu_aes>;
 	};
 	asu_sha3: asu_sha3@MM_ASU_SHA3 {
 		doc-status = "complete";
