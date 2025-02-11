@@ -115,6 +115,11 @@
 #endif
 };
 
+&amba_lpd {
+    /* Included in the pscx-lpx-slcr */
+    /delete-node/ rpu_pcil@0xEB420000;
+};
+
 &lpd_slcr_secure {
 	compatible = "xlnx.versal2-psxc-lpx-slcr-secure";
 };
