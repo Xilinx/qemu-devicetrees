@@ -148,7 +148,11 @@ name: name@addr64 {														\
 
 /* Include auto-generated files.  */
 
-#ifdef VERSAL_NET
+#if defined(VERSAL2_DEV)
+ #include "versal2-memmap.dtsh"
+ #include "versal-psx-memmap-aliases.dtsh"
+ #include "versal2-memmap-aliases.dtsh"
+#elif defined(VERSAL_NET)
  #include "include/versal-net/memmap.dtsh"
  #include "include/versal-net/gic-memmap.dtsh"
  #include "versal-psx-memmap-aliases.dtsh"

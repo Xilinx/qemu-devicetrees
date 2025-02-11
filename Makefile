@@ -54,7 +54,7 @@ HEADER_FILES			:= $(wildcard *.dtsh)
 HEADER_FILES			+= $(wildcard include/*.dtsh)
 
 
-CPPFLAGS = -I. -Iinclude/ -Iinclude/versal-net
+CPPFLAGS = -I. -Iinclude/ -Iinclude/versal-net -Iinclude/versal2/memmap
 
 .PHONY:	all source
 
