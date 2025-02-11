@@ -264,6 +264,25 @@
 		compatible = "remote-port-memory-master";
 		remote-ports = <&cosim_rp_0 94>;
 	};
+	rp_npi_irq: rp_npi_irq {
+		#gpio-cell = <1>;
+		compatible = "remote-port-gpio";
+		remote-ports = <&cosim_rp_0 98>;
+		num-gpios = <12>;
+		interrupts = <  PMC_NPI_IRQ_0
+				PMC_NPI_IRQ_1
+				PMC_NPI_IRQ_2
+				PMC_NPI_IRQ_3
+				PMC_NPI_IRQ_4
+				PMC_NPI_IRQ_5
+				PMC_NPI_IRQ_6
+				PMC_NPI_IRQ_7
+				PMC_NPI_IRQ_8
+				PMC_NPI_IRQ_9
+				PMC_NPI_IRQ_10
+				PMC_NPI_IRQ_11
+		>;
+	};
 };
 
 &amba {
