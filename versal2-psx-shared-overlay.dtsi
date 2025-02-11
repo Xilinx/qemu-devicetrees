@@ -65,6 +65,15 @@
 		CREATE_I2C_I3C(7, MM_PS_I2C_I3C7, MM_PS_I2C_I3C7_SIZE);
 	};
 
+	ZDMA_CHANNEL(sdma0, sdma, MM_SDMA_CH0, LPD_SDMA_IRQ_0, 128, &smmu_tbu0, SMID_SDMA_CH0, 8);
+	ZDMA_CHANNEL(sdma1, sdma, MM_SDMA_CH1, LPD_SDMA_IRQ_1, 128, &smmu_tbu0, SMID_SDMA_CH1, 9);
+	ZDMA_CHANNEL(sdma2, sdma, MM_SDMA_CH2, LPD_SDMA_IRQ_2, 128, &smmu_tbu0, SMID_SDMA_CH2, 10);
+	ZDMA_CHANNEL(sdma3, sdma, MM_SDMA_CH3, LPD_SDMA_IRQ_3, 128, &smmu_tbu0, SMID_SDMA_CH3, 11);
+	ZDMA_CHANNEL(sdma4, sdma, MM_SDMA_CH4, LPD_SDMA_IRQ_4, 128, &smmu_tbu0, SMID_SDMA_CH4, 12);
+	ZDMA_CHANNEL(sdma5, sdma, MM_SDMA_CH5, LPD_SDMA_IRQ_5, 128, &smmu_tbu0, SMID_SDMA_CH5, 13);
+	ZDMA_CHANNEL(sdma6, sdma, MM_SDMA_CH6, LPD_SDMA_IRQ_6, 128, &smmu_tbu0, SMID_SDMA_CH6, 14);
+	ZDMA_CHANNEL(sdma7, sdma, MM_SDMA_CH7, LPD_SDMA_IRQ_7, 128, &smmu_tbu0, SMID_SDMA_CH7, 15);
+
 	CREATE_LPD_WWDT(1, MM_LPD_WWDT1, MM_LPD_WWDT1_SIZE);
 	/* FIXME: Four WWDT should be instantiated in LPD, but no reset line are
 	 *        present at the moment.  Add them later.
