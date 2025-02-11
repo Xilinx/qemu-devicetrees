@@ -52,6 +52,10 @@
 			#priority-cells = <0>;
 			compatible = "cdns,gem";
 			reg = <0x0 MM_MMI_PCIEGEM_10GBE 0x0 MM_MMI_PCIEGEM_10GBE_SIZE 0x0>;
+			interrupts = <mmi_gem_misc_event_IRQ_0
+				mmi_gem_misc_event_IRQ_0
+				mmi_gem_misc_event_IRQ_0
+				mmi_gem_misc_event_IRQ_0>;
 			num-priority-queues = <4>;
 			mdio = <&mdio_10gbe>;
 		};
