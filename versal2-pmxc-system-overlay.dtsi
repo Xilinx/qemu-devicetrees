@@ -48,3 +48,8 @@
 &pmc_global {
 	compatible = "xlnx,pmxc_global";
 };
+
+&pmc_aes {
+	compatible = "xlnx-pmxc-aes";
+	asu-aes = <&asu_aes>;
+};

@@ -29,6 +29,7 @@
 		 * autogen irq map becomes available.
 		 */
 		interrupts = <IRQ_ASU_AES_DONE IRQ_ASU_KT_DONE>;
+		pmxc-aes = <&pmc_aes>;
 	};
 	asu_sha3: asu_sha3@MM_ASU_SHA3 {
 		doc-status = "complete";
