@@ -14,14 +14,26 @@
 
 	MEMATTR(asu_cpu, NON_SECURE, 0x0);
 
-	amba_asu: amba_asu@0 {
-		#address-cells = <2>;
-		#size-cells = <2>;
-		#priority-cells = <1>;
-		#interrupt-cells = <1>;
-		compatible = "simple-bus";
-		ranges;
-		MR_BACKGROUND(amba);
+	amba_root: amba_root@0 {
+		amba_asu_cpu: amba_asu_cpu@0 {
+			#address-cells = <2>;
+			#size-cells = <2>;
+			#priority-cells = <1>;
+			#interrupt-cells = <1>;
+			compatible = "simple-bus";
+			ranges;
+			MR_BACKGROUND(amba);
+		};
+		amba: amba@0 {
+			MR_BACKGROUND(amba_asu);
+		};
+		amba_asu: amba_asu@0 {
+			#address-cells = <2>;
+			#size-cells = <2>;
+			#priority-cells = <1>;
+			compatible = "simple-bus";
+			ranges;
+		};
 	};
 
 	lmb_amba_asu: lmb_amba_asu@0 {
@@ -32,7 +44,7 @@
 		ranges;
 		main_bus_for_asu {
 			compatible = "qemu:memory-region";
-			alias = <&amba_asu>;
+			alias = <&amba_asu_cpu>;
 			/* Full address range with 0 priority */
 			reg = <0x0 0x0 0xffffffff 0xffffffff 0>;
 		};

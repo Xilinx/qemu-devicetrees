@@ -20,7 +20,7 @@
 		#size-cells = <1>;
 		#priority-cells = <0>;
 		compatible = "xlnx,iomodule-1.02.a", "syscon", "simple-bus";
-		container = <&amba_asu>;
+		container = <&amba_asu_cpu>;
 		priority = <0xffffffff>;
 		xlnx,freq = <0x47868c0>;
 		xlnx,instance = "iomodule_0";
@@ -163,7 +163,7 @@
 		reg = <0x0 MM_ASU_DMA 0x0 0x800 0x0>;
 		interrupts = <IRQ_ASU_DMA_DONE>;
 		stream-connected-dma0 = <&asu_sss>;
-		dma = <&amba_asu>;
+		dma = <&amba_asu_cpu>;
 		memattr = <&pmc_dma0_memattr>;
 		dma-width = <16>;
 		byte-align = <1>;
@@ -172,7 +172,7 @@
 		compatible = "zynqmp,csu-dma";
 		reg = <0x0 (MM_ASU_DMA + 0x800) 0x0 0x800 0x0>;
 		interrupts = <IRQ_ASU_DMA_DONE>;
-		dma = <&amba_asu>;
+		dma = <&amba_asu_cpu>;
 		memattr = <&pmc_dma0_memattr>;
 		dma-width = <16>;
 		is-dst = <1>;
