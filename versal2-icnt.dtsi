@@ -22,5 +22,19 @@
 		ranges;
 		MR_BACKGROUND(amba);
 	};
+
+	lmb_amba_asu: lmb_amba_asu@0 {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		#priority-cells = <1>;
+		compatible = "simple-bus";
+		ranges;
+		main_bus_for_asu {
+			compatible = "qemu:memory-region";
+			alias = <&amba_asu>;
+			/* Full address range with 0 priority */
+			reg = <0x0 0x0 0xffffffff 0xffffffff 0>;
+		};
+	};
 };
 

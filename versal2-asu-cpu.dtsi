@@ -22,7 +22,7 @@
 			#interrupt-cells = <1>;
 			compatible = "rv32-riscv-cpu";
 			riscv,isa = "rv32imac";
-			memory = <&amba_asu>;
+			memory = <&lmb_amba_asu>;
 			memattr = <&asu_cpu_memattr>;
 		};
 	};
