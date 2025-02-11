@@ -1,7 +1,7 @@
 /*
  * Versal Gen 2 PSXC Shared Overlay.
  * This contains the overlay that's suitable for the both QEMU
- * instances in a multi-arch PSXC/PMXC setup.
+ * instances in a multi-arch PSX/PMX setup.
  *
  * Copyright (c) 2023 Advanced Micro Devices Inc.
  * All rights reserved.
@@ -39,8 +39,25 @@
 #define I2C5_IRQ_0 225
 #define I2C6_IRQ_0 226
 #define I2C7_IRQ_0 227
+#define TTC4_IRQ_0 228
+#define TTC4_IRQ_1 229
+#define TTC4_IRQ_2 230
+#define TTC5_IRQ_0 231
+#define TTC5_IRQ_1 232
+#define TTC5_IRQ_2 233
+#define TTC6_IRQ_0 234
+#define TTC6_IRQ_1 235
+#define TTC6_IRQ_2 236
+#define TTC7_IRQ_0 237
+#define TTC7_IRQ_1 238
+#define TTC7_IRQ_2 239
 
 &amba_lpd {
+	CREATE_TTC(4, MM_TTC4, MM_TTC4_SIZE);
+	CREATE_TTC(5, MM_TTC5, MM_TTC5_SIZE);
+	CREATE_TTC(6, MM_TTC6, MM_TTC6_SIZE);
+	CREATE_TTC(7, MM_TTC7, MM_TTC7_SIZE);
+
 	lpd_i2c_wrapper {
 		CREATE_I2C_I3C(2, MM_PS_I2C_I3C2, MM_PS_I2C_I3C2_SIZE);
 		CREATE_I2C_I3C(3, MM_PS_I2C_I3C3, MM_PS_I2C_I3C3_SIZE);
