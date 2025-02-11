@@ -76,7 +76,7 @@
 		#interrupt-cells = <1>;
 		interrupt-map-mask = <0x0 0x0 0xffff>;
 
-#if defined(VERSAL2_ASU_DEV)
+#if defined(VERSAL2_DEV)
 
 #include "versal2/irq-map.dtsh"
 

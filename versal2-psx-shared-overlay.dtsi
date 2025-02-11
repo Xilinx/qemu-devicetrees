@@ -29,33 +29,6 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/* FIXME: Drop those IRQ lines when we have the definitive one.  */
-#ifdef I2C2_IRQ_0
-#error "FIXME: Those temporary IRQ definition need to be removed."
-#endif
-#define I2C2_IRQ_0 222
-#define I2C3_IRQ_0 223
-#define I2C4_IRQ_0 224
-#define I2C5_IRQ_0 225
-#define I2C6_IRQ_0 226
-#define I2C7_IRQ_0 227
-#define TTC4_IRQ_0 228
-#define TTC4_IRQ_1 229
-#define TTC4_IRQ_2 230
-#define TTC5_IRQ_0 231
-#define TTC5_IRQ_1 232
-#define TTC5_IRQ_2 233
-#define TTC6_IRQ_0 234
-#define TTC6_IRQ_1 235
-#define TTC6_IRQ_2 236
-#define TTC7_IRQ_0 237
-#define TTC7_IRQ_1 238
-#define TTC7_IRQ_2 239
-#define CAN2_IRQ_0 240
-#define CAN3_IRQ_0 241
-#define OCM2INTR_IRQ_0 242
-#define OCM3INTR_IRQ_0 243
-
 #define CREATE_OCM_CTRL(n, addr_nm, size_nm, memsize_nm)       \
 	glue(ocm_ctrl, n): ocm_ctrl@addr_nm {		       \
 		compatible = "xlnx, zynqmp-ocmc";	       \
