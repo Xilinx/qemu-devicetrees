@@ -198,4 +198,14 @@
 		is-dst = <1>;
 		byte-align = <1>;
 	};
+	asu_xmpu: asu_xmpu@MM_ASU_XMPU {
+		compatible = "xlnx,versal-xmpu";
+		reg-extended = <
+			&amba_asu 0x0 MM_ASU_XMPU 0x0 MM_ASU_XMPU_SIZE 0x0
+			&amba_asu 0x0 MM_ASU_RAM_DATA 0x0 MM_ASU_RAM_DATA_SIZE 0x2
+		>;
+		protected-mr = <&asu_dram>;
+		mr-0 = <&amba>;
+		protected-base = <MM_ASU_RAM_DATA>;
+	};
 };

@@ -77,13 +77,20 @@
 /*
  * ASU RAMS
  */
-&amba_asu {
-	asu_dram: asu_data_ram@MM_ASU_RAM_DATA {
+/ {
+	asu_dram: asu_data_ram_wrapper@MM_ASU_RAM_DATA {
 		compatible = "qemu:memory-region";
-		device_type = "memory";
-		qemu,ram = <QEMU_RAM_PROPERTY>;
-		reg = <0x0 MM_ASU_RAM_DATA 0x0 MM_ASU_RAM_DATA_SIZE 0x0>;
+
+		asu_data_ram@0 {
+			compatible = "qemu:memory-region";
+			device_type = "memory";
+			qemu,ram = <QEMU_RAM_PROPERTY>;
+			reg = <0x0 (MM_ASU_RAM_DATA - MM_ASU_RAM_DATA) 0x0 MM_ASU_RAM_DATA_SIZE 0x0>;
+		};
 	};
+};
+
+&amba_asu {
 	asu_iram: asu_instr_ram@MM_ASU_RAM_INSTR {
 		compatible = "qemu:memory-region";
 		device_type = "memory";
