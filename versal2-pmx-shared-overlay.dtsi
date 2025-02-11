@@ -16,10 +16,15 @@
 #include "versal-pmx-shared-overlay.dtsi"
 
 &amba_pmc_iou {
-	pmc_ufshc: pmc_ufshc@MM_PMC_UFS_REG {
+	pmc_ufshc: pmc_ufshc@MM_PMC_UFS_XHCI {
 		compatible = "ufshc-sysbus";
-		reg = <0x0 MM_PMC_UFS_REG 0x0 MM_PMC_UFS_REG_SIZE 0x0>;
+		reg = <0x0 MM_PMC_UFS_XHCI 0x0 MM_PMC_UFS_XHCI_SIZE 0x0>;
 		ufs-target = <&ufs_dev>;
+		unipro-mphy = <&unipro>;
+	};
+	unipro: unipro@0 {
+		compatible = "unipro-mphy";
+		ufshc = <&pmc_ufshc>;
 	};
 	ufs_dev: ufs_dev@0 {
 		compatible = "ufs-dev";
