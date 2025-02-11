@@ -194,17 +194,14 @@
 #define RPU_CLUSTER_CORE0_REVISION "xlnx,psxc_rpu_cluster_core0"
 #define RPU_CLUSTER_CORE1_REVISION "xlnx,psxc_rpu_cluster_core1"
 
-&crl {
-	compatible = "xlnx,psxc_crl";
-};
 #else
 #define RPU_CLUSTER_CORE0_REVISION "xlnx,psx_rpu_cluster_core0"
 #define RPU_CLUSTER_CORE1_REVISION "xlnx,psx_rpu_cluster_core1"
 
+#endif
 &crl {
 	compatible = "xlnx,psx_crl";
 };
-#endif
 
 #define GEN_RPU_CTRL(clow, cup)										      \
 	rpu_ctrl_ ## clow: rpu_cluster@MM_PSX_RPU_CLUSTER_ ## cup {					      \

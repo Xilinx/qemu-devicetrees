@@ -75,3 +75,7 @@
         #error "FIXME: WWDT device can now be instantiated."
         #endif
 };
+
+&crl {
+	compatible = "xlnx,psxc_crl";
+};
