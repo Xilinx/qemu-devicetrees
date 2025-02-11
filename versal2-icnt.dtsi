@@ -37,11 +37,4 @@
 		};
 	};
 
-	amba_mmi: amba_mmi@0 {
-		#address-cells = <2>;
-		#size-cells = <2>;
-		#priority-cells = <1>;
-		compatible = "simple-bus";
-		ranges;
-	};
 };

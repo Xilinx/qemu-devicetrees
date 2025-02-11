@@ -27,30 +27,35 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-&amba_mmi {
-	mdio_10gbe: mdio_10gbe@0 {
-		#address-cells = <1>;
-		#size-cells = <0>;
-		#priority-cells = <0>;
-		compatible="mdio";
-		phy_10gbe: phy@1 {
-			compatible = "phy-clause45-generic";
-			device_type = "ethernet-phy";
-			reg = <1>;
+&amba_fpd {
+	amba_mmi: amba_mmi@0 {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		#priority-cells = <1>;
+		compatible = "simple-bus";
+		ranges;
+		mdio_10gbe: mdio_10gbe@0 {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			#priority-cells = <0>;
+			compatible="mdio";
+			phy_10gbe: phy@1 {
+				compatible = "phy-clause45-generic";
+				device_type = "ethernet-phy";
+				reg = <1>;
+			};
+		};
+
+		mmi_10gbe: ethernet@MM_MMI_PCIEGEM_10GBE {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			#priority-cells = <0>;
+			compatible = "cdns,gem";
+			reg = <0x0 MM_MMI_PCIEGEM_10GBE 0x0 MM_MMI_PCIEGEM_10GBE_SIZE 0x0>;
+			num-priority-queues = <4>;
+			mdio = <&mdio_10gbe>;
 		};
 	};
 
-	mmi_10gbe: ethernet@MM_MMI_PCIEGEM_10GBE {
-		#address-cells = <1>;
-		#size-cells = <0>;
-		#priority-cells = <0>;
-		compatible = "cdns,gem";
-		reg = <0x0 MM_MMI_PCIEGEM_10GBE 0x0 MM_MMI_PCIEGEM_10GBE_SIZE 0x0>;
-		num-priority-queues = <4>;
-		mdio = <&mdio_10gbe>;
-	};
-};
-
-&amba {
 	MR_BACKGROUND(amba_mmi);
 };
