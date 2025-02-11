@@ -60,6 +60,15 @@
 			mdio = <&mdio_10gbe>;
 			has-usxgmii = <1>;
 		};
+
+		mmi_usb_drd: usb_drd@MM_MMI_USB_CFG {
+			compatible = "usb_dwc3";
+			reg = <0x0 MM_MMI_USB_CFG 0x0 MM_MMI_USB_CFG_SIZE 0x0>;
+			interrupts = <mmi_usbdrd_misc_event_IRQ_0
+				mmi_usbdrd_misc_event_IRQ_1>;
+			intrs = <2>;
+			slots = <2>;
+		};
 	};
 
 	MR_BACKGROUND(amba_mmi);
