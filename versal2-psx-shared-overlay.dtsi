@@ -79,3 +79,7 @@
 &crl {
 	compatible = "xlnx,psxc_crl";
 };
+
+&lpd_slcr_secure {
+	compatible = "xlnx.versal2-psxc-lpx-slcr-secure";
+};
