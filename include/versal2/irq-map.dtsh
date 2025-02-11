@@ -37,6 +37,7 @@
 			#undef __intc__
 			,
 
+#if (NUM_RPUS > 4)
 			#define __intc__ &rpu_gic_c
 			#include "versal2-psxc-irq-map.dtsh"
 			#undef __intc__
@@ -51,6 +52,8 @@
 			#include "versal2-psxc-irq-map.dtsh"
 			#undef __intc__
 			,
+
+#endif /* NUM_RPUS > 4 */
 
 #endif
 			#define __intc__ &pmc_gic_proxy
