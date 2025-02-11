@@ -38,3 +38,9 @@
 &pmc_sha3_1 {
 	compatible = "xlnx,asu_sha2";
 };
+
+/* versal2 AES wrapper has additional endianness swap after the DMA input and
+ * before the DMA output.  */
+&pmc_aes {
+	integrated-endianness-swap = < 1 >;
+};
