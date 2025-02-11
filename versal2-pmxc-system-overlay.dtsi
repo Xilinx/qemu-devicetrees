@@ -44,3 +44,7 @@
 &pmc_aes {
 	integrated-endianness-swap = < 1 >;
 };
+
+&pmc_global {
+	compatible = "xlnx,pmxc_global";
+};
