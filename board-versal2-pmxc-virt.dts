@@ -47,6 +47,7 @@
  * the PSX and PMX system overlays.
  */
 #include "versal-pmx-system-overlay.dtsi"
+#include "versal2-pmxc-system-overlay.dtsi"
 #include "versal-psx.dtsi"
 #include "versal-psx-shared-overlay.dtsi"
 #include "versal-net-psmx.dtsi"
