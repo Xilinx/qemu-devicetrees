@@ -194,3 +194,7 @@ RPU_CTRL_FIXUP(e, 8, 9);
 	};
 #endif
 };
+
+&ospi_flash_lcs_lb {
+	compatible = "mt35xu02gbba";
+};
