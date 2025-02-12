@@ -59,5 +59,7 @@
 	cpu5: apu@5 { };
 	cpu6: apu@6 { };
 	cpu7: apu@7 { };
+	psm_gic_proxy: psm_gic_proxy@0 { };
+	psm_local: psm_local@0 { };
 };
 #endif
