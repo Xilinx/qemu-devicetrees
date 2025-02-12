@@ -100,7 +100,19 @@
 	rp_asu_irq: rp_asu_irq@0 {
 		compatible = "remote-port-gpio";
 		remote-ports = <&ps_asu_rp 1>;
-		interrupts-extended = < &asu_cpu 0 >;
+		num-gpios = <12>;
+		interrupts-extended = <  &dummy1 0
+					 &dummy1 1
+					 &dummy1 2
+					 &dummy1 3
+					 &dummy1 4
+					 &dummy1 5
+					 &dummy1 6
+					 &dummy1 7
+					 &dummy1 8
+					 &dummy1 9
+					 &dummy1 10
+					 &asu_cpu 11 >;
 	};
 	lmb_amba_asu: lmb_amba_asu@0 {
 		rp_lmb_amba_asu@0 {

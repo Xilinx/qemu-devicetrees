@@ -128,6 +128,7 @@ RPU_CTRL_FIXUP(e, 8, 9);
 		remote-ports = <&ps_asu_rp 1>;
 		#interrupt-cells = <1>;
 		interrupt-controller;
+		num-gpios = <12>;
 	};
 	rp_lmb_amba_asu: rp_amba_asu@0 {
 		compatible = "remote-port-memory-slave";
