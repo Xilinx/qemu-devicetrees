@@ -110,6 +110,30 @@ RPU_CTRL_FIXUP(e, 8, 9);
 	platform-ver = <0x5>;
 };
 
+#ifdef MULTI_ARCH
+#include "versal2-asu.dtsi"
+/{
+	ps_asu_rp: ps_asu_rp@0 {
+		doc-status = "complete";
+		doc-name = "Remote-port ASU";
+		doc-subdtb = "board-versal2-psxc-virt.dtb";
+		compatible = "remote-port";
+		chrdev-id = "ps-asu-rp";
+	};
+	asu_cpu: rp_asu_cpu@0 {
+		compatible = "remote-port-gpio";
+		remote-ports = <&ps_asu_rp 1>;
+		#interrupt-cells = <1>;
+		interrupt-controller;
+	};
+	rp_lmb_amba_asu: rp_amba_asu@0 {
+		compatible = "remote-port-memory-slave";
+		remote-ports = <&ps_asu_rp 2>;
+		mr = <&lmb_amba_asu>;
+	};
+};
+#endif
+
 / {
 	/* TODO: remove reference to these blocks, and then remove the block
 	 * below.  */

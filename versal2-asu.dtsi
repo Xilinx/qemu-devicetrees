@@ -6,6 +6,5 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-#include "versal2-asu-cpu.dtsi"
 #include "versal2-asu-io.dtsi"
 #include "versal2-asu-sec.dtsi"

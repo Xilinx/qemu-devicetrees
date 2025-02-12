@@ -32,20 +32,25 @@
 #define VERSAL_NPI_OVERRIDE
 
 #include "versal2-npi-memmap.dtsh"
-
 #include "versal.dtsh"
 #include "interconnect.dtsh"
+#include "versal2-icnt.dtsi"
+#include "versal2-asu-cpu.dtsi"
+
+#ifndef MULTI_ARCH
 #include "versal-memmap.dtsh"
 #include "versal-pmc.dtsi"
 
-#include "versal-icnt.dtsi"
-#include "versal2-icnt.dtsi"
-#include "versal2-rams.dtsi"
 #include "versal-ddrmc.dtsi"
 #include "versal-ps-iou.dtsi"
 #include "versal2-asu.dtsi"
 #include "versal-pmx-shared-overlay.dtsi"
 #include "versal2-psx-shared-overlay.dtsi"
+#else
+#include "versal-icnt.dtsi"
+#include "versal-rams.dtsi"
+#endif
+#include "versal2-rams.dtsi"
 
 / {
 	MEM_REGION(ddr, 0x0, MM_TOP_DDR, 0x00000000, MM_TOP_DDR_SIZE, &ddr_mem)  // 2 GB
@@ -77,4 +82,43 @@
 	pmc_ppu1: pmc_ppu@1 {
 		#interrupt-cells = <1>;
 	};
+#ifdef MULTI_ARCH
+	ps_asu_rp: ps_asu_rp@0 {
+		doc-name = "Remote-port ASU-PS";
+		compatible = "remote-port";
+		chrdev-id = "ps-asu-rp";
+	};
+	rp_asu_irq: rp_asu_irq@0 {
+		compatible = "remote-port-gpio";
+		remote-ports = <&ps_asu_rp 1>;
+		interrupts-extended = < &asu_cpu 0 >;
+	};
+	lmb_amba_asu: lmb_amba_asu@0 {
+		rp_lmb_amba_asu@0 {
+			compatible = "remote-port-memory-master";
+			remote-ports = <&ps_asu_rp 2>;
+			reg = < 0x0 0x0 0xFFFFFFFF 0xFFFFFFFF 0xFFFFFFFF>;
+		};
+	};
+	pmc_gic_proxy: pmc_gic_proxy {
+		doc-ignore = <1>;
+		#interrupt-cells = <3>;
+		interrupt-controller;
+	};
+	psm_gic_proxy: psm_gic_proxy {
+		doc-ignore = <1>;
+		#interrupt-cells = <3>;
+		interrupt-controller;
+	};
+	pmc_ppu1_io_intc: pmc_ppu1_io_intc {
+		doc-ignore = <1>;
+		#interrupt-cells = <1>;
+		interrupt-controller;
+	};
+	asu_io_intc: asu_io_intc {
+		doc-ignore = <1>;
+		#interrupt-cells = <1>;
+		interrupt-controller;
+	};
+#endif
 };
