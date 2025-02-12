@@ -65,6 +65,8 @@
 #include "versal2-psx-shared-overlay.dtsi"
 #include "versal2-icnt.dtsi"
 #include "versal2-rams.dtsi"
+#include "versal2-mmi.dtsi"
+#include "versal2-pmxc-system-overlay.dtsi"
 
 #ifndef VERSAL_NET_APU_CPU_FREQ
  #define VERSAL_NET_APU_CPU_FREQ 2720000
