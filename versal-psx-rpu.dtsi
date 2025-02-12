@@ -3,8 +3,8 @@
 
 #ifndef NUM_RPUS
 #error "NUM RPUs is not set!"
-#elif NUM_RPUS != 4 && NUM_RPUS != 8
-#error "NUM RPUs must be set to 4 or 8"
+#elif NUM_RPUS != 4 && NUM_RPUS != 8 && NUM_RPUS != 10
+#error "NUM RPUs must be set to 4, 8 or 10"
 #endif
 
 #define RPU_GIC_DIST 0x0
@@ -211,6 +211,9 @@
 		GEN_RPU_CLUSTER(C, c, 2, 4, 5);
 		GEN_RPU_CLUSTER(D, d, 3, 6, 7);
 #endif
+#if (NUM_RPUS >= 10)
+		GEN_RPU_CLUSTER(E, e, 4, 8, 9);
+#endif
 	};
 
 	RPU_GIC(a, 0, 0, 1);
@@ -219,6 +222,9 @@
 	RPU_GIC(c, 2, 4, 5);
 	RPU_GIC(d, 3, 6, 7);
 #endif
+#if (NUM_RPUS >= 10)
+	RPU_GIC(e, 4, 8, 9);
+#endif
 
 	amba_rpu: amba_rpu@0 {
 		GEN_TIMER(a);
@@ -226,6 +232,9 @@
 #if (NUM_RPUS >= 8)
 		GEN_TIMER(c);
 		GEN_TIMER(d);
+#endif
+#if (NUM_RPUS >= 10)
+		GEN_TIMER(e);
 #endif
 	};
 
@@ -239,12 +248,19 @@
 	TCM_CREATE(6)
 	TCM_CREATE(7)
 #endif
+#if (NUM_RPUS >= 10)
+	TCM_CREATE(8)
+	TCM_CREATE(9)
+#endif
 
 	TCM_CLUSTER(a, 0, 1)
 	TCM_CLUSTER(b, 2, 3)
 #if (NUM_RPUS >= 8)
 	TCM_CLUSTER(c, 4, 5)
 	TCM_CLUSTER(d, 6, 7)
+#endif
+#if (NUM_RPUS >= 10)
+	TCM_CLUSTER(e, 8, 9)
 #endif
 
 	GEN_AMBA_DOWNSTREAMS_PRI(a, 0, 0);
@@ -257,6 +273,10 @@
 	GEN_AMBA_DOWNSTREAMS_SEC(d, 6, 3);
 	GEN_AMBA_DOWNSTREAMS_SEC(d, 7, 3);
 #endif
+#if (NUM_RPUS >= 10)
+	GEN_AMBA_DOWNSTREAMS_SEC(e, 8, 4);
+	GEN_AMBA_DOWNSTREAMS_SEC(e, 9, 4);
+#endif
 
 	MEMATTR(rpu2_s, SECURE, SMID_RPU2);
 	MEMATTR(rpu3_s, SECURE, SMID_RPU3);
@@ -267,6 +287,11 @@
 	MEMATTR(rpu6_s, SECURE, SMID_RPU2);
 	MEMATTR(rpu7_s, SECURE, SMID_RPU3);
 #endif
+#if (NUM_RPUS >= 10)
+/* TODO: find the right value for the SMID.  */
+	MEMATTR(rpu8_s, SECURE, SMID_RPU2);
+	MEMATTR(rpu9_s, SECURE, SMID_RPU3);
+#endif
 };
 
 &amba {
@@ -275,5 +300,8 @@
 #if (NUM_RPUS >= 8)
 		S_AXI_TCM_CONNECT(c, MM_R52_0C_ATCM)
 		S_AXI_TCM_CONNECT(d, MM_R52_0D_ATCM)
+#endif
+#if (NUM_RPUS >= 10)
+		S_AXI_TCM_CONNECT(e, MM_R52_0E_ATCM)
 #endif
 };

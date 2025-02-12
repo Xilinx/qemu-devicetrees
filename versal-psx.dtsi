@@ -38,12 +38,15 @@
 #define CRL_RST_RPU_A_1 36
 #define CRL_RST_RPU_B_0 37
 #define CRL_RST_RPU_B_1 38
-
 #if (NUM_RPUS >= 8)
 #define CRL_RST_RPU_C_0 39
 #define CRL_RST_RPU_C_1 40
 #define CRL_RST_RPU_D_0 41
 #define CRL_RST_RPU_D_1 42
+#endif
+#if (NUM_RPUS >= 10)
+#define CRL_RST_RPU_E_0 43
+#define CRL_RST_RPU_E_1 44
 #endif
 
 #define GEN_APU_CLUSTER(n, a, b, c, d)					\
@@ -228,6 +231,9 @@
 #if (NUM_RPUS >= 8)
 	GEN_RPU_CTRL(c, C);
 	GEN_RPU_CTRL(d, D);
+#endif
+#if (NUM_RPUS >= 10)
+	GEN_RPU_CTRL(e, E);
 #endif
 
 	rpu_pcil: rpu_pcil@0xEB420000 {

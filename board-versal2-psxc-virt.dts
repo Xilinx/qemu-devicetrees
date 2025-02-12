@@ -103,6 +103,9 @@ RPU_CTRL_FIXUP(b, 2, 3);
 RPU_CTRL_FIXUP(c, 4, 5);
 RPU_CTRL_FIXUP(d, 6, 7);
 #endif
+#if (NUM_RPUS >= 10)
+RPU_CTRL_FIXUP(e, 8, 9);
+#endif
 
 
 &pmc_tap {
