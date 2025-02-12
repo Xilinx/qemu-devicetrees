@@ -52,7 +52,6 @@
 #define APU_CPU_MODEL "cortex-a78-arm-cpu"
 #define RPU_CPU_MODEL "cortex-r52-arm-cpu"
 
-#include "include/versal-net/npi-memmap.dtsh"
 #include "board-versal-ps-virt.dts"
 #include "versal-psx.dtsi"
 #include "versal-net-psmx.dtsi"

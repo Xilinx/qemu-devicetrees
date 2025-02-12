@@ -35,7 +35,6 @@
 #define NUM_APUS_PER_CLUSTER 2
 #define VERSAL_NPI_OVERRIDE
 
-#include "include/versal-net/npi-memmap.dtsh"
 #include "board-versal-pmc-virt.dts"
 #include "versal2-pmx-shared-overlay.dtsi"
 #include "versal-pmx-shared-overlay.dtsi"
