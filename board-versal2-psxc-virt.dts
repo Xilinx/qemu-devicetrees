@@ -45,6 +45,8 @@
 #define VERSAL_NET
 #define VERSAL_NPI_OVERRIDE
 
+#define MM_DDRMC_XMPU_OFFSET 0x12000
+
 /* TODO: Add GIC interrupt redirection support.  */
 #define APU_GIC_INTERRUPT_TARGET_STEM cpu
 #define RPU_GIC_INTERRUPT_TARGET_STEM rpu_cpu
