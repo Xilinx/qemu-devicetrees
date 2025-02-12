@@ -40,12 +40,14 @@
 #ifndef MULTI_ARCH
 #include "versal-memmap.dtsh"
 #include "versal-pmc.dtsi"
-
 #include "versal-ddrmc.dtsi"
 #include "versal-ps-iou.dtsi"
 #include "versal2-asu.dtsi"
-#include "versal-pmx-shared-overlay.dtsi"
+#include "versal2-pmx-shared-overlay.dtsi"
 #include "versal2-psx-shared-overlay.dtsi"
+#include "versal-pmx-shared-overlay.dtsi"
+#include "versal-pmx-system-overlay.dtsi"
+#include "versal2-pmxc-system-overlay.dtsi"
 #else
 #include "versal-icnt.dtsi"
 #include "versal-rams.dtsi"
