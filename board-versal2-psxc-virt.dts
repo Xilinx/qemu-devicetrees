@@ -96,9 +96,11 @@ SET_CPU_FREQ(7, VERSAL_NET_APU_CPU_FREQ);
 }; \
 &rpu_ctrl_ ## c ## 0 { \
 	core = <&glue(rpu_cpu, f)>; \
+	tcm-mr = <&glue(tcm_core, f)>; \
 }; \
-&rpu_ctrl_ ##c ## 1 { \
+&rpu_ctrl_ ## c ## 1 { \
 	core = <&glue(rpu_cpu, s)>; \
+	tcm-mr = <&glue(tcm_core, s)>; \
 }
 
 RPU_CTRL_FIXUP(a, 0, 1);

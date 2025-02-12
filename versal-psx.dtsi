@@ -193,14 +193,11 @@
 };
 
 #ifdef VERSAL2_DEV
-#define RPU_CLUSTER_CORE0_REVISION "xlnx,psxc_rpu_cluster_core0"
-#define RPU_CLUSTER_CORE1_REVISION "xlnx,psxc_rpu_cluster_core1"
-
+# define RPU_CLUSTER_CORE_VERSION 1
 #else
-#define RPU_CLUSTER_CORE0_REVISION "xlnx,psx_rpu_cluster_core0"
-#define RPU_CLUSTER_CORE1_REVISION "xlnx,psx_rpu_cluster_core1"
-
+# define RPU_CLUSTER_CORE_VERSION 0
 #endif
+
 &crl {
 	compatible = "xlnx,psx_crl";
 };
@@ -213,14 +210,16 @@
 		gpio-controller;									      \
 	};												      \
 	rpu_ctrl_ ## clow ## 0: rpu_ctrl_ ## clow ## 0@MM_PSX_RPU_CLUSTER_ ## cup ## 0 {		      \
-		compatible = RPU_CLUSTER_CORE0_REVISION; 		       	  	 		      \
+		compatible = "xlnx,psxc-rpu-cluster-core"; 		       	  	 		      \
+		version = <RPU_CLUSTER_CORE_VERSION>; \
 		reg = <0x0 MM_PSX_RPU_CLUSTER_ ## cup ## 0 0x0 MM_PSX_RPU_CLUSTER_ ## cup ## 0 ## _SIZE 0x0>; \
 		#gpio-cells = <1>;									      \
 		gpio-controller;									      \
 		gpios = <&crl CRL_RST_RPU_ ## cup ## _0>;						      \
 	};												      \
 	rpu_ctrl_ ## clow ## 1: rpu_ctrl_ ## clow ## 1@MM_PSX_RPU_CLUSTER_ ## cup ## 1 {		      \
-		compatible = RPU_CLUSTER_CORE1_REVISION;		      				      \
+		compatible = "xlnx,psxc-rpu-cluster-core";		      				      \
+		version = <RPU_CLUSTER_CORE_VERSION>; \
 		reg = <0x0 MM_PSX_RPU_CLUSTER_ ## cup ## 1 0x0 MM_PSX_RPU_CLUSTER_ ## cup ## 1 ## _SIZE 0x0>; \
 		#gpio-cells = <1>;									      \
 		gpio-controller;									      \
