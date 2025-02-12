@@ -36,7 +36,7 @@
 /* RPU configuration.  */
 
 #ifndef NUM_RPUS
-#define NUM_RPUS 8
+#define NUM_RPUS 10
 #endif
 
 #define VERSAL2_DEV
