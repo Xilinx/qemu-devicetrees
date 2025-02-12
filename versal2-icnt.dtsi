@@ -18,6 +18,7 @@
 		#address-cells = <2>;
 		#size-cells = <2>;
 		#priority-cells = <1>;
+		#interrupt-cells = <1>;
 		compatible = "simple-bus";
 		ranges;
 		MR_BACKGROUND(amba);

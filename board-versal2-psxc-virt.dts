@@ -197,6 +197,8 @@ RPU_CTRL_FIXUP(e, 8, 9);
 	};
 
 #ifndef MULTI_ARCH
-	asu_cpu: asu_cpu@0 { };
+	asu_cpu: asu_cpu@0 {
+		#interrupt-cells = <1>;
+	};
 #endif
 };

@@ -68,7 +68,9 @@
 	cpu5: apu@5 { };
 	cpu6: apu@6 { };
 	cpu7: apu@7 { };
-	asu_cpu: asu_cpu@0 { };
+	asu_cpu: asu_cpu@0 {
+		#interrupt-cells = <1>;
+	};
 	psm_local: psm_local@0 { };
 };
 #endif
