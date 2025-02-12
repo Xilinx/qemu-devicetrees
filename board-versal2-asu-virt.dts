@@ -67,6 +67,7 @@
 	cpu7: apu@7 { };
 	asu_gic_proxy: asu_gic_proxy@0 { };
 	psm_local: psm_local@0 {
+		gpio-controller;
 		#gpio-cells = <1>;
 	 };
 #ifndef HAVE_DDRMC_CPUS

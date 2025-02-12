@@ -71,6 +71,9 @@
 	asu_cpu: asu_cpu@0 {
 		#interrupt-cells = <1>;
 	};
-	psm_local: psm_local@0 { };
+	psm_local: psm_local@0 {
+		gpio-controller;
+		#gpio-cells = <0x01>;
+	};
 };
 #endif
