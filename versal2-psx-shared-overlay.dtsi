@@ -1,0 +1,52 @@
+/*
+ * Versal Gen 2 PSXC Shared Overlay.
+ * This contains the overlay that's suitable for the both QEMU
+ * instances in a multi-arch PSXC/PMXC setup.
+ *
+ * Copyright (c) 2023 Advanced Micro Devices Inc.
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *     * Redistributions of source code must retain the above copyright
+ *       notice, this list of conditions and the following disclaimer.
+ *     * Redistributions in binary form must reproduce the above copyright
+ *       notice, this list of conditions and the following disclaimer in the
+ *       documentation and/or other materials provided with the distribution.
+ *     * Neither the name of the <organization> nor the
+ *       names of its contributors may be used to endorse or promote products
+ *       derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY
+ * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+/* FIXME: Drop those IRQ lines when we have the definitive one.  */
+#ifdef I2C2_IRQ_0
+#error "FIXME: Those temporary IRQ definition need to be removed."
+#endif
+#define I2C2_IRQ_0 222
+#define I2C3_IRQ_0 223
+#define I2C4_IRQ_0 224
+#define I2C5_IRQ_0 225
+#define I2C6_IRQ_0 226
+#define I2C7_IRQ_0 227
+
+&amba_lpd {
+	lpd_i2c_wrapper {
+		CREATE_I2C_I3C(2, MM_PS_I2C_I3C2, MM_PS_I2C_I3C2_SIZE);
+		CREATE_I2C_I3C(3, MM_PS_I2C_I3C3, MM_PS_I2C_I3C3_SIZE);
+		CREATE_I2C_I3C(4, MM_PS_I2C_I3C4, MM_PS_I2C_I3C4_SIZE);
+		CREATE_I2C_I3C(5, MM_PS_I2C_I3C5, MM_PS_I2C_I3C5_SIZE);
+		CREATE_I2C_I3C(6, MM_PS_I2C_I3C6, MM_PS_I2C_I3C6_SIZE);
+		CREATE_I2C_I3C(7, MM_PS_I2C_I3C7, MM_PS_I2C_I3C7_SIZE);
+	};
+};
