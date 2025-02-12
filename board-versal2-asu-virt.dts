@@ -26,7 +26,6 @@
 /dts-v1/;
 
 #define VERSAL2_DEV
-#define VERSAL2_ASU_DEV
 #define VERSAL_PSX
 #define VERSAL_NET
 #define VERSAL_NPI_OVERRIDE
