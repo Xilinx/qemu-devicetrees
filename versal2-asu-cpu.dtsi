@@ -24,6 +24,8 @@
 			riscv,isa = "rv32imac";
 			memory = <&lmb_amba_asu>;
 			memattr = <&asu_cpu_memattr>;
+			gpios = < &crl 30 &crl 34>;
+			gpio-names = "halt", "reset";
 		};
 	};
 };

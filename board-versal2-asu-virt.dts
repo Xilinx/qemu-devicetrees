@@ -103,6 +103,12 @@
 			reg = < 0x0 0x0 0xFFFFFFFF 0xFFFFFFFF 0xFFFFFFFF>;
 		};
 	};
+	crl: asu_rst@0 {
+		compatible = "remote-port-gpio";
+		remote-ports = <&ps_asu_rp 3>;
+		#gpio-cells = <1>;
+		num-gpios = <35>;
+	};
 	pmc_gic_proxy: pmc_gic_proxy {
 		doc-ignore = <1>;
 		#interrupt-cells = <3>;

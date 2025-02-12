@@ -133,6 +133,49 @@ RPU_CTRL_FIXUP(e, 8, 9);
 		remote-ports = <&ps_asu_rp 2>;
 		mr = <&lmb_amba_asu>;
 	};
+	rp_crl: rp_crl@0 {
+		compatible = "remote-port-gpio";
+		remote-ports = <&ps_asu_rp 3>;
+		#gpio-cells = <1>;
+		num-gpios = <35>;
+		gpios = <
+			 &dummy1 0
+			 &dummy1 1
+			 &dummy1 2
+			 &dummy1 3
+			 &dummy1 4
+			 &dummy1 5
+			 &dummy1 6
+			 &dummy1 7
+			 &dummy1 8
+			 &dummy1 9
+			 &dummy1 10
+			 &dummy1 11
+			 &dummy1 12
+			 &dummy1 13
+			 &dummy1 14
+			 &dummy1 15
+			 &dummy1 16
+			 &dummy1 17
+			 &dummy1 18
+			 &dummy1 19
+			 &dummy1 20
+			 &dummy1 21
+			 &dummy1 22
+			 &dummy1 23
+			 &dummy1 24
+			 &dummy1 25
+			 &dummy1 26
+			 &dummy1 27
+			 &dummy1 28
+			 &dummy1 29
+			 &crl 30
+			 &dummy1 31
+			 &dummy1 32
+			 &dummy1 33
+			 &crl 34
+		>;
+	};
 };
 #endif
 
