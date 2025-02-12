@@ -39,6 +39,7 @@
 #include "board-versal-pmc-virt.dts"
 #include "versal2-pmx-shared-overlay.dtsi"
 #include "versal-pmx-shared-overlay.dtsi"
+#include "versal2-icnt.dtsi"
 #include "versal2-rams.dtsi"
 
 #ifndef MULTI_ARCH
