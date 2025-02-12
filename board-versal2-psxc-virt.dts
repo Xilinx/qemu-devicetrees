@@ -1,7 +1,7 @@
 /*
- * Versal Gen 2 Virtual PSX board device tree.
+ * Versal Gen 2 Virtual PSXC board device tree.
  *
- * Copyright (c) 2023 Advanced Micro Devices Inc.
+ * Copyright (c) 2023-2024 Advanced Micro Devices Inc.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -81,10 +81,12 @@ SET_CPU_FREQ(0, VERSAL_NET_APU_CPU_FREQ);
 SET_CPU_FREQ(1, VERSAL_NET_APU_CPU_FREQ);
 SET_CPU_FREQ(2, VERSAL_NET_APU_CPU_FREQ);
 SET_CPU_FREQ(3, VERSAL_NET_APU_CPU_FREQ);
+#if (NUM_APUS >= 8)
 SET_CPU_FREQ(4, VERSAL_NET_APU_CPU_FREQ);
 SET_CPU_FREQ(5, VERSAL_NET_APU_CPU_FREQ);
 SET_CPU_FREQ(6, VERSAL_NET_APU_CPU_FREQ);
 SET_CPU_FREQ(7, VERSAL_NET_APU_CPU_FREQ);
+#endif
 
 #define RPU_CTRL_FIXUP(c, f, s) \
 &rpu_ctrl_ ## c { \
