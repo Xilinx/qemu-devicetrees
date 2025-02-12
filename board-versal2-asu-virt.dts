@@ -30,20 +30,8 @@
 #define VERSAL_PSX
 #define VERSAL_NET
 #define VERSAL_NPI_OVERRIDE
-#include "versal2-npi-memmap.dtsh"
 
-#if defined(MM_NPI_DDRMC_MAIN_0) || defined(MM_NPI_DDRMC5_MAIN_0)
-#define HAS_DDRMC0 1
-#endif
-#if defined(MM_NPI_DDRMC_MAIN_1) || defined(MM_NPI_DDRMC5_MAIN_1)
-#define HAS_DDRMC1 1
-#endif
-#if defined(MM_NPI_DDRMC_MAIN_2) || defined(MM_NPI_DDRMC5_MAIN_2)
-#define HAS_DDRMC2 1
-#endif
-#if defined(MM_NPI_DDRMC_MAIN_3) || defined(MM_NPI_DDRMC5_MAIN_3)
-#define HAS_DDRMC3 1
-#endif
+#include "versal2-npi-memmap.dtsh"
 
 #include "versal.dtsh"
 #include "interconnect.dtsh"
