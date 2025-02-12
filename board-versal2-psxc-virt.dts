@@ -67,6 +67,7 @@
 #include "versal2-rams.dtsi"
 #include "versal2-mmi.dtsi"
 #include "versal2-pmxc-system-overlay.dtsi"
+#include "versal2-asu.dtsi"
 
 #ifndef VERSAL_NET_APU_CPU_FREQ
  #define VERSAL_NET_APU_CPU_FREQ 2720000
@@ -113,7 +114,6 @@ RPU_CTRL_FIXUP(e, 8, 9);
 };
 
 #ifdef MULTI_ARCH
-#include "versal2-asu.dtsi"
 /{
 	ps_asu_rp: ps_asu_rp@0 {
 		doc-status = "complete";
@@ -153,4 +153,8 @@ RPU_CTRL_FIXUP(e, 8, 9);
 		#gpio-cells = <0x01>;
 		gpio-controller;
 	};
+
+#ifndef MULTI_ARCH
+	asu_cpu: asu_cpu@0 { };
+#endif
 };
