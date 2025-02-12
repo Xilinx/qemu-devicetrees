@@ -55,6 +55,7 @@
 #include "versal-psx-shared-overlay.dtsi"
 #include "versal-net-psmx.dtsi"
 #include "versal2-psx-shared-overlay.dtsi"
+#include "versal2-mmi.dtsi"
 
 / {
 	/* Dummy APUs.  */

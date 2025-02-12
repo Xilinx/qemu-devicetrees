@@ -48,6 +48,7 @@
 #include "versal-pmx-shared-overlay.dtsi"
 #include "versal-pmx-system-overlay.dtsi"
 #include "versal2-pmxc-system-overlay.dtsi"
+#include "versal2-mmi.dtsi"
 #else
 #include "versal-icnt.dtsi"
 #include "versal-rams.dtsi"

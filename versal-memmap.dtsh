@@ -153,6 +153,7 @@ name: name@addr64 {														\
  #include "versal2-gic-memmap.dtsh"
  #include "versal-psx-memmap-aliases.dtsh"
  #include "versal2-memmap-aliases.dtsh"
+ #include "versal2-mmi-memmap.dtsh"
 #elif defined(VERSAL_NET)
  #include "include/versal-net/memmap.dtsh"
  #include "include/versal-net/gic-memmap.dtsh"
