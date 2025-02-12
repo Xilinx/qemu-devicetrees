@@ -37,7 +37,7 @@
 
 #include "include/versal-net/npi-memmap.dtsh"
 #include "board-versal-pmc-virt.dts"
-#include "versal-pmx-shared-overlay.dtsi"
+#include "versal2-pmx-shared-overlay.dtsi"
 
 #ifndef MULTI_ARCH
 /*

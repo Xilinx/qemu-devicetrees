@@ -1,0 +1,16 @@
+/* Versal Gen 2 PMXC shared overlay
+ *
+ * Copyright (c) 2023, AMD Inc
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+/*
+ * This defines need to be on top before including
+ * versal-pmx-shared-overlay.dtsi
+ */
+#define MM_PMX_PMX_ROM	MM_PMC_PMC_ROM
+#define MM_PMX_PMX_ROM_SIZE	0x40000
+
+#include "versal-pmx-shared-overlay.dtsi"

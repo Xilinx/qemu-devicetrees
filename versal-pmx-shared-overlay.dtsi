@@ -32,8 +32,10 @@
 #include "versal.dtsh"
 
 /* PMX has increased the ROM size from 128K -> 256K.  */
+#ifndef MM_PMX_PMX_ROM
 #define MM_PMX_PMX_ROM			MM_PMC_PMC_ROM
 #define MM_PMX_PMX_ROM_SIZE		MM_PMC_PMC_ROM_SIZE
+#endif
 
 /*
  * PMX has increased the PPU1 INSTR RAM size from 128K -> 384K.
