@@ -198,3 +198,7 @@ RPU_CTRL_FIXUP(e, 8, 9);
 &ospi_flash_lcs_lb {
 	compatible = "mt35xu02gbba";
 };
+
+&ospi_flash_lcs_ub {
+	compatible = "mt35xu02gbba";
+};
