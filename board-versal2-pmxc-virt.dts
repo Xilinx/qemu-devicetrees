@@ -42,7 +42,11 @@
 #include "versal2-icnt.dtsi"
 #include "versal2-rams.dtsi"
 
-#ifndef MULTI_ARCH
+#ifdef MULTI_ARCH
+/{
+	asu_io_intc: asu_io_intc@0 { };
+};
+#else
 /*
  * The single-arch setup has the entire system except
  * the ARM cores. So we need to add the missing dummy
@@ -53,7 +57,7 @@
 #include "versal2-pmxc-system-overlay.dtsi"
 #include "versal-psx.dtsi"
 #include "versal-psx-shared-overlay.dtsi"
-#include "versal-net-psmx.dtsi"
+#include "versal2-asu.dtsi"
 #include "versal2-psx-shared-overlay.dtsi"
 #include "versal2-mmi.dtsi"
 
@@ -65,7 +69,7 @@
 	cpu5: apu@5 { };
 	cpu6: apu@6 { };
 	cpu7: apu@7 { };
-	psm_gic_proxy: psm_gic_proxy@0 { };
+	asu_cpu: asu_cpu@0 { };
 	psm_local: psm_local@0 { };
 };
 #endif
