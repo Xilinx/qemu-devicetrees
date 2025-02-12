@@ -96,6 +96,7 @@
 #define IRQ_PPU1_INTC_PMX_IPI			28
 #define IRQ_PPU1_INTC_PMX_IPI_NOBUF		29
 
+#if !defined(VERSAL2_DEV)
 #define IRQ_PSMX_IPI				18
 
 
@@ -111,6 +112,7 @@
 #define IRQ_PSM_INTC_PSM_ERR_MGM		29
 #define IRQ_PSM_INTC_WAKEUP_REQ			30
 #define IRQ_PSM_INTC_PWR_CONTROL_REQ		31
+#endif
 
 /* Missing from auto-generated versal-ps-irqs.dtsh */
 #define VCCINT_PMC_GLITCH_DETECT_IRQ_0		159
