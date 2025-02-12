@@ -135,7 +135,18 @@ RPU_CTRL_FIXUP(d, 6, 7);
 / {
 	/* TODO: remove reference to these blocks, and then remove the block
 	 * below.  */
-	psm_gic_proxy: psm_gic_proxy@0 { };
-	psm_local: psm_local@0 { };
-	psm_global: psm_global@0 { };
+	psm_gic_proxy: psm_gic_proxy@0 {
+		#interrupt-cells = <0x03>;
+		interrupt-controller;
+	};
+
+	psm_local: psm_local@0 {
+		gpio-controller;
+		#gpio-cells = <0x01>;
+	};
+
+	psm_global: psm_global@0 {
+		#gpio-cells = <0x01>;
+		gpio-controller;
+	};
 };
