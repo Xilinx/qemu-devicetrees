@@ -39,11 +39,15 @@
 
 #ifndef MULTI_ARCH
 #include "versal-pmc.dtsi"
+#ifndef VERSAL2_DEV
 #include "versal-psm.dtsi"
+#endif
 #include "versal-ddrmc.dtsi"
 #include "versal-ps-iou.dtsi"
 #include "versal-pmc-ppu-cpus.dtsi"
+#ifndef VERSAL2_DEV
 #include "versal-psm-cpu.dtsi"
+#endif
 
 / {
 	/* FIXME: Once we add the NOC, these should be attached to it.  */
@@ -95,7 +99,9 @@
 #include "versal-icnt.dtsi"
 #include "versal-rams.dtsi"
 #include "versal-pmc-ppu-cpus.dtsi"
+#ifndef VERSAL2_DEV
 #include "versal-psm-cpu.dtsi"
+#endif
 
 / {
 	/* FIXME: Once we add the NOC, these should be attached to it.  */
@@ -148,11 +154,13 @@
 		#gpio-cells = <1>;
 		num-gpios = <30>;
 	};
+#ifndef VERSAL2_DEV
 	rp_psm0: rp_psm0@0 {
 		compatible = "remote-port-gpio";
 		remote-ports = <&ps_pmc_rp 8>;
 		interrupts-extended = < &psm0 0 >;
 	};
+#endif
 #ifdef MM_NPI_DDRMC_MAIN_0
 	rp_ddrmc_ub0: rp_ddrmc_ub@0 {
 		compatible = "remote-port-gpio";

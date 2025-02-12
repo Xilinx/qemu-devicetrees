@@ -56,7 +56,9 @@
 #include "versal.dtsh"
 
 #include "versal-pmc.dtsi"
+#ifndef VERSAL2_DEV
 #include "versal-psm.dtsi"
+#endif
 #include "versal-ddrmc.dtsi"
 #ifdef VERSAL_PSX
 #include "versal-psx-apu.dtsi"

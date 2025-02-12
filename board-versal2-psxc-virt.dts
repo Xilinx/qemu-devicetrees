@@ -188,16 +188,6 @@ RPU_CTRL_FIXUP(e, 8, 9);
 		interrupt-controller;
 	};
 
-	psm_local: psm_local@0 {
-		gpio-controller;
-		#gpio-cells = <0x01>;
-	};
-
-	psm_global: psm_global@0 {
-		#gpio-cells = <0x01>;
-		gpio-controller;
-	};
-
 #ifndef MULTI_ARCH
 	asu_cpu: asu_cpu@0 {
 		#interrupt-cells = <1>;
