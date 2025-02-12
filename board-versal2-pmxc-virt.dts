@@ -1,0 +1,63 @@
+/*
+ * Versal Gen 2 Virtual PMXC board device tree
+ *
+ * Copyright (c) 2022 Advanced Micro Devices Inc.
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *     * Redistributions of source code must retain the above copyright
+ *       notice, this list of conditions and the following disclaimer.
+ *     * Redistributions in binary form must reproduce the above copyright
+ *       notice, this list of conditions and the following disclaimer in the
+ *       documentation and/or other materials provided with the distribution.
+ *     * Neither the name of the <organization> nor the
+ *       names of its contributors may be used to endorse or promote products
+ *       derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY
+ * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+/* The Versal Gen 2 PMXC is based on the Versal Net PMX.  */
+#define VERSAL2_DEV
+#define VERSAL_PMX
+#define VERSAL_NET
+#define NUM_APUS 8
+#define NUM_APUS_PER_CLUSTER 2
+#define VERSAL_NPI_OVERRIDE
+
+#include "include/versal-net/npi-memmap.dtsh"
+#include "board-versal-pmc-virt.dts"
+#include "versal-pmx-shared-overlay.dtsi"
+
+#ifndef MULTI_ARCH
+/*
+ * The single-arch setup has the entire system except
+ * the ARM cores. So we need to add the missing dummy
+ * ARM cores (pmc-virt.dts already has 0 - 1) and include
+ * the PSX and PMX system overlays.
+ */
+#include "versal-pmx-system-overlay.dtsi"
+#include "versal-psx.dtsi"
+#include "versal-psx-shared-overlay.dtsi"
+#include "versal-net-psmx.dtsi"
+
+/ {
+	/* Dummy APUs.  */
+	cpu2: apu@2 { };
+	cpu3: apu@3 { };
+	cpu4: apu@4 { };
+	cpu5: apu@5 { };
+	cpu6: apu@6 { };
+	cpu7: apu@7 { };
+};
+#endif
