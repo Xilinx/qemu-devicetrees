@@ -107,7 +107,7 @@ RPU_CTRL_FIXUP(e, 8, 9);
 
 
 &pmc_tap {
-	platform-ver = <0x5>;
+	platform-ver = <0x1>;
 };
 
 #ifdef MULTI_ARCH
