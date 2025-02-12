@@ -44,7 +44,6 @@
 #include "versal-ps-iou.dtsi"
 #include "versal2-asu.dtsi"
 #include "versal2-pmx-shared-overlay.dtsi"
-#include "versal2-psx-shared-overlay.dtsi"
 #include "versal-pmx-shared-overlay.dtsi"
 #include "versal-pmx-system-overlay.dtsi"
 #include "versal2-pmxc-system-overlay.dtsi"
@@ -54,6 +53,12 @@
 #include "versal-rams.dtsi"
 #endif
 #include "versal2-rams.dtsi"
+
+#ifndef MULTI_ARCH
+&crl {
+	compatible = "xlnx,psxc_crl";
+};
+#endif
 
 / {
 	MEM_REGION(ddr, 0x0, MM_TOP_DDR, 0x00000000, MM_TOP_DDR_SIZE, &ddr_mem)  // 2 GB
