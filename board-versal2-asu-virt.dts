@@ -1,0 +1,92 @@
+/* Versal Gen 2 ASU Emulation
+ *
+ * Copyright (c) 2023, AMD Inc
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+/********ASU Features********
+ * 256KB Firmware RAM or 128KB Data RAM
+ * XPPU protects the ram access
+ * 64K Bank of Data ROM has ASU only access
+ * Security-subsystem
+ * 	Key Vault
+ * 	AES
+ * 	SHA2/3
+ * 	ECDSA/RSA
+ * 	TRNG
+ * 	DMA
+ * Microblze RISCV Processor
+ * MDM
+ * Microblaze IO Module
+ * ASU Local/Global Regs
+ */
+
+/dts-v1/;
+
+#define VERSAL2_DEV
+#define VERSAL2_ASU_DEV
+#define VERSAL_PSX
+#define VERSAL_NET
+#define VERSAL_NPI_OVERRIDE
+#include "versal2/memmap/versal2-npi-memmap.dtsh"
+
+#if defined(MM_NPI_DDRMC_MAIN_0) || defined(MM_NPI_DDRMC5_MAIN_0)
+#define HAS_DDRMC0 1
+#endif
+#if defined(MM_NPI_DDRMC_MAIN_1) || defined(MM_NPI_DDRMC5_MAIN_1)
+#define HAS_DDRMC1 1
+#endif
+#if defined(MM_NPI_DDRMC_MAIN_2) || defined(MM_NPI_DDRMC5_MAIN_2)
+#define HAS_DDRMC2 1
+#endif
+#if defined(MM_NPI_DDRMC_MAIN_3) || defined(MM_NPI_DDRMC5_MAIN_3)
+#define HAS_DDRMC3 1
+#endif
+
+#include "versal.dtsh"
+#include "interconnect.dtsh"
+#include "versal-memmap.dtsh"
+#include "versal-pmc.dtsi"
+
+#include "versal-icnt.dtsi"
+#include "versal2-icnt.dtsi"
+#include "versal2-rams.dtsi"
+#include "versal-ddrmc.dtsi"
+#include "versal-ps-iou.dtsi"
+#include "versal2-asu.dtsi"
+#include "versal-pmx-shared-overlay.dtsi"
+#include "versal2-psx-shared-overlay.dtsi"
+
+/ {
+	MEM_REGION(ddr, 0x0, MM_TOP_DDR, 0x00000000, MM_TOP_DDR_SIZE, &ddr_mem)  // 2 GB
+
+	/* Dummy APUs.  */
+	cpu2: apu@2 { };
+	cpu3: apu@3 { };
+	cpu4: apu@4 { };
+	cpu5: apu@5 { };
+	cpu6: apu@6 { };
+	cpu7: apu@7 { };
+	asu_gic_proxy: asu_gic_proxy@0 { };
+	psm_local: psm_local@0 {
+		#gpio-cells = <1>;
+	 };
+#ifndef HAVE_DDRMC_CPUS
+	ddrmc_ub0: ddrmc_ub@0 {
+		#interrupt-cells = <1>;
+		interrupt-controller;
+	};
+	ddrmc_ub1: ddrmc_ub@1 {
+		#interrupt-cells = <1>;
+		interrupt-controller;
+	};
+#endif
+	pmc_ppu0: pmc_ppu@0 {
+		#interrupt-cells = <1>;
+	};
+	pmc_ppu1: pmc_ppu@1 {
+		#interrupt-cells = <1>;
+	};
+};
