@@ -113,6 +113,9 @@ RPU_CTRL_FIXUP(d, 6, 7);
 RPU_CTRL_FIXUP(e, 8, 9);
 #endif
 
+&npi_ddrmc_xmpu0 {
+	regs-variant = "ddrmc5e";
+};
 
 &pmc_tap {
 	platform-ver = <0x1>;
