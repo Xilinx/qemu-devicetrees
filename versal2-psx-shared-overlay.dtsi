@@ -234,3 +234,10 @@
 		protected-base = <MM_OCM3_MEM>;
 	};
 };
+
+&amba_pmc_pl {
+	npi_me: npi_me@MM_NPI_AIE2P_S_NPI_0 {
+		compatible = "xlnx.aie2p_s_npi";
+		reg = <0x0 MM_NPI_AIE2P_S_NPI_0 0x0 MM_NPI_AIE2P_S_NPI_0_SIZE 0x1>;
+	};
+};
