@@ -105,6 +105,25 @@
 			read-only;
 		};
 
+		mmi_trng: trng@MM_MMI_UDH_TRNG_CFG {
+			doc-status = "complete";
+			compatible = "xlnx,versal-trng";
+			reg = <0x0 MM_MMI_UDH_TRNG_CFG 0x0 MM_MMI_UDH_TRNG_CFG_SIZE 0x0>;
+			interrupts = <MMI_UDH_COR_EVENT_IRQ_0>;
+			#gpio-cells = <1>;
+		};
+
+		mmi_udh_slcr: udh_slcr@MM_MMI_UDH_SLCR {
+			compatible = "xlnx.mmi_udh_slcr";
+			reg = <0x0 MM_MMI_UDH_SLCR 0x0 MM_MMI_UDH_SLCR_SIZE 0>;
+			gpios = <&mmi_trng 0>;
+		};
+
+		mmi_udh_pll: udh_pll@MM_MMI_UDH_PLL {
+			compatible = "xlnx.mmi_udh_pll";
+			reg = <0x0 MM_MMI_UDH_PLL 0x0 MM_MMI_UDH_PLL_SIZE 0>;
+		};
+
 		mmi_gpu_a: mmi_gpu_a@0 {
 			compatible = "qemu:memory-region";
 			qemu,ram = <QEMU_RAM_PROPERTY>;
