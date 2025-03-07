@@ -6,6 +6,8 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
+#include "versal2-wiremap.dtsh"
+
 /*
  * MDM
  * Microblaze IO Module
@@ -141,6 +143,9 @@
 	asu_global: asu_global@MM_ASU_GLOBAL {
 		compatible = "xlnx,asu_global";
 		reg = <0x0 MM_ASU_GLOBAL 0x0 MM_ASU_GLOBAL_SIZE 0x0>;
+		gpios = <&asu_aes ASU_AES_KEY_TRANSFER_DONE>,
+			<&lpd_slcr (106 + 32 * 3 + 4)>,
+			<&lpd_slcr (106 + 32 * 3 + 5)>;
 	};
 	asu_global_pmc: asu_global_pmc@MM_ASU_GLOBAL {
 		compatible = "xlnx,asu_global_pmc";
