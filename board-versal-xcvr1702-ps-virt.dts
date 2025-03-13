@@ -61,3 +61,40 @@
 &pmc_tap {
   idcode = <0x04CA0093>;
 };
+
+#define GEN_RFCOM(n)										\
+		rfcom ## n: rfcom@MM_NPI_RFCOM_ ## n {						\
+			compatible = "xlnx,noc-npi-dev";					\
+			reg = <0x0 MM_NPI_RFCOM_ ## n 0x0 MM_NPI_RFCOM_ ## n ## _SIZE 0x1>;	\
+			map-size = <MM_NPI_RFCOM_ ## n ## _SIZE>;				\
+			custom = <1>;								\
+			pcsr-status = <0x7A00017>;						\
+		}
+
+
+&amba_pmc_pl {
+#ifdef MM_NPI_RFCOM_0
+	GEN_RFCOM(0);
+#endif
+#ifdef MM_NPI_RFCOM_1
+	GEN_RFCOM(1);
+#endif
+#ifdef MM_NPI_RFCOM_2
+	GEN_RFCOM(2);
+#endif
+#ifdef MM_NPI_RFCOM_3
+	GEN_RFCOM(3);
+#endif
+#ifdef MM_NPI_RFCOM_4
+	GEN_RFCOM(4);
+#endif
+#ifdef MM_NPI_RFCOM_5
+	GEN_RFCOM(5);
+#endif
+#ifdef MM_NPI_RFCOM_6
+	GEN_RFCOM(6);
+#endif
+#ifdef MM_NPI_RFCOM_7
+	GEN_RFCOM(7);
+#endif
+};
