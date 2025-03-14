@@ -125,6 +125,7 @@
 				<&glue(rpu_gic_, c) 0x1 0x9 0x104>,	     \
 				<&glue(rpu_gic_, c) 0x1 0x9 0x204>;	     \
 			first-cpu-idx = <FIRST_CPU_GIC(n)>;		     \
+			partnum = <0xD13>;		                     \
 			num-cpu = <NUM_RPUS_PER_CLUSTER>;		     \
 			num-irq = <288>;				     \
 			redist-region-count = <NUM_RPUS_PER_CLUSTER>;	     \
