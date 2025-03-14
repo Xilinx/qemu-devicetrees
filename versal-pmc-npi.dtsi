@@ -29,7 +29,7 @@
 
 #include "versal.dtsh"
 
-#ifdef VERSAL_PSX
+#if defined(VERSAL_PSX) || defined(MM_NPI_DDRMC5E_MAIN_0)
 	#define COMPAT_DDRMC_UB "xlnx,ddrmc5_ub"
 #else
 	#define COMPAT_DDRMC_UB "xlnx,versal-ddrmc-ub"
