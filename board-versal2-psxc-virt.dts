@@ -119,6 +119,10 @@ RPU_CTRL_FIXUP(e, 8, 9);
 
 &pmc_tap {
 	platform-ver = <0x1>;
+	/*
+	* Default device : xc2ve3858
+	*/
+	idcode = <0x04DB0093>;
 };
 
 #ifdef MULTI_ARCH
