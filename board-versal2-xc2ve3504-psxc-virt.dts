@@ -8,6 +8,8 @@
 
 #define NUM_RPUS 4
 #define NUM_APUS 4
+#define VERSAL2_NPI_OVERRIDE
+#include "versal2-xc2ve3558-npi-memmap.dtsi"
 
 #include "board-versal2-psxc-virt.dts"
 
