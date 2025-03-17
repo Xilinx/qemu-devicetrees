@@ -30,7 +30,7 @@
 #define VERSAL_NET
 #define VERSAL_NPI_OVERRIDE
 
-#include "versal2-npi-memmap.dtsh"
+#include "versal2-xc2ve3858-npi-memmap.dtsi"
 #include "versal.dtsh"
 #include "interconnect.dtsh"
 #include "versal2-icnt.dtsi"

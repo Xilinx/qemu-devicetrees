@@ -196,7 +196,7 @@ name: name@addr64 {														\
  #include "versal2-memmap.dtsh"
  #include "versal2-gic-memmap.dtsh"
  #ifndef VERSAL2_NPI_OVERRIDE
-  #include "versal2-npi-memmap.dtsh"
+  #include "versal2-xc2ve3858-npi-memmap.dtsi"
  #endif
  #include "versal-psx-memmap-aliases.dtsh"
  #include "versal2-memmap-aliases.dtsh"
