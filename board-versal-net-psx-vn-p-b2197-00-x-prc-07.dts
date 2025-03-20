@@ -39,6 +39,12 @@
 	compatible = "mt35xu02gbba";
 };
 
+&spi1 {
+	spi1_flash0@0 {
+		compatible = "mx25u3232f";
+		reg = <0x02 0x00>;
+	};
+};
 
 &mdio0 {
 	/delete-node/ phy@2;
