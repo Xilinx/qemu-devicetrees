@@ -82,6 +82,10 @@
 			0x0 MM_NPI_ME_NPI_0 0x0 MM_NPI_ME_NPI_0_SIZE 0x2
 #elif defined(MM_NPI_AIE2_NPI_0)
 			0x0 MM_NPI_AIE2_NPI_0 0x0 MM_NPI_AIE2_NPI_0_SIZE 0x2
+#elif defined(MM_NPI_AIE2P_S_NPI_0)
+			0x0 MM_NPI_AIE2P_S_NPI_0 0x0 MM_NPI_AIE2P_S_NPI_0_SIZE 0x2
+#elif defined(MM_NPI_AIE2P_S_NPI_1)
+			0x0 MM_NPI_AIE2P_S_NPI_1 0x0 MM_NPI_AIE2P_S_NPI_1_SIZE 0x2
 #endif
 			>;
 		remote-ports = <&cosim_rp_0 60>;
