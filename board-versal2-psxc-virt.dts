@@ -71,7 +71,7 @@
 #include "versal2-asu.dtsi"
 
 #ifndef VERSAL_NET_APU_CPU_FREQ
- #define VERSAL_NET_APU_CPU_FREQ 2720000
+ #define VERSAL_NET_APU_CPU_FREQ 100000000
 #endif
 
 #define SET_CPU_FREQ(n, f)					\

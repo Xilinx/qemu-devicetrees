@@ -27,8 +27,6 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#define VERSAL_NET_APU_CPU_FREQ 100000000
-
 #include "board-versal-net-psx-virt.dts"
 
 &pmc_tap {
