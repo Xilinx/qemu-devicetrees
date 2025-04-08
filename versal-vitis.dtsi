@@ -98,6 +98,8 @@
 / {
 	/delete-node/ ddr_2@MM_TOP_DDR_2;
 	/delete-node/ ddr_3@MM_TOP_DDR_CH1;
+	/delete-node/ ddr_4@MM_TOP_DDR_CH2;
+	/delete-node/ ddr_5@MM_TOP_DDR_CH3;
 };
 #  include "ddr_memspec.dtsi"
 # endif
