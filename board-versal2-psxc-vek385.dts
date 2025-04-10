@@ -29,12 +29,42 @@
 };
 
 &ps_i2c1 {
-        /* Board ID eeprom.  */
-	eeprom@54 {
-		compatible = "m24cxx";
-		size = <0x4000>;
-		reg = <0x54>;
-		blockdev-node-name = "ps_i2c1.eeprom-54";
+	i2c-arbitrator@72 {
+		#address-cells = <1>;
+		#size-cells = <0>;
+		compatible = "pca9541";
+		reg = <0x72>;
+		i2c@0 {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			reg = <0>;
+			gpio@20 {
+				compatible = "ti,tca6416";
+				reg = <0x20>;
+			};
+			/* Board ID eeprom.  */
+			eeprom@54 {
+				compatible = "m24cxx";
+				size = <0x4000>;
+				reg = <0x54>;
+				blockdev-node-name = "ps_i2c1.eeprom-54";
+			};
+			i2cswitch@77 {
+				#address-cells = <1>;
+				#size-cells = <0>;
+				reg = <0x77>;
+				compatible = "pca9548";
+				i2c@4 {
+					#address-cells = <1>;
+					#size-cells = <0>;
+					reg = <4>;
+					usb0_usb5744: usb5744@0 {
+						compatible = "i2c-dev-dummy";
+						reg = <0x2d>;
+					};
+				};
+			};
+		};
 	};
 };
 
