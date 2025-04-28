@@ -23,6 +23,8 @@
              0x1, 0x0, &ddr_3_mem)
 	MEM_REGION64(ddr_4, MM_TOP_DDR_CH2_H, MM_TOP_DDR_CH2_L, MM_TOP_DDR_CH2,
              0x1, 0x0, &ddr_3_mem)
+	MEM_REGION64(ddr_5, MM_TOP_DDR_CH1_2_H, MM_TOP_DDR_CH1_2_L, MM_TOP_DDR_CH1_2,
+             0x1, 0x0, &ddr_3_mem)
 };
 
 /* QSPI is not preferred boot device */
