@@ -17,15 +17,15 @@
 	/delete-node/ ddr_3@MM_TOP_DDR_CH1;
 
 	MEM_REGION(ddr, 0x0, MM_TOP_DDR_CH0_LEGACY, 0x00000000, 0x80000000,
-		   &ddr_mem)
+			&ddr_mem)
 	MEM_REGION64(ddr_2, MM_TOP_DDR_CH0_MED_H, MM_TOP_DDR_CH0_MED_L,
-                     MM_TOP_DDR_CH0_MED, 0x0, 0x80000000, &ddr_2_mem)
+			MM_TOP_DDR_CH0_MED, 0x0, 0x80000000, &ddr_2_mem)
 	MEM_REGION64(ddr_3, MM_TOP_DDR_CH1_H, MM_TOP_DDR_CH1_L, MM_TOP_DDR_CH1,
-                      0x0, 0x80000000, &ddr_3_mem)
+			0x0, 0x80000000, &ddr_3_mem)
 	MEM_REGION64(ddr_4, MM_TOP_DDR_CH2_H, MM_TOP_DDR_CH2_L, MM_TOP_DDR_CH2,
-                     0x0, 0x80000000, &ddr_3_mem)
+			0x0, 0x80000000, &ddr_3_mem)
 	MEM_REGION64(ddr_5, MM_TOP_DDR_CH3_H, MM_TOP_DDR_CH3_L, MM_TOP_DDR_CH3,
-                     0x0, 0x80000000, &ddr_3_mem)
+			0x0, 0x80000000, &ddr_3_mem)
 };
 
 &ps_i2c1 {
@@ -70,11 +70,11 @@
 
 /* No SPI nor QSPI have any memories mapped.  */
 &spi0 {
-        /delete-node/ spi0_flash0@0;
+	/delete-node/ spi0_flash0@0;
 };
 
 &spi1 {
-        /delete-node/ spi1_flash0@0;
+	/delete-node/ spi1_flash0@0;
 };
 
 &pmc_qspi_0 {
@@ -94,5 +94,5 @@
 
 /* OSPI memories: one 2Gbit Octal SPI Flash Memory should be used.  */
 &ospi {
-        DI_SPI_FLASH(0, ospi_flash, "mt35xu02gbba", 0x10000000, 0x0 0x0)
+	DI_SPI_FLASH(0, ospi_flash, "mt35xu02gbba", 0x10000000, 0x0 0x0)
 };
