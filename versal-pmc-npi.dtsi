@@ -183,6 +183,9 @@
 	};
 #else
 #include "versal-ddrmc-npi.dtsi"
+#ifdef MM_NPI_DDRMC5E_NOC_0
+	#define MM_DDRMC_XMPU_OFFSET 0x12000
+#endif
 #ifndef MM_DDRMC_XMPU_OFFSET
 #	define MM_DDRMC_XMPU_OFFSET 0x10000
 #endif
