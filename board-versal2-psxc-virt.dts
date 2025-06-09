@@ -105,8 +105,10 @@ SET_CPU_FREQ(7, VERSAL_NET_APU_CPU_FREQ);
 
 RPU_CTRL_FIXUP(a, 0, 1);
 RPU_CTRL_FIXUP(b, 2, 3);
-#if (NUM_RPUS >= 8)
+#if (NUM_RPUS >= 6)
 RPU_CTRL_FIXUP(c, 4, 5);
+#endif
+#if (NUM_RPUS >= 8)
 RPU_CTRL_FIXUP(d, 6, 7);
 #endif
 #if (NUM_RPUS >= 10)

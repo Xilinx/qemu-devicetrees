@@ -104,11 +104,15 @@
     core-1 = <&rpu_cpu1>;
     core-2 = <&rpu_cpu2>;
     core-3 = <&rpu_cpu3>;
-#if NUM_RPUS == 10
+#if NUM_RPUS >= 6
     core-4 = <&rpu_cpu4>;
     core-5 = <&rpu_cpu5>;
+#endif
+#if NUM_RPUS >= 8
     core-6 = <&rpu_cpu6>;
     core-7 = <&rpu_cpu7>;
+#endif
+#if NUM_RPUS >= 10
     core-8 = <&rpu_cpu8>;
     core-9 = <&rpu_cpu9>;
 #endif

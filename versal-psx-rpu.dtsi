@@ -3,8 +3,8 @@
 
 #ifndef NUM_RPUS
 #error "NUM RPUs is not set!"
-#elif NUM_RPUS != 4 && NUM_RPUS != 8 && NUM_RPUS != 10
-#error "NUM RPUs must be set to 4, 8 or 10"
+#elif NUM_RPUS != 4 && NUM_RPUS != 6 && NUM_RPUS != 8 && NUM_RPUS != 10
+#error "NUM RPUs must be set to 4, 6, 8 or 10"
 #endif
 
 #define RPU_GIC_DIST 0x0
@@ -210,8 +210,10 @@
 	cpus {
 		GEN_RPU_CLUSTER(A, a, 0, 0, 1);
 		GEN_RPU_CLUSTER(B, b, 1, 2, 3);
-#if (NUM_RPUS >= 8)
+#if (NUM_RPUS >= 6)
 		GEN_RPU_CLUSTER(C, c, 2, 4, 5);
+#endif
+#if (NUM_RPUS >= 8)
 		GEN_RPU_CLUSTER(D, d, 3, 6, 7);
 #endif
 #if (NUM_RPUS >= 10)
@@ -221,8 +223,10 @@
 
 	RPU_GIC(a, 0, 0, 1);
 	RPU_GIC(b, 1, 2, 3);
-#if (NUM_RPUS >= 8)
+#if (NUM_RPUS >= 6)
 	RPU_GIC(c, 2, 4, 5);
+#endif
+#if (NUM_RPUS >= 8)
 	RPU_GIC(d, 3, 6, 7);
 #endif
 #if (NUM_RPUS >= 10)
@@ -232,8 +236,10 @@
 	amba_rpu: amba_rpu@0 {
 		GEN_TIMER(a);
 		GEN_TIMER(b);
-#if (NUM_RPUS >= 8)
+#if (NUM_RPUS >= 6)
 		GEN_TIMER(c);
+#endif
+#if (NUM_RPUS >= 8)
 		GEN_TIMER(d);
 #endif
 #if (NUM_RPUS >= 10)
@@ -245,9 +251,11 @@
 	TCM_CREATE(1)
 	TCM_CREATE(2)
 	TCM_CREATE(3)
-#if (NUM_RPUS >= 8)
+#if (NUM_RPUS >= 6)
 	TCM_CREATE(4)
 	TCM_CREATE(5)
+#endif
+#if (NUM_RPUS >= 8)
 	TCM_CREATE(6)
 	TCM_CREATE(7)
 #endif
@@ -258,8 +266,10 @@
 
 	TCM_CLUSTER(a, 0, 1)
 	TCM_CLUSTER(b, 2, 3)
-#if (NUM_RPUS >= 8)
+#if (NUM_RPUS >= 6)
 	TCM_CLUSTER(c, 4, 5)
+#endif
+#if (NUM_RPUS >= 8)
 	TCM_CLUSTER(d, 6, 7)
 #endif
 #if (NUM_RPUS >= 10)
@@ -270,9 +280,11 @@
 	GEN_AMBA_DOWNSTREAMS_PRI(a, 1, 0);
 	GEN_AMBA_DOWNSTREAMS_SEC(b, 2, 1);
 	GEN_AMBA_DOWNSTREAMS_SEC(b, 3, 1);
-#if (NUM_RPUS >= 8)
+#if (NUM_RPUS >= 6)
 	GEN_AMBA_DOWNSTREAMS_SEC(c, 4, 2);
 	GEN_AMBA_DOWNSTREAMS_SEC(c, 5, 2);
+#endif
+#if (NUM_RPUS >= 8)
 	GEN_AMBA_DOWNSTREAMS_SEC(d, 6, 3);
 	GEN_AMBA_DOWNSTREAMS_SEC(d, 7, 3);
 #endif
@@ -283,10 +295,12 @@
 
 	MEMATTR(rpu2_s, SECURE, SMID_RPU2);
 	MEMATTR(rpu3_s, SECURE, SMID_RPU3);
-#if (NUM_RPUS >= 8)
+#if (NUM_RPUS >= 6)
 /* TODO: find the right value for the SMID.  */
 	MEMATTR(rpu4_s, SECURE, SMID_RPU2);
 	MEMATTR(rpu5_s, SECURE, SMID_RPU3);
+#endif
+#if (NUM_RPUS >= 8)
 	MEMATTR(rpu6_s, SECURE, SMID_RPU2);
 	MEMATTR(rpu7_s, SECURE, SMID_RPU3);
 #endif
@@ -300,8 +314,10 @@
 &amba {
 		S_AXI_TCM_CONNECT(a, MM_R52_0A_ATCM)
 		S_AXI_TCM_CONNECT(b, MM_R52_0B_ATCM)
-#if (NUM_RPUS >= 8)
+#if (NUM_RPUS >= 6)
 		S_AXI_TCM_CONNECT(c, MM_R52_0C_ATCM)
+#endif
+#if (NUM_RPUS >= 8)
 		S_AXI_TCM_CONNECT(d, MM_R52_0D_ATCM)
 #endif
 #if (NUM_RPUS >= 10)
