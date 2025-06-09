@@ -1,0 +1,19 @@
+/*
+ * Versal Prime Gen 2 Series xc2vm3654 virtual board dts
+ *
+ * Copyright Advanced Micro Devices, Inc.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+#define NUM_APUS 4
+#define NUM_RPUS 6
+#define NUM_APUS_PER_CLUSTER 4
+
+#define VERSAL2_NPI_OVERRIDE
+#include "versal2-xc2vm3654-npi-memmap.dtsi"
+
+#include "board-versal2-psxc-virt.dts"
+
+&pmc_tap {
+    idcode = <0x04D98093>;
+};
