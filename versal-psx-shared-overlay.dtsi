@@ -37,6 +37,13 @@ MEMATTR(apu ## x ## _ns, NON_SECURE, SMID_APU ## x)
 
 #define SMID_APU2	SMID_APU_CORE2
 #define SMID_APU3	SMID_APU_CORE3
+
+#if defined(VERSAL2_DEV)
+#define SMID_APU4       SMID_APU_CORE4
+#define SMID_APU5       SMID_APU_CORE5
+#define SMID_APU6       SMID_APU_CORE6
+#define SMID_APU7       SMID_APU_CORE7
+#else
 #define SMID_APU4	0x268
 #define SMID_APU5	0x269
 #define SMID_APU6	0x26a
@@ -65,6 +72,7 @@ MEMATTR(apu ## x ## _ns, NON_SECURE, SMID_APU ## x)
 #define SMID_APU29	0x299
 #define SMID_APU30	0x29a
 #define SMID_APU31	0x29b
+#endif
 
 #define MM_USB_DWC3_1			(MM_USB_XHCI1 + 0xC100)
 #define MM_USB_DWC3_1_SIZE		0x600
@@ -96,10 +104,13 @@ MEMATTR(apu ## x ## _ns, NON_SECURE, SMID_APU ## x)
 	/* APU */
         GEN_MEMATTR(2);
         GEN_MEMATTR(3);
+	#if (NUM_APUS > 4)
         GEN_MEMATTR(4);
         GEN_MEMATTR(5);
         GEN_MEMATTR(6);
         GEN_MEMATTR(7);
+	#endif
+	#if (NUM_APUS > 8)
         GEN_MEMATTR(8);
         GEN_MEMATTR(9);
         GEN_MEMATTR(10);
@@ -108,6 +119,8 @@ MEMATTR(apu ## x ## _ns, NON_SECURE, SMID_APU ## x)
         GEN_MEMATTR(13);
         GEN_MEMATTR(14);
         GEN_MEMATTR(15);
+	#endif
+	#if (NUM_APUS > 16)
         GEN_MEMATTR(16);
         GEN_MEMATTR(17);
         GEN_MEMATTR(18);
@@ -124,6 +137,7 @@ MEMATTR(apu ## x ## _ns, NON_SECURE, SMID_APU ## x)
         GEN_MEMATTR(29);
         GEN_MEMATTR(30);
         GEN_MEMATTR(31);
+	#endif
 };
 
 &dwc3_0 {

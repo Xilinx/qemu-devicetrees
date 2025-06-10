@@ -21,65 +21,65 @@
 #ifndef _VERSAL2_SMID_DTSH
 #define _VERSAL2_SMID_DTSH
 
-#ifdef SMID_RPU0_A
-#undef SMID_RPU0_A
+#ifdef SMID_RPU0
+#undef SMID_RPU0
 #endif
-#define SMID_RPU0_A 0x200
+#define SMID_RPU0 0x200
 
-#ifdef SMID_RPU0_B
-#undef SMID_RPU0_B
+#ifdef SMID_RPU1
+#undef SMID_RPU1
 #endif
-#define SMID_RPU0_B 0x201
+#define SMID_RPU1 0x201
 
-#ifdef SMID_RPU1_A
-#undef SMID_RPU1_A
+#ifdef SMID_RPU2
+#undef SMID_RPU2
 #endif
-#define SMID_RPU1_A 0x202
+#define SMID_RPU2 0x202
 
-#ifdef SMID_RPU1_B
-#undef SMID_RPU1_B
+#ifdef SMID_RPU3
+#undef SMID_RPU3
 #endif
-#define SMID_RPU1_B 0x203
+#define SMID_RPU3 0x203
 
-#ifdef SMID_RPU2_A
-#undef SMID_RPU2_A
+#ifdef SMID_RPU4
+#undef SMID_RPU4
 #endif
-#define SMID_RPU2_A 0x204
+#define SMID_RPU4 0x204
 
-#ifdef SMID_RPU2_B
-#undef SMID_RPU2_B
+#ifdef SMID_RPU5
+#undef SMID_RPU5
 #endif
-#define SMID_RPU2_B 0x205
+#define SMID_RPU5 0x205
 
-#ifdef SMID_RPU3_A
-#undef SMID_RPU3_A
+#ifdef SMID_RPU6
+#undef SMID_RPU6
 #endif
-#define SMID_RPU3_A 0x206
+#define SMID_RPU6 0x206
 
-#ifdef SMID_RPU3_B
-#undef SMID_RPU3_B
+#ifdef SMID_RPU7
+#undef SMID_RPU7
 #endif
-#define SMID_RPU3_B 0x207
+#define SMID_RPU7 0x207
 
-#ifdef SMID_RPU4_A
-#undef SMID_RPU4_A
+#ifdef SMID_RPU8
+#undef SMID_RPU8
 #endif
-#define SMID_RPU4_A 0x208
+#define SMID_RPU8 0x208
 
-#ifdef SMID_RPU4_B
-#undef SMID_RPU4_B
+#ifdef SMID_RPU9
+#undef SMID_RPU9
 #endif
-#define SMID_RPU4_B 0x209
+#define SMID_RPU9 0x209
 
-#ifdef SMID_RPU5_A
-#undef SMID_RPU5_A
+#ifdef SMID_RPU10
+#undef SMID_RPU10
 #endif
-#define SMID_RPU5_A 0x20a
+#define SMID_RPU10 0x20a
 
-#ifdef SMID_RPU5_B
-#undef SMID_RPU5_B
+#ifdef SMID_RPU11
+#undef SMID_RPU11
 #endif
-#define SMID_RPU5_B 0x20b
+#define SMID_RPU11 0x20b
 
 #ifdef SMID_ADMA_CH0
 #undef SMID_ADMA_CH0
@@ -366,15 +366,15 @@
 #endif
 #define SMID_CORESIGHT 0x20c
 
-#ifdef SMID_APU_CORE0_DSU0
-#undef SMID_APU_CORE0_DSU0
+#ifdef SMID_APU_CORE0
+#undef SMID_APU_CORE0
 #endif
-#define SMID_APU_CORE0_DSU0 0x260
+#define SMID_APU_CORE0 0x260
 
-#ifdef SMID_APU_CORE1_DSU0
-#undef SMID_APU_CORE1_DSU0
+#ifdef SMID_APU_CORE1
+#undef SMID_APU_CORE1
 #endif
-#define SMID_APU_CORE1_DSU0 0x261
+#define SMID_APU_CORE1 0x261
 
 #ifdef SMID_APU_ACP_DSU0
 #undef SMID_APU_ACP_DSU0
@@ -386,15 +386,15 @@
 #endif
 #define SMID_APU_NONCPU_DSU0 0x265
 
-#ifdef SMID_APU_CORE0_DSU1
-#undef SMID_APU_CORE0_DSU1
+#ifdef SMID_APU_CORE2
+#undef SMID_APU_CORE2
 #endif
-#define SMID_APU_CORE0_DSU1 0x268
+#define SMID_APU_CORE2 0x268
 
-#ifdef SMID_APU_CORE1_DSU1
-#undef SMID_APU_CORE1_DSU1
+#ifdef SMID_APU_CORE3
+#undef SMID_APU_CORE3
 #endif
-#define SMID_APU_CORE1_DSU1 0x269
+#define SMID_APU_CORE3 0x269
 
 #ifdef SMID_APU_ACP_DSU1
 #undef SMID_APU_ACP_DSU1
@@ -406,15 +406,15 @@
 #endif
 #define SMID_APU_NONCPU_DSU1 0x26d
 
-#ifdef SMID_APU_CORE0_DSU2
-#undef SMID_APU_CORE0_DSU2
+#ifdef SMID_APU_CORE4
+#undef SMID_APU_CORE4
 #endif
-#define SMID_APU_CORE0_DSU2 0x270
+#define SMID_APU_CORE4 0x270
 
-#ifdef SMID_APU_CORE1_DSU2
-#undef SMID_APU_CORE1_DSU2
+#ifdef SMID_APU_CORE5
+#undef SMID_APU_CORE5
 #endif
-#define SMID_APU_CORE1_DSU2 0x271
+#define SMID_APU_CORE5 0x271
 
 #ifdef SMID_APU_ACP_DSU2
 #undef SMID_APU_ACP_DSU2
@@ -426,15 +426,15 @@
 #endif
 #define SMID_APU_NONCPU_DSU2 0x275
 
-#ifdef SMID_APU_CORE0_DSU3
-#undef SMID_APU_CORE0_DSU3
+#ifdef SMID_APU_CORE6
+#undef SMID_APU_CORE6
 #endif
-#define SMID_APU_CORE0_DSU3 0x278
+#define SMID_APU_CORE6 0x278
 
-#ifdef SMID_APU_CORE1_DSU3
-#undef SMID_APU_CORE1_DSU3
+#ifdef SMID_APU_CORE7
+#undef SMID_APU_CORE7
 #endif
-#define SMID_APU_CORE1_DSU3 0x279
+#define SMID_APU_CORE7 0x279
 
 #ifdef SMID_APU_ACP_DSU3
 #undef SMID_APU_ACP_DSU3

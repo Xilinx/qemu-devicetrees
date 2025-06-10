@@ -296,18 +296,16 @@
 	MEMATTR(rpu2_s, SECURE, SMID_RPU2);
 	MEMATTR(rpu3_s, SECURE, SMID_RPU3);
 #if (NUM_RPUS >= 6)
-/* TODO: find the right value for the SMID.  */
-	MEMATTR(rpu4_s, SECURE, SMID_RPU2);
-	MEMATTR(rpu5_s, SECURE, SMID_RPU3);
+	MEMATTR(rpu4_s, SECURE, SMID_RPU4);
+	MEMATTR(rpu5_s, SECURE, SMID_RPU5);
 #endif
 #if (NUM_RPUS >= 8)
-	MEMATTR(rpu6_s, SECURE, SMID_RPU2);
-	MEMATTR(rpu7_s, SECURE, SMID_RPU3);
+	MEMATTR(rpu6_s, SECURE, SMID_RPU6);
+	MEMATTR(rpu7_s, SECURE, SMID_RPU7);
 #endif
 #if (NUM_RPUS >= 10)
-/* TODO: find the right value for the SMID.  */
-	MEMATTR(rpu8_s, SECURE, SMID_RPU2);
-	MEMATTR(rpu9_s, SECURE, SMID_RPU3);
+	MEMATTR(rpu8_s, SECURE, SMID_RPU8);
+	MEMATTR(rpu9_s, SECURE, SMID_RPU9);
 #endif
 };
 
