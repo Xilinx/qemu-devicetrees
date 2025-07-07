@@ -1,0 +1,10 @@
+/*
+ * Versal vrk165 cosim board device tree
+ *
+ * Copyright (C) 2025 Advanced Micro Devices, Inc. All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+#include "board-versal-ps-vrk165.dts"
+#include "versal-ps-pl-remoteport.dtsi"
