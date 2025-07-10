@@ -52,6 +52,7 @@
 #include "include/versal-net/fpd-memmap.dtsh"
 #include "board-versal-ps-virt.dts"
 #include "versal-psx.dtsi"
+#include "versal-net-rams.dtsi"
 #include "versal-net-psmx.dtsi"
 #include "versal-psx-rpu.dtsi"
 #include "versal-net-boot-init.dtsi"
