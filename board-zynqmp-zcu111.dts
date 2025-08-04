@@ -1,0 +1,9 @@
+/*
+ * ZynqMP ZCU111 virtual board dts
+ *
+ * Copyright (c) 2025 Advanced Micro Devices, Inc. All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+#include "board-zynqmp-zcu102.dts"
