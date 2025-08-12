@@ -7,6 +7,7 @@
  */
 
 #define VERSAL_NPI_OVERRIDE
+#define PMC_AES_ENDIANNESS_SWAP
 #include "versal/memmap/versal2-xc2vp3602-npi-memmap.dtsi"
 #include "versal-ddrmc5e-aliases.dtsh"
 

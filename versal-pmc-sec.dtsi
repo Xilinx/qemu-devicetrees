@@ -116,6 +116,9 @@
 			 &xlnx_aes 1>;
 		gpio-names = "busy", "done";
 		aes-core = <&xlnx_aes>;
+#ifdef PMC_AES_ENDIANNESS_SWAP
+		integrated-endianness-swap = <1>;
+#endif
 		xlnx_aes: xlnx_aes@0 {
 			#gpio-cells = <1>;
 			compatible = "xlnx-aes";

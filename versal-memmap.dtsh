@@ -209,7 +209,9 @@ name: name@addr64 {														\
  #include "versal-top-memmap.dtsh"
  #include "versal-fpd-memmap.dtsh"
  #include "versal-lpd-memmap.dtsh"
+#ifndef VERSAL_PMC_MEMMAP_OVERRIDE
  #include "versal-pmc-memmap.dtsh"
+#endif
  #include "versal-iou-memmap.dtsh"
  #include "versal-psm-memmap.dtsh"
  #include "versal-gic-memmap.dtsh"
