@@ -44,6 +44,7 @@
 #define VERSAL_PSX
 #define VERSAL_NET
 #define VERSAL_NPI_OVERRIDE
+#define XILINX_ZDMA "xlnx,zdma-v2"
 
 /* TODO: Add GIC interrupt redirection support.  */
 #define APU_GIC_INTERRUPT_TARGET_STEM cpu

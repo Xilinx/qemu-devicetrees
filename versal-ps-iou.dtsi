@@ -46,6 +46,10 @@ g_name: ethernet@g_base {						\
 	power-gpios = <PWR_GPIO_SRC pwr_idx>;				\
 }
 
+#ifndef XILINX_ZDMA
+#define XILINX_ZDMA "xlnx,zdma"
+#endif
+
 // FIXME: Add support for SMIDs
 #define ZDMA_CHANNEL(zname, zdomain, zbase, zirq, zbuswidth, zdma, mid, num)	\
 zname ## _mattr: zname ## mattr {					\
@@ -54,7 +58,7 @@ zname ## _mattr: zname ## mattr {					\
 };									\
 									\
 zname: dma-controller@zbase {							\
-	compatible = "xlnx,zdma";					\
+	compatible = XILINX_ZDMA;					\
 	reg = <0x0 zbase 0x0 MM_ADMA_CH0_SIZE 0x0>;			\
 	bus-width = <zbuswidth>;					\
 	has-parity = <1>;							\
