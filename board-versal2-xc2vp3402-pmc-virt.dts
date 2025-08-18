@@ -1,0 +1,9 @@
+/*
+ * Versal premium series device xc2vp3402 virtual board dts
+ *
+ * Copyright (C) 2025 Advanced Micro Devices, Inc. All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+#include "board-versal2-xc2vp3602-pmc-virt.dts"
