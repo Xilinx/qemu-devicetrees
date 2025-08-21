@@ -1,0 +1,27 @@
+/*
+ * Versal VEK385 revB board device tree
+ *
+ * Copyright (C) 2025 Advanced Micro Devices, Inc. All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+#include "board-versal2-psxc-vek385.dts"
+
+/* Vek385-revB has 20GB of DDR5 memory */
+/ {
+    /delete-node/ ddr@MM_TOP_DDR_CH0_LEGACY;
+    /delete-node/ ddr_2@MM_TOP_DDR_CH0_MED;
+    /delete-node/ ddr_3@MM_TOP_DDR_CH1;
+    /delete-node/ ddr_4@MM_TOP_DDR_CH2;
+    /delete-node/ ddr_5@MM_TOP_DDR_CH3;
+
+    MEM_REGION(ddr, 0x0, MM_TOP_DDR_CH0_LEGACY, 0x00000000, 0x80000000,
+                 &ddr_mem)  // 2 GB
+    MEM_REGION64(ddr_2, MM_TOP_DDR_CH0_MED_H, MM_TOP_DDR_CH0_MED_L,
+                 MM_TOP_DDR_CH0_MED, 0x1, 0x80000000, &ddr_2_mem)   // 6 GB
+    MEM_REGION64(ddr_3, MM_TOP_DDR_CH1_H, MM_TOP_DDR_CH1_L, MM_TOP_DDR_CH1,
+                 0x2, 0x0, &ddr_3_mem)  // 8 GB
+    MEM_REGION64(ddr_4, MM_TOP_DDR_CH2_H, MM_TOP_DDR_CH2_L, MM_TOP_DDR_CH2,
+                 0x1, 0x0, &ddr_3_mem)  // 4 GB
+};
