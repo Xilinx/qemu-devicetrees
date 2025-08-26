@@ -36,6 +36,17 @@
 	/delete-node/ ospi_flash_ucs_ub;
 };
 
+/ {
+	/delete-node/ ddr_2@MM_TOP_DDR_2;
+
+	MEM_REGION64(ddr_2, MM_TOP_DDR_2_H, MM_TOP_DDR_2_L, MM_TOP_DDR_2,
+		     0x1, 0x0, &ddr_2_mem)	// 4 GB
+	MEM_REGION64(ddr_3, MM_TOP_DDR_CH1_H, MM_TOP_DDR_CH1_L, MM_TOP_DDR_CH1,
+		     0x1, 0x0, &ddr_2_mem)	// 4 GB
+	MEM_REGION64(ddr_4, MM_TOP_DDR_CH2_H, MM_TOP_DDR_CH2_L, MM_TOP_DDR_CH2,
+		     0x1, 0x0, &ddr_2_mem)	// 4 GB
+};
+
 &ps_i2c1 {
 	i2cswitch@74 {
 		#address-cells = <1>;
