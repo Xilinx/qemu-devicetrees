@@ -22,3 +22,8 @@
 &ospi_flash_lcs_lb {
 	compatible = "mt35xu02gbba";
 };
+
+&spi0_flash0 {
+    /* 4 MiB */
+    compatible = "m25p32";
+};
