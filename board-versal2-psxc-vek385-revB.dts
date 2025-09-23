@@ -24,4 +24,5 @@
                  0x2, 0x0, &ddr_3_mem)  // 8 GB
     MEM_REGION64(ddr_4, MM_TOP_DDR_CH2_H, MM_TOP_DDR_CH2_L, MM_TOP_DDR_CH2,
                  0x1, 0x0, &ddr_3_mem)  // 4 GB
+    MEM_REGION64(ddr_5, 0xA, 0x00, 0xA00000000, 0x2, 0x0, &ddr_3_mem) //8GB
 };
