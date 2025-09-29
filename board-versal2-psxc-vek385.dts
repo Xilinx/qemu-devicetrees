@@ -26,6 +26,8 @@
 			0x0, 0x80000000, &ddr_3_mem)
 	MEM_REGION64(ddr_5, MM_TOP_DDR_CH3_H, MM_TOP_DDR_CH3_L, MM_TOP_DDR_CH3,
 			0x0, 0x80000000, &ddr_3_mem)
+	MEM_REGION64(ddr_6, (MM_TOP_DDR_CH0_MED_H + 0x2), MM_TOP_DDR_CH0_MED_L,
+			0xA00000000, 0x1, 0x0, &ddr_3_mem) // 4 GB
 };
 
 &ps_i2c1 {
