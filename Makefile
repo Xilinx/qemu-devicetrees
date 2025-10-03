@@ -1,7 +1,8 @@
  #
  # Makefile to build the device trees
  #
- # Copyright (c) 2016, Xilinx Inc
+ # Copyright (c) 2016-2022, Xilinx Inc.
+ # Copyright (C) 2022-2025, Advanced Micro Devices, Inc.
  # All rights reserved.
  #
  # Redistribution and use in source and binary forms, with or without
@@ -41,14 +42,18 @@ SKIP_AUTO_GEN= board-versal-xcvc2802-ps-cosim-vitis-virt.dts	\
 		board-versal-xcve2302-ps-cosim-vitis-virt.dts
 
 # Picks all versal variants except boards which are mentioned in SKIP_AUTO_GEN
-AUTO_GEN_DTS	:= $(filter-out $(SKIP_AUTO_GEN),			     \
-				$(patsubst %ps-virt.dts,		     \
-				  %ps-cosim-vitis-virt.dts,		     \
-				  $(wildcard board-versal-*-ps-virt.dts)))   \
-		   $(filter-out $(SKIP_AUTO_GEN),			     \
-				$(patsubst %psxc-virt.dts,		     \
-				  %psxc-cosim-vitis-virt.dts,		     \
-				  $(wildcard board-versal2-*-psxc-virt.dts)))
+AUTO_GEN_DTS	:= $(filter-out $(SKIP_AUTO_GEN),                             \
+				$(patsubst %ps-virt.dts,                      \
+				  %ps-cosim-vitis-virt.dts,                   \
+				  $(wildcard board-versal-*-ps-virt.dts)))    \
+		   $(filter-out $(SKIP_AUTO_GEN),                             \
+				$(patsubst %psxc-virt.dts,                    \
+				  %psxc-cosim-vitis-virt.dts,                 \
+				  $(wildcard board-versal2-*-psxc-virt.dts))) \
+		   $(filter-out $(SKIP_AUTO_GEN),                             \
+				$(patsubst %ps-virt.dts,                      \
+				  %ps-cosim-vitis-virt.dts,                   \
+				  $(wildcard board-versal2-*-ps-virt.dts)))
 
 SINGLE_ARCH_OUTDIR		:= $(OUTDIR)/LATEST/SINGLE_ARCH
 MULTI_ARCH_OUTDIR 		:= $(OUTDIR)/LATEST/MULTI_ARCH
@@ -166,16 +171,24 @@ endef
 
 # Versal Gen2 device autogeneration.
 
-define AUTO_GEN_VERSAL2_DEV
+define AUTO_GEN_VERSAL2_PSXC_DEV
 
 #include "board-versal2-$*-psxc-virt.dts"
 #include "versal2-pl-remoteport.dtsi"
 #include "versal-vitis.dtsi"
 endef
 
+define AUTO_GEN_VERSAL2_PS_DEV
+
+#include "board-versal2-$*-ps-virt.dts"
+#include "versal-ps-pl-remoteport.dtsi"
+#include "versal-vitis.dtsi"
+endef
+
 export AUTO_GEN_HEAD
 export AUTO_GEN_VERSAL_DEV
-export AUTO_GEN_VERSAL2_DEV
+export AUTO_GEN_VERSAL2_PSXC_DEV
+export AUTO_GEN_VERSAL2_PS_DEV
 
 board-versal-%-ps-cosim-vitis-virt.dts: Makefile
 	$(if $(or $(findstring LATEST, $@), $(filter $(SKIP_AUTO_GEN), $@)),   \
@@ -185,7 +198,12 @@ board-versal-%-ps-cosim-vitis-virt.dts: Makefile
 board-versal2-%-psxc-cosim-vitis-virt.dts: Makefile
 	$(if $(or $(findstring LATEST, $@), $(filter $(SKIP_AUTO_GEN), $@)),   \
 			  @exit 0,					       \
-			  @echo "$$AUTO_GEN_HEAD""$$AUTO_GEN_VERSAL2_DEV" > $@)
+			  @echo "$$AUTO_GEN_HEAD""$$AUTO_GEN_VERSAL2_PSXC_DEV" > $@)
+
+board-versal2-%-ps-cosim-vitis-virt.dts: Makefile
+	$(if $(or $(findstring LATEST, $@), $(filter $(SKIP_AUTO_GEN), $@)),   \
+			  @exit 0,					       \
+			  @echo "$$AUTO_GEN_HEAD""$$AUTO_GEN_VERSAL2_PS_DEV" > $@)
 
 clean:
 	$(RM) versal-pmc-npi-nxx.dtsi
