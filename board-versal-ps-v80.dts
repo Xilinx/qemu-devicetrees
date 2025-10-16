@@ -13,6 +13,13 @@
  * 32GB HBM
  */
 
+/ {
+	MEM_REGION64(c1_ddr, MM_TOP_DDR_CH1_H, MM_TOP_DDR_CH1_L, MM_TOP_DDR_CH1,
+			0x00000004,  0x00000000, &ddr_2_mem) // 16GB
+	MEM_REGION64(c2_ddr, MM_TOP_DDR_CH1_2_H, MM_TOP_DDR_CH1_2_L, MM_TOP_DDR_CH1_2,
+			0x00000004,  0x00000000, &ddr_2_mem) // 16GB
+};
+
 &ospi {
 	/delete-node/ ospi_flash_lcs_ub@0;
 	/delete-node/ ospi_flash_ucs_lb@0;
