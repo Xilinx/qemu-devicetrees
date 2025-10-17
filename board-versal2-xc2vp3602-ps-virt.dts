@@ -10,6 +10,8 @@
 #define PMC_AES_ENDIANNESS_SWAP
 #include "versal/memmap/versal2-xc2vp3602-npi-memmap.dtsi"
 #include "versal-ddrmc5e-aliases.dtsh"
+#define VERSAL_PMC_MEMMAP_OVERRIDE
+#include "versal2-xc2vp3602-pmc-memmap.dtsi"
 
 #include "board-versal-ps-virt.dts"
 #include "versal-silicon-freq.dtsi"
