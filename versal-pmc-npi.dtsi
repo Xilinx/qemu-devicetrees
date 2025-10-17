@@ -109,6 +109,7 @@
 		protected-mr = <&ddr>;						\
 		mr-0 = <&amba>;								\
 		protected-base = <0x0>;						\
+		regs-variant = DDRMC_XMPU_REG;						\
 	}
 
 #define GEN_GTY_NPI(N)							\
@@ -185,9 +186,11 @@
 #include "versal-ddrmc-npi.dtsi"
 #ifdef MM_NPI_DDRMC5E_NOC_0
 	#define MM_DDRMC_XMPU_OFFSET 0x12000
+	#define DDRMC_XMPU_REG "ddrmc5e"
 #endif
 #ifndef MM_DDRMC_XMPU_OFFSET
-#	define MM_DDRMC_XMPU_OFFSET 0x10000
+	#define MM_DDRMC_XMPU_OFFSET 0x10000
+	#define DDRMC_XMPU_REG "ddrmc"
 #endif
 	GEN_DDRMC_XMPU(0, MM_NPI_DDRMC_NOC_0, MM_DDRMC_XMPU_OFFSET);
 #endif
