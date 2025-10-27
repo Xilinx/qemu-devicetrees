@@ -155,3 +155,21 @@ MEMATTR(apu ## x ## _ns, NON_SECURE, SMID_APU ## x)
 		interrupts = <I2C1_IRQ_0>;
 	};
 };
+
+&amba {
+	ts_clk: ts_clock@400M {
+		compatible = "fixed-clock";
+		#clock-cells = <0>;
+		clock-frequency = <0x19000000>;
+	};
+};
+
+&amba_fpd {
+	fpd_systmr: fpd_systmr@FPD_SYSTMR {
+		compatible = "sse-counter";
+		reg = <0x0 MM_FPD_FPD_SYSTMR_CTRL 0x0 MM_FPD_FPD_SYSTMR_CTRL_SIZE 0x0
+                       0x0 MM_FPD_FPD_SYSTMR_READ 0x0 MM_FPD_FPD_SYSTMR_READ_SIZE 0x0>;
+		clocks = <&ts_clk>;
+		clock-names = "CLK";
+	};
+};
