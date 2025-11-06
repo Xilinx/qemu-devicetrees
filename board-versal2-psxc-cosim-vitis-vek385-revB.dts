@@ -1,0 +1,11 @@
+/*
+ * Vitis Versal VEK385 revB cosim board device tree
+ *
+ * Copyright (C) 2025 Advanced Micro Devices, Inc. All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+#include "board-versal2-psxc-vek385-revB.dts"
+#include "versal2-pl-remoteport.dtsi"
+#include "versal-vitis.dtsi"
