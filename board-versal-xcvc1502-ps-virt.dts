@@ -12,5 +12,5 @@
 #include "versal-silicon-freq.dtsi"
 
 &pmc_tap {
-	idcode = <0x04C98093>;
+	idcode = <0x04C9B093>;
 };
