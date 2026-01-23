@@ -1,0 +1,48 @@
+/*
+ * Versal Premium Gen 2 series device XC2VP3522 MOP virtual board dts
+ *
+ * Copyright (C) 2026 Advanced Micro Devices, Inc. All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+#include "board-versal2-xc2vp3502-ps-virt.dts"
+
+/{
+    hbmmc_0_mem: memory@MM_TOP_HBM0 {
+        compatible = "qemu:memory-region";
+        device_type = "memory";
+        container = <&amba>;
+    };
+
+    MEM_REGION64(hbmmc_bnk0, MM_TOP_HBM0_H, MM_TOP_HBM0_L, MM_TOP_HBM0,
+                 0x2, 0x0, &hbmmc_0_mem) // 8 GB
+
+    hbmmc_1_mem: memory@MM_TOP_HBM1 {
+        compatible = "qemu:memory-region";
+        device_type = "memory";
+        container = <&amba>;
+    };
+
+    MEM_REGION64(hbmmc_bnk1, MM_TOP_HBM1_H, MM_TOP_HBM1_L, MM_TOP_HBM1,
+                 0x2, 0x0, &hbmmc_0_mem) // 8 GB
+
+    hbmmc_2_mem: memory@MM_TOP_HBM2 {
+        compatible = "qemu:memory-region";
+        device_type = "memory";
+        container = <&amba>;
+    };
+
+    MEM_REGION64(hbmmc_bnk2, MM_TOP_HBM2_H, MM_TOP_HBM2_L, MM_TOP_HBM2,
+                 0x2, 0x0, &hbmmc_0_mem) // 8 GB
+
+    hbmmc_3_mem: memory@MM_TOP_HBM3 {
+        compatible = "qemu:memory-region";
+        device_type = "memory";
+        container = <&amba>;
+    };
+
+    MEM_REGION64(hbmmc_bnk3, MM_TOP_HBM3_H, MM_TOP_HBM3_L, MM_TOP_HBM3,
+                 0x2, 0x0, &hbmmc_0_mem) // 8 GB
+
+};
