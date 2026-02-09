@@ -1,0 +1,11 @@
+/*
+* Versal Gen 2 VEK385-revB cosim board
+*
+* Copyright (c) 2026 Advanced Micro Devices, Inc.
+* All rights reserved.
+*
+* SPDX-License-Identifier: BSD-3-Clause
+*/
+
+#include "board-versal2-psxc-vek385-revB.dts"
+#include "versal2-pl-remoteport.dtsi"
