@@ -213,6 +213,8 @@ name: name@addr64 {														\
  #include "include/versal-net/memmap.dtsh"
  #include "include/versal-net/gic-memmap.dtsh"
  #include "versal-psx-memmap-aliases.dtsh"
+#elif defined(VERSAL2_XC2VP3202)
+ #include "versal2-xc2vp3202-memmap.dtsh"
 #else
  #include "versal-top-memmap.dtsh"
  #include "versal-fpd-memmap.dtsh"

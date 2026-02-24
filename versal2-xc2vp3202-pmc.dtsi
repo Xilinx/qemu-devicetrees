@@ -1,0 +1,52 @@
+/*
+ * Versal Gen 2 xc2vp3202 PMC configuration
+ *
+ * Copyright Advanced Micro Devices, Inc.
+ *
+ * SPDX-License-Identifier: GPL-2.0-or-later
+ */
+
+&pmc_dma0_src {
+	byte-align = <1>;
+};
+
+&pmc_dma0_dst {
+	byte-align = <1>;
+};
+
+&pmc_dma1_src {
+	byte-align = <1>;
+};
+
+&pmc_dma1_dst {
+	byte-align = <1>;
+};
+
+&pmc_stream_switch {
+	stream-connected-sha1 = <&pmc_sha2>;
+	multi-cast-off = <0>;
+};
+
+&amba_pmc_sec {
+	pmc_sha2: pmc_sha1@MM_PMC_SHA2 {
+		doc-status = "complete";
+		compatible = "xlnx,asu_sha2_v2.1";
+		reg = <0x0 MM_PMC_SHA2 0x0 MM_PMC_SHA2_SIZE 0x0>;
+	};
+};
+
+&pmc_sha3 {
+	compatible = "xlnx.pmc_sha3_v2.1";
+};
+
+&pmc_efuse {
+	compatible = "xlnx,pmx_efuse_ctrl";
+	mapping = <&efuse_mapping>;
+	efuse_mapping: efuse_mapping {
+		compatible = "xlnx.efuse-map-xc2vp3202";
+	};
+};
+
+&xlnx_pmc_efuse_cache {
+	compatible = "xlnx,pmx_efuse_cache";
+};

@@ -1,0 +1,28 @@
+/*
+ * Versal Gen 2 xc2vp3202 memmap
+ *
+ * Copy of versal-pmc-memmap with changes in RAM sizes.
+ *
+ * Copyright Advanced Micro Devices, Inc.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+#ifndef __VERSAL2_XC2VP3202_MEMMAP_DTSH__
+#define __VERSAL2_XC2VP3202_MEMMAP_DTSH__
+
+#include "versal2-xc2vp3202-pmc-memmap.dtsh"
+#include "versal-top-memmap.dtsh"
+#include "versal-fpd-memmap.dtsh"
+#include "versal-lpd-memmap.dtsh"
+#include "versal-iou-memmap.dtsh"
+#include "versal-psm-memmap.dtsh"
+#include "versal-gic-memmap.dtsh"
+
+#define MM_PMC_INTPMC_CONFIG MM_PMC_INTXC2VP3202_CONFIG
+#define MM_PMC_INTPMC_CONFIG_SIZE MM_PMC_INTXC2VP3202_CONFIG_SIZE
+#define MM_PMC_PMC_ANALOG MM_PMC_XC2VP3202_ANALOG
+#define MM_PMC_PMC_ANALOG_SIZE MM_PMC_XC2VP3202_ANALOG_SIZE
+#define MM_RPU_GIC	0xf9000000
+#define MM_RPU_GIC_SIZE	0x3000
+#endif
