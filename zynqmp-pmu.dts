@@ -143,7 +143,7 @@
 			reg = <BASE_ADDR(0xffd00000) 0x0 0x00008000 0x1>;
 			compatible = "qemu:memory-region";
 			container = <&lmb_pmu>;
-			qemu,ram = <1>;
+			qemu,ram = <QEMU_RAM_PROPERTY_INTERNAL>;
 			read-only;
 		};
 
