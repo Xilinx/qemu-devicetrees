@@ -53,8 +53,8 @@
 	arm,reset-cbar = <A9_SCU>;									\
 	mr = <&amba_apu>;										\
 	memory = <&amba_apu>;										\
-	gpios = <&crf n IS_MULTI_ARCH(&apu n &pmu_local p &pmu_local 0x8000001C &pmu_global 2)>;	\
-	gpio-names = "rst_cntrl" IS_MULTI_ARCH(LC "wfi" LC "pwr_cntrl" LC "pwr_cntrl" LC "rst_cntrl");
+	gpios = <&crf n IF_MULTI_ARCH(&apu n &pmu_local p &pmu_local 0x8000001C &pmu_global 2)>;	\
+	gpio-names = "rst_cntrl" IF_MULTI_ARCH(LC "wfi" LC "pwr_cntrl" LC "pwr_cntrl" LC "rst_cntrl");
 
 /*
  * When doing direct Linux boots, we expect the cores to start powered off
@@ -251,8 +251,8 @@ glue(glue(glue(tcm_mem_ctrl_, n), _), AB): glue(glue(tcm_mem_ctrl_, AB), n)@n {	
 			reg = <0>;
 			mr = <&amba_rpu0>;
 			memory = <&amba_rpu0>;
-			gpios = <&crl 0 &rpu_ctrl 0 &rpu_ctrl 5 IS_MULTI_ARCH(&rpu_ctrl 7 &pmu_local 9)>;
-			gpio-names = "reset", "ncpuhalt", "vinithi" IS_MULTI_ARCH(LC "wfi" LC "pwr_cntrl");
+			gpios = <&crl 0 &rpu_ctrl 0 &rpu_ctrl 5 IF_MULTI_ARCH(&rpu_ctrl 7 &pmu_local 9)>;
+			gpio-names = "reset", "ncpuhalt", "vinithi" IF_MULTI_ARCH(LC "wfi" LC "pwr_cntrl");
 			gdb-id = "Cortex-R5 #0";
 			memattr_ns = <&rpu0_memattr>;
 		};
@@ -261,8 +261,8 @@ glue(glue(glue(tcm_mem_ctrl_, n), _), AB): glue(glue(tcm_mem_ctrl_, AB), n)@n {	
 			reg = <1>;
 			mr = <&amba_rpu1>;
 			memory = <&amba_rpu1>;
-			gpios = <&crl 1 &rpu_ctrl 2 &rpu_ctrl 1 &rpu_ctrl 6 IS_MULTI_ARCH(&rpu_ctrl 8 &pmu_local 9)>;
-			gpio-names = "reset", "halt", "ncpuhalt", "vinithi" IS_MULTI_ARCH(LC "wfi" LC "pwr_cntrl");
+			gpios = <&crl 1 &rpu_ctrl 2 &rpu_ctrl 1 &rpu_ctrl 6 IF_MULTI_ARCH(&rpu_ctrl 8 &pmu_local 9)>;
+			gpio-names = "reset", "halt", "ncpuhalt", "vinithi" IF_MULTI_ARCH(LC "wfi" LC "pwr_cntrl");
 			gdb-id = "Cortex-R5 #1";
 			memattr_ns = <&rpu1_memattr>;
 		};
@@ -296,10 +296,10 @@ glue(glue(glue(tcm_mem_ctrl_, n), _), AB): glue(glue(tcm_mem_ctrl_, AB), n)@n {	
 			#interrupt-cells = <1>;
 		};
 
-		IS_MULTI_ARCH(APU_INTC_REDIRECT(0,4,0);)
-		IS_MULTI_ARCH(APU_INTC_REDIRECT(1,5,1);)
-		IS_MULTI_ARCH(APU_INTC_REDIRECT(2,6,2);)
-		IS_MULTI_ARCH(APU_INTC_REDIRECT(3,7,3);)
+		IF_MULTI_ARCH(APU_INTC_REDIRECT(0,4,0);)
+		IF_MULTI_ARCH(APU_INTC_REDIRECT(1,5,1);)
+		IF_MULTI_ARCH(APU_INTC_REDIRECT(2,6,2);)
+		IF_MULTI_ARCH(APU_INTC_REDIRECT(3,7,3);)
 
 	};
 
@@ -323,8 +323,8 @@ glue(glue(glue(tcm_mem_ctrl_, n), _), AB): glue(glue(tcm_mem_ctrl_, AB), n)@n {	
 					BASE_ADDR(ACPU_GIC_HYP) 0x20000 0
 					BASE_ADDR(ACPU_GIC_VCPU) 0x20000 0>;
 			interrupt-controller ;
-			IS_MULTI_ARCH(gpios = <&pmu_local 28 &pmu_global 2>;)
-			IS_MULTI_ARCH(gpio-names = "pwr_cntrl" LC "rst_cntrl";)
+			IF_MULTI_ARCH(gpios = <&pmu_local 28 &pmu_global 2>;)
+			IF_MULTI_ARCH(gpio-names = "pwr_cntrl" LC "rst_cntrl";)
 			num-irq = <192>;
 			interrupts-extended =
 #ifdef MULTI_ARCH

@@ -33,4 +33,10 @@
 #define xglue(a, b) a ## b
 #define glue(a, b) xglue(a, b)
 
+#ifdef MULTI_ARCH
+# define IF_MULTI_ARCH(a) a
+#else
+# define IF_MULTI_ARCH(a)
+#endif
+
 #endif

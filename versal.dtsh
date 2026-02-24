@@ -49,10 +49,8 @@
 
 /* QEMU RAM Settings */
 #if defined(MULTI_ARCH)
-	#define IS_MULTI_ARCH(a) a
 	#define QEMU_RAM_PROPERTY 2
 #else
-	#define IS_MULTI_ARCH(a)
 	#define QEMU_RAM_PROPERTY 1
 #endif
 
