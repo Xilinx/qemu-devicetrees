@@ -27,8 +27,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#define SECURE 1
-#define NON_SECURE 0
+#include "qemu-symbols.dtsh"
 
 #define MR_BACKGROUND(name)					\
 	downstream_ ## name {					\

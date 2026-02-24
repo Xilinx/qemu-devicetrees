@@ -1,0 +1,16 @@
+/*
+ * PMCL subsystem
+ *
+ * Copyright (c) 2025 Advanced Micro Devices, Inc.
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#ifndef _INCLUDE_SYMBOLS_DTSH
+#define _INCLUDE_SYMBOLS_DTSH
+
+/* Memory attribute secure/non-secure symbols */
+#define SECURE 1
+#define NON_SECURE 0
+
+#endif
