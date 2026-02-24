@@ -31,13 +31,7 @@
 #include "loader.dtsh"
 #include "zynqmp-irqs.dtsh"
 #include "zynqmp-memmap.dtsh"
-
-/* QEMU RAM Settings */
-#if defined(MULTI_ARCH)
-	#define QEMU_RAM_PROPERTY 2
-#else
-	#define QEMU_RAM_PROPERTY 1
-#endif
+#include "interconnect.dtsh"
 
 #define LC ,
 

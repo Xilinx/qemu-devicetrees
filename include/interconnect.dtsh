@@ -55,3 +55,10 @@ MEMATTR_SMID_NAME(NAME): NAME ## _ma_smid {			\
 	requester-id = <MASTERID>;				\
 }
 
+#ifndef QEMU_RAM_PROPERTY
+# ifdef MULTI_ARCH
+#  define QEMU_RAM_PROPERTY QEMU_RAM_PROPERTY_FILE
+# else
+#  define QEMU_RAM_PROPERTY QEMU_RAM_PROPERTY_INTERNAL
+# endif
+#endif

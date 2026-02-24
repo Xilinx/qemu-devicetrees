@@ -13,4 +13,9 @@
 #define SECURE 1
 #define NON_SECURE 0
 
+/* Memory region 'ram' property value */
+#define QEMU_RAM_PROPERTY_NOT_RAM 0
+#define QEMU_RAM_PROPERTY_INTERNAL 1 /* internally allocated by QEMU */
+#define QEMU_RAM_PROPERTY_FILE 2 /* mapped to a file */
+
 #endif

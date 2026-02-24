@@ -47,13 +47,6 @@
 #define PLATFORM_QEMU        0x3
 #define PLATFORM_QEMU_COSIM  0x7
 
-/* QEMU RAM Settings */
-#if defined(MULTI_ARCH)
-	#define QEMU_RAM_PROPERTY 2
-#else
-	#define QEMU_RAM_PROPERTY 1
-#endif
-
 #define VERSAL_MARK_SE			\
 &xlnx_efuse {				\
 	init-factory-extidcode = <0x3>;	\

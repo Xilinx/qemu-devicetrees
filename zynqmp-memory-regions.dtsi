@@ -29,16 +29,6 @@
 
 #include "zynqmp.dtsh"
 
-#define SECURE 1
-#define NON_SECURE 0
-
-#define MEMATTR(NAME, SEC, MASTERID)			\
-NAME ## _memattr: NAME ## _ma {				\
-	compatible = "qemu:memory-transaction-attr";	\
-	secure = <SEC>;					\
-	requester-id = <MASTERID>;			\
-}
-
 / {
 	MEMATTR(pmu, SECURE, 0x40);
 
