@@ -1,0 +1,10 @@
+/*
+ * Versal premium series Gen 2 VPK360 cosim vitis device tree
+ *
+ * Copyright Advanced Micro Devices, Inc.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+#include "board-versal2-ps-cosim-vpk360.dts"
+#include "versal-vitis.dtsi"
