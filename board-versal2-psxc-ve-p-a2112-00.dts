@@ -22,12 +22,12 @@
         MEM_REGION(ddr, 0x0, MM_TOP_DDR, 0x00000000, 0x80000000,
                    &ddr_mem)
         /* 6GB mapped at 0x8_0000_0000.  */
-        MEM_REGION64(ddr_2, 0x8, 0x00000000, 0x800000000, 0x1, 0x80000000,
+        MEM_REGION64_DDR(ddr_2, 0x8, 0x00000000, 0x800000000, 0x1, 0x80000000,
                      &ddr_2_mem)
         /* 16GB more can be mapped.  */
-        MEM_REGION64(ddr_udimm_0, 0x9, 0x00000000, 0x900000000,
+        MEM_REGION64_DDR(ddr_udimm_0, 0x9, 0x00000000, 0x900000000,
                  0x1, 0x00000000, &ddr_2_mem)
-        MEM_REGION64(ddr_udimm_1, 0xC, 0x0, 0xC00000000, 0x4, 0x0, &ddr_2_mem)
+        MEM_REGION64_DDR(ddr_udimm_1, 0xC, 0x0, 0xC00000000, 0x4, 0x0, &ddr_2_mem)
 };
 
 /* I2C_MAIN_BUS.  */
