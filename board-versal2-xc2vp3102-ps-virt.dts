@@ -1,0 +1,13 @@
+/*
+ * Versal Gen 2 premium series device xc2vp3102 virtual board dts
+ *
+ * Copyright Advanced Micro Devices, Inc.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+#include "board-versal2-xc2vp3202-ps-virt.dts"
+
+&pmc_tap {
+  idcode = <0x04C69093>;
+};
