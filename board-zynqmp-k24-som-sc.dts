@@ -1,0 +1,56 @@
+/*
+ * ZynqMP K24 SOM based system controller
+ *
+ * Copyright (C) Advanced Micro Devices, Inc.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ *
+ */
+
+#include "board-zynqmp-k24-som.dts"
+
+/ {
+	model = "ZynqMP SC K24 RevA";
+	compatible = "xlnx,zynqmp-sc-k24-revA", "xlnx,zynqmp-sc-k24", "xlnx,zynqmp";
+};
+
+&i2c1 {
+	i2c-arbitrator@72 {
+		#address-cells = <1>;
+		#size-cells = <0>;
+		compatible = "nxp,pca9541";
+		reg = <0x72>;
+		i2c@0 {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			reg = <0>;
+			eeprom@54 {
+				compatible = "m24cxx";
+				size = <0x4000>;
+				reg = <0x54>;
+				blockdev-node-name = "i2c1.eeprom-54";
+			};
+		};
+	};
+};
+
+&mdio0 {
+	/delete-node/ phy@7;
+	phy0: phy@1 {
+		compatible = "dp83867";
+		device_type = "ethernet-phy";
+		reg = <1>;
+	};
+};
+
+&gem1 {
+	mdio = <&mdio0>;
+};
+
+&ps7_uart_1 {
+	status = "okay";
+};
+
+&ddrphy_0 {
+	kria-sc-ddr-phy = <1>;
+};
