@@ -1,0 +1,11 @@
+/*
+ * Versal VEK386 cosim board device tree
+ *
+ * Copyright Advanced Micro Devices, Inc.
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+#include "board-versal2-psxc-vek386.dts"
+#include "versal2-pl-remoteport.dtsi"

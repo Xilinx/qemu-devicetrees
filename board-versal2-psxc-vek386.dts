@@ -1,0 +1,14 @@
+/*
+ * Versal VEK386 board device tree
+ *
+ * Copyright Advanced Micro Devices, Inc.
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+/*
+ * VEK386 is a clone of VEK385 except it uses xc2ve3858 in a different package.
+ */
+
+#include "board-versal2-psxc-vek385-revB.dts"
