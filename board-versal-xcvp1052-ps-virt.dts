@@ -28,3 +28,21 @@
 &pmc_tap {
 	idcode = <0x04C18093>;
 };
+
+&amba_pmc_pl {
+	bfr_0: bfr_0@MM_NPI_BFR_0 {
+		compatible = "xlnx,noc-npi-dev";
+		reg = <0x0 MM_NPI_BFR_0 0x0 MM_NPI_BFR_0_SIZE 0x1>;
+		map-size = <MM_NPI_BFR_0_SIZE>;
+		custom = <1>;
+		pcsr-status = <0x18000D6>;
+	};
+
+	bfr_1: bfr_1@MM_NPI_BFR_1 {
+		compatible = "xlnx,noc-npi-dev";
+		reg = <0x0 MM_NPI_BFR_1 0x0 MM_NPI_BFR_1_SIZE 0x1>;
+		map-size = <MM_NPI_BFR_1_SIZE>;
+		custom = <1>;
+		pcsr-status = <0x18000D6>;
+	};
+};
