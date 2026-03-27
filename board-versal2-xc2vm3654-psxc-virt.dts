@@ -17,3 +17,8 @@
 &pmc_tap {
     idcode = <0x04D98093>;
 };
+
+/* MMI PCSR status override for xc2vm3654 device variant */
+&mmi_pcsr {
+    pcsr-status = <0xB16>;
+};
