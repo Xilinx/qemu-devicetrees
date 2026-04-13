@@ -65,6 +65,14 @@
 		reg = <0x0 MM_ASU_ECC 0x0 MM_ASU_ECC_SIZE 0x0>;
 		interrupts = <IRQ_ASU_ECC>;
 	};
+	asu_ram_instr_ecc_ctrl: asu_ram_instr_ecc_ctrl@MM_ASU_RAM_INSTR_ECC_CTRL {
+		compatible = "amd.rv_ram_ecc_ctrl";
+		reg = <0x0 MM_ASU_RAM_INSTR_ECC_CTRL 0x0 MM_ASU_RAM_INSTR_ECC_CTRL_SIZE 0x0>;
+	};
+	asu_ram_data_ecc_ctrl: asu_ram_data_ecc_ctrl@MM_ASU_RAM_DATA_ECC_CTRL {
+		compatible = "amd.rv_ram_ecc_ctrl";
+		reg = <0x0 MM_ASU_RAM_DATA_ECC_CTRL 0x0 MM_ASU_RAM_DATA_ECC_CTRL_SIZE 0x0>;
+	};
 };
 
 /* ASU-AES connectivity to other devices */
