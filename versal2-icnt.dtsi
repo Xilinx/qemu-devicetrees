@@ -23,6 +23,7 @@
 			compatible = "simple-bus";
 			ranges;
 			MR_BACKGROUND(amba);
+			MR_BACKGROUND(amba_asu);
 		};
 		amba_lpd: amba_lpd@0 {
 			MR_BACKGROUND(amba_asu);
