@@ -7,6 +7,8 @@
  */
 
 #include "board-versal2-xc2vp3602-ps-virt.dts"
+#include "versal-cpm5-memmap.dtsh"
+#include "versal-cpm5.dtsi"
 
 /* This board has 20GB of DDR5 RAM */
 / {
@@ -92,5 +94,5 @@
 
 /* OSPI memories: one 2Gbit Octal SPI Flash Memory should be used.  */
 &ospi {
-    DI_SPI_FLASH(0, ospi_flash, "mt35xu02gbba", 0x10000000, 0x0 0x0)
+    DI_SPI_FLASH(4, ospi_flash, "mt35xu02gbba", 0x10000000, 0x0 0x0)
 };
