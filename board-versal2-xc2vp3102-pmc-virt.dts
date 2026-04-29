@@ -1,9 +1,0 @@
-/*
- * Versal Gen 2 xc2vp3102 PMC board device tree.
- *
- * Copyright Advanced Micro Devices, Inc.
- *
- * SPDX-License-Identifier: BSD-3-Clause
- */
-
-#include "board-versal2-xc2vp3202-pmc-virt.dts"
