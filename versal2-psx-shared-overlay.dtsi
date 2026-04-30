@@ -212,6 +212,34 @@
         &lpd_slcr 104
         &lpd_slcr 105
 #endif
+
+#if PSX_APU_NUM_CLUSTERS < 4
+        &dummy1 0 &dummy1 0
+        &dummy1 0 &dummy1 0
+#if PSX_APU_NUM_CLUSTERS < 2
+        &dummy1 0 &dummy1 0
+#endif
+#endif
+
+#if NUM_APUS < 8
+        &dummy1 0 &dummy1 0
+        &dummy1 0 &dummy1 0
+        &dummy1 0 &dummy1 0
+        &dummy1 0 &dummy1 0
+#endif
+
+        &dummy1 0 &dummy1 0 &dummy1 0 &dummy1 0
+        &dummy1 0 &dummy1 0 &dummy1 0 &dummy1 0
+        &dummy1 0 &dummy1 0 &dummy1 0 &dummy1 0
+        &dummy1 0 &dummy1 0 &dummy1 0 &dummy1 0
+
+        /* core 0-7 GIC wakeup request */
+        &gic 0 &gic 1 &dummy1 0 &dummy1 0
+        &gic 2 &gic 3 &dummy1 0 &dummy1 0
+#if NUM_APUS == 8
+        &gic 4 &gic 5 &dummy1 0 &dummy1 0
+        &gic 6 &gic 7 &dummy1 0 &dummy1 0
+#endif
     >;
 
     /* P-Channel interface */

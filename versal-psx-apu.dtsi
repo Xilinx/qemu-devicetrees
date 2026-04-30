@@ -165,6 +165,8 @@
 			#address-cells = <0>;
 			#size-cells = <0>;
 			#interrupt-cells = <3>;
+			gpio-controller;
+			#gpio-cells = <1>;
 
 			compatible = "arm-gicv3";
 			reg = < 0x0 ACPU_GIC_DIST 0x0 0x10000 0
