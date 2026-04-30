@@ -375,6 +375,7 @@
 			redist-region-count = <NUM_APUS>;
 			has-lpi = < 1 >;
 			sysmem = <&amba>;
+			reset-gpios = <&crf 16>;
 		};
 
 		git_its@MM_APU_GIC_ITS0 {
