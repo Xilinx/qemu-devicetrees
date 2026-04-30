@@ -31,9 +31,6 @@
 #include "versal.dtsh"
 #include "smmuv2.dtsh"
 
-#define MM_FPD_CMN			0xa0000000
-#define MM_FPD_CMN_SIZE			0x03000000
-
 #define CRL_RST_RPU_A_0 35
 #define CRL_RST_RPU_A_1 36
 #define CRL_RST_RPU_B_0 37
@@ -126,9 +123,9 @@
 	 */
 	/delete-node/ cci_reg@MM_FPD_FPD_GPCCI;
 	/delete-node/ cci500@MM_FPD_FPD_MAINCCI;
-	cmn600ae@MM_FPD_CMN {
+	cmn600ae@MM_TOP_PS_FPD_CMN {
 		compatible = "arm,cmn600ae";
-		reg = <0x0 MM_FPD_CMN 0x0 MM_FPD_CMN_SIZE 0x0>;
+		reg = <0x0 MM_TOP_PS_FPD_CMN 0x0 MM_TOP_PS_FPD_CMN_SIZE 0x0>;
 	};
 
 	smmu: smmuv3@MM_FPD_SMMU {
