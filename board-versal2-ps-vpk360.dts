@@ -7,8 +7,6 @@
  */
 
 #include "board-versal2-xc2vp3602-ps-virt.dts"
-#include "versal-cpm5-memmap.dtsh"
-#include "versal-cpm5.dtsi"
 
 /* This board has 20GB of DDR5 RAM */
 / {
