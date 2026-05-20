@@ -12,7 +12,7 @@
 	#size-cells = <2>;
 	#priority-cells = <1>;
 
-	MEMATTR(asu_cpu, NON_SECURE, 0x0);
+	MEMATTR(asu_cpu, SECURE, SMID_ASU_RISC_V);
 
 	amba_root: amba_root@0 {
 		amba_asu_cpu: amba_asu_cpu@0 {
