@@ -68,6 +68,13 @@
 	};
 };
 
+&pmc_i2c {
+    pmc_i2c_tps: tps6598x@0 {
+        compatible = "tps6598x";
+        reg = <0x22>;
+    };
+};
+
 /* No SPI nor QSPI have any memories mapped.  */
 &spi0 {
 	/delete-node/ spi0_flash0@0;
