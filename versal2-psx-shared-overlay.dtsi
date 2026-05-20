@@ -307,3 +307,11 @@
 	};
 };
 #endif
+
+/* master-id reset values for ASU/PPU1 */
+&ipi {
+	master-id0 = <0xa3ff024c>;
+	master-id0-ro = <0x63ff024c>;
+	master-id1 = <0xa3ff0249>;
+	master-id1-ro = <0x63ff0249>;
+};
