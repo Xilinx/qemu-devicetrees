@@ -58,8 +58,9 @@
 };
 
 /*
- * FIXME: There is no information about SPI, QSPI, OSPI in the board manual
- * yet, so use the same layout as VEK385 for now.
+ * As per the spec VE-P-A2112-00 shall support all Versal Gen 2 boot modes
+ * and devices via MIO daughter cards. So, remove SPI, QSPI and OSPI flashes
+ * from main board.
  */
 
 /* No SPI nor QSPI have any memories mapped.  */
@@ -84,9 +85,4 @@
        /delete-node/ ospi_flash_lcs_ub@0;
        /delete-node/ ospi_flash_ucs_lb@0;
        /delete-node/ ospi_flash_ucs_ub@0;
-};
-
-/* OSPI memories: one 2Gbit Octal SPI Flash Memory should be used.  */
-&ospi {
-        DI_SPI_FLASH(0, ospi_flash, "mt35xu02gbba", 0x10000000, 0x0 0x0)
 };

@@ -1,0 +1,19 @@
+/*
+ * X-PRC-10 Daughter Card for VE-P-A2112-00 board
+ *
+ * Copyright Advanced Micro Devices, Inc.
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+/*
+ * Supported boot modes: QSPI, EMMC, SD.
+ * QSPI : MT25QU01GBBB Stacked
+ */
+#include "board-versal2-psxc-ve-p-a2112-00.dts"
+
+&pmc_qspi_0 {
+    DI_SPI_FLASH(0, qspi_flash_lcs_lb, "mt25qu01g", 0x08000000, 0x0 0x0)
+    DI_SPI_FLASH(1, qspi_flash_lcs_ub, "mt25qu01g", 0x08000000, 0x2 0x1)
+    DI_SPI_FLASH(2, qspi_flash_ucs_lb, "mt25qu01g", 0x08000000, 0x1 0x0)
+    DI_SPI_FLASH(3, qspi_flash_ucs_ub, "mt25qu01g", 0x08000000, 0x3 0x1)
+};
