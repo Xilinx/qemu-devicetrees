@@ -553,6 +553,7 @@ glue(glue(glue(tcm_mem_ctrl_, n), _), AB): glue(glue(tcm_mem_ctrl_, AB), n)@n {	
 			interrupt-controller ;
 			num-irq = <256>;
 			num-cpu = <2>;
+			first-cpu-index = <4>;
 			interrupts-extended =
 #ifdef MULTI_ARCH
 				<&rpu_intc_redirect_0 0>,
