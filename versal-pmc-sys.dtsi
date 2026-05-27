@@ -109,7 +109,7 @@
 		tamper-sink = <&pmc_global>;
 	};
 	pmc_sysmon: pmc_sysmon@MM_PMC_PMC_SYSMON {
-		compatible = "xlnx,pmc-sysmon";
+		compatible = "xlnx-pmc-sysmon";
 		reg = <0x0 MM_PMC_PMC_SYSMON 0x0 MM_PMC_PMC_SYSMON_SIZE 0x0>;
 		interrupts = <SYSMON_IRQ_0
 			      SYSMON_IRQ_1>;
