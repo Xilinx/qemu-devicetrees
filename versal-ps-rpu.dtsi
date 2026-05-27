@@ -81,6 +81,7 @@
 			interrupt-controller ;
 			num-irq = <256>;
 			num-cpu = <2>;
+			first-cpu-index = <NUM_APUS>;
 			interrupts-extended =
 				<&glue(RPU_GIC_INTERRUPT_TARGET_STEM, 0) 0>,
 				<&glue(RPU_GIC_INTERRUPT_TARGET_STEM, 1) 0>;
