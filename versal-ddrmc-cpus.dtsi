@@ -65,6 +65,7 @@
 		xlnx,use-pcmp-instr = <0x1>;			\
 		xlnx,use-stack-protection = <0x1>;		\
 		xlnx,addr-size= <52>;				\
+		xlnx,endianness = <1>;				\
 		mr = <&lmb_ddrmc ## X>;				\
 		memory = <&lmb_ddrmc ## X>;			\
 		memattr = <&ddrmc_ub ## X ## _memattr>;		\
