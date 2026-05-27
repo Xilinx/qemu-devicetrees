@@ -690,7 +690,7 @@ glue(ocm_mem_ctrl_, n): glue(ocm_mem_ctrl_, n)@n {						\
 		};
 
 		zynqmp_boot: zynqmp_boot@0 {
-			compatible = "xlnx,zynqmp-boot";
+			compatible = "xlnx-zynqmp-boot";
 			dma = <&amba>;
 #ifdef MULTI_ARCH
 			gpios = <&pmu_local 0>;
