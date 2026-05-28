@@ -1,7 +1,7 @@
 /*
- * PMCL subsystem
+ * QEMU symbols binding
  *
- * Copyright (c) 2025 Advanced Micro Devices, Inc.
+ * Copyright (c) 2025-2026 Advanced Micro Devices, Inc.
  *
  * SPDX-License-Identifier: MIT
  */
@@ -17,5 +17,10 @@
 #define QEMU_RAM_PROPERTY_NOT_RAM 0
 #define QEMU_RAM_PROPERTY_INTERNAL 1 /* internally allocated by QEMU */
 #define QEMU_RAM_PROPERTY_FILE 2 /* mapped to a file */
+
+/* EndianMode QAPI definition */
+#define QEMU_ENDIAN_MODE_UNSPECIFIED "unspecified"
+#define QEMU_ENDIAN_MODE_LITTLE "little"
+#define QEMU_ENDIAN_MODE_BIG "big"
 
 #endif
