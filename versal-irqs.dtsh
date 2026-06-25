@@ -30,7 +30,7 @@
 /* Include the auto-generated stuff.  */
 #ifdef VERSAL2_DEV
 #include "versal2-psxc-irqs.dtsh"
-#include "include/versal2/irq-aliases.dtsh"
+#include "include/versal2/2ve/irq-aliases.dtsh"
 #include "versal2-asu-irqs.dtsh"
 #elif defined(VERSAL_NET)
 #include "versal-psx-irqs.dtsh"
