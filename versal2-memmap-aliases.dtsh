@@ -7,10 +7,14 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
+#ifdef MM_OCM2_XMPU
 #define MM_XRAM_XMPU MM_OCM2_XMPU
 #define MM_XRAM_XMPU_SIZE MM_OCM2_XMPU_SIZE
+#endif
+#ifdef MM_OCM2_MEM
 #define MM_XRAM_MEM MM_OCM2_MEM
 #define MM_XRAM_MEM_SIZE MM_OCM2_MEM_SIZE
+#endif
 #define MM_FPD_APU_PCLI MM_FPD_APU_PCIL
 #define MM_FPD_APU_PCLI_SIZE MM_FPD_APU_PCIL_SIZE
 

@@ -124,12 +124,14 @@
 			reg = <0x0 MM_MMI_UDH_PLL 0x0 MM_MMI_UDH_PLL_SIZE 0>;
 		};
 
+#ifdef MM_MMI_GPU_A
 		mmi_gpu_a: mmi_gpu_a@0 {
 			compatible = "qemu:memory-region";
 			qemu,ram = <QEMU_RAM_PROPERTY>;
 			reg = <0x0 (MM_MMI_GPU_A + 0xA0098) 0x0 0x10 0x0>;
 			read-only;
 		};
+#endif
 
 		mmi_pcie0_ctrl_dsp: mmi_pcie0_ctrl_dsp@0 {
 			compatible = "qemu:memory-region";
