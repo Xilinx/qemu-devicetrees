@@ -104,7 +104,7 @@
 		compatible = "xlnx,versal-ddrmc-xmpu";		\
 		reg-extended =	<							\
 			&amba_pmc_pl 0x0 (addr + offset) 0x0 0x10000 0x1	\
-			&amba 0x0 0x0 0x0 0x80000000 0x0		\
+			&amba 0x0 0x0 0x0 0x80000000 0x1		\
 		>;											\
 		protected-mr = <&ddr>;						\
 		mr-0 = <&amba>;								\
