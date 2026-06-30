@@ -201,4 +201,17 @@
 #include "zynqmp-pmu-dev.dtsi"
 #include "zynqmp-iou.dtsi"
 #include "zynqmp-csu.dtsi"
+
+&ps7_uart_0 {
+    chardev = "serial0";
+};
+
+&ps7_uart_1 {
+    chardev = "serial1";
+};
+
+&pmu_io_uart {
+    chardev = "serial2";
+};
+
 #endif
