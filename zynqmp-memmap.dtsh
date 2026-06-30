@@ -40,11 +40,15 @@ name: name@addr64 {														\
  * Do not change this macro without changing the QEMU code.
  */
 #define MEM_SPEC(name, addrH, addrL, addr64, sizeH, sizeL, c)			\
-name: name@addr64 {														\
-	compatible = "qemu:memory-region-spec";								\
-	container = <c>;													\
-	qemu,ram = <QEMU_RAM_PROPERTY>;										\
-	reg = <addrH addrL sizeH sizeL>;									\
+name ## _wrapper@addr64 {			    								\
+    #address-cells = <2>;                                               \
+    #size-cells = <2>;                                                  \
+    name: name@addr64 {                                                 \
+        compatible = "qemu:memory-region-spec";							\
+        container = <c>;												\
+        qemu,ram = <QEMU_RAM_PROPERTY>;									\
+        reg = <addrH addrL sizeH sizeL>;								\
+    };                                                                  \
 };
 
 /* Memory Map Definitions */
