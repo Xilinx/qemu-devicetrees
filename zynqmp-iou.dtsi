@@ -41,6 +41,7 @@ g_name: g_name@0 {		\
 	reg = <0x0 g_base g_size>;	\
 	num-priority-queues = <2>;	\
 	revision = <0x40070106>;	\
+	pcs-enabled = <1>;          \
 };
 
 /* SPI_FLASH : Helper macro for creating flash devices
