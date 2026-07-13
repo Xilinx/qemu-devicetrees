@@ -50,3 +50,7 @@
 &xlnx_pmc_efuse_cache {
 	compatible = "xlnx,pmx_efuse_cache";
 };
+
+&pmc_global {
+	compatible = "xlnx,pmx_global";
+};
