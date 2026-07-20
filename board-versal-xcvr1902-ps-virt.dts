@@ -1,0 +1,13 @@
+/*
+ * Versal AI RF series device xcvr1902 virtual board dts
+ *
+ * Copyright Advanced Micro Devices, Inc.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+#include "board-versal-xcvr1902p-ps-virt.dts"
+
+&pmc_tap {
+	idcode = <0x04CB1093>;
+};
