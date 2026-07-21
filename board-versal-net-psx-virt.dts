@@ -135,3 +135,7 @@ SET_CPU_FREQ(31, VERSAL_NET_APU_CPU_FREQ);
 	idcode = <0x14D80093>;
 	platform-ver = <0x5>;
 };
+
+&fpd_slcr {
+	compatible = "amd-fpx-slcr";
+};
