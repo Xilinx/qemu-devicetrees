@@ -1,0 +1,125 @@
+/*
+ * Spartan UltraScale+ xcsu200p board device tree
+ *
+ * Copyright Advanced Micro Devices, Inc.
+ *
+ * SPDX-License-Identifier: GPL-2.0-or-later
+ */
+
+
+/dts-v1/;
+
+#include "xcsu200p-spartanup-pmc-memmap.dtsh"
+#include "spartan-ultra-plus/irq-map.dtsh"
+
+#define SPARTANUP_PMC_V2
+
+/ {
+	spartanup_pmc_amba: spartanup_pmc_amba {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		#priority-cells = <1>;
+		compatible = "simple-bus";
+		ranges;
+	};
+
+	spartanup_pmc_dma_root: pmc_dma_root {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		#priority-cells = <1>;
+		compatible = "simple-bus";
+	};
+};
+
+#include "spartanup-pmc/periphs.dtsi"
+
+/ {
+	amba_pl: amba_pl {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		compatible = "simple-bus";
+		interrupt-parent = <&microblaze_riscv_0_axi_intc>;
+		ranges;
+
+		pl_iram: pl_iram@c0000000 {
+			compatible = "qemu:memory-region";
+			device_type = "memory";
+			qemu,ram = <QEMU_RAM_PROPERTY>;
+			reg = <0x0 0xc0000000 0x0 0x10000 0x00>;
+		};
+
+		pl_dram: pl_dram@c0010000 {
+			compatible = "qemu:memory-region";
+			device_type = "memory";
+			qemu,ram = <QEMU_RAM_PROPERTY>;
+			reg = <0x0 0xc0010000 0x0 0x10000 0x00>;
+		};
+
+		microblaze_riscv_0_axi_intc: interrupt-controller@41200000 {
+			compatible = "xlnx.xps-intc";
+			interrupt-controller;
+			#interrupt-cells = <2>;
+			reg = <0x0 0x41200000 0x0 0x10000 0x0>;
+		};
+
+		axi_uartlite_0: serial@40600000 {
+			compatible = "xlnx,xps-uartlite";
+			reg = <0x0 0x40600000 0x0 0x10000 0x0>;
+			chardev = "serial0";
+		};
+
+		axi_timer_0: timer@41c00000 {
+			compatible = "xlnx.xps-timer";
+			reg = <0x0 0x41c00000 0x0 0x10000 0x0>;
+			clock-frequency = <100000000>;
+		};
+
+	};
+
+	pl_cpu_lmb: pl_cpu_lmb {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		#priority-cells = <1>;
+		compatible = "simple-bus";
+		ranges;
+
+		MR_BACKGROUND(amba_pl);
+		MR_BACKGROUND(spartanup_pmc_amba);
+	};
+};
+
+/ {
+    cpus {
+        MEMATTR(pl_cpu, NON_SECURE, 0x0);
+        pl_cpu: cpu@1 {
+            device_type = "cpu";
+            reg = <0>;
+            status = "okay";
+            #interrupt-cells = <1>;
+            compatible = "microblaze-v-riscv-cpu";
+            riscv,isa = "rv32imac";
+            i = <1>;
+            m = <1>;
+            a = <1>;
+            c = <1>;
+            memory = <&pl_cpu_lmb>;
+            memattr = <&MEMATTR_NAME(pl_cpu)>;
+            resetvec = <0xc0000000> ;
+            gpios = <&global 6>;
+            gpio-names = "reset";
+        };
+    };
+};
+
+&spartanup_pmc_amba {
+	MR_BACKGROUND(amba_pl);
+};
+
+&spartanup_pmc_tap {
+    idcode = <0x04ea0093>;
+};
+
+&spartanup_pmc_dma_root {
+	MR_BACKGROUND(amba_pl);
+	MR_BACKGROUND(spartanup_pmc_amba);
+};
