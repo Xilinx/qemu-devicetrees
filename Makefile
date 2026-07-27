@@ -66,6 +66,7 @@ HEADER_FILES			+= $(wildcard include/*.dtsh)
 
 
 CPPFLAGS = -I. -Iinclude/ -Iinclude/versal-net -Iinclude/versal2/2ve/memmap
+CPPFLAGS += -Iinclude/spartan-ultra-plus/memmap/
 
 .PHONY:	all source
 

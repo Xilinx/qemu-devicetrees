@@ -1,0 +1,19 @@
+/*
+ * Spartan UltraScale+ IRQ map
+ *
+ * Copyright Advanced Micro Devices, Inc.
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#ifndef SPARTAN_ULTRA_PLUS_IRQ_MAP_DTSH
+#define SPARTAN_ULTRA_PLUS_IRQ_MAP_DTSH
+
+#define SPARTANUP_PMC_IRQ_AES_DONE         18
+#define SPARTANUP_PMC_IRQ_EFFUSE_IRQ       19
+#define SPARTANUP_PMC_IRQ_SHA_DONE         20
+#define SPARTANUP_PMC_IRQ_TRNG_IRQ         21
+#define SPARTANUP_PMC_IRQ_DEBUG_IRQ        23
+#define SPARTANUP_PMC_IRQ_DMA_DONE         25
+
+#endif

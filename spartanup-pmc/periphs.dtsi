@@ -1,0 +1,175 @@
+/*
+ * SPARTANUP_PMC subsystem - peripherals
+ *
+ * Copyright (c) 2025 Advanced Micro Devices, Inc.
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#ifndef SPARTANUP_PMC_PERIPHS_H
+#define SPARTANUP_PMC_PERIPHS_H
+
+#include "interconnect.dtsh"
+
+#define RV_IO_MOD(a) (MM_PMC_RV_IOMODULE | 0x ## a)
+
+/ {
+	MEMATTR(pmc_dma0, SECURE, 0x248);
+
+};
+
+&spartanup_pmc_amba {
+    #interrupt-cells = <1>;
+
+    spartanup_pmc_rom: spartanup_pmc_rom@MM_PMC_PMC_ROM {
+        compatible = "qemu:memory-region";
+        device_type = "memory";
+        qemu,ram = <QEMU_RAM_PROPERTY>;
+        reg = <0x0 MM_PMC_PMC_ROM 0x0 MM_PMC_PMC_ROM_SIZE 0x0>;
+    };
+
+    spartanup_pmc_ram: spartanup_pmc_ram@MM_PMC_RV_RAM {
+        compatible = "qemu:memory-region";
+        device_type = "memory";
+        qemu,ram = <QEMU_RAM_PROPERTY>;
+        reg = <0x0 MM_PMC_RV_RAM
+               0x0 MM_PMC_RV_RAM_SIZE 0x0>;
+    };
+
+#ifdef MM_PMC_PMC_GLOBAL
+    global: global@MM_PMC_PMC_GLOBAL {
+        compatible = "xlnx.spartanup-pmc_global";
+        reg = <0x0 MM_PMC_PMC_GLOBAL 0x0 MM_PMC_PMC_GLOBAL_SIZE 0x0>;
+        #gpio-cells = <1>;
+        gpio-controller;
+#ifdef MM_PMC_CCU_APB
+        gpios = <&ccu 0>, <&ccu 1>;
+        gpio-names = "init_b", "done_pin";
+#endif
+        stream-connected-dma0 = <&dma_dst>;
+        stream-connected-sha3 = <&sha3>;
+#ifdef MM_PMC_AES
+        stream-connected-aes = <&aes>;
+#endif
+    };
+
+#endif
+
+    dma_src: dma_src@MM_PMC_PMC_DMA0 {
+        compatible = "zynqmp,csu-dma";
+        reg = <0x0 MM_PMC_PMC_DMA0 0x0 0x800 0x0>;
+        stream-connected-dma0 = <&global>;
+        dma = <&spartanup_pmc_dma_root>;
+        memattr = <&pmc_dma0_memattr>;
+        dma-width = <16>;
+        interrupts = <SPARTANUP_PMC_IRQ_DMA_DONE>;
+    };
+
+    dma_dst: dma_dst@MM_PMC_PMC_DMA0 {
+        compatible = "zynqmp,csu-dma";
+        reg = <0x0 (MM_PMC_PMC_DMA0 + 0x800) 0x0 0x800 0x0>;
+        dma = <&spartanup_pmc_dma_root>;
+        memattr = <&pmc_dma0_memattr>;
+        dma-width = <16>;
+        is-dst = <1>;
+        interrupts = <SPARTANUP_PMC_IRQ_DMA_DONE>;
+    };
+
+#ifdef MM_PMC_AES
+    aes: aes@MM_PMC_AES {
+        doc-status = "in-progress";
+        #gpio-cells = <1>;
+        gpio-controller;
+        compatible = "xlnx,versal-aes";
+        stream-connected-aes = <&global>;
+        reg = <0x0 MM_PMC_AES 0x0 0x100 0x0>;
+        interrupts = <SPARTANUP_PMC_IRQ_AES_DONE>;
+        integrated-endianness-swap = < 1 >;
+
+        gpios = <&xlnx_aes 0 &xlnx_aes 1 &global 50 &global 51>;
+        gpio-names = "busy", "done", "efuse-key-lock", "family-key-lock";
+
+        aes-core = <&xlnx_aes>;
+
+        xlnx_aes: xlnx_aes@0 {
+            #gpio-cells = <1>;
+            compatible = "xlnx-aes";
+            gpios = <&aes 0>;
+            gpio-names = "reset";
+        };
+    };
+#endif
+
+    sha3: sha3@MM_PMC_SHA {
+        doc-status = "complete";
+#ifdef SPARTANUP_PMC_V2
+        compatible = "xlnx.spartanup-pmc_sha3_v2";
+#else
+        compatible = "xlnx.spartanup-pmc_sha3";
+#endif
+        reg = <0x0 MM_PMC_SHA 0x0 MM_PMC_SHA_SIZE 0x0>;
+        interrupts = <SPARTANUP_PMC_IRQ_SHA_DONE>;
+    };
+
+#ifdef MM_PMC_TRNG
+    trng: trng@MM_PMC_TRNG {
+        doc-status = "complete";
+        compatible = "xlnx,versal-trng";
+        reg = <0x0 MM_PMC_TRNG 0x0 MM_PMC_TRNG_SIZE 0x0>;
+        interrupts = <SPARTANUP_PMC_IRQ_TRNG_IRQ>;
+    };
+#endif
+
+    efuse: efuse@MM_PMC_EFUSE {
+        doc-status = "complete";
+        compatible = "xlnx.spartanup-pmc_efuse";
+        #gpio-cells = <2>;
+#ifdef MM_PMC_AES
+        zynqmp-aes-key-sink-efuses = <&aes>;
+#endif
+        reg = <0x0 MM_PMC_EFUSE 0x0 MM_PMC_EFUSE_SIZE 0x0>;
+        efuse = <&xlnx_efuse>;
+        interrupts = <SPARTANUP_PMC_IRQ_EFFUSE_IRQ>;
+
+        xlnx_efuse: xlnx_efuse@0 {
+            doc-ignore = <1>;
+            compatible = "xlnx,efuse";
+            efuse-nr = <1>;
+            efuse-size = <2048>;
+            init-factory-tbits = <1>;
+        };
+    };
+
+#ifdef MM_PMC_CCU_APB
+    ccu: ccu@MM_PMC_CCU_APB {
+        compatible = "xlnx.ccu_apb";
+        reg = <0x0 MM_PMC_CCU_APB 0x0 MM_PMC_CCU_APB_SIZE 0x0
+               0x0 MM_PMC_CCU_RD_STREAM 0x0 MM_PMC_CCU_RD_STREAM_SIZE 0x0
+               0x0 MM_PMC_CCU_WR_STREAM 0x0 MM_PMC_CCU_WR_STREAM_SIZE 0x0>;
+        chardev-ccu = "spartanup-pmc-ccu";
+        gpio-controller;
+        #gpio-cells = <1>;
+        gpios = <&global 1>;
+    };
+#endif
+
+#ifdef MM_PMC_PMC_TAP
+    spartanup_pmc_tap: tap@MM_PMC_PMC_TAP {
+        doc-status = "complete";
+        doc-comments = "Just a stub.";
+        compatible = "xlnx.spartanup-pmc_tap";
+        reg = <0x0 MM_PMC_PMC_TAP 0x0 MM_PMC_PMC_TAP_SIZE 0x0>;
+        interrupts = <SPARTANUP_PMC_IRQ_DEBUG_IRQ>;
+    };
+#endif
+
+#ifdef MM_PMC_RSA
+	rsa: rsa@MM_PMC_RSA {
+		doc-status = "complete";
+		compatible = "xlnx,versal-ecdsa-rsa";
+		reg = < 0x0 MM_PMC_RSA 0x0 MM_PMC_RSA_SIZE 0x0>;
+	};
+#endif
+};
+
+#endif
