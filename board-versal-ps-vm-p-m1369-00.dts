@@ -47,10 +47,12 @@
 
 /* QSPI memories: U1760, U1761 are MT25QU01 (256Mx4bits) and respectively
  * mapped on QSPI0 and QSPI1, replace the regular ps-virt flashes by the
- * correct chips.  */
+ * correct chips.  This is refered to Dual-Parallel mode in am011, two chips
+ * wired on 2x QSPI buses with 2 CS_b signals.  Note that the register field
+ * below doesn't fit the real hardware since only two CS_b signals exist.  */
 &pmc_qspi_0 {
 	DI_SPI_FLASH(0, qspi_flash_lcs_lb, "mt25qu01g", 0x20000, 0x0 0x0)
-	DI_SPI_FLASH(1, qspi_flash_lcs_ub, "mt25qu01g", 0x20000, 0x0 0x1)
+	DI_SPI_FLASH(1, qspi_flash_ucs_ub, "mt25qu01g", 0x20000, 0x3 0x1)
 };
 
 /* The I2C buses are highly configurable through jumpers on the board:
