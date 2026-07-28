@@ -556,11 +556,33 @@ glue(glue(glue(tcm_mem_ctrl_, n), _), AB): glue(glue(tcm_mem_ctrl_, AB), n)@n {	
 			interrupts-extended =
 #ifdef MULTI_ARCH
 				<&rpu_intc_redirect_0 0>,
-				<&rpu_intc_redirect_1 0>;
+				<&rpu_intc_redirect_1 0>,
 #else
 				<&rpu_cpu0 0>,
-				<&rpu_cpu1 0>;
+				<&rpu_cpu1 0>,
 #endif
+				<&dummy 0>,
+				<&dummy 0>,
+				<&dummy 0>,
+				<&dummy 0>,
+				<&dummy 0>,
+				<&dummy 0>,
+				<&dummy 0>,
+				<&dummy 0>,
+				<&dummy 0>,
+				<&dummy 0>,
+				<&dummy 0>,
+				<&dummy 0>,
+				<&dummy 0>,
+				<&dummy 0>,
+#ifdef MULTI_ARCH
+				<&rpu_intc_redirect_0 1>,
+				<&rpu_intc_redirect_1 1>;
+#else
+				<&rpu_cpu0 1>,
+				<&rpu_cpu1 1>;
+#endif
+			has-security-extensions = <1>;
 		};
 	};
 
