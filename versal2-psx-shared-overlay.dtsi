@@ -41,10 +41,14 @@
 &amba_lpd {
 	CREATE_OCM_CTRL(1, MM_PSX_OCM1_REGS, MM_PSX_OCM1_REGS_SIZE,
 			MM_OCM1_MEM_SIZE);
+#ifdef MM_PSX_OCM2_REGS
 	CREATE_OCM_CTRL(2, MM_PSX_OCM2_REGS, MM_PSX_OCM2_REGS_SIZE,
 			MM_OCM2_MEM_SIZE);
+#endif
+#ifdef MM_PSX_OCM3_REGS
 	CREATE_OCM_CTRL(3, MM_PSX_OCM3_REGS, MM_PSX_OCM3_REGS_SIZE,
 			MM_OCM3_MEM_SIZE);
+#endif
 };
 
 &amba_lpd {
@@ -275,6 +279,7 @@
 		mr-0 = <&amba>;
 		protected-base = <MM_OCM1_MEM>;
 	};
+#ifdef MM_OCM2_XMPU
 	xmpu_ocm2: xmpu_ocm2@0 {
 		compatible = "xlnx,versal-xmpu";
 		interrupts = <XMPU_OCM_IRQ_0>;
@@ -286,6 +291,8 @@
 		mr-0 = <&amba>;
 		protected-base = <MM_OCM2_MEM>;
 	};
+#endif
+#ifdef MM_OCM3_XMPU
 	xmpu_ocm3: xmpu_ocm3@0 {
 		compatible = "xlnx,versal-xmpu";
 		interrupts = <XMPU_OCM_IRQ_0>;
@@ -297,6 +304,7 @@
 		mr-0 = <&amba>;
 		protected-base = <MM_OCM3_MEM>;
 	};
+#endif
 };
 
 #ifdef MM_NPI_AIE2P_S_NPI_0

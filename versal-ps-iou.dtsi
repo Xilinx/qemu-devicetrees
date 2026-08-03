@@ -162,10 +162,12 @@ zname: dma-controller@zbase {							\
 		reg = <0x0 MM_FPD_FPD_AFIFM0 0x0 MM_FPD_FPD_AFIFM0_SIZE 0x0>;
 	};
 
+#ifdef MM_FPD_FPD_AFIFM2
 	afi_fm@MM_FPD_FPD_AFIFM2 {
 		compatible = "xlnx,versal-afi-fm";
 		reg = <0x0 MM_FPD_FPD_AFIFM2 0x0 MM_FPD_FPD_AFIFM2_SIZE 0x0>;
 	};
+#endif
 
 #ifdef MM_FPD_FPD_GPCCI
 	cci_reg@MM_FPD_FPD_GPCCI {

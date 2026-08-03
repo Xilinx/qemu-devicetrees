@@ -1,0 +1,23 @@
+/*
+ * Versal 2vm (Prime Series Gen 2) memory map
+ *
+ * Copyright (c) 2026 Advanced Micro Devices, Inc.
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#ifndef VERSAL_2VM_MEMMAP_H
+#define VERSAL_2VM_MEMMAP_H
+
+#include "asu.dtsh"
+#include "coresight.dtsh"
+#include "fpd.dtsh"
+#include "gic.dtsh"
+#include "iou.dtsh"
+#include "lpd.dtsh"
+#include "mmit.dtsh"
+#include "ocm.dtsh"
+#include "pmc.dtsh"
+#include "top.dtsh"
+
+#endif

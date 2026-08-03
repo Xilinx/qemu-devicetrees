@@ -418,6 +418,7 @@
 		mr-0 = <&amba>;
 		protected-base = <MM_OCM_MEM>;
 	};
+#ifdef MM_XRAM_XMPU
 	xmpu_ocm2: xmpu_ocm2@0 {
 		compatible = "xlnx,versal-xmpu";
 		interrupts = <XMPU_OCM_IRQ_0>;
@@ -429,6 +430,7 @@
 		mr-0 = <&amba_lpd>;
 		protected-base = <MM_XRAM_MEM>;
 	};
+#endif
 };
 
 &amba_lpd {

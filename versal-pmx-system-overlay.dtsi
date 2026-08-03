@@ -166,25 +166,40 @@
 		compatible = "xlnx,ams-sat";
 		reg = <0x0 MM_FPD_FPD_SYSMON_SAT0 0x0 MM_FPD_FPD_SYSMON_SAT0_SIZE 0x1>;
 	};
+#ifdef MM_FPD_FPD_SYSMON_SAT1
 	fpd_sysmon_sat1: fpd_ams_sat@1 {
 		compatible = "xlnx,ams-sat";
 		reg = <0x0 MM_FPD_FPD_SYSMON_SAT1 0x0 MM_FPD_FPD_SYSMON_SAT1_SIZE 0x1>;
 	};
+#endif
+#ifdef MM_FPD_FPD_SYSMON_SAT2
 	fpd_sysmon_sat2: fpd_ams_sat@2 {
 		compatible = "xlnx,ams-sat";
 		reg = <0x0 MM_FPD_FPD_SYSMON_SAT2 0x0 MM_FPD_FPD_SYSMON_SAT2_SIZE 0x1>;
 	};
+#endif
+#ifdef MM_FPD_FPD_SYSMON_SAT3
 	fpd_sysmon_sat3: fpd_ams_sat@3 {
 		compatible = "xlnx,ams-sat";
 		reg = <0x0 MM_FPD_FPD_SYSMON_SAT3 0x0 MM_FPD_FPD_SYSMON_SAT3_SIZE 0x1>;
 	};
+#endif
 };
 
 &pmc_sysmon {
 	ams-sats = <&pmc_ams_sat0 &pmc_ams_sat1
 		    &lpd_sysmon_sat
-		    &fpd_sysmon_sat0 &fpd_sysmon_sat1
-		    &fpd_sysmon_sat2 &fpd_sysmon_sat3>;
+		    &fpd_sysmon_sat0
+#ifdef MM_FPD_FPD_SYSMON_SAT1
+            &fpd_sysmon_sat1
+#endif
+#ifdef MM_FPD_FPD_SYSMON_SAT2
+		    &fpd_sysmon_sat2
+#endif
+#ifdef MM_FPD_FPD_SYSMON_SAT3
+            &fpd_sysmon_sat3
+#endif
+    >;
 };
 
 #endif

@@ -200,7 +200,14 @@ name: name@addr64 {														\
 
 /* Include auto-generated files.  */
 
-#if defined(VERSAL2_DEV)
+#if defined(VERSAL_2VM_DEV)
+ #include "versal2/2vm/memmap/memmap.dtsh"
+ #ifndef VERSAL2_NPI_OVERRIDE
+  #include "versal2-xc2ve3654-npi-memmap.dtsi"
+ #endif
+ #include "versal-psx-memmap-aliases.dtsh"
+ #include "versal2-memmap-aliases.dtsh"
+#elif defined(VERSAL2_DEV)
  #include "versal2-memmap.dtsh"
  #include "versal2-gic-memmap.dtsh"
  #ifndef VERSAL2_NPI_OVERRIDE
