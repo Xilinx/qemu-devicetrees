@@ -435,12 +435,14 @@ zname: dma-controller@zbase {							\
 #endif
 };
 
+#ifdef MM_XRAM
 &amba_xram {
 	XRAM_CTRL(0);
 	XRAM_CTRL(1);
 	XRAM_CTRL(2);
 	XRAM_CTRL(3);
 };
+#endif
 
 &amba_root {
 	/* These devices need to be created before the CPUs.  */
