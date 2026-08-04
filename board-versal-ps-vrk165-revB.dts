@@ -1,0 +1,19 @@
+/*
+ * Versal VRK165 revB board device tree
+ *
+ * Copyright (c) 2026, Advanced Micro Devices Inc.
+ * All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+#include "board-versal-ps-vrk165.dts"
+
+/*
+ * The RevB board uses an updated Update vesion of silicon,
+ * so just changing the revision in IDCODE.
+ */
+
+&pmc_tap {
+  idcode = <0x14CA6093>;
+};
