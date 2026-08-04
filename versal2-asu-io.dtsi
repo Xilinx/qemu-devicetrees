@@ -168,6 +168,7 @@
 		compatible = "zynqmp,csu-dma";
 		reg = <0x0 MM_ASU_DMA 0x0 0x800 0x0>;
 		interrupts = <IRQ_ASU_DMA_DONE>;
+		interrupt-parent = <&asu_io_intc>;
 		stream-connected-dma0 = <&asu_sss>;
 		dma = <&amba_asu_cpu>;
 		memattr = <&pmc_dma0_memattr>;
@@ -178,6 +179,7 @@
 		compatible = "zynqmp,csu-dma";
 		reg = <0x0 (MM_ASU_DMA + 0x800) 0x0 0x800 0x0>;
 		interrupts = <IRQ_ASU_DMA_DONE>;
+		interrupt-parent = <&asu_io_intc>;
 		dma = <&amba_asu_cpu>;
 		memattr = <&pmc_dma0_memattr>;
 		dma-width = <16>;
@@ -188,6 +190,7 @@
 		compatible = "zynqmp,csu-dma";
 		reg = <0x0 MM_ASU_DMA1 0x0 0x800 0x0>;
 		interrupts = <IRQ_ASU_DMA_DONE>;
+		interrupt-parent = <&asu_io_intc>;
 		stream-connected-dma1 = <&asu_sss>;
 		dma = <&amba_asu_cpu>;
 		memattr = <&pmc_dma1_memattr>;
@@ -198,6 +201,7 @@
 		compatible = "zynqmp,csu-dma";
 		reg = <0x0 (MM_ASU_DMA1 + 0x800) 0x0 0x800 0x0>;
 		interrupts = <IRQ_ASU_DMA1_DONE>;
+		interrupt-parent = <&asu_io_intc>;
 		dma = <&amba_asu_cpu>;
 		memattr = <&pmc_dma1_memattr>;
 		dma-width = <16>;
