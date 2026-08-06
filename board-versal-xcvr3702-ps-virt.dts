@@ -1,0 +1,111 @@
+/*
+ * Versal AI RF series device xcvr3702 virtual board dts
+ *
+ * Copyright Advanced Micro Devices, Inc.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+#define VERSAL_NPI_OVERRIDE
+#include "versal/memmap/versal-xcvr3702-npi-memmap.dtsi"
+
+/* Aliases */
+#define  MM_NPI_DDRMC_MAIN_0               MM_NPI_DDRMC5E_MAIN_0
+#define  MM_NPI_DDRMC_MAIN_0_SIZE          MM_NPI_DDRMC5E_MAIN_0_SIZE
+#define  MM_NPI_DDRMC_NOC_0                MM_NPI_DDRMC5E_NOC_0
+#define  MM_NPI_DDRMC_NOC_0_SIZE           MM_NPI_DDRMC5E_NOC_0_SIZE
+#define  MM_NPI_DDRMC_UB_0                 MM_NPI_DDRMC5E_UB_0
+#define  MM_NPI_DDRMC_UB_0_SIZE            MM_NPI_DDRMC5E_UB_0_SIZE
+#define  MM_NPI_DDRMC_CRYPTO_MAIN_0        MM_NPI_DDRMC5E_CRYPTO_MAIN_0
+#define  MM_NPI_DDRMC_CRYPTO_MAIN_0_SIZE   MM_NPI_DDRMC5E_CRYPTO_MAIN_0_SIZE
+
+#define MM_NPI_DDRMC_MAIN_1               MM_NPI_DDRMC5E_MAIN_1
+#define MM_NPI_DDRMC_MAIN_1_SIZE          MM_NPI_DDRMC5E_MAIN_1_SIZE
+#define MM_NPI_DDRMC_NOC_1                MM_NPI_DDRMC5E_NOC_1
+#define MM_NPI_DDRMC_NOC_1_SIZE           MM_NPI_DDRMC5E_NOC_1_SIZE
+#define MM_NPI_DDRMC_UB_1                 MM_NPI_DDRMC5E_UB_1
+#define MM_NPI_DDRMC_UB_1_SIZE            MM_NPI_DDRMC5E_UB_1_SIZE
+#define MM_NPI_DDRMC_CRYPTO_MAIN_1        MM_NPI_DDRMC5E_CRYPTO_MAIN_1
+#define MM_NPI_DDRMC_CRYPTO_MAIN_1_SIZE   MM_NPI_DDRMC5E_CRYPTO_MAIN_1_SIZE
+
+#define MM_NPI_DDRMC_MAIN_2               MM_NPI_DDRMC5E_MAIN_2
+#define MM_NPI_DDRMC_MAIN_2_SIZE          MM_NPI_DDRMC5E_MAIN_2_SIZE
+#define MM_NPI_DDRMC_NOC_2                MM_NPI_DDRMC5E_NOC_2
+#define MM_NPI_DDRMC_NOC_2_SIZE           MM_NPI_DDRMC5E_NOC_2_SIZE
+#define MM_NPI_DDRMC_UB_2                 MM_NPI_DDRMC5E_UB_2
+#define MM_NPI_DDRMC_UB_2_SIZE            MM_NPI_DDRMC5E_UB_2_SIZE
+#define MM_NPI_DDRMC_CRYPTO_MAIN_2        MM_NPI_DDRMC5E_CRYPTO_MAIN_2
+#define MM_NPI_DDRMC_CRYPTO_MAIN_2_SIZE   MM_NPI_DDRMC5E_CRYPTO_MAIN_2_SIZE
+
+#define MM_NPI_DDRMC_MAIN_3               MM_NPI_DDRMC5E_MAIN_3
+#define MM_NPI_DDRMC_MAIN_3_SIZE          MM_NPI_DDRMC5E_MAIN_3_SIZE
+#define MM_NPI_DDRMC_NOC_3                MM_NPI_DDRMC5E_NOC_3
+#define MM_NPI_DDRMC_NOC_3_SIZE           MM_NPI_DDRMC5E_NOC_3_SIZE
+#define MM_NPI_DDRMC_UB_3                 MM_NPI_DDRMC5E_UB_3
+#define MM_NPI_DDRMC_UB_3_SIZE            MM_NPI_DDRMC5E_UB_3_SIZE
+#define MM_NPI_DDRMC_CRYPTO_MAIN_3        MM_NPI_DDRMC5E_CRYPTO_MAIN_3
+#define MM_NPI_DDRMC_CRYPTO_MAIN_3_SIZE   MM_NPI_DDRMC5E_CRYPTO_MAIN_3_SIZE
+
+#define MM_NPI_DDRMC_MAIN_4               MM_NPI_DDRMC5E_MAIN_4
+#define MM_NPI_DDRMC_MAIN_4_SIZE          MM_NPI_DDRMC5E_MAIN_4_SIZE
+#define MM_NPI_DDRMC_NOC_4                MM_NPI_DDRMC5E_NOC_4
+#define MM_NPI_DDRMC_NOC_4_SIZE           MM_NPI_DDRMC5E_NOC_4_SIZE
+#define MM_NPI_DDRMC_UB_4                 MM_NPI_DDRMC5E_UB_4
+#define MM_NPI_DDRMC_UB_4_SIZE            MM_NPI_DDRMC5E_UB_4_SIZE
+#define MM_NPI_DDRMC_CRYPTO_MAIN_4        MM_NPI_DDRMC5E_CRYPTO_MAIN_4
+#define MM_NPI_DDRMC_CRYPTO_MAIN_4_SIZE   MM_NPI_DDRMC5E_CRYPTO_MAIN_4_SIZE
+
+#include "board-versal-ps-virt.dts"
+#include "versal-silicon-freq.dtsi"
+
+&pmc_tap {
+	idcode = <0x04CB9093>;
+};
+
+#define GEN_RFCOM(n)                                        \
+        rfcom ## n: rfcom@MM_NPI_RFCOM_ ## n {                      \
+            compatible = "xlnx,noc-npi-dev";                  \
+            reg = <0x0 MM_NPI_RFCOM_ ## n 0x0 MM_NPI_RFCOM_ ## n ## _SIZE 0x1>; \
+            map-size = <MM_NPI_RFCOM_ ## n ## _SIZE>;               \
+            custom = <1>;                               \
+            pcsr-status = <0x07A00057>;                     \
+        }
+
+&amba_pmc_pl {
+#ifdef MM_NPI_RFCOM_0
+    GEN_RFCOM(0);
+#endif
+#ifdef MM_NPI_RFCOM_1
+    GEN_RFCOM(1);
+#endif
+#ifdef MM_NPI_RFCOM_2
+    GEN_RFCOM(2);
+#endif
+#ifdef MM_NPI_RFCOM_3
+    GEN_RFCOM(3);
+#endif
+#ifdef MM_NPI_RFCOM_4
+    GEN_RFCOM(4);
+#endif
+#ifdef MM_NPI_RFCOM_5
+    GEN_RFCOM(5);
+#endif
+#ifdef MM_NPI_RFCOM_6
+    GEN_RFCOM(6);
+#endif
+#ifdef MM_NPI_RFCOM_7
+    GEN_RFCOM(7);
+#endif
+#ifdef MM_NPI_RFCOM_8
+    GEN_RFCOM(8);
+#endif
+#ifdef MM_NPI_RFCOM_9
+    GEN_RFCOM(9);
+#endif
+#ifdef MM_NPI_RFCOM_10
+    GEN_RFCOM(10);
+#endif
+#ifdef MM_NPI_RFCOM_11
+    GEN_RFCOM(11);
+#endif
+};
