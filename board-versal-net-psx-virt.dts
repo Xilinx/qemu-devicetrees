@@ -139,3 +139,7 @@ SET_CPU_FREQ(31, VERSAL_NET_APU_CPU_FREQ);
 &fpd_slcr {
 	compatible = "amd-fpx-slcr";
 };
+
+&lpd_slcr {
+	compatible = "amd-lpx-slcr";
+};
