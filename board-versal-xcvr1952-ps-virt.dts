@@ -6,7 +6,7 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-#include "board-versal-xcvr1902-ps-virt.dts"
+#include "board-versal-xcvr1902p-ps-virt.dts"
 
 &pmc_tap {
 	idcode = <0x04CB2093>;
