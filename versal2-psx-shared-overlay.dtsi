@@ -323,3 +323,10 @@
 	master-id1 = <0xa3ff0249>;
 	master-id1-ro = <0x63ff0249>;
 };
+
+/*
+ * SMMU output address size is 48bit
+ */
+&smmu {
+	oas-width = <48>;
+};
