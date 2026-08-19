@@ -1,0 +1,242 @@
+/*
+ * ZynqMP ZCU216 board device tree
+ *
+ * Copyright Advanced Micro Devices, Inc.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+#define HAS_SMMU
+#include "zynqmp.dtsh"
+
+/dts-v1/;
+
+#include "zynqmp-arm.dtsi"
+#include "zynqmp-memory-regions.dtsi"
+#include "zynqmp-boot-init.dtsi"
+
+/ {
+	model = "ZynqMP ZCU216 RevA";
+	compatible = "xlnx,zynqmp-zcu216", "xlnx,zynqmp";
+
+	amba_pl: amba_pl {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		compatible = "simple-bus";
+		ranges;
+	};
+
+	aliases {
+		ethernet0 = &gem3;
+
+		main_bus_for_pl {
+			compatible = "qemu:memory-region";
+			container = <&amba>;
+			alias = <&amba_pl>;
+			priority = <0xFFFFFFFF>;
+		};
+	};
+
+	mdio0: mdio {
+		#address-cells = <1>;
+		#size-cells = <0>;
+		compatible = "mdio";
+		phy0: phy@c {
+			compatible = "dp83867";
+			device_type = "ethernet-phy";
+			reg = <0xc>;
+		};
+	};
+};
+
+&i2c0 {
+	tca6416_u15: tca6416@20 {
+		compatible = "ti,tca6416";
+		reg = <0x20>;
+	};
+
+	pca9544_u17: i2cswitch@75 {
+		#address-cells = <1>;
+		#size-cells = <0>;
+		compatible = "nxp,pca9544";
+		reg = <0x75>;
+
+		i2c@0 {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			reg = <0>;
+			ina226@40 { compatible = "i2c-dev-dummy"; reg = <0x40>; };
+			ina226@41 { compatible = "i2c-dev-dummy"; reg = <0x41>; };
+			ina226@42 { compatible = "i2c-dev-dummy"; reg = <0x42>; };
+			ina226@43 { compatible = "i2c-dev-dummy"; reg = <0x43>; };
+			ina226@45 { compatible = "i2c-dev-dummy"; reg = <0x45>; };
+			ina226@46 { compatible = "i2c-dev-dummy"; reg = <0x46>; };
+			ina226@47 { compatible = "i2c-dev-dummy"; reg = <0x47>; };
+			ina226@48 { compatible = "i2c-dev-dummy"; reg = <0x48>; };
+			ina226@49 { compatible = "i2c-dev-dummy"; reg = <0x49>; };
+			ina226@4a { compatible = "i2c-dev-dummy"; reg = <0x4a>; };
+			ina226@4b { compatible = "i2c-dev-dummy"; reg = <0x4b>; };
+			ina226@4c { compatible = "i2c-dev-dummy"; reg = <0x4c>; };
+			ina226@4d { compatible = "i2c-dev-dummy"; reg = <0x4d>; };
+			ina226@4e { compatible = "i2c-dev-dummy"; reg = <0x4e>; };
+		};
+		i2c@1 { #address-cells = <1>; #size-cells = <0>; reg = <1>; };
+		i2c@2 {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			reg = <2>;
+			vrm@40 { compatible = "i2c-dev-dummy"; reg = <0x40>; };
+			vrm@43 { compatible = "i2c-dev-dummy"; reg = <0x43>; };
+			vrm@44 { compatible = "i2c-dev-dummy"; reg = <0x44>; };
+			vrm@45 { compatible = "i2c-dev-dummy"; reg = <0x45>; };
+			vrm@4b { compatible = "i2c-dev-dummy"; reg = <0x4b>; };
+			vrm@4c { compatible = "i2c-dev-dummy"; reg = <0x4c>; };
+		};
+		i2c@3 {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			reg = <3>;
+			sysmon@32 { compatible = "i2c-dev-dummy"; reg = <0x32>; };
+		};
+	};
+};
+
+&i2c1 {
+	pca9548_u20: i2cswitch@74 {
+		compatible = "nxp,pca9548";
+		#address-cells = <1>;
+		#size-cells = <0>;
+		reg = <0x74>;
+
+		i2c@0 {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			reg = <0>;
+			eeprom@54 { compatible = "at,24c08"; reg = <0x54>; };
+		};
+		i2c@1 {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			reg = <1>;
+			si5341_u43: clock-generator@76 {
+				compatible = "silabs,si5341";
+				reg = <0x76>;
+			};
+		};
+		i2c@2 {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			reg = <2>;
+			si570_u47: clock-generator@5d {
+				compatible = "silabs,si57x";
+				reg = <0x5d>;
+			};
+		};
+		i2c@3 {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			reg = <3>;
+			si570_u48: clock-generator@5d {
+				compatible = "silabs,si57x";
+				reg = <0x5d>;
+			};
+		};
+		i2c@4 {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			reg = <4>;
+			clock@58 { compatible = "i2c-dev-dummy"; reg = <0x58>; };
+		};
+		i2c@5 {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			reg = <5>;
+			clk104@2f { compatible = "i2c-dev-dummy"; reg = <0x2f>; };
+		};
+		i2c@6 { #address-cells = <1>; #size-cells = <0>; reg = <6>; };
+		i2c@7 { #address-cells = <1>; #size-cells = <0>; reg = <7>; };
+	};
+
+	pca9548_u22: i2cswitch@75 {
+		compatible = "nxp,pca9548";
+		#address-cells = <1>;
+		#size-cells = <0>;
+		reg = <0x75>;
+
+		i2c@0 { #address-cells = <1>; #size-cells = <0>; reg = <0>; };
+		i2c@1 {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			reg = <1>;
+			si570_u130: clock-generator@5d {
+				compatible = "silabs,si57x";
+				reg = <0x5d>;
+			};
+		};
+		i2c@2 {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			reg = <2>;
+			sysmon@32 { compatible = "i2c-dev-dummy"; reg = <0x32>; };
+		};
+		i2c@3 {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			reg = <3>;
+			dev@51 { compatible = "i2c-dev-dummy"; reg = <0x51>; };
+		};
+		i2c@4 {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			reg = <4>;
+			sfp3@50 { compatible = "i2c-dev-dummy"; reg = <0x50>; };
+		};
+		i2c@5 {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			reg = <5>;
+			sfp2@50 { compatible = "i2c-dev-dummy"; reg = <0x50>; };
+		};
+		i2c@6 {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			reg = <6>;
+			sfp1@50 { compatible = "i2c-dev-dummy"; reg = <0x50>; };
+		};
+		i2c@7 {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			reg = <7>;
+			sfp0@50 { compatible = "i2c-dev-dummy"; reg = <0x50>; };
+		};
+	};
+};
+
+&ps7_qspi_0 {
+	SPI_FLASH(qspi_flash_lcs_lb, "mt25qu02g", 0x10000000, 0x0 0x0)
+	SPI_FLASH(qspi_flash_ucs_ub, "mt25qu02g", 0x10000000, 0x3 0x1)
+};
+
+&ps7_spi_0 {
+	/delete-node/ spi0_flash0@0;
+	/delete-node/ spi0_flash1@0;
+	/delete-node/ spi0_flash2@0;
+	/delete-node/ spi0_flash3@0;
+};
+
+&ps7_spi_1 {
+	/delete-node/ spi1_flash0@0;
+	/delete-node/ spi1_flash1@0;
+	/delete-node/ spi1_flash2@0;
+	/delete-node/ spi1_flash3@0;
+};
+
+&gem3 {
+	mdio = <&mdio0>;
+};
+
+&iou_slcr_0 {
+	mio-bank0-1.8v = <1>;
+	mio-bank1-1.8v = <1>;
+	mio-bank2-1.8v = <1>;
+};
