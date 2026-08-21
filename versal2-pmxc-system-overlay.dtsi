@@ -101,3 +101,7 @@
 		reg = <0x0 MM_PMC_INTPMC_CONFIG 0x0 MM_PMC_INTPMC_CONFIG_SIZE 0x0>;
 	};
 };
+
+&pmc_sysmon {
+	additional-volt-measurements = <8>; /* AI2PS VID */
+};
