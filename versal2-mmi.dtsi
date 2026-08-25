@@ -61,6 +61,7 @@
 				MMI_GEM_MISC_EVENT_IRQ_0>;
 			dma = <&smmu_tbu2>;
 			memattr = <&MEMATTR_NAME(mmi_gem)>;
+			memattr-write = <&MEMATTR_NAME(mmi_gem)>;
 			num-priority-queues = <4>;
 			mdio = <&mdio_10gbe>;
 			has-usxgmii = <1>;
