@@ -1,0 +1,10 @@
+/*
+ * Vitis Versal VRK165 cosim board
+ *
+ * Copyright Advanced Micro Devices, Inc.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+#include "board-versal-ps-cosim-vrk165-revB.dts"
+#include "versal-vitis.dtsi"
