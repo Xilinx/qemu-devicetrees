@@ -50,7 +50,7 @@
 		container = <&amba>;
 	};
 
-	ddr_3_mem: memory@MM_TOP_DDR_CH1 {
+	ddr_3_mem: memory@MM_DDR_CH1 {
 		compatible = "qemu:memory-region";
 		device_type = "memory";
 		container = <&amba>;

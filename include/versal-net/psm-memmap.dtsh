@@ -25,14 +25,6 @@
 #define MM_RAM_INSTR_SIZE	0x20000
 #define MM_RAM_DATA	0xebc20000
 #define MM_RAM_DATA_SIZE	0x8000
-#define MM_Reserved	0xebc28000
-#define MM_Reserved_SIZE	0x18000
-#define MM_Reserved_2	0xebc40000
-#define MM_Reserved_2_SIZE	0x20000
-#define MM_Reserved_3	0xebc60000
-#define MM_Reserved_3_SIZE	0x10000
-#define MM_Reserved_4	0xebc70000
-#define MM_Reserved_4_SIZE	0x10000
 #define MM_PSM_IOMODULE	0xebc80000
 #define MM_PSM_IOMODULE_SIZE	0x8000
 #define MM_PSMX_LOCAL_REG	0xebc88000

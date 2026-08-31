@@ -45,7 +45,7 @@
 			compatible = "qemu:memory-region";
 			alias = <&amba>;
 			reg = <0x0 0x0
-			       MM_TOP_PSX_SOCKET_1_TO_0_SIZE_H MM_TOP_PSX_SOCKET_1_TO_0_SIZE_L 0x0>;
+			       MM_PSX_SOCKET_1_TO_0_SIZE_H MM_PSX_SOCKET_1_TO_0_SIZE_L 0x0>;
 		};
 	};
 
@@ -56,7 +56,7 @@
 		compatible = "simple-bus";
 		ranges;
 
-		MEM_REGION(sk1_ddr, 0x0, MM_TOP_DDR, 0x00000000, MM_TOP_DDR_SIZE, &ddr_mem)  // 2 GB
+		MEM_REGION(sk1_ddr, 0x0, MM_DDR, 0x00000000, MM_DDR_SIZE, &ddr_mem)  // 2 GB
 	};
 
 	amba1: amba1@1 {
@@ -86,14 +86,14 @@
 	downstream_amba_sk0 {
 		compatible = "qemu:memory-region";
 		alias = <&amba_socket0>;
-		reg = <MM_TOP_PSX_SOCKET_1_TO_0_H MM_TOP_PSX_SOCKET_1_TO_0_L
-			MM_TOP_PSX_SOCKET_1_TO_0_SIZE_H MM_TOP_PSX_SOCKET_1_TO_0_SIZE_L 0>;
+		reg = <MM_PSX_SOCKET_1_TO_0_H MM_PSX_SOCKET_1_TO_0_L
+			MM_PSX_SOCKET_1_TO_0_SIZE_H MM_PSX_SOCKET_1_TO_0_SIZE_L 0>;
 	};
 	downstream_amba_sk1 {
 		compatible = "qemu:memory-region";
 		alias = <&amba_socket1>;
-		reg = <MM_TOP_PSX_SOCKET_0_TO_1_H MM_TOP_PSX_SOCKET_0_TO_1_L
-			MM_TOP_PSX_SOCKET_0_TO_1_SIZE_H MM_TOP_PSX_SOCKET_0_TO_1_SIZE_L 0>;
+		reg = <MM_PSX_SOCKET_0_TO_1_H MM_PSX_SOCKET_0_TO_1_L
+			MM_PSX_SOCKET_0_TO_1_SIZE_H MM_PSX_SOCKET_0_TO_1_SIZE_L 0>;
 	};
 };
 
@@ -101,14 +101,14 @@
 	downstream_amba_sk0 {
 		compatible = "qemu:memory-region";
 		alias = <&amba_apu_gic>;
-		reg = <MM_TOP_PSX_SOCKET_1_TO_0_H MM_TOP_PSX_SOCKET_1_TO_0_L
-			MM_TOP_PSX_SOCKET_1_TO_0_SIZE_H MM_TOP_PSX_SOCKET_1_TO_0_SIZE_L 0>;
+		reg = <MM_PSX_SOCKET_1_TO_0_H MM_PSX_SOCKET_1_TO_0_L
+			MM_PSX_SOCKET_1_TO_0_SIZE_H MM_PSX_SOCKET_1_TO_0_SIZE_L 0>;
 	};
 	downstream_amba_sk1 {
 		compatible = "qemu:memory-region";
 		alias = <&amba_apu_gic>;
-		reg = <MM_TOP_PSX_SOCKET_0_TO_1_H MM_TOP_PSX_SOCKET_0_TO_1_L
-			MM_TOP_PSX_SOCKET_0_TO_1_SIZE_H MM_TOP_PSX_SOCKET_0_TO_1_SIZE_L 0>;
+		reg = <MM_PSX_SOCKET_0_TO_1_H MM_PSX_SOCKET_0_TO_1_L
+			MM_PSX_SOCKET_0_TO_1_SIZE_H MM_PSX_SOCKET_0_TO_1_SIZE_L 0>;
 	};
 };
 
@@ -116,14 +116,14 @@
 	downstream_amba_sk0 {
 		compatible = "qemu:memory-region";
 		alias = <&amba_socket0>;
-		reg = <MM_TOP_PSX_SOCKET_1_TO_0_H MM_TOP_PSX_SOCKET_1_TO_0_L
-			MM_TOP_PSX_SOCKET_1_TO_0_SIZE_H MM_TOP_PSX_SOCKET_1_TO_0_SIZE_L 0>;
+		reg = <MM_PSX_SOCKET_1_TO_0_H MM_PSX_SOCKET_1_TO_0_L
+			MM_PSX_SOCKET_1_TO_0_SIZE_H MM_PSX_SOCKET_1_TO_0_SIZE_L 0>;
 	};
 	downstream_amba_sk1 {
 		compatible = "qemu:memory-region";
 		alias = <&amba_socket1>;
-		reg = <MM_TOP_PSX_SOCKET_0_TO_1_H MM_TOP_PSX_SOCKET_0_TO_1_L
-			MM_TOP_PSX_SOCKET_0_TO_1_SIZE_H MM_TOP_PSX_SOCKET_0_TO_1_SIZE_L 0>;
+		reg = <MM_PSX_SOCKET_0_TO_1_H MM_PSX_SOCKET_0_TO_1_L
+			MM_PSX_SOCKET_0_TO_1_SIZE_H MM_PSX_SOCKET_0_TO_1_SIZE_L 0>;
 	};
 };
 
@@ -131,14 +131,14 @@
 	downstream_amba_sk0 {
 		compatible = "qemu:memory-region";
 		alias = <&amba_apu_gic>;
-		reg = <MM_TOP_PSX_SOCKET_1_TO_0_H MM_TOP_PSX_SOCKET_1_TO_0_L
-			MM_TOP_PSX_SOCKET_1_TO_0_SIZE_H MM_TOP_PSX_SOCKET_1_TO_0_SIZE_L 0>;
+		reg = <MM_PSX_SOCKET_1_TO_0_H MM_PSX_SOCKET_1_TO_0_L
+			MM_PSX_SOCKET_1_TO_0_SIZE_H MM_PSX_SOCKET_1_TO_0_SIZE_L 0>;
 	};
 	downstream_amba_sk1 {
 		compatible = "qemu:memory-region";
 		alias = <&amba_apu_gic>;
-		reg = <MM_TOP_PSX_SOCKET_0_TO_1_H MM_TOP_PSX_SOCKET_0_TO_1_L
-			MM_TOP_PSX_SOCKET_0_TO_1_SIZE_H MM_TOP_PSX_SOCKET_0_TO_1_SIZE_L 0>;
+		reg = <MM_PSX_SOCKET_0_TO_1_H MM_PSX_SOCKET_0_TO_1_L
+			MM_PSX_SOCKET_0_TO_1_SIZE_H MM_PSX_SOCKET_0_TO_1_SIZE_L 0>;
 	};
 };
 

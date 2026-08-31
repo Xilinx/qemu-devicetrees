@@ -12,12 +12,12 @@
 
 /* Memory node hack.  */
 / {
-	/delete-node/ ddr@MM_TOP_DDR;
-	/delete-node/ ddr_2@MM_TOP_DDR_2;
-	/delete-node/ ddr_3@MM_TOP_DDR_CH1;
+	/delete-node/ ddr@MM_DDR;
+	/delete-node/ ddr_2@MM_DDR_2;
+	/delete-node/ ddr_3@MM_DDR_CH1;
 
 	/* 2GB mapped at 0.  */
-	MEM_REGION(ddr, 0x0, MM_TOP_DDR, 0x00000000, 0x80000000,
+	MEM_REGION(ddr, 0x0, MM_DDR, 0x00000000, 0x80000000,
 	           &ddr_mem)
 };
 

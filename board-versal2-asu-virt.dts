@@ -60,7 +60,7 @@
 #endif
 
 / {
-	MEM_REGION(ddr, 0x0, MM_TOP_DDR, 0x00000000, MM_TOP_DDR_SIZE, &ddr_mem)  // 2 GB
+	MEM_REGION(ddr, 0x0, MM_DDR, 0x00000000, MM_DDR_SIZE, &ddr_mem)  // 2 GB
 
 	/* Dummy APUs.  */
 	cpu2: apu@2 { };
