@@ -458,17 +458,17 @@
 		compatible = "xlnx,versal-xmpu";
 		interrupts = <XMPU_PRAM_IRQ_0>;
 		reg-extended = <
-			&amba_pmc_internal 0x0 MM_PMC_PMC_XMPU 0x0 MM_PMC_PMC_XMPU_SIZE 0x0
-			&amba_pmc_internal 0x0 MM_PMC_PMC_RAM 0x0 MM_PMC_PMC_RAM_SIZE 0x2
+			&amba_pmc_internal 0x0 MM_PMC_XMPU 0x0 MM_PMC_XMPU_SIZE 0x0
+			&amba_pmc_internal 0x0 MM_PMC_RAM 0x0 MM_PMC_RAM_SIZE 0x2
 		>;
 		protected-mr = <&pmc_ram>;
 		mr-0 = <&amba_pmc_internal>;
-		protected-base = <MM_PMC_PMC_RAM>;
+		protected-base = <MM_PMC_RAM>;
 	};
-	xppu_pmc_npi: xppu_pmc_npi@MM_PMC_PMC_XPPU_NPI {
+	xppu_pmc_npi: xppu_pmc_npi@MM_PMC_XPPU_NPI {
 		compatible = "xlnx,versal-xppu";
 		reg-extended = <
-			&amba_pmc_internal 0x0 MM_PMC_PMC_XPPU_NPI 0x0 MM_PMC_PMC_XPPU_NPI_SIZE 0x0
+			&amba_pmc_internal 0x0 MM_PMC_XPPU_NPI 0x0 MM_PMC_XPPU_NPI_SIZE 0x0
 			/* 64KB * 256 */
 			&amba_pmc_internal 0x0 XPPU_PMC_NPI_64K_APERTURE_BASE 0x0 XPPU_PMC_NPI_64K_APERTURE_SIZE 0x2
 			/* 1MB * 16 */
@@ -477,10 +477,10 @@
 		mr = <&amba_pmc_pl>;
 		interrupts = <XPPU_PMC_IRQ_0>;
 	};
-	xppu_pmc: xppu_pmc@MM_PMC_PMC_XPPU {
+	xppu_pmc: xppu_pmc@MM_PMC_XPPU {
 		compatible = "xlnx,versal-xppu";
 		reg-extended = <
-			&amba_pmc_internal 0x0 MM_PMC_PMC_XPPU 0x0 MM_PMC_PMC_XPPU_SIZE 0x0
+			&amba_pmc_internal 0x0 MM_PMC_XPPU 0x0 MM_PMC_XPPU_SIZE 0x0
 			/* 64KB * 256 */
 			&amba 0x0 XPPU_PMC_64K_APERTURE_BASE 0x0 XPPU_PMC_64K_APERTURE_SIZE 0x2
 			/* 1MB * 16 */

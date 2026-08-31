@@ -28,10 +28,10 @@
 };
 
 &amba_pmc_sec {
-	pmc_sha2: pmc_sha1@MM_PMC_SHA2 {
+	pmc_sha2: pmc_sha1@MM_SHA2 {
 		doc-status = "complete";
 		compatible = "xlnx,asu_sha2_v2.1";
-		reg = <0x0 MM_PMC_SHA2 0x0 MM_PMC_SHA2_SIZE 0x0>;
+		reg = <0x0 MM_SHA2 0x0 MM_SHA2_SIZE 0x0>;
 	};
 };
 

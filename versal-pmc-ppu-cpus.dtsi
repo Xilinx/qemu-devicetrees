@@ -37,8 +37,8 @@
 		#size-cells = <0>;
 		doc-status = "partial";
 
-		CREATE_PPU(0, MM_PMC_PMC_ROM, "PPU0", 0x5);
-		CREATE_PPU(1, MM_PMC_PPU1_RAM_INSTR, "PPU1", 0x6);
+		CREATE_PPU(0, MM_PMC_ROM, "PPU0", 0x5);
+		CREATE_PPU(1, MM_PPU1_RAM_INSTR, "PPU1", 0x6);
 	};
 };
 

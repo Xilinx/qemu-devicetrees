@@ -33,12 +33,12 @@
 	doc-name = "PMC BAT";
 	doc-status = "partial";
 
-	rtc: rtc@MM_PMC_RTC {
+	rtc: rtc@MM_RTC {
 		doc-status = "complete";
 		doc-comments = "Versal PMC RTC";
 		compatible = "xlnx,zynqmp-rtc";
 		interrupts = <RTC_APB_IRQ_0 RTC_ALARM_IRQ_0 RTC_SECONDS_IRQ_0>;
-		reg = <0x0 MM_PMC_RTC 0x0 MM_PMC_RTC_SIZE 0x0>;
+		reg = <0x0 MM_RTC 0x0 MM_RTC_SIZE 0x0>;
                 xlnx,version="2.0.0";
 	};
 };

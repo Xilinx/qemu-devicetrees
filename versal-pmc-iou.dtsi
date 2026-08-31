@@ -74,18 +74,18 @@ name: name@0 {								\
 	doc-name = "PMC IOU";
 	doc-status = "partial";
 
-	pmc_iou_slcr: pmc_iou_slcr@MM_PMC_PMC_IOU_SLCR {
+	pmc_iou_slcr: pmc_iou_slcr@MM_PMC_IOU_SLCR {
 		doc-status = "partial";
 		compatible = "xlnx,versal-pmc-iou-slcr";
-		reg = <0x0 MM_PMC_PMC_IOU_SLCR 0x0 0x1000 0x0>;
+		reg = <0x0 MM_PMC_IOU_SLCR 0x0 0x1000 0x0>;
 		interrupts = <PMC_IOU_SLCR_IRQ_0>;
 		gpio-controller;
 		#gpio-cells = <2>;
 	};
 
-	pmc_iou_slcr_secure: pmc_iou_slcr_secure@MM_PMC_PMC_IOU_SECURE_SLCR {
+	pmc_iou_slcr_secure: pmc_iou_slcr_secure@MM_PMC_IOU_SECURE_SLCR {
 		compatible = "xlnx,versal-pmc-iou-slcr-secure";
-		reg = <0x0 MM_PMC_PMC_IOU_SECURE_SLCR 0x0 MM_PMC_PMC_IOU_SECURE_SLCR_SIZE 0x0>;
+		reg = <0x0 MM_PMC_IOU_SECURE_SLCR 0x0 MM_PMC_IOU_SECURE_SLCR_SIZE 0x0>;
 		interrupts = <PMC_IOU_SEC_SLCR_IRQ_0>;
 		memattr-sd0 = <&sd0_memattr_smid>;
 		memattr-write-sd0 = <&sd0_w_memattr_smid>;
@@ -100,14 +100,14 @@ name: name@0 {								\
 		compatible = "zynqmp,csu-dma";
 		interrupts = <QSPI_IRQ_0>;
 		#stream-id-cells = <0x1>;
-		reg = <0x0 MM_PMC_QSPI_DMA 0x0 0x800 0x0>;
+		reg = <0x0 MM_QSPI_DMA 0x0 0x800 0x0>;
 		dma = <&amba_pmc>;
 		memattr = <&pmc_qspi_dma_memattr_smid>;
 		memattr-write = <&pmc_qspi_dma_w_memattr_smid>;
 		is-dst = <1>;
 		reset-gpios = <&pmc_clk_rst CRP_RST_QSPI>;
 	};
-	pmc_qspi_0: pmc_qspi@MM_PMC_QSPI {
+	pmc_qspi_0: pmc_qspi@MM_QSPI {
 		doc-status = "complete";
 		#address-cells = <1>;
 		#size-cells = <0>;
@@ -118,20 +118,20 @@ name: name@0 {								\
 		interrupts = <QSPI_IRQ_0>;
 		num-ss-bits = <2>;
 #ifdef LQSPI_XIP
-		reg = <0x0 MM_PMC_QSPI 0x0 0x1000 0x0
-			   0x0 0xA0000000 0x0 MM_PMC_LQSPI_SIZE 0x0>;
+		reg = <0x0 MM_QSPI 0x0 0x1000 0x0
+			   0x0 0xA0000000 0x0 MM_LQSPI_SIZE 0x0>;
 #else
-		reg-extended = <&amba_pmc_iou 0x0 MM_PMC_QSPI 0x0 0x1000 0x0
-		                &lqspi_mr 0x0 0x0 0x0 MM_PMC_LQSPI_SIZE 0x0>;
+		reg-extended = <&amba_pmc_iou 0x0 MM_QSPI 0x0 0x1000 0x0
+		                &lqspi_mr 0x0 0x0 0x0 MM_LQSPI_SIZE 0x0>;
 #endif
 		speed-hz = <10000000>;
 		xlnx,fb-clk = <0x1>;
 		xlnx,qspi-clk-freq-hz = <0xbebc200>;
 		xlnx,qspi-mode = <0x2>;
 #ifdef LQSPI_XIP
-		qemu,lqspi-size = <MM_PMC_LQSPI_SIZE>;
+		qemu,lqspi-size = <MM_LQSPI_SIZE>;
 		qemu,lqspi-src = <0xA0000000>;
-		qemu,lqspi-dst = <MM_PMC_LQSPI>;
+		qemu,lqspi-dst = <MM_LQSPI>;
 #endif
 		reset-gpios = <&pmc_clk_rst CRP_RST_QSPI>;
 	};
@@ -140,7 +140,7 @@ name: name@0 {								\
 		doc-status = "complete";
 		compatible = "zynqmp,csu-dma";
 		interrupts = <OSPI_IRQ_0>;
-		reg = <0x0 MM_PMC_OSPI_DMA_DST 0x0 0x800 0x0>;
+		reg = <0x0 MM_OSPI_DMA_DST 0x0 0x800 0x0>;
 		dma = <&amba_pmc>;
 		memattr = <&ospi_dma_memattr_smid>;
 		memattr-write = <&ospi_dma_w_memattr_smid>;
@@ -151,20 +151,20 @@ name: name@0 {								\
 		doc-status = "complete";
 		compatible = "zynqmp,csu-dma";
 		interrupts = <OSPI_IRQ_0>;
-		reg = <0x0 MM_PMC_OSPI_DMA_SRC 0x0 0x800 0x0>;
+		reg = <0x0 MM_OSPI_DMA_SRC 0x0 0x800 0x0>;
 		dma = <&lospi_mr>;
 		memattr = <&ospi_dma_memattr_smid>;
 		memattr-write = <&ospi_dma_w_memattr_smid>;
 		stream-connected-dma = <&ospi_dma_dst>;
 		reset-gpios = <&pmc_clk_rst CRP_RST_OSPI>;
 	};
-	ospi: spi@MM_PMC_OSPI {
+	ospi: spi@MM_OSPI {
 		doc-status = "complete";
 		#address-cells = <1>;
 		#size-cells = <0>;
 		#bus-cells = <1>;
 		compatible = "xlnx,versal-ospi";
-		reg-extended = <&amba_pmc_iou 0x0 MM_PMC_OSPI      0x0 0x1000 0x0
+		reg-extended = <&amba_pmc_iou 0x0 MM_OSPI      0x0 0x1000 0x0
 		                &lospi_mr 0x0 0x0  0x0 0x20000000 0x0>;
 		dma-src = <&ospi_dma_src>;
 		interrupts = <OSPI_IRQ_0>;
@@ -172,10 +172,10 @@ name: name@0 {								\
 		gpios = <&pmc_iou_slcr 3 0>;
 	};
 
-	gpio_mr_mux: gpio_mr_mux@MM_PMC_OSPI_DAC {
+	gpio_mr_mux: gpio_mr_mux@MM_OSPI_DAC {
 		doc-status = "complete";
 		compatible = "gpio-mr-mux";
-		reg = <0x0 MM_PMC_OSPI_DAC 0x0 0x20000000 0x0>;
+		reg = <0x0 MM_OSPI_DAC 0x0 0x20000000 0x0>;
 		gpios = <&pmc_iou_slcr 2 0
 		         &pmc_iou_slcr 3 0>;
 		mr-size = <0x20000000>;
@@ -185,20 +185,20 @@ name: name@0 {								\
 		mr3 = <&lospi_mr>;
 	};
 
-	pmc_gpio: pmc_gpio@MM_PMC_PMC_GPIO {
+	pmc_gpio: pmc_gpio@MM_PMC_GPIO {
 		#gpio-cells = <1>;
 		compatible = "xlnx,zynqmp-gpio";
 		gpio-controller;
 		interrupts = <GPIO_PMC_IRQ_0>;
-		reg = <0x0 MM_PMC_PMC_GPIO 0x0 MM_PMC_PMC_GPIO_SIZE 0x0>;
+		reg = <0x0 MM_PMC_GPIO 0x0 MM_PMC_GPIO_SIZE 0x0>;
 		reset-gpios = < &pmc_clk_rst CRP_RST_GPIO >;
 	};
 
-	sdhci0: mmc@MM_PMC_SD0 {
+	sdhci0: mmc@MM_SD0 {
 		doc-status = "complete";
 		compatible = "xilinx,zynqmp-sdhci", "generic-sdhci";
 		drive-index = <0>;
-		reg = <0x0 MM_PMC_SD0 0x0 MM_PMC_SD0_SIZE 0x0>;
+		reg = <0x0 MM_SD0 0x0 MM_SD0_SIZE 0x0>;
 		interrupts = <SD0_IRQ_0>;
 		dma = <&smmu_tbu0>;
 		memattr = <&sd0_memattr_smid>;
@@ -213,11 +213,11 @@ name: name@0 {								\
 		xlnx,sdio-clk-freq-hz = <50000000>;
 	};
 
-	sdhci1: mmc@MM_PMC_SD1 {
+	sdhci1: mmc@MM_SD1 {
 		doc-status = "complete";
 		compatible = "xilinx,zynqmp-sdhci", "generic-sdhci";
 		drive-index = <1>;
-		reg = <0x0 MM_PMC_SD1 0x0 MM_PMC_SD1_SIZE 0x0>;
+		reg = <0x0 MM_SD1 0x0 MM_SD1_SIZE 0x0>;
 		interrupts = <SD1_IRQ_0>;
 		dma = <&smmu_tbu0>;
 		memattr = <&sd1_memattr_smid>;
@@ -232,21 +232,21 @@ name: name@0 {								\
 		xlnx,sdio-clk-freq-hz = <50000000>;
 	};
 
-	pmc_tap: pmc_tap@MM_PMC_PMC_TAP {
+	pmc_tap: pmc_tap@MM_PMC_TAP {
 		doc-status = "complete";
 		doc-comments = "Just a stub.";
 		compatible = "xlnx,pmc-tap";
 		interrupts-extended = <&pmc_ppu0_io_intc IRQ_PPU0_INTC_SEC_DBG>;
 		interrupt-names = "sec-dbg-int";
-		reg = <0x0 MM_PMC_PMC_TAP 0x0 0x80000 0x0>;
+		reg = <0x0 MM_PMC_TAP 0x0 0x80000 0x0>;
 	};
 
 	pmc_i2c_wrapper {
-#ifdef MM_PMC_PMC_I2C
-		pmc_i2c: pmc_i2c@MM_PMC_PMC_I2C {
+#ifdef MM_PMC_I2C
+		pmc_i2c: pmc_i2c@MM_PMC_I2C {
 			compatible = "xlnx,ps7-i2c-1.00.a", "cdns,i2c-r1p10";
 			interrupts = <I2C_PMC_IRQ_0>;
-			reg-extended = <&amba_pmc_iou 0x0 MM_PMC_PMC_I2C 0x0 MM_PMC_PMC_I2C_SIZE 0x0>;
+			reg-extended = <&amba_pmc_iou 0x0 MM_PMC_I2C 0x0 MM_PMC_I2C_SIZE 0x0>;
 			#address-cells = <1>;
 			#size-cells = <0>;
 			reset-gpios = <&pmc_clk_rst CRP_RST_I2C>;

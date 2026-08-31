@@ -143,12 +143,12 @@
 };
 
 &amba_pmc {
-	/delete-node/ xmpu_pmc_cfu@MM_PMC_PMC_XMPU_CFU;
+	/delete-node/ xmpu_pmc_cfu@MM_PMC_XMPU_CFU;
 };
 
 &amba_pmc_internal {
 	/delete-node/ downstream_amba_pmc_pl;
-	/delete-node/ xppu_pmc_npi@MM_PMC_PMC_XPPU_NPI;
+	/delete-node/ xppu_pmc_npi@MM_PMC_XPPU_NPI;
 };
 
 &lmb_ddrmc0 {

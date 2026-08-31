@@ -51,7 +51,7 @@
 			compatible = "xlnx,io-intc-1.02.a", "xlnx,io_intc"; \
 			interrupt-controller ;				\
 			interrupts-extended = <&pmc_ppu ## X 0>;	\
-			reg = <0x0 MM_PMC_PPU ## X ## _IOM(0C) 0x4 0x0 MM_PMC_PPU ## X ## _IOM(30) 0x10 0x0 MM_PMC_PPU ## X ## _IOM(80) 0x7C>; \
+			reg = <0x0 MM_PPU ## X ## _IOM(0C) 0x4 0x0 MM_PPU ## X ## _IOM(30) 0x10 0x0 MM_PPU ## X ## _IOM(80) 0x7C>; \
 			xlnx,intc-addr-width = <0x20>;			\
 			xlnx,intc-base-vectors = <0x0>;			\
 			xlnx,intc-has-fast = <0x0>;			\
@@ -67,7 +67,7 @@
 			compatible = "xlnx,io-gpi-1.02.a", "xlnx,io_gpi"; \
 			interrupt-parent = <&pmc_ppu ## X ## _io_intc>;	\
 			interrupts = <11>;				\
-			reg = <0x0 MM_PMC_PPU ## X ## _IOM(20) 0x4>;	\
+			reg = <0x0 MM_PPU ## X ## _IOM(20) 0x4>;	\
 			xlnx,gpi-interrupt = <0x1>;			\
 			xlnx,gpi-size = <0x20>;				\
 			xlnx,use-gpi = <0x1>;				\
@@ -78,7 +78,7 @@
 			compatible = "xlnx,io-gpi-1.02.a", "xlnx,io_gpi"; \
 			interrupt-parent = <&pmc_ppu ## X ## _io_intc>;	\
 			interrupts = <12>;				\
-			reg = <0x0 MM_PMC_PPU ## X ## _IOM(24) 0x4>;	\
+			reg = <0x0 MM_PPU ## X ## _IOM(24) 0x4>;	\
 			xlnx,gpi-interrupt = <0x1>;			\
 			xlnx,gpi-size = <0x20>;				\
 			xlnx,use-gpi = <0x1>;				\
@@ -89,7 +89,7 @@
 			compatible = "xlnx,io-gpi-1.02.a", "xlnx,io_gpi"; \
 			interrupt-parent = <&pmc_ppu ## X ## _io_intc>;	\
 			interrupts = <13>;				\
-			reg = <0x0 MM_PMC_PPU ## X ## _IOM(28) 0x4>;	\
+			reg = <0x0 MM_PPU ## X ## _IOM(28) 0x4>;	\
 			xlnx,gpi-interrupt = <0x1>;			\
 			xlnx,gpi-size = <0x20>;				\
 			xlnx,use-gpi = <0x1>;				\
@@ -100,7 +100,7 @@
 			compatible = "xlnx,io-gpi-1.02.a", "xlnx,io_gpi"; \
 			interrupt-parent = <&pmc_ppu ## X ## _io_intc>;	\
 			interrupts = <14>;				\
-			reg = <0x0 MM_PMC_PPU ## X ## _IOM(2c) 0x4>;	\
+			reg = <0x0 MM_PPU ## X ## _IOM(2c) 0x4>;	\
 			xlnx,gpi-interrupt = <0x1>;			\
 			xlnx,gpi-size = <0x20>;				\
 			xlnx,use-gpi = <0x1>;				\
@@ -110,7 +110,7 @@
 			#gpio-cells = <1>;				\
 			gpio-controller;				\
 			compatible = "xlnx,io-gpo-1.02.a", "xlnx,io_gpo"; \
-			reg = <0x0 MM_PMC_PPU ## X ## _IOM(10) 0x4>;	\
+			reg = <0x0 MM_PPU ## X ## _IOM(10) 0x4>;	\
 			xlnx,gpo-init = <0x0>;				\
 			xlnx,gpo-size = <0x9>;				\
 			xlnx,use-gpo = <0x1>;				\
@@ -119,7 +119,7 @@
 			#gpio-cells = <1>;				\
 			gpio-controller;				\
 			compatible = "xlnx,io-gpo-1.02.a", "xlnx,io_gpo"; \
-			reg = <0x0 MM_PMC_PPU ## X ## _IOM(14) 0x4>;	\
+			reg = <0x0 MM_PPU ## X ## _IOM(14) 0x4>;	\
 			xlnx,gpo-init = <0x0>;				\
 			xlnx,gpo-size = <0x20>;				\
 			xlnx,use-gpo = <0x1>;				\
@@ -128,7 +128,7 @@
 			#gpio-cells = <1>;				\
 			gpio-controller;				\
 			compatible = "xlnx,io-gpo-1.02.a", "xlnx,io_gpo"; \
-			reg = <0x0 MM_PMC_PPU ## X ## _IOM(18) 0x4>;	\
+			reg = <0x0 MM_PPU ## X ## _IOM(18) 0x4>;	\
 			xlnx,gpo-init = <0x0>;				\
 			xlnx,gpo-size = <0x20>;				\
 			xlnx,use-gpo = <0x1>;				\
@@ -137,7 +137,7 @@
 			#gpio-cells = <1>;				\
 			gpio-controller;				\
 			compatible = "xlnx,io-gpo-1.02.a", "xlnx,io_gpo"; \
-			reg = <0x0 MM_PMC_PPU ## X ## _IOM(1c) 0x4>;	\
+			reg = <0x0 MM_PPU ## X ## _IOM(1c) 0x4>;	\
 			xlnx,gpo-init = <0x0>;				\
 			xlnx,gpo-size = <0x20>;				\
 			xlnx,use-gpo = <0x1>;				\
@@ -147,7 +147,7 @@
 			compatible = "xlnx,io-pit-1.02.a", "xlnx,io_pit"; \
 			interrupt-parent = <&pmc_ppu ## X ## _io_intc>;	\
 			interrupts = <3>;				\
-			reg = <0x0 MM_PMC_PPU ## X ## _IOM(40) 0xc>;	\
+			reg = <0x0 MM_PPU ## X ## _IOM(40) 0xc>;	\
 			xlnx,pit-interrupt = <0x1>;			\
 			xlnx,pit-prescaler = <0x9>;			\
 			xlnx,pit-readable = <0x1>;			\
@@ -163,7 +163,7 @@
 			compatible = "xlnx,io-pit-1.02.a", "xlnx,io_pit"; \
 			interrupt-parent = <&pmc_ppu ## X ## _io_intc>;	\
 			interrupts = <4>;				\
-			reg = <0x0 MM_PMC_PPU ## X ## _IOM(50) 0xc>;	\
+			reg = <0x0 MM_PPU ## X ## _IOM(50) 0xc>;	\
 			xlnx,pit-interrupt = <0x1>;			\
 			xlnx,pit-prescaler = <0x9>;			\
 			xlnx,pit-readable = <0x1>;			\
@@ -177,7 +177,7 @@
 			compatible = "xlnx,io-pit-1.02.a", "xlnx,io_pit"; \
 			interrupt-parent = <&pmc_ppu ## X ## _io_intc>;	\
 			interrupts = <5>;				\
-			reg = <0x0 MM_PMC_PPU ## X ## _IOM(60) 0xc>;	\
+			reg = <0x0 MM_PPU ## X ## _IOM(60) 0xc>;	\
 			xlnx,pit-interrupt = <0x1>;			\
 			xlnx,pit-prescaler = <0x9>;			\
 			xlnx,pit-readable = <0x1>;			\
@@ -193,7 +193,7 @@
 			compatible = "xlnx,io-pit-1.02.a", "xlnx,io_pit"; \
 			interrupt-parent = <&pmc_ppu ## X ## _io_intc>;	\
 			interrupts = <6>;				\
-			reg = <0x0 MM_PMC_PPU ## X ## _IOM(70) 0xc>;	\
+			reg = <0x0 MM_PPU ## X ## _IOM(70) 0xc>;	\
 			xlnx,pit-interrupt = <0x1>;			\
 			xlnx,pit-prescaler = <0x9>;			\
 			xlnx,pit-readable = <0x1>;			\
@@ -210,18 +210,18 @@
          * making sure that -serial command line options refer to these
 	 * first.
          */
-	ppu0_mdm_uart@MM_PMC_PPU0_MDM_HSD {
+	ppu0_mdm_uart@MM_PPU0_MDM_HSD {
 		doc-status = "complete";
 		compatible = "xlnx,xps-uartlite";
-		reg-extended = <&lmb_pmc_ppu0 0x0 MM_PMC_PPU0_MDM_HSD 0x0 0x10 0x1>;
+		reg-extended = <&lmb_pmc_ppu0 0x0 MM_PPU0_MDM_HSD 0x0 0x10 0x1>;
 		endianness = QEMU_ENDIAN_MODE_LITTLE;
 		chardev = "serial0";
 	};
 
-	ppu1_mdm_uart@MM_PMC_PPU1_MDM_HSD {
+	ppu1_mdm_uart@MM_PPU1_MDM_HSD {
 		doc-status = "complete";
 		compatible = "xlnx,xps-uartlite";
-		reg-extended = <&amba 0x0 MM_PMC_PPU1_MDM_HSD 0x0 0x10 0x1>;
+		reg-extended = <&amba 0x0 MM_PPU1_MDM_HSD 0x0 0x10 0x1>;
 		endianness = QEMU_ENDIAN_MODE_LITTLE;
 		chardev = "serial1";
 	};
@@ -246,7 +246,7 @@
 		interrupt-controller;
 
 		compatible = "xlnx,zynqmp-gicp";
-		reg = <0x0 MM_PMC_GIC_PROXY 0x0 MM_PMC_GIC_PROXY_SIZE 0x0>;
+		reg = <0x0 MM_GIC_PROXY 0x0 MM_GIC_PROXY_SIZE 0x0>;
 		interrupt-parent = <&pmc_ppu1_io_intc>;
 		interrupts = <IRQ_PPU1_INTC_PMC_GICP>;
 	};

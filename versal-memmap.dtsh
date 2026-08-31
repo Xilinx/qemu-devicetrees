@@ -68,41 +68,41 @@ name: name@addr64 {														\
 #define R5_GIC_DIST		MM_RPU_GIC
 #define R5_GIC			(MM_RPU_GIC + 0x1000)
 
-#define MM_PMC_QSPI_DMA		(MM_PMC_QSPI + 0x800)
-#define MM_PMC_LQSPI		MM_TOP_QSPI
-#define MM_PMC_LQSPI_SIZE	MM_TOP_QSPI_SIZE
+#define MM_QSPI_DMA		(MM_QSPI + 0x800)
+#define MM_LQSPI		MM_TOP_QSPI
+#define MM_LQSPI_SIZE	MM_TOP_QSPI_SIZE
 
-#define MM_PMC_PPU0_IOM(a)     (MM_PMC_PPU0_IOMODULE | 0x ## a)
-#define MM_PMC_PPU1_IOM(a)     (MM_PMC_PPU1_IOMODULE | 0x ## a)
+#define MM_PPU0_IOM(a)     (MM_PPU0_IOMODULE | 0x ## a)
+#define MM_PPU1_IOM(a)     (MM_PPU1_IOMODULE | 0x ## a)
 #define MM_PSM_IOM(a)          (MM_PSM_IOMODULE | 0x ## a)
 
 /* Split the PMC DMA into a SRC and a DST.  */
-#define MM_PMC_PMC_DMA0_SRC MM_PMC_PMC_DMA0
-#define MM_PMC_PMC_DMA0_DST (MM_PMC_PMC_DMA0 + 0x800)
+#define MM_PMC_DMA0_SRC MM_PMC_DMA0
+#define MM_PMC_DMA0_DST (MM_PMC_DMA0 + 0x800)
 
-#define MM_PMC_PMC_DMA1_SRC MM_PMC_PMC_DMA1
-#define MM_PMC_PMC_DMA1_DST (MM_PMC_PMC_DMA1 + 0x800)
+#define MM_PMC_DMA1_SRC MM_PMC_DMA1
+#define MM_PMC_DMA1_DST (MM_PMC_DMA1 + 0x800)
 
-#define MM_PMC_OSPI_DMA_SRC  (MM_PMC_OSPI + 0x1000)
-#define MM_PMC_OSPI_DMA_DST  (MM_PMC_OSPI + 0x1800)
-#define MM_PMC_OSPI_DAC      MM_TOP_QSPI
+#define MM_OSPI_DMA_SRC  (MM_OSPI + 0x1000)
+#define MM_OSPI_DMA_DST  (MM_OSPI + 0x1800)
+#define MM_OSPI_DAC      MM_TOP_QSPI
 
-#define MM_PMC_PMC_SSS (MM_PMC_PMC_GLOBAL + 0x500)
-#define MM_PRAM_ZEROIZE (MM_PMC_PMC_GLOBAL + 0x518)
+#define MM_PMC_SSS (MM_PMC_GLOBAL + 0x500)
+#define MM_PRAM_ZEROIZE (MM_PMC_GLOBAL + 0x518)
 #define MM_PRAM_ZEROIZE_SIZE 4
 
 /* Split PMC_GLOBAL into areas matching separate ods */
-#define MM_PMC_PUF_CTRL        (MM_PMC_PMC_GLOBAL + 0x40000)
-#define MM_PMC_PUF_CTRL_SIZE   0x10000
+#define MM_PUF_CTRL        (MM_PMC_GLOBAL + 0x40000)
+#define MM_PUF_CTRL_SIZE   0x10000
 
-/* PMC Sysmon AMS Satellite subregions within MM_PMC_PMC_SYSMON */
-#define MM_PMC_AMS_SAT0        (MM_PMC_PMC_SYSMON + 0x10000)
-#define MM_PMC_AMS_SAT1        (MM_PMC_PMC_SYSMON + 0x20000)
-#define MM_PMC_AMS_SAT_SIZE    0x00010000
+/* PMC Sysmon AMS Satellite subregions within MM_PMC_SYSMON */
+#define MM_AMS_SAT0        (MM_PMC_SYSMON + 0x10000)
+#define MM_AMS_SAT1        (MM_PMC_SYSMON + 0x20000)
+#define MM_AMS_SAT_SIZE    0x00010000
 
-/* PMC GIC Proxy at MM_PMC_PMC_GLOBAL + 0x30000 offset.  */
-#define MM_PMC_GIC_PROXY (MM_PMC_PMC_GLOBAL + 0x30000)
-#define MM_PMC_GIC_PROXY_SIZE 0x100
+/* PMC GIC Proxy at MM_PMC_GLOBAL + 0x30000 offset.  */
+#define MM_GIC_PROXY (MM_PMC_GLOBAL + 0x30000)
+#define MM_GIC_PROXY_SIZE 0x100
 
 #ifdef MM_PSM_GLOBAL_REG
 #define MM_PSM_GIC_PROXY (MM_PSM_GLOBAL_REG + 0x2000)

@@ -32,20 +32,20 @@
 &amba_pmc_sys {
 	doc-name = "PMC System";
 	doc-status = "partial";
-	pmc_clk_rst: pmc_clk_rst@MM_PMC_CRP {
+	pmc_clk_rst: pmc_clk_rst@MM_CRP {
 		doc-status = "partial";
 		compatible = "xlnx,pmc-clk-rst";
-		reg = <0x0 MM_PMC_CRP 0x0 0x80000 0x0>;
+		reg = <0x0 MM_CRP 0x0 0x80000 0x0>;
 		interrupts = <CRP_IRQ_0>;
 		gpio-controller;
 		#gpio-cells = <1>;
 	};
 
-	pmc_int: pmc_int@MM_PMC_INTPMC_CONFIG {
+	pmc_int: pmc_int@MM_INTPMC_CONFIG {
 		doc-status = "partial";
 		compatible = "xlnx,versal-pmc-int";
-		reg = <0x0 MM_PMC_INTPMC_CONFIG
-                       0x0 MM_PMC_INTPMC_CONFIG_SIZE 0x0>;
+		reg = <0x0 MM_INTPMC_CONFIG
+                       0x0 MM_INTPMC_CONFIG_SIZE 0x0>;
 		interrupts = <PMC_INT_IRQ_0>;
 	};
 
@@ -54,7 +54,7 @@
 		gpios = < &pmc_clk_rst CRP_RST_PS_PMC_SRST >;
 	};
 
-	pmc_global: pmc_global@MM_PMC_PMC_GLOBAL {
+	pmc_global: pmc_global@MM_PMC_GLOBAL {
 		doc-status = "partial";
 		#gpio-cells = <1>;
 		gpio-controller;
@@ -82,7 +82,7 @@
 				       &pmc_ppu0_io_intc IRQ_PPU0_INTC_SYSMON_VOLT7
 				       &dummy1 0
 				       &pmc_ppu0_io_intc IRQ_PPU0_INTC_TAMPER_GLITCH>;
-		reg = <0x0 MM_PMC_PMC_GLOBAL 0x0 MM_PMC_PMC_GLOBAL_SIZE 0x0>;
+		reg = <0x0 MM_PMC_GLOBAL 0x0 MM_PMC_GLOBAL_SIZE 0x0>;
 		gpios = <&pmc_puf_ctrl PMC_PUF_CTRL_PUF_ERROR>;
 
 		bbram = <&pmc_bbram_ctrl>;
@@ -100,17 +100,17 @@
 		reg = <0x0 MM_PRAM_ZEROIZE 0x0 MM_PRAM_ZEROIZE_SIZE 0x1>;
 		stream-connected-pzm = <&pmc_stream_switch>;
 	};
-	pmc_analog@MM_PMC_PMC_ANALOG {
+	pmc_analog@MM_PMC_ANALOG {
 		compatible = "xlnx,pmc-analog";
-		reg = <0x0 MM_PMC_PMC_ANALOG 0x0 MM_PMC_PMC_ANALOG_SIZE 0x0>;
+		reg = <0x0 MM_PMC_ANALOG 0x0 MM_PMC_ANALOG_SIZE 0x0>;
 
 		interrupts-extended = <&pmc_gic_proxy
 					0 VCCINT_PMC_GLITCH_DETECT_IRQ_0 0>;
 		tamper-sink = <&pmc_global>;
 	};
-	pmc_sysmon: pmc_sysmon@MM_PMC_PMC_SYSMON {
+	pmc_sysmon: pmc_sysmon@MM_PMC_SYSMON {
 		compatible = "xlnx-pmc-sysmon";
-		reg = <0x0 MM_PMC_PMC_SYSMON 0x0 MM_PMC_PMC_SYSMON_SIZE 0x0>;
+		reg = <0x0 MM_PMC_SYSMON 0x0 MM_PMC_SYSMON_SIZE 0x0>;
 		interrupts = <SYSMON_IRQ_0
 			      SYSMON_IRQ_1>;
 		reset-gpios = <&pmc_clk_rst CRP_RST_SYSMON_CFG>;
@@ -121,11 +121,11 @@
 	};
 	pmc_ams_sat0: pmc_ams_sat@0 {
 		compatible = "xlnx,ams-sat";
-		reg = <0x0 MM_PMC_AMS_SAT0 0x0 MM_PMC_AMS_SAT_SIZE 0x1>;
+		reg = <0x0 MM_AMS_SAT0 0x0 MM_AMS_SAT_SIZE 0x1>;
 	};
 	pmc_ams_sat1: pmc_ams_sat@1 {
 		compatible = "xlnx,ams-sat";
-		reg = <0x0 MM_PMC_AMS_SAT1 0x0 MM_PMC_AMS_SAT_SIZE 0x1>;
+		reg = <0x0 MM_AMS_SAT1 0x0 MM_AMS_SAT_SIZE 0x1>;
 	};
 	pmc_global_tamper: versal_pmc_tamper@ {
 		compatible = "xlnx,pmc_tamper";

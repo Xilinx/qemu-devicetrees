@@ -34,10 +34,10 @@
 	doc-status = "in-progress";
 	qemu-fdt-abort-on-error = "Unable to create PMC security models. Cannot continue.\nTry installing libgcrypt.";
 
-	trng@MM_PMC_TRNG {
+	trng@MM_TRNG {
 		doc-status = "complete";
 		compatible = "xlnx,versal-trng";
-		reg = <0x0 MM_PMC_TRNG 0x0 0x1000 0x0>;
+		reg = <0x0 MM_TRNG 0x0 0x1000 0x0>;
 		interrupts = <TRNG_IRQ_0>;
 	};
 
@@ -45,7 +45,7 @@
 		doc-status = "complete";
 		compatible = "zynqmp,csu-dma";
 		stream-connected-dma0 = <&pmc_stream_switch> ;
-		reg = <0x0 MM_PMC_PMC_DMA0_SRC 0x0 0x800 0x0>;
+		reg = <0x0 MM_PMC_DMA0_SRC 0x0 0x800 0x0>;
 		dma = <&amba_pmc>;
 		memattr = <&pmc_dma0_memattr>;
 		dma-width = <16>;
@@ -55,7 +55,7 @@
 	pmc_dma0_dst: pmc_dma0_dst@0 {
 		doc-status = "complete";
 		compatible = "zynqmp,csu-dma";
-		reg = <0x0 MM_PMC_PMC_DMA0_DST 0x0 0x800 0x0>;
+		reg = <0x0 MM_PMC_DMA0_DST 0x0 0x800 0x0>;
 		dma = <&amba_pmc>;
 		memattr = <&pmc_dma0_memattr>;
 		is-dst = <1>;
@@ -67,7 +67,7 @@
 		doc-status = "complete";
 		compatible = "zynqmp,csu-dma";
 		stream-connected-dma1 = <&pmc_stream_switch> ;
-		reg = <0x0 MM_PMC_PMC_DMA1_SRC 0x0 0x800 0x0>;
+		reg = <0x0 MM_PMC_DMA1_SRC 0x0 0x800 0x0>;
 		dma = <&amba_pmc>;
 		memattr = <&pmc_dma1_memattr>;
 		dma-width = <16>;
@@ -77,7 +77,7 @@
 	pmc_dma1_dst: pmc_dma1_dst@0 {
 		doc-status = "complete";
 		compatible = "zynqmp,csu-dma";
-		reg = <0x0 MM_PMC_PMC_DMA1_DST 0x0 0x800 0x0>;
+		reg = <0x0 MM_PMC_DMA1_DST 0x0 0x800 0x0>;
 		dma = <&amba_pmc>;
 		memattr = <&pmc_dma1_memattr>;
 		is-dst = <1>;
@@ -88,7 +88,7 @@
 	pmc_stream_switch: pmc_stream_switch@0 {
 		doc-status = "complete";
 		compatible = "versal,pmc-sss";
-		reg-extended = <&amba_pmc_sys 0x0 MM_PMC_PMC_SSS 0x0 0x4 0x1>;
+		reg-extended = <&amba_pmc_sys 0x0 MM_PMC_SSS 0x0 0x4 0x1>;
 		stream-connected-dma0 = <&pmc_dma0_dst>;
 		stream-connected-dma1 = <&pmc_dma1_dst>;
 		stream-connected-aes = <&pmc_aes>;
@@ -96,20 +96,20 @@
 		stream-connected-sbi = <&pmc_sbi>;
 	};
 
-	pmc_sha3: pmc_sha@MM_PMC_SHA3 {
+	pmc_sha3: pmc_sha@MM_SHA3 {
 		doc-status = "complete";
 		compatible = "zynqmp,csu-sha3";
-		reg = <0x0 MM_PMC_SHA3 0x0 0x100 0x0>;
+		reg = <0x0 MM_SHA3 0x0 0x100 0x0>;
 		interrupts = <SHA_IRQ_0>;
 	};
 
-	pmc_aes: pmc_aes@MM_PMC_AES {
+	pmc_aes: pmc_aes@MM_AES {
 		doc-status = "in-progress";
 		#gpio-cells = <1>;
 		gpio-controller;
 		compatible = "xlnx,versal-aes";
 		stream-connected-aes = <&pmc_stream_switch> ;
-		reg = <0x0 MM_PMC_AES 0x0 0x100 0x0>;
+		reg = <0x0 MM_AES 0x0 0x100 0x0>;
 		interrupts = <AES_IRQ_0>;
 
 		gpios = <&xlnx_aes 0
@@ -127,21 +127,21 @@
 		};
 	};
 
-	pmc_rsa: pmc_rsa@MM_PMC_ECDSA_RSA {
+	pmc_rsa: pmc_rsa@MM_ECDSA_RSA {
 		doc-status = "complete";
 		compatible = "xlnx,versal-ecdsa-rsa";
-		reg = < 0x0 MM_PMC_ECDSA_RSA 0x0 0x6c 0x0>;
+		reg = < 0x0 MM_ECDSA_RSA 0x0 0x6c 0x0>;
 		interrupts = <ECDSA_RSA_IRQ_0>;
 	};
 
-	xlnx_pmc_efuse_cache: xlnx_pmc_efuse_cache@MM_PMC_EFUSE_CACHE {
+	xlnx_pmc_efuse_cache: xlnx_pmc_efuse_cache@MM_EFUSE_CACHE {
 		doc-status = "complete";
 #if defined(VERSAL_PSX) || defined(VERSAL_PMX)
 		compatible = "xlnx,pmx_efuse_cache";
 #else
 		compatible = "xlnx,pmc-efuse-cache";
 #endif
-		reg = <0x0 MM_PMC_EFUSE_CACHE 0x0 MM_PMC_EFUSE_CACHE_SIZE 0x0>;
+		reg = <0x0 MM_EFUSE_CACHE 0x0 MM_EFUSE_CACHE_SIZE 0x0>;
 		efuse = <&xlnx_efuse>;
 	};
 
@@ -149,12 +149,12 @@
 		compatible = "xlnx,versal-puf-ctrl";
 		zynqmp-aes-key-sink-puf = <&pmc_aes>;
 		efuse = <&xlnx_efuse>;
-		reg = <0x0 MM_PMC_PUF_CTRL 0x0 MM_PMC_PUF_CTRL_SIZE 0x0>;
+		reg = <0x0 MM_PUF_CTRL 0x0 MM_PUF_CTRL_SIZE 0x0>;
 		#gpio-cells = <1>;
 		gpio-controller;
 	};
 
-	pmc_efuse: pmc_efuse@MM_PMC_EFUSE_CTRL {
+	pmc_efuse: pmc_efuse@MM_EFUSE_CTRL {
 		doc-status = "complete";
 #if defined(VERSAL_PSX) || defined(VERSAL_PMX)
 		compatible = "xlnx,pmx_efuse_ctrl";
@@ -165,7 +165,7 @@
 		zynqmp-aes-key-sink-efuses = <&pmc_aes>;
 		zynqmp-aes-key-sink-efuses-user0 = <&pmc_aes>;
 		zynqmp-aes-key-sink-efuses-user1 = <&pmc_aes>;
-		reg = <0x0 MM_PMC_EFUSE_CTRL 0x0 MM_PMC_EFUSE_CTRL_SIZE 0x0>;
+		reg = <0x0 MM_EFUSE_CTRL 0x0 MM_EFUSE_CTRL_SIZE 0x0>;
 		interrupts = <EFUSE_IRQ_0>;
 		efuse = <&xlnx_efuse>;
 
@@ -178,20 +178,20 @@
 		};
 	};
 
-	pmc_bbram_ctrl: pmc_bbram@MM_PMC_BBRAM_CTRL {
+	pmc_bbram_ctrl: pmc_bbram@MM_BBRAM_CTRL {
 		doc-status = "partial";
 		doc-limitations = "Missing AES key connections.";
 		compatible = "xlnx,bbram-ctrl";
-		reg = <0x0 MM_PMC_BBRAM_CTRL 0x0 MM_PMC_BBRAM_CTRL_SIZE 0x0>;
+		reg = <0x0 MM_BBRAM_CTRL 0x0 MM_BBRAM_CTRL_SIZE 0x0>;
 		interrupts = <BBRAM_APB_IRQ_0>;
 		zynqmp-aes-key-sink-bbram = <&pmc_aes>;
 		crc-zpads = <0>;
 	};
-	pmc_sbi: pmc_sbi@MM_PMC_SLAVE_BOOT {
+	pmc_sbi: pmc_sbi@MM_SLAVE_BOOT {
 		doc-status = "complete";
 		compatible = "pmc,slave-boot";
-		reg = <0x0 MM_PMC_SLAVE_BOOT 0x0 MM_PMC_SLAVE_BOOT_SIZE 0x0
-		       0x0 MM_PMC_SLAVE_BOOT_STREAM 0x0 MM_PMC_SLAVE_BOOT_STREAM_SIZE 0x0>;
+		reg = <0x0 MM_SLAVE_BOOT 0x0 MM_SLAVE_BOOT_SIZE 0x0
+		       0x0 MM_SLAVE_BOOT_STREAM 0x0 MM_SLAVE_BOOT_STREAM_SIZE 0x0>;
 		interrupts = <SBI_IRQ_0>;
 		stream-connected-sbi = <&pmc_stream_switch>;
 		reset-gpios = <&pmc_clk_rst CRP_RST_SBI>;

@@ -52,19 +52,19 @@
 };
 
 &amba_pmc_sec {
-	pmc_sha3_1: pmc_sha1@MM_PMC_SHA1 {
+	pmc_sha3_1: pmc_sha1@MM_SHA1 {
 		doc-status = "complete";
 		compatible = "zynqmp,csu-sha3";
-		reg = <0x0 MM_PMC_SHA1 0x0 MM_PMC_SHA1_SIZE 0x0>;
+		reg = <0x0 MM_SHA1 0x0 MM_SHA1_SIZE 0x0>;
 	};
 };
 
 &amba_pmc_sys {
-	pmc_clk_rst: pmc_clk_rst@MM_PMC_CRP {
+	pmc_clk_rst: pmc_clk_rst@MM_CRP {
 		compatible = "xlnx,pmx_crp";
 	};
 
-	pmx_analog: pmc_analog@MM_PMC_PMC_ANALOG {
+	pmx_analog: pmc_analog@MM_PMC_ANALOG {
 		compatible = "xlnx,pmx_anlg";
 		interrupts-extended = <&pmc_gic_proxy
 					0 GLITCH_DET_IRQ_IRQ_0 0>;
@@ -76,27 +76,27 @@
 };
 
 &amba_pmc_iou {
-	pmx_wwdt: wwdt@MM_PMC_PMC_WWDT {
+	pmx_wwdt: wwdt@MM_PMC_WWDT {
 		compatible = "xlnx,versal-wwdt";
-		reg = <0x0 MM_PMC_PMC_WWDT 0x0 MM_PMC_PMC_WWDT_SIZE 0x0>;
+		reg = <0x0 MM_PMC_WWDT 0x0 MM_PMC_WWDT_SIZE 0x0>;
 		pclk = <100000000>;
 	};
-	sdhci1: mmc@MM_PMC_SD1 {
+	sdhci1: mmc@MM_SD1 {
 		compatible = "xlnx,versalnet-emmc";
-		reg = <0x0 (MM_PMC_SD1 + 0x200) 0x0 0x100 0x0
-			0x0 MM_PMC_SD1 0x0 0x100 0x0>;
+		reg = <0x0 (MM_SD1 + 0x200) 0x0 0x100 0x0
+			0x0 MM_SD1 0x0 0x100 0x0>;
 	};
 };
 
 &amba_pmc_pl {
-	/delete-node/ cfu@MM_PMC_CFU_APB;
+	/delete-node/ cfu@MM_CFU_APB;
 
 	/*
 	 * For the XMPU to protect peripherals, they must be inside of a memory
 	 * region at the address of the peripheral.
 	 * The peripheral itself is then placed inside of the dummy region.
 	 */
-	dummy_cfu_mem: dummy_cfu_mem@MM_PMC_CFU_APB {
+	dummy_cfu_mem: dummy_cfu_mem@MM_CFU_APB {
 		compatible = "qemu:memory-region";
 		cfu: cfu@0x0 {
 			doc-status = "partial";
@@ -107,9 +107,9 @@
 			 * For XMPU to work, register and stream addresses must be relative
 			 * to the CFU dummy memory region base.
 			 */
-			reg = <0x0 (MM_PMC_CFU_APB - MM_PMC_CFU_APB) 0x0 MM_PMC_CFU_APB_SIZE 0x0
-				   0x0 (MM_PMC_CFU_STREAM - MM_PMC_CFU_APB) 0x0 MM_PMC_CFU_STREAM_SIZE 0x0
-				   0x0 (MM_PMC_CFU_STREAM_2 - MM_PMC_CFU_APB) 0x0 MM_PMC_CFU_STREAM_2_SIZE 0x0
+			reg = <0x0 (MM_CFU_APB - MM_CFU_APB) 0x0 MM_CFU_APB_SIZE 0x0
+				   0x0 (MM_CFU_STREAM - MM_CFU_APB) 0x0 MM_CFU_STREAM_SIZE 0x0
+				   0x0 (MM_CFU_STREAM_2 - MM_CFU_APB) 0x0 MM_CFU_STREAM_2_SIZE 0x0
 				   >;
 			chardev = "pmc-cfu";
 			dma = <&amba_pmc>;
@@ -118,21 +118,21 @@
 };
 
 &amba_pmc {
-	xmpu_pmc_cfu: xmpu_pmc_cfu@MM_PMC_PMC_XMPU_CFU {
+	xmpu_pmc_cfu: xmpu_pmc_cfu@MM_PMC_XMPU_CFU {
 		compatible = "xlnx,versal-xmpu";
 		reg-extended = <
-			&amba_pmc 0x0 MM_PMC_PMC_XMPU_CFU 0x0 MM_PMC_PMC_XMPU_CFU_SIZE 0x0
-			&amba_pmc_pl 0x0 MM_PMC_CFU_APB 0x0 (MM_PMC_CFU_APB_SIZE + MM_PMC_CFU_STREAM_SIZE) 0x2
-			&amba_pmc_pl 0x0 MM_PMC_CFU_STREAM_2 0x0 MM_PMC_CFU_STREAM_2_SIZE 0x2
+			&amba_pmc 0x0 MM_PMC_XMPU_CFU 0x0 MM_PMC_XMPU_CFU_SIZE 0x0
+			&amba_pmc_pl 0x0 MM_CFU_APB 0x0 (MM_CFU_APB_SIZE + MM_CFU_STREAM_SIZE) 0x2
+			&amba_pmc_pl 0x0 MM_CFU_STREAM_2 0x0 MM_CFU_STREAM_2_SIZE 0x2
 		>;
 		protected-mr = <&dummy_cfu_mem>;
 		mr-0 = <&amba_pmc_pl>;
-		protected-base = <MM_PMC_CFU_APB>;
+		protected-base = <MM_CFU_APB>;
 	};
 
-	pmx_err_mng: pmx_err_mng@MM_PMC_PMC_GLOBAL {
+	pmx_err_mng: pmx_err_mng@MM_PMC_GLOBAL {
 		compatible = "xlnx,pmx-err-mng";
-		reg = <0x0 (MM_PMC_PMC_GLOBAL + 0x20000) 0x0 0x10000 0x1>;
+		reg = <0x0 (MM_PMC_GLOBAL + 0x20000) 0x0 0x10000 0x1>;
 		gpios = <&pmc_global 3>;
 	};
 };

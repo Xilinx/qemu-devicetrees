@@ -84,23 +84,23 @@
 		reg = <0x0 MM_IPI_MSGBUF 0x0 MM_IPI_MSGBUF_SIZE 0x0>;
 	};
 
-	pmc_ram: pmc_ram@MM_PMC_PMC_RAM {
+	pmc_ram: pmc_ram@MM_PMC_RAM {
 		compatible = "qemu:memory-region";
 	};
-	MEM_REGION(pmc_ram_bank_0, 0x0, 0x0, 0x0, MM_PMC_PMC_RAM_SIZE, &pmc_ram)
+	MEM_REGION(pmc_ram_bank_0, 0x0, 0x0, 0x0, MM_PMC_RAM_SIZE, &pmc_ram)
 
-	pmc_ppu1_insn_ram: pmc_ppu1_ram@MM_PMC_PPU1_RAM_INSTR {
+	pmc_ppu1_insn_ram: pmc_ppu1_ram@MM_PPU1_RAM_INSTR {
 		compatible = "qemu:memory-region";
 		container = <&amba>;
 		qemu,ram = <QEMU_RAM_PROPERTY>;
-		reg = <0x0 MM_PMC_PPU1_RAM_INSTR 0x0 MM_PMC_PPU1_RAM_INSTR_SIZE 0x0>;
+		reg = <0x0 MM_PPU1_RAM_INSTR 0x0 MM_PPU1_RAM_INSTR_SIZE 0x0>;
 	};
 
-	pmc_ppu1_data_ram: pmc_ppu1_ram@MM_PMC_PPU1_RAM_DATA {
+	pmc_ppu1_data_ram: pmc_ppu1_ram@MM_PPU1_RAM_DATA {
 		compatible = "qemu:memory-region";
 		container = <&amba>;
 		qemu,ram = <QEMU_RAM_PROPERTY>;
-		reg = <0x0 MM_PMC_PPU1_RAM_DATA 0x0 MM_PMC_PPU1_RAM_DATA_SIZE 0x0>;
+		reg = <0x0 MM_PPU1_RAM_DATA 0x0 MM_PPU1_RAM_DATA_SIZE 0x0>;
 	};
 
 #ifdef LQSPI_XIP
@@ -109,14 +109,14 @@
 		compatible = "qemu:memory-region";
 		container = <&amba_pmc>;
 		qemu,ram = <QEMU_RAM_PROPERTY>;
-		reg = <0x0 MM_PMC_LQSPI 0x0 MM_PMC_LQSPI_SIZE 0x0>;
+		reg = <0x0 MM_LQSPI 0x0 MM_LQSPI_SIZE 0x0>;
 	};
 #endif
 
 	lmb_pmc_ppu0: lmb_pmc_ppu0@0 {
 		/* PMC ROM. 128K.  */
-		pmc_rom: pmc_rom@MM_PMC_PMC_ROM {
-			reg = <0x0 MM_PMC_PMC_ROM 0x0 MM_PMC_PMC_ROM_SIZE 0x1>;
+		pmc_rom: pmc_rom@MM_PMC_ROM {
+			reg = <0x0 MM_PMC_ROM 0x0 MM_PMC_ROM_SIZE 0x1>;
 			compatible = "qemu:memory-region";
 			container = <&lmb_pmc_ppu0>;
 			qemu,ram = <QEMU_RAM_PROPERTY>;
@@ -124,8 +124,8 @@
 		};
 
 		/* PMC PPU0 RAM. 8K.  */
-		pmc_ppu0_ram: ppu0_ram@MM_PMC_PPU0_RAM {
-			reg = <0x0 MM_PMC_PPU0_RAM 0x0 MM_PMC_PPU0_RAM_SIZE 0x1>;
+		pmc_ppu0_ram: ppu0_ram@MM_PPU0_RAM {
+			reg = <0x0 MM_PPU0_RAM 0x0 MM_PPU0_RAM_SIZE 0x1>;
 			compatible = "qemu:memory-region";
 			container = <&lmb_pmc_ppu0>;
 			qemu,ram = <QEMU_RAM_PROPERTY>;
