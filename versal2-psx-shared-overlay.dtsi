@@ -158,9 +158,9 @@
 };
 
 &amba_fpd {
-    fpd_afi_fs: lpd_afi_fs@MM_FPD_FPD_AFIFS_REG {
+    fpd_afi_fs: lpd_afi_fs@MM_FPD_AFIFS_REG {
         compatible = "xlnx.psxc_afi_fs";
-        reg = <0x0 MM_FPD_FPD_AFIFS_REG 0x0 MM_FPD_FPD_AFIFS_REG_SIZE 0x0>;
+        reg = <0x0 MM_FPD_AFIFS_REG 0x0 MM_FPD_AFIFS_REG_SIZE 0x0>;
     };
 };
 

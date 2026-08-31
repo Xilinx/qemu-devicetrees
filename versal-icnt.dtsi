@@ -364,10 +364,10 @@
 };
 
 &amba_lpd {
-#ifdef MM_FPD_FPD_SMMUTCU
-	smmu: smmu@MM_FPD_FPD_SMMUTCU {
+#ifdef MM_FPD_SMMUTCU
+	smmu: smmu@MM_FPD_SMMUTCU {
 		compatible = "arm,mmu-500";
-		reg-extended = <&amba_lpd 0x0 MM_FPD_FPD_SMMUTCU 0x0 MM_FPD_FPD_SMMUTCU_SIZE 0x0
+		reg-extended = <&amba_lpd 0x0 MM_FPD_SMMUTCU 0x0 MM_FPD_SMMUTCU_SIZE 0x0
 				&smmu_tbu0 0x0 0x0 0xffffffff 0xffffffff 0x0
 				&smmu_tbu1 0x0 0x0 0xffffffff 0xffffffff 0x0
 				&smmu_tbu2 0x0 0x0 0xffffffff 0xffffffff 0x0
@@ -397,9 +397,9 @@
 		version = <0x24>;
 	};
 
-	smmu_reg: smmu0@MM_FPD_FPD_SMMU {
+	smmu_reg: smmu0@MM_FPD_SMMU {
 		compatible = "xlnx,smmu-reg";
-		reg = <0x0 MM_FPD_FPD_SMMU 0x0 MM_FPD_FPD_SMMU_SIZE 0x0>;
+		reg = <0x0 MM_FPD_SMMU 0x0 MM_FPD_SMMU_SIZE 0x0>;
 		interrupt-controller;
 		interrupts = <INTF_FPD_SMMU_IRQ_0>;
 	};

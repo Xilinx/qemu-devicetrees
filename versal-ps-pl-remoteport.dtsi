@@ -683,7 +683,7 @@
 };
 
 &amba_fpd {
-	intfpd: intfpd@MM_FPD_INTFPD_CONFIG {
+	intfpd: intfpd@MM_INTFPD_CONFIG {
 		afifs-serbs = <&m_axi_fpd>;
 	};
 };

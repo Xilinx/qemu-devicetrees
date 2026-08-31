@@ -148,39 +148,39 @@ zname: dma-controller@zbase {							\
 	}
 
 &amba_fpd {
-#ifdef MM_FPD_FPD_APU
-	apu_ctrl: apu_ctrl@MM_FPD_FPD_APU {
+#ifdef MM_FPD_APU
+	apu_ctrl: apu_ctrl@MM_FPD_APU {
 		compatible = "xlnx,versal-apu-ctrl";
-		reg = <0x0 MM_FPD_FPD_APU 0x0 MM_FPD_FPD_APU_SIZE 0x0>;
+		reg = <0x0 MM_FPD_APU 0x0 MM_FPD_APU_SIZE 0x0>;
 		cpu0 = <&cpu0>;
 		cpu1 = <&cpu1>;
 		#gpio-cells = <1>;
 	};
 #endif
 
-	afi_fm@MM_FPD_FPD_AFIFM0 {
+	afi_fm@MM_FPD_AFIFM0 {
 		compatible = "xlnx,versal-afi-fm";
-		reg = <0x0 MM_FPD_FPD_AFIFM0 0x0 MM_FPD_FPD_AFIFM0_SIZE 0x0>;
+		reg = <0x0 MM_FPD_AFIFM0 0x0 MM_FPD_AFIFM0_SIZE 0x0>;
 	};
 
-#ifdef MM_FPD_FPD_AFIFM2
-	afi_fm@MM_FPD_FPD_AFIFM2 {
+#ifdef MM_FPD_AFIFM2
+	afi_fm@MM_FPD_AFIFM2 {
 		compatible = "xlnx,versal-afi-fm";
-		reg = <0x0 MM_FPD_FPD_AFIFM2 0x0 MM_FPD_FPD_AFIFM2_SIZE 0x0>;
+		reg = <0x0 MM_FPD_AFIFM2 0x0 MM_FPD_AFIFM2_SIZE 0x0>;
 	};
 #endif
 
-#ifdef MM_FPD_FPD_GPCCI
-	cci_reg@MM_FPD_FPD_GPCCI {
+#ifdef MM_FPD_GPCCI
+	cci_reg@MM_FPD_GPCCI {
 		compatible = "xlnx,cci_reg";
-		reg = <0x0 MM_FPD_FPD_GPCCI 0x0 MM_FPD_FPD_MAINCCI_SIZE 0x0>;
+		reg = <0x0 MM_FPD_GPCCI 0x0 MM_FPD_MAINCCI_SIZE 0x0>;
 	};
 #endif
 
-#ifdef MM_FPD_FPD_MAINCCI
-	cci500@MM_FPD_FPD_MAINCCI {
+#ifdef MM_FPD_MAINCCI
+	cci500@MM_FPD_MAINCCI {
 		compatible = "xlnx,cci500";
-		reg = <0x0 MM_FPD_FPD_MAINCCI 0x0 MM_FPD_FPD_MAINCCI_SIZE 0x0>;
+		reg = <0x0 MM_FPD_MAINCCI 0x0 MM_FPD_MAINCCI_SIZE 0x0>;
 	};
 #endif
 
@@ -199,22 +199,22 @@ zname: dma-controller@zbase {							\
 		reg = <0x0 MM_CPM_CPM_SLCR_SECURE 0x0 MM_CPM_CPM_SLCR_SECURE_SIZE 0x0>;
 	};
 
-	fpd_slcr: fpd_slcr@MM_FPD_FPD_SLCR {
+	fpd_slcr: fpd_slcr@MM_FPD_SLCR {
 		compatible = "xlnx,versal-fpd-slcr";
 		interrupts = <SLCR_FPD_APB_IRQ_0>;
-		reg = <0x0 MM_FPD_FPD_SLCR 0x0 MM_FPD_FPD_SLCR_SIZE 0x0>;
+		reg = <0x0 MM_FPD_SLCR 0x0 MM_FPD_SLCR_SIZE 0x0>;
 	};
 
-	fpd_slcr_secure@MM_FPD_FPD_SLCR {
+	fpd_slcr_secure@MM_FPD_SLCR {
 		compatible = "xlnx,versal-fpd-slcr-secure";
 		interrupts = <SLCR_SECURE_FPD_APB_IRQ_0>;
-		reg = <0x0 MM_FPD_FPD_SLCR_SECURE 0x0 MM_FPD_FPD_SLCR_SECURE_SIZE 0x0>;
+		reg = <0x0 MM_FPD_SLCR_SECURE 0x0 MM_FPD_SLCR_SECURE_SIZE 0x0>;
 	};
 
-#ifdef MM_FPD_FPD_WWDT
-	wwdt0: watchdog@MM_FPD_FPD_WWDT {
+#ifdef MM_FPD_WWDT
+	wwdt0: watchdog@MM_FPD_WWDT {
 		compatible = "xlnx,versal-wwdt";
-		reg = <0x0 MM_FPD_FPD_WWDT 0x0 MM_FPD_FPD_WWDT_SIZE 0x0>;
+		reg = <0x0 MM_FPD_WWDT 0x0 MM_FPD_WWDT_SIZE 0x0>;
 		/* IRQ order must match the QEMU model */
 		interrupts = <FP_WDT_IRQ_0
 					FPD_WWDT_RST_PENDING_IRQ_0
@@ -224,10 +224,10 @@ zname: dma-controller@zbase {							\
 		reset-gpios = <&crf 27>;
 	};
 #endif
-#ifdef MM_FPD_INTFPD_CONFIG
-	intfpd: intfpd@MM_FPD_INTFPD_CONFIG {
+#ifdef MM_INTFPD_CONFIG
+	intfpd: intfpd@MM_INTFPD_CONFIG {
 		compatible = "xlnx-intfpd-config";
-		reg = <0x0 MM_FPD_INTFPD_CONFIG 0x0 MM_FPD_INTFPD_CONFIG_SIZE 0x0>;
+		reg = <0x0 MM_INTFPD_CONFIG 0x0 MM_INTFPD_CONFIG_SIZE 0x0>;
 		interrupts = <
 		#if FPD_APB_INT_IRQ_0
 				FPD_APB_INT_IRQ_0
@@ -449,9 +449,9 @@ zname: dma-controller@zbase {							\
 
 &amba_root {
 	/* These devices need to be created before the CPUs.  */
-	crf: crf@MM_FPD_CRF {
+	crf: crf@MM_CRF {
 		compatible = "xlnx,versal-crf";
-		reg-extended = <&amba_fpd 0x0 MM_FPD_CRF 0x0 MM_FPD_CRF_SIZE 0x0>;
+		reg-extended = <&amba_fpd 0x0 MM_CRF 0x0 MM_CRF_SIZE 0x0>;
 		gpio-controller;
 		#gpio-cells = <1>;
 	};
