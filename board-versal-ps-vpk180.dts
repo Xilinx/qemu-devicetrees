@@ -68,9 +68,7 @@
 
 /{
 	MEM_REGION64_DDR(ddr2_def, MM_TOP_DDR_2_H, MM_TOP_DDR_2_L, MM_TOP_DDR_2,
-                     0x2, 0x0, &ddr_2_mem)
-	MEM_REGION64_DDR(ddr3_def, MM_TOP_DDR_CH2_H, MM_TOP_DDR_CH2_L, MM_TOP_DDR_CH2,
-                     0x1, 0x0, &ddr_2_mem)
+                     0x2, 0x80000000, &ddr_2_mem)  // 10GB
 };
 
 &spi0 {
