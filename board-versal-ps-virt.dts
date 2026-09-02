@@ -68,6 +68,7 @@
 #include "versal-boot-init.dtsi"
 #endif
 #include "versal-ps-iou.dtsi"
+#include "versal-cpm.dtsi"
 #include "versal-virtio-mmio.dtsi"
 #include "versal-boot-init.dtsi"
 #include "versal-gty.dtsi"
