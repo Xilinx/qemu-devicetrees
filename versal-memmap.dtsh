@@ -236,7 +236,7 @@ name: name@addr64 {														\
  #define MM_RPU_GIC_SIZE	0x3000
 #endif
 
-#ifndef VERSAL_NET
+#ifdef MM_OCM2
 #define MM_XRAM MM_OCM2
 #define MM_XRAM_SIZE MM_OCM2_SIZE
 #define MM_XRAM_MEM MM_OCM2_MEM
