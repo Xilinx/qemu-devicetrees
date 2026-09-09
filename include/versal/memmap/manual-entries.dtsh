@@ -1,0 +1,129 @@
+#ifndef VERSAL_MEMMAP_MANUAL_ENTRIES_DTSH
+#define VERSAL_MEMMAP_MANUAL_ENTRIES_DTSH
+
+/* 
+ * Below memory maps entries are the missing from the generated
+ * memory maps.
+ */
+
+#define MM_RPU_GIC 0xf9000000
+#define MM_RPU_GIC_SIZE 0x3000
+
+#define MM_PS_PL_LPD_LowAddr	0x80000000
+#define MM_PS_PL_LPD_LowAddr_SIZE	0x20000000
+#define MM_PS_PL_FPD_LowAddr0	0xa4000000
+#define MM_PS_PL_FPD_LowAddr0_SIZE	0xc000000
+#define MM_PS_PL_FPD_LowAddr1	0xb0000000
+#define MM_PS_PL_FPD_LowAddr1_SIZE	0x10000000
+#define MM_PS_PL_HighAddr1_L	0x0
+#define MM_PS_PL_HighAddr1	0x40000000000ULL
+#define MM_PS_PL_HighAddr1_H	0x400
+#define MM_PS_PL_HighAddr1_SIZE_L	0x0
+#define MM_PS_PL_HighAddr1_SIZE	0x10000000000ULL
+#define MM_PS_PL_HighAddr1_SIZE_H	0x100
+#define MM_ME_Programming_L	0x0
+#define MM_ME_Programming	0x20000000000ULL
+#define MM_ME_Programming_H	0x200
+#define MM_ME_Programming_SIZE_L	0x0
+#define MM_ME_Programming_SIZE	0x100000000ULL
+#define MM_ME_Programming_SIZE_H	0x1
+#define MM_PMC_alias_region_0_L	0x0
+#define MM_PMC_alias_region_0	0x100000000ULL
+#define MM_PMC_alias_region_0_H	0x1
+#define MM_PMC_alias_region_0_SIZE	0x8000000
+#define MM_PMC_alias_region_1_L	0x8000000
+#define MM_PMC_alias_region_1	0x108000000ULL
+#define MM_PMC_alias_region_1_H	0x1
+#define MM_PMC_alias_region_1_SIZE	0x8000000
+#define MM_PMC_alias_region_2_L	0x10000000
+#define MM_PMC_alias_region_2	0x110000000ULL
+#define MM_PMC_alias_region_2_H	0x1
+#define MM_PMC_alias_region_2_SIZE	0x8000000
+#define MM_PMC_alias_region_3_L	0x18000000
+#define MM_PMC_alias_region_3	0x118000000ULL
+#define MM_PMC_alias_region_3_H	0x1
+#define MM_PMC_alias_region_3_SIZE	0x8000000
+
+#define MM_DDR        0x0
+#define MM_DDR_SIZE   0x80000000
+#define MM_DDR_2_L   0x0
+#define MM_DDR_2     0x800000000ULL
+#define MM_DDR_2_H   0x8
+#define MM_DDR_2_SIZE_L      0x0
+#define MM_DDR_2_SIZE        0x800000000ULL
+#define MM_DDR_2_SIZE_H      0x8
+#define MM_DDR_3_L   0x0
+#define MM_DDR_3     0xc000000000ULL
+#define MM_DDR_3_H   0xc0
+#define MM_DDR_3_SIZE_L      0x0
+#define MM_DDR_3_SIZE        0x4000000000ULL
+#define MM_DDR_3_SIZE_H      0x40
+#define MM_DDR_4_L   0x0
+#define MM_DDR_4     0x10000000000ULL
+#define MM_DDR_4_H   0x100
+#define MM_DDR_4_SIZE_L      0x80000000
+#define MM_DDR_4_SIZE        0xb780000000ULL
+#define MM_DDR_4_SIZE_H      0xb7
+#define MM_DDR_CH1_L 0x0
+#define MM_DDR_CH1   0x50000000000ULL
+#define MM_DDR_CH1_H 0x500
+#define MM_DDR_CH1_SIZE_L    0x0
+#define MM_DDR_CH1_SIZE      0x8000000000ULL
+#define MM_DDR_CH1_SIZE_H    0x80
+#define MM_DDR_CH1_2_L       0x0
+#define MM_DDR_CH1_2 0x58000000000ULL
+#define MM_DDR_CH1_2_H       0x580
+#define MM_DDR_CH1_2_SIZE_L  0x0
+#define MM_DDR_CH1_2_SIZE    0x8000000000ULL
+#define MM_DDR_CH1_2_SIZE_H  0x80
+#define MM_DDR_CH2_L 0x0
+#define MM_DDR_CH2   0x60000000000ULL
+#define MM_DDR_CH2_H 0x600
+#define MM_DDR_CH2_SIZE_L    0x0
+#define MM_DDR_CH2_SIZE      0x8000000000ULL
+#define MM_DDR_CH2_SIZE_H    0x80
+#define MM_DDR_CH2_2_L       0x0
+#define MM_DDR_CH2_2 0x68000000000ULL
+#define MM_DDR_CH2_2_H       0x680
+#define MM_DDR_CH2_2_SIZE_L  0x0
+#define MM_DDR_CH2_2_SIZE    0x8000000000ULL
+#define MM_DDR_CH2_2_SIZE_H  0x80
+#define MM_DDR_CH3_L 0x0
+#define MM_DDR_CH3   0x70000000000ULL
+#define MM_DDR_CH3_H 0x700
+#define MM_DDR_CH3_SIZE_L    0x0
+#define MM_DDR_CH3_SIZE      0x8000000000ULL
+#define MM_DDR_CH3_SIZE_H    0x80
+#define MM_DDR_CH3_2_L       0x0
+#define MM_DDR_CH3_2 0x78000000000ULL
+#define MM_DDR_CH3_2_H       0x780
+#define MM_DDR_CH3_2_SIZE_L  0x0
+#define MM_DDR_CH3_2_SIZE    0x8000000000ULL
+#define MM_DDR_CH3_2_SIZE_H  0x80
+
+#define MM_HBM0_L	0x0
+#define MM_HBM0	0x4000000000ULL
+#define MM_HBM0_H	0x40
+#define MM_HBM0_SIZE_L	0x0
+#define MM_HBM0_SIZE	0x1000000000ULL
+#define MM_HBM0_SIZE_H	0x10
+#define MM_HBM1_L	0x0
+#define MM_HBM1	0x5000000000ULL
+#define MM_HBM1_H	0x50
+#define MM_HBM1_SIZE_L	0x0
+#define MM_HBM1_SIZE	0x1000000000ULL
+#define MM_HBM1_SIZE_H	0x10
+#define MM_HBM2_L	0x0
+#define MM_HBM2	0x6000000000ULL
+#define MM_HBM2_H	0x60
+#define MM_HBM2_SIZE_L	0x0
+#define MM_HBM2_SIZE	0x1000000000ULL
+#define MM_HBM2_SIZE_H	0x10
+#define MM_HBM3_L	0x0
+#define MM_HBM3	0x7000000000ULL
+#define MM_HBM3_H	0x70
+#define MM_HBM3_SIZE_L	0x0
+#define MM_HBM3_SIZE	0x1000000000ULL
+#define MM_HBM3_SIZE_H	0x10
+
+#endif

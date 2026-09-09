@@ -221,16 +221,20 @@ name: name@addr64 {														\
 #elif defined(VERSAL2_XC2VP3202)
  #include "versal2-xc2vp3202-memmap.dtsh"
 #else
- #include "versal-top-memmap.dtsh"
- #include "versal-fpd-memmap.dtsh"
- #include "versal-lpd-memmap.dtsh"
-#ifndef VERSAL_PMC_MEMMAP_OVERRIDE
- #include "versal-pmc-memmap.dtsh"
-#endif
- #include "versal-iou-memmap.dtsh"
- #include "versal-psm-memmap.dtsh"
- #include "versal-gic-memmap.dtsh"
- #include "versal-cpm-memmap.dtsh"
+ #ifndef MM_DDR
+  #include "versal-top-memmap.dtsh"
+  #include "versal-fpd-memmap.dtsh"
+  #include "versal-lpd-memmap.dtsh"
+  #ifndef VERSAL_PMC_MEMMAP_OVERRIDE
+   #include "versal-pmc-memmap.dtsh"
+  #endif
+  #include "versal-iou-memmap.dtsh"
+  #include "versal-psm-memmap.dtsh"
+  #include "versal-gic-memmap.dtsh"
+  #include "versal-cpm-memmap.dtsh"
+ #else
+  #include "versal/memmap/manual-entries.dtsh"
+ #endif
  #define MM_RPU_GIC	0xf9000000
  #define MM_RPU_GIC_SIZE	0x3000
 #endif
