@@ -11,8 +11,8 @@
 
 #define VERSAL_NPI_OVERRIDE
 #define VERSAL_HAS_CPM5
+#include "versal/memmap/xcvp1202.dtsh" /* same memory map as xcvp1202 */
 #include "versal/memmap/versal-xcvh1582-npi-memmap.dtsi"
-#include "versal-cpm5-memmap.dtsh"
 #include "board-versal-ps-virt.dts"
 #include "versal-silicon-freq.dtsi"
 
