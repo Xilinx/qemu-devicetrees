@@ -230,6 +230,7 @@ name: name@addr64 {														\
  #include "versal-iou-memmap.dtsh"
  #include "versal-psm-memmap.dtsh"
  #include "versal-gic-memmap.dtsh"
+ #include "versal-cpm-memmap.dtsh"
  #define MM_RPU_GIC	0xf9000000
  #define MM_RPU_GIC_SIZE	0x3000
 #endif
@@ -243,4 +244,3 @@ name: name@addr64 {														\
 #define MM_XRAM_XMPU_SIZE MM_OCM2_XMPU_SIZE
 #endif
 
-#include "versal-cpm-memmap.dtsh"

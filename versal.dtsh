@@ -51,3 +51,6 @@
 &xlnx_efuse {				\
 	init-factory-extidcode = <0x3>;	\
 };
+
+#define VERSAL_CPM_VERSION_NO_CPM 0  /* No CPM in the chip */
+#define VERSAL_CPM_VERSION_INITIAL 1 /* First CPM version (Versal) */

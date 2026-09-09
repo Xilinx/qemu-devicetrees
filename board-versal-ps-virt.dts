@@ -51,6 +51,21 @@
 #endif
 #endif
 
+#ifdef VERSAL_HAS_NO_CPM
+# define VERSAL_CPM_VERSION VERSAL_CPM_VERSION_NO_CPM
+#elif defined(VERSAL_HAS_CPM)
+# define VERSAL_CPM_VERSION VERSAL_CPM_VERSION_INITIAL
+#endif
+
+/* Automatic CPM version guessing if unspecified by the board */
+#ifndef VERSAL_CPM_VERSION
+# ifdef VERSAL2_DEV
+#  define VERSAL_CPM_VERSION VERSAL_CPM_VERSION_NO_CPM
+# else
+#  define VERSAL_CPM_VERSION VERSAL_CPM_VERSION_INITIAL
+# endif
+#endif
+
 #define VERSAL_NPI_GENERIC
 
 #include "versal.dtsh"
@@ -68,11 +83,14 @@
 #include "versal-boot-init.dtsi"
 #endif
 #include "versal-ps-iou.dtsi"
-#include "versal-cpm.dtsi"
 #include "versal-virtio-mmio.dtsi"
 #include "versal-boot-init.dtsi"
 #include "versal-gty.dtsi"
 #include "versal-silicon-freq.dtsi"
+
+#if VERSAL_CPM_VERSION == VERSAL_CPM_VERSION_INITIAL
+# include "versal-cpm.dtsi"
+#endif
 
 / {
 #ifdef MULTI_ARCH
