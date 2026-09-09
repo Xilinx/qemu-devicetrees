@@ -16,5 +16,3 @@
 
 #include "board-versal-net-psx-spp-1.4.dts"
 #include "versal-gty.dtsi"
-#include "versal-cpm5-memmap.dtsh"
-#include "versal-cpm5.dtsi"
