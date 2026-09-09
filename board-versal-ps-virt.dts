@@ -55,6 +55,8 @@
 # define VERSAL_CPM_VERSION VERSAL_CPM_VERSION_NO_CPM
 #elif defined(VERSAL_HAS_CPM)
 # define VERSAL_CPM_VERSION VERSAL_CPM_VERSION_INITIAL
+#elif defined(VERSAL_HAS_CPM5)
+# define VERSAL_CPM_VERSION VERSAL_CPM_VERSION_5
 #endif
 
 /* Automatic CPM version guessing if unspecified by the board */
@@ -90,6 +92,8 @@
 
 #if VERSAL_CPM_VERSION == VERSAL_CPM_VERSION_INITIAL
 # include "versal-cpm.dtsi"
+#elif VERSAL_CPM_VERSION == VERSAL_CPM_VERSION_5
+# include "versal-cpm5.dtsi"
 #endif
 
 / {

@@ -54,3 +54,4 @@
 
 #define VERSAL_CPM_VERSION_NO_CPM 0  /* No CPM in the chip */
 #define VERSAL_CPM_VERSION_INITIAL 1 /* First CPM version (Versal) */
+#define VERSAL_CPM_VERSION_5 2       /* CPM5 (some Versal chips) */
