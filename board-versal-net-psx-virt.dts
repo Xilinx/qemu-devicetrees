@@ -41,6 +41,7 @@
 #define VERSAL_PSX
 #define VERSAL_NET
 #define VERSAL_NPI_OVERRIDE
+#define VERSAL_HAS_CPM5N
 
 /* TODO: Add GIC interrupt redirection support.  */
 #define RPU_GIC_INTERRUPT_TARGET_STEM rpu_cpu

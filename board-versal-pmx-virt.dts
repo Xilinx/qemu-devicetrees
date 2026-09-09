@@ -32,6 +32,7 @@
 #define NUM_APUS 16
 #define NUM_APUS_PER_CLUSTER 4
 #define VERSAL_NPI_OVERRIDE
+#define VERSAL_HAS_CPM5N
 
 #include "versal-net/memmap/xcvn3716.dtsh"
 #include "versal-net/memmap/xcvn3716-npi.dtsh"
