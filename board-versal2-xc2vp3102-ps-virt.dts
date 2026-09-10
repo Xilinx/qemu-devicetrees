@@ -1,7 +1,7 @@
 /*
- * Versal Gen 2 premium series device xc2vp3102 virtual board dts
+ * Versal Premium Gen 2 series device xc2vp3102 virtual board dts
  *
- * Copyright Advanced Micro Devices, Inc.
+ * Copyright (c) 2024-2026, Advanced Micro Devices Inc.
  *
  * SPDX-License-Identifier: BSD-3-Clause
  */

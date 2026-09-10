@@ -6,7 +6,8 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-#define PMC_AES_ENDIANNESS_SWAP
-#define VERSAL_PMC_MEMMAP_OVERRIDE
-#include "versal2-xc2vp3602-pmc-memmap.dtsi"
-#include "board-versal-pmc-virt.dts"
+#include "versal2/2vp/memmap/xc2vp3602.dtsh"
+#include "versal2/2vp/memmap/xc2vp3602-npi.dtsh"
+#define XC2VP3602
+
+#include "versal-2vp-pmc.dtsi"

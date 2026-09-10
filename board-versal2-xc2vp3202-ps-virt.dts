@@ -1,21 +1,15 @@
 /*
- * Versal Gen 2 premium series device xc2vp3202 virtual board dts
+ * Versal Premium Gen 2 series device xc2vp3202 virtual board dts
  *
- * Copyright Advanced Micro Devices, Inc.
+ * Copyright (c) 2024-2026, Advanced Micro Devices Inc.
  *
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-#define VERSAL_NPI_OVERRIDE
-#define VERSAL2_XC2VP3202
-#define VERSAL_PMX
+#include "versal2/2vp/memmap/xc2vp3202.dtsh"
+#include "versal2/2vp/memmap/xc2vp3202-npi.dtsh"
 
-#include "versal2/2ve/memmap/versal2-xc2vp3202-npi-memmap.dtsi"
-#include "versal-ddrmc5e-aliases.dtsh"
-
-#include "board-versal-ps-virt.dts"
-#include "versal-silicon-freq.dtsi"
-#include "versal2-xc2vp3202-pmc.dtsi"
+#include "versal-2vp-ps.dtsi"
 
 &pmc_tap {
   idcode = <0x04C68093>;

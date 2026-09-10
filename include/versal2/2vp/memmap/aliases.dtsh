@@ -1,0 +1,14 @@
+/*
+ * Versal Premium Gen 2 series memory map aliases
+ *
+ * Copyright (c) 2026, Advanced Micro Devices Inc. All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+#ifndef VERSAL2_2VP_MEMMAP_ALIASES_DTSH
+#define VERSAL2_2VP_MEMMAP_ALIASES_DTSH
+
+#include "versal/memmap/manual-entries.dtsh"
+
+#endif

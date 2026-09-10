@@ -6,18 +6,8 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-#define VERSAL_NPI_OVERRIDE
-#define PMC_AES_ENDIANNESS_SWAP
-#include "versal/memmap/versal2-xc2vp3402-npi-memmap.dtsi"
-#include "versal-ddrmc5e-aliases.dtsh"
-
-#include "board-versal-ps-virt.dts"
-#include "versal-silicon-freq.dtsi"
+#include "board-versal2-xc2vp3602-ps-virt.dts"
 
 &pmc_tap {
   idcode = <0x04C75093>;
-};
-
-&npi_ddrmc_xmpu0 {
-  regs-variant = "ddrmc5e";
 };

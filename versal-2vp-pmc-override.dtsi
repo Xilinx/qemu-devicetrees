@@ -1,11 +1,23 @@
 /*
- * Versal Gen 2 xc2vp3202 PMC configuration
+ * versal-2vp PMC configuration overrides
  *
- * Copyright Advanced Micro Devices, Inc.
+ * Copyright (c) 2026, Advanced Micro Devices Inc.
  *
- * SPDX-License-Identifier: GPL-2.0-or-later
+ * SPDX-License-Identifier: BSD-3-Clause
  */
 
+/*
+ * Both xc2vp3202 and xc2vp3602 have a PMXC AES with integrated endianness swap.
+ */
+&pmc_aes {
+    integrated-endianness-swap = <1>;
+};
+
+
+/*
+ * Only xc2vp3202 has PMXC parts.
+ */
+#ifndef XC2VP3602
 &pmc_dma0_src {
 	byte-align = <1>;
 };
@@ -23,10 +35,13 @@
 };
 
 &pmc_stream_switch {
+#ifdef MM_SHA2
 	stream-connected-sha1 = <&pmc_sha2>;
+#endif
 	multi-cast-off = <0>;
 };
 
+#ifdef MM_SHA2
 &amba_pmc_sec {
 	pmc_sha2: pmc_sha1@MM_SHA2 {
 		doc-status = "complete";
@@ -34,6 +49,7 @@
 		reg = <0x0 MM_SHA2 0x0 MM_SHA2_SIZE 0x0>;
 	};
 };
+#endif
 
 &pmc_sha3 {
 	compatible = "xlnx.pmc_sha3_v2.1";
@@ -54,3 +70,5 @@
 &pmc_global {
 	compatible = "xlnx,pmx_global";
 };
+
+#endif

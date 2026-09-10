@@ -200,7 +200,12 @@ name: name@addr64 {														\
 
 /* Include auto-generated files.  */
 
-#if defined(VERSAL_2VM_DEV)
+#if defined(VERSAL_2VP_DEV)
+ /*
+  * There is no default memory map for versal-2vp chips. Boards must include
+  * their own.
+  */
+#elif defined(VERSAL_2VM_DEV)
  #include "versal2/2vm/memmap/memmap.dtsh"
  #ifndef VERSAL2_NPI_OVERRIDE
   #include "versal2-xc2ve3654-npi-memmap.dtsi"
@@ -218,8 +223,6 @@ name: name@addr64 {														\
  #include "versal2-mmi-memmap.dtsh"
 #elif defined(VERSAL_NET)
  #include "versal-psx-memmap-aliases.dtsh"
-#elif defined(VERSAL2_XC2VP3202)
- #include "versal2-xc2vp3202-memmap.dtsh"
 #else
  #ifndef MM_DDR
   #include "versal-top-memmap.dtsh"

@@ -1,0 +1,18 @@
+/*
+ * Versal Premium Gen 2 series
+ *
+ * Copyright (c) 2026, Advanced Micro Devices Inc. All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+#include "versal2/2vp/memmap/aliases.dtsh"
+#include "versal-ddrmc5e-aliases.dtsh"
+
+#define VERSAL_2VP_DEV
+#define VERSAL_NPI_OVERRIDE
+#define VERSAL_HAS_NO_CPM
+
+#include "board-versal-ps-virt.dts"
+#include "versal-silicon-freq.dtsi"
+#include "versal-2vp-pmc-override.dtsi"
