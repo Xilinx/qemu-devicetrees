@@ -1,0 +1,59 @@
+/*
+ * Versal CPM6 devices
+ *
+ * Copyright (c) 2026, Advanced Micro Devices Inc.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+#ifndef VERSAL_CPM6_DTSI
+#define VERSAL_CPM6_DTSI
+
+#ifndef MM_CPM
+# define MM_CPM MM_PCIE0_CFG
+# define MM_CPM_SIZE (MM_CPM6_PCSR + MM_CPM6_PCSR_SIZE - MM_PCIE0_CFG)
+#endif
+
+&amba_fpd {
+    cpm6_int_wrap_bot_csr@MM_CPM6_INT_WRAP_BOT_CSR {
+        compatible = "amd-cpm6-int-wrap-bot-csr";
+        reg = <0x0 MM_CPM6_INT_WRAP_BOT_CSR 0x0 MM_CPM6_INT_WRAP_BOT_CSR_SIZE 0x0>;
+    };
+
+    cpm6_int_wrap_top_csr@MM_CPM6_INT_WRAP_TOP_CSR {
+        compatible = "amd-cpm6-int-wrap-top-csr";
+        reg = <0x0 MM_CPM6_INT_WRAP_TOP_CSR 0x0 MM_CPM6_INT_WRAP_TOP_CSR_SIZE 0x0>;
+    };
+
+    cpm6_gtmpw_npi@MM_CPM6_GTMPW0_NPI {
+        compatible = "amd-cpm6-gtmpw-npi";
+        reg = <0x0 MM_CPM6_GTMPW0_NPI 0x0 MM_CPM6_GTMPW0_NPI_SIZE 0x0>;
+    };
+
+    cpm6_gtmpw_npi@MM_CPM6_GTMPW1_NPI {
+        compatible = "amd-cpm6-gtmpw-npi";
+        reg = <0x0 MM_CPM6_GTMPW1_NPI 0x0 MM_CPM6_GTMPW1_NPI_SIZE 0x0>;
+    };
+
+    cpm6_gtmpw_npi@MM_CPM6_GTMPW2_NPI {
+        compatible = "amd-cpm6-gtmpw-npi";
+        reg = <0x0 MM_CPM6_GTMPW2_NPI 0x0 MM_CPM6_GTMPW2_NPI_SIZE 0x0>;
+    };
+
+    cpm6_gtmpw_npi@MM_CPM6_GTMPW3_NPI {
+        compatible = "amd-cpm6-gtmpw-npi";
+        reg = <0x0 MM_CPM6_GTMPW3_NPI 0x0 MM_CPM6_GTMPW3_NPI_SIZE 0x0>;
+    };
+
+    cpm6_crx@MM_CPM6_CRX {
+        compatible = "amd-cpm6-crx";
+        reg = <0x0 MM_CPM6_CRX 0x0 MM_CPM6_CRX_SIZE 0x0>;
+    };
+
+    cpm6_pcsr@MM_CPM6_PCSR {
+        compatible = "amd-cpm6-pcsr";
+        reg = <0x0 MM_CPM6_PCSR 0x0 MM_CPM6_PCSR_SIZE 0x0>;
+    };
+};
+
+#endif

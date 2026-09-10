@@ -11,7 +11,7 @@
 
 #define VERSAL_2VP_DEV
 #define VERSAL_NPI_OVERRIDE
-#define VERSAL_HAS_NO_CPM
+#define VERSAL_HAS_CPM6
 
 #include "board-versal-ps-virt.dts"
 #include "versal-silicon-freq.dtsi"
