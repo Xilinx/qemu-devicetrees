@@ -177,6 +177,19 @@ glue(glue(glue(tcm_mem_ctrl_, n), _), AB): glue(glue(tcm_mem_ctrl_, AB), n)@n {	
 		#endif
 			;
 
+#ifdef MULTI_ARCH
+		/*
+		 * PMU RAM (0xFFDC0000) belongs to the PMU. Route APU accesses
+		 * through remote-port channel 3 so APU writes refresh the PMU's
+		 * translation blocks which avoids the PMUFW load race.
+		 */
+		rp_mm_pmu_ram: rp_mm_pmu_ram@ffdc0000 {
+			compatible = "remote-port-memory-master";
+			remote-ports = <&pmu_rp_0 3>;
+			reg = <BASE_ADDR(0xffdc0000) 0x20000>;
+		};
+#endif
+
 		apu: apu@APU {
 			compatible = "xlnx,apu";
 			#gpio-cells = <1>;

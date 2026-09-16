@@ -29,6 +29,9 @@
 
 #include "zynqmp.dtsh"
 
+/* PMU domain owns the local PMU RAM mapping.*/
+#define ZYNQMP_PMU_DOMAIN
+
 /dts-v1/;
 
 / {
@@ -174,6 +177,17 @@
 		remote-ports = <&pmu 2>;
 		gpio-controller;
 		num-gpios = <4>;
+	};
+
+    /*
+     * Route APU accesses to PMU RAM (0xFFDC0000) through
+     * remote-port channel 3 so PMU side TBs are refreshed
+     * after updates.
+     */
+	rp_memory_slave_apu: rp_memory_slave_apu@0 {
+		compatible = "remote-port-memory-slave";
+		remote-ports = <&pmu 3>;
+		mr = <&lmb_pmu>;
 	};
 
 	ps_reset@0 {

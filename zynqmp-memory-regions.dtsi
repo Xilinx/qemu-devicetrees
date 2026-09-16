@@ -92,12 +92,19 @@
 		container = <&amba>;
 	};
 
+/*
+ * PMU RAM is mapped only in the PMU domain. Route APU
+ * accesses through remote-port (rp_mm_pmu_ram), since a
+ * shared APU mapping caused the PMUFW load race.
+ */
+#if !defined(MULTI_ARCH) || defined(ZYNQMP_PMU_DOMAIN)
 	pmu_ram: pmu_ram@ffdc0000 {
 		compatible = "qemu:memory-region";
 		container = <&amba>;
 		qemu,ram = <QEMU_RAM_PROPERTY>;
 		reg = <BASE_ADDR(0xffdc0000) 0x00020000>;
 	};
+#endif
 
 	MEM_REGION(tcm_ram_r5_0_A, 0x0, 0x00000, 0x00000, 0x10000, &tcm_cache_rpu0)
 	MEM_REGION(tcm_ram_r5_0_B, 0x0, 0x20000, 0x20000, 0x10000, &tcm_cache_rpu0)
