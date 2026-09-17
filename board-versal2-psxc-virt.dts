@@ -70,7 +70,10 @@
 #include "versal2-rams.dtsi"
 #include "versal2-mmi.dtsi"
 #include "versal2-pmxc-system-overlay.dtsi"
+#ifndef MULTI_ARCH
+/* In multi-arch the ASU block is modelled by the ASU instance.  */
 #include "versal2-asu.dtsi"
+#endif
 
 #ifndef VERSAL_NET_APU_CPU_FREQ
  #define VERSAL_NET_APU_CPU_FREQ 100000000
@@ -193,7 +196,80 @@ RPU_CTRL_FIXUP(e, 8, 9);
 			 &crl 34
 		>;
 	};
+	rp_asu_eam_fatal: rp_asu_eam_fatal@0 {
+		compatible = "remote-port-gpio";
+		remote-ports = <&ps_asu_rp 4>;
+		#gpio-cells = <1>;
+		num-gpios = <1>;
+		gpios = <&lpd_slcr (106 + 32 * 3 + 4)>;
+	};
+	rp_asu_eam_non_fatal: rp_asu_eam_non_fatal@0 {
+		compatible = "remote-port-gpio";
+		remote-ports = <&ps_asu_rp 8>;
+		#gpio-cells = <1>;
+		num-gpios = <1>;
+		gpios = <&lpd_slcr (106 + 32 * 3 + 5)>;
+	};
+	/* ASU key transfer towards the local PMXC AES engine.  */
+	rp_asu_kt: rp_asu_kt@0 {
+		compatible = "xlnx-pmxc-key-transfer-rp";
+		remote-ports = <&ps_asu_rp 5>;
+		pmxc-key-xfer-peer = <&pmc_aes>;
+	};
+	/*
+	 * Inputs of the ASU IO module interrupt controller that are raised on
+	 * this side, the ASU IPI doorbell in particular. The controller itself
+	 * is modelled in the ASU instance.
+	 */
+	asu_io_intc: rp_asu_io_intc@0 {
+		compatible = "remote-port-gpio";
+		remote-ports = <&ps_asu_rp 7>;
+		#interrupt-cells = <1>;
+		interrupt-controller;
+		num-gpios = <32>;
+	};
+	/*
+	 * asu_kv is modelled in the ASU instance. This stub only exists so
+	 * that dtc can resolve the phandle hard-coded by
+	 * versal2-pmxc-system-overlay.dtsi; the link itself is redirected to
+	 * rp_asu_kt below.
+	 */
+	asu_kv: asu_kv@0 {
+		doc-ignore = <1>;
+	};
 };
+
+/*
+ * The ASU block lives in the ASU instance, so forward the APU and PMC
+ * accesses to it. Cover the whole ASU aperture  */
+&amba_asu {
+	rp_asu_mem: rp_asu_mem@0 {
+		compatible = "remote-port-memory-master";
+		remote-ports = <&ps_asu_rp 6>;
+		reg = <
+			0x0 MM_ASU_RAM_INSTR 0x0
+				(MM_ASU_PL + MM_ASU_PL_SIZE - MM_ASU_RAM_INSTR)
+				0xFFFFFFFF /* -1 */
+		>;
+	};
+	/*
+	 * ASU debug uartlite. Keep it on this instance so that ASU CPU
+	 * uses this over remote-port.
+	 */
+	asu_mdm_uart: asu_mdm_uart@MM_ASU_MDM_HSD {
+		compatible = "xlnx,xps-uartlite";
+		reg = <0x0 MM_ASU_MDM_HSD 0x0 0x10 0x1>;
+		chardev = "serial4";
+	};
+};
+
+&pmc_aes {
+	asu-aes = <&rp_asu_kt>;
+};
+
+/* The ASU RAMs are modelled by the ASU instance, reached over remote-port.  */
+/delete-node/ &asu_iram;
+/delete-node/ &asu_dram;
 #endif
 
 / {

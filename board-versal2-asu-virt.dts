@@ -41,7 +41,6 @@
 #include "versal-pmc.dtsi"
 #include "versal-ddrmc.dtsi"
 #include "versal-ps-iou.dtsi"
-#include "versal2-asu.dtsi"
 #include "versal2-pmx-shared-overlay.dtsi"
 #include "versal-pmx-shared-overlay.dtsi"
 #include "versal-pmx-system-overlay.dtsi"
@@ -52,6 +51,7 @@
 #include "versal-rams.dtsi"
 #endif
 #include "versal2-rams.dtsi"
+#include "versal2-asu.dtsi"
 
 #ifndef MULTI_ARCH
 &crl {
@@ -113,18 +113,25 @@
 					 &dummy1 10
 					 &asu_cpu 11 >;
 	};
-	lmb_amba_asu: lmb_amba_asu@0 {
-		rp_lmb_amba_asu@0 {
-			compatible = "remote-port-memory-master";
-			remote-ports = <&ps_asu_rp 2>;
-			reg = < 0x0 0x0 0xFFFFFFFF 0xFFFFFFFF 0xFFFFFFFF>;
-		};
-	};
 	crl: asu_rst@0 {
 		compatible = "remote-port-gpio";
 		remote-ports = <&ps_asu_rp 3>;
 		#gpio-cells = <1>;
 		num-gpios = <35>;
+	};
+	rp_asu_eam_fatal: rp_asu_eam_fatal@0 {
+		compatible = "remote-port-gpio";
+		remote-ports = <&ps_asu_rp 4>;
+		#gpio-cells = <1>;
+		gpio-controller;
+		num-gpios = <1>;
+	};
+	rp_asu_eam_non_fatal: rp_asu_eam_non_fatal@0 {
+		compatible = "remote-port-gpio";
+		remote-ports = <&ps_asu_rp 8>;
+		#gpio-cells = <1>;
+		gpio-controller;
+		num-gpios = <1>;
 	};
 	pmc_gic_proxy: pmc_gic_proxy {
 		doc-ignore = <1>;
@@ -141,10 +148,99 @@
 		#interrupt-cells = <1>;
 		interrupt-controller;
 	};
-	asu_io_intc: asu_io_intc {
-		doc-ignore = <1>;
-		#interrupt-cells = <1>;
-		interrupt-controller;
+	/*
+	 * ASU IO module interrupt inputs raised in the PS instance. Only the
+	 * ASU IPI doorbell is wired up, the remaining sources are local.
+	 */
+	rp_asu_io_irq: rp_asu_io_irq@0 {
+		compatible = "remote-port-gpio";
+		remote-ports = <&ps_asu_rp 7>;
+		num-gpios = <32>;
+		interrupts-extended = <  &dummy1 0
+					 &dummy1 1
+					 &dummy1 2
+					 &dummy1 3
+					 &dummy1 4
+					 &dummy1 5
+					 &dummy1 6
+					 &dummy1 7
+					 &dummy1 8
+					 &dummy1 9
+					 &dummy1 10
+					 &dummy1 11
+					 &dummy1 12
+					 &dummy1 13
+					 &dummy1 14
+					 &dummy1 15
+					 &dummy1 16
+					 &dummy1 17
+					 &dummy1 18
+					 &dummy1 19
+					 &dummy1 20
+					 &dummy1 21
+					 &dummy1 22
+					 &dummy1 23
+					 &dummy1 24
+					 &dummy1 25
+					 &dummy1 26
+					 &dummy1 27
+					 &asu_io_intc IRQ_ASU_IPI
+					 &dummy1 29
+					 &dummy1 30
+					 &dummy1 31 >;
+	};
+	/*
+	 * ASU key transfer towards the PMXC AES engine, which lives in the
+	 * PS instance. Carries asu_ready() out, send_key() and done() back.
+	 */
+	rp_asu_kt: rp_asu_kt@0 {
+		compatible = "xlnx-pmxc-key-transfer-rp";
+		remote-ports = <&ps_asu_rp 5>;
+		pmxc-key-xfer-peer = <&asu_kv>;
+	};
+	/*
+	 * The ASU block (registers, IRAM and DRAM) is modelled here, so give
+	 * the PS instance a view of it for the APU and the PMC.
+	 */
+	rp_asu_view: rp_asu_view@0 {
+		compatible = "remote-port-memory-slave";
+		remote-ports = <&ps_asu_rp 6>;
+		mr = <&amba_asu>;
 	};
 #endif
 };
+
+#ifdef MULTI_ARCH
+/*
+ * The rest of the system is modelled in the PS instance. Give every ASU
+ * master - the RISC-V core and the ASU DMAs - a view of it by making
+ * remote-port the background of the ASU master bus. It sits below the
+ * amba/amba_asu backgrounds (-1) so that local ASU devices always win and
+ * only addresses nothing here claims, OCM in particular, go to the PS.
+ */
+&amba_asu_cpu {
+	rp_amba_asu_cpu@0 {
+		compatible = "remote-port-memory-master";
+		remote-ports = <&ps_asu_rp 2>;
+		reg = <0x0 0x0 0xFFFFFFFF 0xFFFFFFFF 0xFFFFFFFE /* -2 */>;
+	};
+};
+
+&asu_kv {
+	pmxc-aes = <&rp_asu_kt>;
+};
+
+/*
+ * asu_global's unnamed gpios list is an FDT client:
+ *   [0] key-xfer-done   <- asu_aes (local)
+ *   [1] fatal-error     -> lpd_slcr eam-err-in[group 3 bit 4]
+ *   [2] non-fatal-error -> lpd_slcr eam-err-in[group 3 bit 5]
+ * The EAM inputs belong to the LPD error aggregator in the PS instance,
+ * reach them over remote-port.
+ */
+&asu_global {
+	gpios = <&asu_aes ASU_AES_KEY_TRANSFER_DONE>,
+		<&rp_asu_eam_fatal 0>,
+		<&rp_asu_eam_non_fatal 0>;
+};
+#endif

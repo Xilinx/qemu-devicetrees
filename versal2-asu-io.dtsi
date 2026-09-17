@@ -135,12 +135,14 @@
 				#gpio-cells = <1>;
 			};
 	};
+#ifndef MULTI_ARCH
 	asu_mdm_uart: asu_mdm_uart@MM_ASU_MDM_HSD {
 		compatible = "xlnx,xps-uartlite";
 		reg = <0x0 MM_ASU_MDM_HSD 0x0 0x10 0x1>;
 		endianness = QEMU_ENDIAN_MODE_LITTLE;
 		chardev = "serial4";
 	};
+#endif
 	asu_global: asu_global@MM_ASU_GLOBAL {
 		compatible = "xlnx,asu_global";
 		reg = <0x0 MM_ASU_GLOBAL 0x0 MM_ASU_GLOBAL_SIZE 0x0>;
