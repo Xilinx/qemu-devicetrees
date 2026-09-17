@@ -260,6 +260,7 @@
 			>;
 	};
 
+#ifdef MM_CPM
 	/* CPM master port, PS can access the CPM register through that
 	 * port.  */
 	m_cpm: m_cpm@0 {
@@ -285,6 +286,7 @@
 			      CPM_UNCORR_IRQ_0
 			      >;
 	};
+#endif
 
 	/*
 	 * GPIO to EMIO:
