@@ -241,7 +241,7 @@
 <__acells__ PMC_NPI_IRQ_10 __intc__ 0 PMC_NPI_IRQ_10 4>,
 <__acells__ PMC_NPI_IRQ_11 __intc__ 0 PMC_NPI_IRQ_11 4>,
 <__acells__ PMC_OSPI_IRQ __intc__ 0 PMC_OSPI_IRQ 4>,
-<__acells__ PMC_QSPI_IRQ __intc__ 0 PMC_OSPI_IRQ 4>,
+<__acells__ PMC_QSPI_IRQ __intc__ 0 PMC_QSPI_IRQ 4>,
 <__acells__ PMC_SD0_INTR_IRQ_0 __intc__ 0 PMC_SD0_INTR_IRQ_0 4>,
 <__acells__ PMC_SD0_WAKE_IRQ_0 __intc__ 0 PMC_SD0_WAKE_IRQ_0 4>,
 <__acells__ PMC_SD1_INTR_IRQ_0 __intc__ 0 PMC_SD1_INTR_IRQ_0 4>,
