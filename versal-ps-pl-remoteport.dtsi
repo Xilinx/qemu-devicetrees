@@ -184,7 +184,9 @@
 #ifdef MM_Reserved_3_L
 				MM_Reserved_3_H MM_Reserved_3_L 0x0 MM_Reserved_3_SIZE 0x1
 #endif
-#ifdef MM_Reserved_4_L
+#ifdef MM_ME_L
+				MM_ME_H MM_ME_L MM_ME_SIZE_H MM_ME_SIZE_L 0x1
+#elif defined(MM_Reserved_4_L)
 				MM_Reserved_4_H MM_Reserved_4_L 0x0 MM_Reserved_4_SIZE 0x1
 #endif
 #ifdef MM_PCIe_region_1_L
