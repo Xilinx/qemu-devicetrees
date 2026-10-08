@@ -267,6 +267,23 @@
 #endif
 };
 
+/*
+ * Every OCM XMPU aliases into the one ocm_mem container. QEMU's offset
+ * inside that container is (OCM Mapping - protected-base), so protected-base
+ * is the container origin, not each bank's CPU address.
+ * Versal 2VE origin is bank 2 (0xBBE00000). Versal 2VM has only banks 0 and 1,
+ * so its origin is bank 0.
+ */
+#ifdef VERSAL_2VM_DEV
+#define OCM_XMPU_PROT_BASE MM_OCM0_MEM
+#else
+#define OCM_XMPU_PROT_BASE MM_OCM2_MEM
+#endif
+
+&xmpu_ocm {
+	protected-base = <OCM_XMPU_PROT_BASE>;
+};
+
 &amba {
 	xmpu_ocm1: xmpu_ocm1@0 {
 		compatible = "xlnx,versal-xmpu";
@@ -277,7 +294,7 @@
 		>;
 		protected-mr = <&ocm_mem>;
 		mr-0 = <&amba>;
-		protected-base = <MM_OCM1_MEM>;
+		protected-base = <OCM_XMPU_PROT_BASE>;
 	};
 #ifdef MM_OCM2_XMPU
 	xmpu_ocm2: xmpu_ocm2@0 {
@@ -289,7 +306,7 @@
 		>;
 		protected-mr = <&ocm_mem>;
 		mr-0 = <&amba>;
-		protected-base = <MM_OCM2_MEM>;
+		protected-base = <OCM_XMPU_PROT_BASE>;
 	};
 #endif
 #ifdef MM_OCM3_XMPU
@@ -302,7 +319,7 @@
 		>;
 		protected-mr = <&ocm_mem>;
 		mr-0 = <&amba>;
-		protected-base = <MM_OCM3_MEM>;
+		protected-base = <OCM_XMPU_PROT_BASE>;
 	};
 #endif
 };
