@@ -148,6 +148,20 @@
 			read-only;
 		};
 
+		mmi_dp: mmi_dp@MM_MMI_DP {
+			compatible = "qemu:memory-region";
+			qemu,ram = <QEMU_RAM_PROPERTY>;
+			reg = <0x0 MM_MMI_DP 0x0 MM_MMI_DP_SIZE 0x0>;
+			read-only;
+		};
+
+		mmi_dc: mmi_dc@MM_MMI_DC {
+			compatible = "qemu:memory-region";
+			qemu,ram = <QEMU_RAM_PROPERTY>;
+			reg = <0x0 MM_MMI_DC 0x0 MM_MMI_DC_SIZE 0x0>;
+			read-only;
+		};
+
 		LOADER_DEBUG_WRITE(0, 0xEDC30440, 0x1, 4);
 		LOADER_DEBUG_WRITE(0, 0xEDC30444, 0x7F, 4);
 		LOADER_DEBUG_WRITE(0, 0xEDC3044c, 0x1, 4);

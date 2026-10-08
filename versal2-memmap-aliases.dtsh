@@ -70,3 +70,8 @@
 #define MM_SHA0_SIZE MM_PMC_SHA3_SIZE
 #define MM_SHA1 MM_PMC_SHA2
 #define MM_SHA1_SIZE MM_PMC_SHA2_SIZE
+
+#ifdef MM_MMIT_DC
+ #define MM_MMI_DC MM_MMIT_DC
+ #define MM_MMI_DC_SIZE MM_MMIT_DC_SIZE
+#endif
