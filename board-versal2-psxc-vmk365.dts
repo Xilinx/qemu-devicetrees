@@ -42,6 +42,10 @@
 		compatible = "ti,tca6416";
 		reg = <0x20>;
 	};
+	gpio@21 {
+		compatible = "ti,tca6416";
+		reg = <0x21>;
+	};
 	i2c-arbitrator@72 {
 		#address-cells = <1>;
 		#size-cells = <0>;
@@ -53,11 +57,11 @@
 			reg = <0>;
 
 			/* Board ID eeprom.  */
-			eeprom@50 {
+			eeprom@54 {
 				compatible = "m24cxx";
 				size = <0x4000>;
-				reg = <0x50>;
-				blockdev-node-name = "ps_i2c1.eeprom-50";
+				reg = <0x54>;
+				blockdev-node-name = "ps_i2c1.eeprom-54";
 			};
 		};
 	};
@@ -66,7 +70,7 @@
 		#address-cells = <1>;
 		#size-cells = <0>;
 		reg = <0x77>;
-		compatible = "pca9848";
+		compatible = "pca9548";
 	};
 };
 /* No SPI nor QSPI have any memories mapped.  */
